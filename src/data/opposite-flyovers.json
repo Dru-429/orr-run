@@ -1,0 +1,43 @@
+[
+  {
+    "id": "flyover:380980312",
+    "name": "HSR westbound",
+    "from": 1559.3865831516603,
+    "to": 1943.009130596174,
+    "upTo": 1684.3865831516603,
+    "downFrom": 1815.1349481146694,
+    "height": 6.2,
+    "confidence": "estimated",
+    "sources": [
+      "https://www.openstreetmap.org/way/380980312",
+      "https://www.openstreetmap.org/way/380980313"
+    ]
+  },
+  {
+    "id": "flyover:380980307",
+    "name": "Agara westbound",
+    "from": 3159.649577673722,
+    "to": 3779.978359771957,
+    "upTo": 3284.649577673722,
+    "downFrom": 3629.978359771957,
+    "height": 6.2,
+    "confidence": "estimated",
+    "sources": [
+      "https://www.openstreetmap.org/way/380980307",
+      "https://www.openstreetmap.org/way/377085060"
+    ]
+  },
+  {
+    "id": "flyover:380929042",
+    "name": "Ibbalur westbound",
+    "from": 4771.951864063558,
+    "to": 5340.612941417145,
+    "upTo": 4896.951864063558,
+    "downFrom": 5190.612941417145,
+    "height": 6.4,
+    "confidence": "estimated",
+    "sources": [
+      "https://www.openstreetmap.org/way/380929042"
+    ]
+  }
+]

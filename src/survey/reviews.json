@@ -1,0 +1,442 @@
+[
+  {
+    "to": 50,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 0
+  },
+  {
+    "to": 50,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 0
+  },
+  {
+    "to": 100,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 50
+  },
+  {
+    "to": 100,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 50
+  },
+  {
+    "to": 150,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 100
+  },
+  {
+    "to": 150,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 100
+  },
+  {
+    "to": 200,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 150
+  },
+  {
+    "to": 200,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 150
+  },
+  {
+    "to": 250,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 200
+  },
+  {
+    "to": 250,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 200
+  },
+  {
+    "to": 300,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 250
+  },
+  {
+    "to": 300,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 250
+  },
+  {
+    "to": 350,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 300
+  },
+  {
+    "to": 350,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 300
+  },
+  {
+    "to": 400,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 350
+  },
+  {
+    "to": 400,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 350
+  },
+  {
+    "to": 450,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 400
+  },
+  {
+    "to": 450,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 400
+  },
+  {
+    "to": 500,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 450
+  },
+  {
+    "to": 500,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 450
+  },
+  {
+    "to": 550,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 500
+  },
+  {
+    "to": 550,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 500
+  },
+  {
+    "to": 600,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 550
+  },
+  {
+    "to": 600,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 550
+  },
+  {
+    "to": 650,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 600
+  },
+  {
+    "to": 650,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 600
+  },
+  {
+    "to": 700,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 650
+  },
+  {
+    "to": 700,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 650
+  },
+  {
+    "to": 750,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 700
+  },
+  {
+    "to": 750,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 700
+  },
+  {
+    "to": 800,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 750
+  },
+  {
+    "to": 800,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 750
+  },
+  {
+    "to": 850,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 800
+  },
+  {
+    "to": 850,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 800
+  },
+  {
+    "to": 900,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 850
+  },
+  {
+    "to": 900,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 850
+  },
+  {
+    "to": 950,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 900
+  },
+  {
+    "to": 950,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 900
+  },
+  {
+    "to": 1000,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 950
+  },
+  {
+    "to": 1000,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Individual frontages and entrances not fully reconciled"
+    ],
+    "from": 950
+  }
+]

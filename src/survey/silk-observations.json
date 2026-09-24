@@ -1,0 +1,175 @@
+[
+  {
+    "id": "silk-hsr:sv-signal-650141554",
+    "segmentId": "silk-hsr",
+    "localCheckpoint": 1022.9885695215555,
+    "checkpoint": 1022.9885695215555,
+    "direction": "forward",
+    "requested": [
+      12.9166349,
+      77.6322293
+    ],
+    "actual": [
+      12.9166349,
+      77.6322293
+    ],
+    "heading": 105,
+    "imageryDate": "2025-11",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=-CYaqdCj3nF-BQjI3Sp4mA&heading=105&pitch=0&fov=90",
+    "panoramaId": "-CYaqdCj3nF-BQjI3Sp4mA",
+    "locationStatus": "matched",
+    "notes": "Ground-level 5th Main junction beneath metro works. Signal head visible ahead, mixed crossing traffic, trees and fences left; commercial frontage right. Exact stop line and operational timing not measured.",
+    "featureIds": [
+      "signal:650141554"
+    ]
+  },
+  {
+    "id": "silk-hsr:sv-signal-650141450",
+    "segmentId": "silk-hsr",
+    "localCheckpoint": 2674.4444497954155,
+    "checkpoint": 2674.4444497954155,
+    "direction": "forward",
+    "requested": [
+      12.9219906,
+      77.644842
+    ],
+    "actual": [
+      12.9219906,
+      77.644842
+    ],
+    "heading": 40,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=gGosbsL7aqK7YxxShpKDZA&heading=40&pitch=0&fov=90",
+    "panoramaId": "gGosbsL7aqK7YxxShpKDZA",
+    "locationStatus": "matched",
+    "notes": "Signal heads and zebra crossing at the lake approach. Metro pier ORP101 and installed viaduct to the right; park fencing and trees left. Cycle and controlled lane widths estimated.",
+    "featureIds": [
+      "signal:650141450"
+    ]
+  },
+  {
+    "id": "silk-hsr:sv-signal-1083470977",
+    "segmentId": "silk-hsr",
+    "localCheckpoint": 5044.726496753468,
+    "checkpoint": 5044.726496753468,
+    "direction": "forward",
+    "requested": [
+      12.9209147,
+      77.6652973
+    ],
+    "actual": [
+      12.9209147,
+      77.6652973
+    ],
+    "heading": 67,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=usSaAw-epdZ5eSsYzp9rlQ&heading=67&pitch=0&fov=90",
+    "panoramaId": "usSaAw-epdZ5eSsYzp9rlQ",
+    "locationStatus": "matched",
+    "notes": "Signal visible ahead on the left of Sarjapur crossing; zebra crossing, police booth and STOP sign. Opposite-direction road flyover on the right has cream walls with purple bands. Metro works overhead have unfinished gaps. Junction movement paths remain estimates.",
+    "featureIds": [
+      "signal:1083470977"
+    ]
+  },
+  {
+    "id": "silk-hsr:sv-agara-left",
+    "segmentId": "silk-hsr",
+    "localCheckpoint": 2674.4444497954155,
+    "checkpoint": 2674.4444497954155,
+    "direction": "left",
+    "requested": [
+      12.9219906,
+      77.644842
+    ],
+    "actual": [
+      12.9219906,
+      77.644842
+    ],
+    "heading": 310,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=gGosbsL7aqK7YxxShpKDZA&heading=310&pitch=0&fov=90",
+    "panoramaId": "gGosbsL7aqK7YxxShpKDZA",
+    "locationStatus": "matched",
+    "notes": "Agara Lake visible in narrow glimpses behind a wire fence and dense roadside trees. Paved verge/footpath outside the fence. Blue signal pole in foreground. Do not remove this visual screening; tree species, density and exact fence alignment remain estimates.",
+    "featureIds": [
+      "landscape:relation/8469370"
+    ]
+  },
+  {
+    "id": "silk-hsr:sv-hsr-crest",
+    "segmentId": "silk-hsr",
+    "localCheckpoint": 1750,
+    "checkpoint": 1750,
+    "direction": "forward",
+    "requested": [
+      12.9161787,
+      77.6388383
+    ],
+    "actual": [
+      12.9161787,
+      77.6388383
+    ],
+    "heading": 70,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=UvsWnjs2vAANnq8AnLk2Dg&heading=70&pitch=0&fov=90",
+    "panoramaId": "UvsWnjs2vAANnq8AnLk2Dg",
+    "locationStatus": "matched",
+    "notes": "Elevated eastbound ORR with separate opposing deck at right, black/white concrete parapets, trees and glimpses of Agara water left. Metro steel/composite span and tall portal supports beside the carriageway. Three OSM lanes are not all clearly marked in this view.",
+    "featureIds": [
+      "flyover:611380787"
+    ]
+  },
+  {
+    "id": "silk-hsr:sv-agara-crest",
+    "segmentId": "silk-hsr",
+    "localCheckpoint": 3450,
+    "checkpoint": 3450,
+    "direction": "forward",
+    "requested": [
+      12.9244564,
+      77.6510709
+    ],
+    "actual": [
+      12.9244564,
+      77.6510709
+    ],
+    "heading": 99,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=3znXDO-Ru9kkPh9CXLbX4g&heading=99&pitch=0&fov=90",
+    "panoramaId": "3znXDO-Ru9kkPh9CXLbX4g",
+    "locationStatus": "matched",
+    "notes": "Elevated eastbound ORR beside a separately supported opposite-direction road deck. Black/white parapets and metal top rails, metro viaduct immediately right, unfinished station structure ahead, trees and low commercial buildings to the left. Heights and clearance remain estimated.",
+    "featureIds": [
+      "flyover:377106135"
+    ]
+  },
+  {
+    "id": "silk-hsr:sv-0000-forward",
+    "segmentId": "silk-hsr",
+    "localCheckpoint": 0,
+    "checkpoint": 0,
+    "direction": "forward",
+    "requested": [
+      12.9173954,
+      77.6229259
+    ],
+    "actual": [
+      12.9172746,
+      77.6229398
+    ],
+    "heading": 76,
+    "imageryDate": "2025-11",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=yulUOve1aMjgCGwuoeHZcw&heading=76&pitch=0&fov=90",
+    "panoramaId": "yulUOve1aMjgCGwuoeHZcw",
+    "locationStatus": "unresolved",
+    "notes": "Google placed the panorama about 13 m south of the requested eastbound ORR node. Vehicles face the camera: this appears to be the opposing carriageway. It supports only general Silk Board flyover/metro surroundings, not the player lane or lane-level signal assignment. Steel/composite flyover crosses overhead; buses and multiple concrete supports visible. Exact eastbound start reference still required.",
+    "featureIds": []
+  }
+]

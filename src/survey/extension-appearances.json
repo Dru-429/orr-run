@@ -1,0 +1,94 @@
+[
+  {
+    "buildingId": "1318195055",
+    "facade": "glass",
+    "signage": "YAMAHA",
+    "business": "Yamaha showroom",
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-0375-right",
+      "manipal-approach:sv-0400-right"
+    ],
+    "note": "Two-storey dark grey frame with blue glazing and red Yamaha fascia. Footprint matched directly in front of the rounded Ferns Galaxy facade. Storeys and height are approximate; building name remains unidentified."
+  },
+  {
+    "buildingId": "524043737",
+    "facade": "blue-glass",
+    "signage": null,
+    "business": null,
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-0375-forward",
+      "manipal-approach:sv-0400-right"
+    ],
+    "note": "Curved blue-glazed frontage, horizontal floor bands and tall pale end walls behind Yamaha showroom. Geographic outline retained; facade layout simplified. Mapped building name; not all tenant signs have been reconciled."
+  },
+  {
+    "buildingId": "296155190",
+    "facade": "sattva",
+    "signage": "AGR PLAZA",
+    "business": null,
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-0450-left"
+    ],
+    "note": "Grey facade panels, blue glazing, two red vertical bands and stepped roof parapet. Roof name observed. Ground-floor tenant names remain unresolved; facade model simplified."
+  },
+  {
+    "buildingId": "1066506701",
+    "facade": "green-glass",
+    "signage": "INDIQUBE",
+    "business": null,
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-0550-right"
+    ],
+    "note": "Green glazing, projecting horizontal bands, rooftop canopy and INDIQUBE signage. AGR Pinnacle name also visible on roof frame; mapped footprint retained. Exact entrance and height unverified."
+  },
+  {
+    "buildingId": "307875973",
+    "facade": "shop",
+    "signage": "cult.fit",
+    "business": "cult.fit",
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-0625-left"
+    ],
+    "note": "Black frontage with large white cult.fit lettering, entry steps and rooftop naturals sign. Mapped Suramayi Plaza footprint; simplified facade and estimated dimensions."
+  },
+  {
+    "buildingId": "331512923",
+    "facade": "sattva",
+    "signage": "SATTVA",
+    "business": null,
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-0700-left",
+      "manipal-approach:sv-0750-left"
+    ],
+    "note": "Salarpuria Softzone: orange/brown horizontal panels, dark glazing and pale structural frames. Landscaped setback and guarded entry. Original footprint; simplified facade."
+  },
+  {
+    "buildingId": "343621794",
+    "facade": "blue-glass",
+    "signage": "SOUL SPACE SPIRIT",
+    "business": null,
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-1250-forward",
+      "manipal-approach:sv-1250-left"
+    ],
+    "note": "Rounded dark-blue mall frontage with projecting circular cornice and white roof wordmark. Map labels Reliance Centro; building and occupants remain separate."
+  },
+  {
+    "buildingId": "1066396962",
+    "facade": "glass",
+    "signage": null,
+    "business": null,
+    "imageryDate": "2026-04",
+    "observations": [
+      "manipal-approach:sv-1250-left"
+    ],
+    "note": "Tall blue-glazed office with pale vertical framing behind entrance arch and guardhouse. Exact entry dimensions not measured."
+  }
+]

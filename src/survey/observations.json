@@ -1,0 +1,2440 @@
+[
+  {
+    "id": "sv-0000-forward",
+    "checkpoint": 0,
+    "direction": "forward",
+    "requested": [
+      12.938237046378228,
+      77.6940037235084
+    ],
+    "actual": [
+      12.938222,
+      77.6939942
+    ],
+    "heading": 45.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=FUqkbwF-uFLI8Ok8tXQG5Q&heading=45.9&pitch=0&fov=100",
+    "panoramaId": "FUqkbwF-uFLI8Ok8tXQG5Q",
+    "locationStatus": "matched",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0000-left",
+    "checkpoint": 0,
+    "direction": "left",
+    "requested": [
+      12.938237046378228,
+      77.6940037235084
+    ],
+    "actual": [
+      12.938222,
+      77.6939942
+    ],
+    "heading": 315.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=FUqkbwF-uFLI8Ok8tXQG5Q&heading=315.9&pitch=0&fov=100",
+    "panoramaId": "FUqkbwF-uFLI8Ok8tXQG5Q",
+    "locationStatus": "matched",
+    "notes": "Trees and utility poles above the blue/white retaining wall; lower frontages hidden.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0000-right",
+    "checkpoint": 0,
+    "direction": "right",
+    "requested": [
+      12.938237046378228,
+      77.6940037235084
+    ],
+    "actual": [
+      12.938222,
+      77.6939942
+    ],
+    "heading": 135.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=FUqkbwF-uFLI8Ok8tXQG5Q&heading=135.9&pitch=0&fov=100",
+    "panoramaId": "FUqkbwF-uFLI8Ok8tXQG5Q",
+    "locationStatus": "matched",
+    "notes": "Blue/white retaining wall and installed metro deck; frontage hidden.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0025-forward",
+    "checkpoint": 25,
+    "direction": "forward",
+    "requested": [
+      12.938393558659202,
+      77.69416933836926
+    ],
+    "actual": null,
+    "heading": 45.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9383936,77.6941693&heading=45.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0025-left",
+    "checkpoint": 25,
+    "direction": "left",
+    "requested": [
+      12.938393558659202,
+      77.69416933836926
+    ],
+    "actual": null,
+    "heading": 315.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9383936,77.6941693&heading=315.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Pale glazed low building and billboard above the wall; identity unresolved. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0025-right",
+    "checkpoint": 25,
+    "direction": "right",
+    "requested": [
+      12.938393558659202,
+      77.69416933836926
+    ],
+    "actual": null,
+    "heading": 135.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9383936,77.6941693&heading=135.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Retaining wall screens the opposite frontage. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0050-forward",
+    "checkpoint": 50,
+    "direction": "forward",
+    "requested": [
+      12.938550070940176,
+      77.69433495323013
+    ],
+    "actual": null,
+    "heading": 45.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9385501,77.6943350&heading=45.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0050-left",
+    "checkpoint": 50,
+    "direction": "left",
+    "requested": [
+      12.938550070940176,
+      77.69433495323013
+    ],
+    "actual": null,
+    "heading": 315.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9385501,77.6943350&heading=315.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Unfinished concrete upper floor behind a tree above the retaining wall. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0050-right",
+    "checkpoint": 50,
+    "direction": "right",
+    "requested": [
+      12.938550070940176,
+      77.69433495323013
+    ],
+    "actual": null,
+    "heading": 135.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9385501,77.6943350&heading=135.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue/white wall with metro deck above. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0075-forward",
+    "checkpoint": 75,
+    "direction": "forward",
+    "requested": [
+      12.93871369063464,
+      77.6944930226576
+    ],
+    "actual": null,
+    "heading": 42.2,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9387137,77.6944930&heading=42.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0075-left",
+    "checkpoint": 75,
+    "direction": "left",
+    "requested": [
+      12.93871369063464,
+      77.6944930226576
+    ],
+    "actual": null,
+    "heading": 312.2,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9387137,77.6944930&heading=312.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree canopy and high retaining wall; building entrances not visible. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0075-right",
+    "checkpoint": 75,
+    "direction": "right",
+    "requested": [
+      12.93871369063464,
+      77.6944930226576
+    ],
+    "actual": null,
+    "heading": 132.2,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9387137,77.6944930&heading=132.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "High retaining wall obscures buildings. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0100-forward",
+    "checkpoint": 100,
+    "direction": "forward",
+    "requested": [
+      12.938880439556298,
+      77.69464776043912
+    ],
+    "actual": null,
+    "heading": 41.4,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9388804,77.6946478&heading=41.4&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0100-left",
+    "checkpoint": 100,
+    "direction": "left",
+    "requested": [
+      12.938880439556298,
+      77.69464776043912
+    ],
+    "actual": null,
+    "heading": 311.4,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9388804,77.6946478&heading=311.4&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree canopy and wall; no complete frontage view. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0100-right",
+    "checkpoint": 100,
+    "direction": "right",
+    "requested": [
+      12.938880439556298,
+      77.69464776043912
+    ],
+    "actual": null,
+    "heading": 131.4,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9388804,77.6946478&heading=131.4&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Metro span and retaining wall. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0125-forward",
+    "checkpoint": 125,
+    "direction": "forward",
+    "requested": [
+      12.93904977667523,
+      77.69479951230626
+    ],
+    "actual": null,
+    "heading": 41.1,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9390498,77.6947995&heading=41.1&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0125-left",
+    "checkpoint": 125,
+    "direction": "left",
+    "requested": [
+      12.93904977667523,
+      77.69479951230626
+    ],
+    "actual": null,
+    "heading": 311.1,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9390498,77.6947995&heading=311.1&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass approach; wall screens lower buildings. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0125-right",
+    "checkpoint": 125,
+    "direction": "right",
+    "requested": [
+      12.93904977667523,
+      77.69479951230626
+    ],
+    "actual": null,
+    "heading": 131.1,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9390498,77.6947995&heading=131.1&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Deck approach and striped retaining wall. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0150-forward",
+    "checkpoint": 150,
+    "direction": "forward",
+    "requested": [
+      12.93922555212612,
+      77.69494288028673
+    ],
+    "actual": [
+      12.939227,
+      77.6949546
+    ],
+    "heading": 35.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=nOSb8JOYaiUdXo0JxskvpA&heading=35.3&pitch=0&fov=100",
+    "panoramaId": "nOSb8JOYaiUdXo0JxskvpA",
+    "locationStatus": "matched",
+    "notes": "Underpass corridor with striped walls; enclosed concrete ceiling.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0150-left",
+    "checkpoint": 150,
+    "direction": "left",
+    "requested": [
+      12.93922555212612,
+      77.69494288028673
+    ],
+    "actual": [
+      12.939227,
+      77.6949546
+    ],
+    "heading": 305.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=nOSb8JOYaiUdXo0JxskvpA&heading=305.3&pitch=0&fov=100",
+    "panoramaId": "nOSb8JOYaiUdXo0JxskvpA",
+    "locationStatus": "matched",
+    "notes": "Inside underpass; concrete ceiling and striped wall. No roadside frontage visible.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0150-right",
+    "checkpoint": 150,
+    "direction": "right",
+    "requested": [
+      12.93922555212612,
+      77.69494288028673
+    ],
+    "actual": [
+      12.939227,
+      77.6949546
+    ],
+    "heading": 125.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=nOSb8JOYaiUdXo0JxskvpA&heading=125.3&pitch=0&fov=100",
+    "panoramaId": "nOSb8JOYaiUdXo0JxskvpA",
+    "locationStatus": "matched",
+    "notes": "Inside underpass; wall and ceiling obscure outside buildings.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0175-forward",
+    "checkpoint": 175,
+    "direction": "forward",
+    "requested": [
+      12.939408954465266,
+      77.69507631666266
+    ],
+    "actual": null,
+    "heading": 35.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9394090,77.6950763&heading=35.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; enclosed concrete ceiling. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0175-left",
+    "checkpoint": 175,
+    "direction": "left",
+    "requested": [
+      12.939408954465266,
+      77.69507631666266
+    ],
+    "actual": null,
+    "heading": 305.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9394090,77.6950763&heading=305.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Enclosed underpass wall; no frontage visible. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0175-right",
+    "checkpoint": 175,
+    "direction": "right",
+    "requested": [
+      12.939408954465266,
+      77.69507631666266
+    ],
+    "actual": null,
+    "heading": 125.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9394090,77.6950763&heading=125.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Enclosed underpass wall; no frontage visible. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0200-forward",
+    "checkpoint": 200,
+    "direction": "forward",
+    "requested": [
+      12.939592356804415,
+      77.6952097530386
+    ],
+    "actual": null,
+    "heading": 35.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9395924,77.6952098&heading=35.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; enclosed concrete ceiling. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0200-left",
+    "checkpoint": 200,
+    "direction": "left",
+    "requested": [
+      12.939592356804415,
+      77.6952097530386
+    ],
+    "actual": null,
+    "heading": 305.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9395924,77.6952098&heading=305.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Striped wall and bright exit; view beyond is overexposed. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0200-right",
+    "checkpoint": 200,
+    "direction": "right",
+    "requested": [
+      12.939592356804415,
+      77.6952097530386
+    ],
+    "actual": null,
+    "heading": 125.3,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9395924,77.6952098&heading=125.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Concrete ceiling and striped wall at exit. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0225-forward",
+    "checkpoint": 225,
+    "direction": "forward",
+    "requested": [
+      12.939782429098422,
+      77.69533270564511
+    ],
+    "actual": null,
+    "heading": 30.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9397824,77.6953327&heading=30.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0225-left",
+    "checkpoint": 225,
+    "direction": "left",
+    "requested": [
+      12.939782429098422,
+      77.69533270564511
+    ],
+    "actual": null,
+    "heading": 300.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9397824,77.6953327&heading=300.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Retaining wall continues uphill with trees above. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0225-right",
+    "checkpoint": 225,
+    "direction": "right",
+    "requested": [
+      12.939782429098422,
+      77.69533270564511
+    ],
+    "actual": null,
+    "heading": 120.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9397824,77.6953327&heading=120.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Retaining wall obscures frontage. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0250-forward",
+    "checkpoint": 250,
+    "direction": "forward",
+    "requested": [
+      12.939975280637448,
+      77.69545128986167
+    ],
+    "actual": [
+      12.9399319,
+      77.6954458
+    ],
+    "heading": 30.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=swh5sonT8eouOQdfk0uRQA&heading=30.9&pitch=0&fov=100",
+    "panoramaId": "swh5sonT8eouOQdfk0uRQA",
+    "locationStatus": "matched",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0250-left",
+    "checkpoint": 250,
+    "direction": "left",
+    "requested": [
+      12.939975280637448,
+      77.69545128986167
+    ],
+    "actual": [
+      12.9399319,
+      77.6954458
+    ],
+    "heading": 300.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=swh5sonT8eouOQdfk0uRQA&heading=300.9&pitch=0&fov=100",
+    "panoramaId": "swh5sonT8eouOQdfk0uRQA",
+    "locationStatus": "matched",
+    "notes": "Trees above blue/white retaining wall; lower buildings and entrances hidden.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0250-right",
+    "checkpoint": 250,
+    "direction": "right",
+    "requested": [
+      12.939975280637448,
+      77.69545128986167
+    ],
+    "actual": [
+      12.9399319,
+      77.6954458
+    ],
+    "heading": 120.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=swh5sonT8eouOQdfk0uRQA&heading=120.9&pitch=0&fov=100",
+    "panoramaId": "swh5sonT8eouOQdfk0uRQA",
+    "locationStatus": "matched",
+    "notes": "Retaining wall and metro span, no complete facade visible.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0275-forward",
+    "checkpoint": 275,
+    "direction": "forward",
+    "requested": [
+      12.940168132176474,
+      77.69556987407822
+    ],
+    "actual": null,
+    "heading": 30.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9401681,77.6955699&heading=30.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0275-left",
+    "checkpoint": 275,
+    "direction": "left",
+    "requested": [
+      12.940168132176474,
+      77.69556987407822
+    ],
+    "actual": null,
+    "heading": 300.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9401681,77.6955699&heading=300.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Unfinished multistorey concrete structure above wall; identity unresolved. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0275-right",
+    "checkpoint": 275,
+    "direction": "right",
+    "requested": [
+      12.940168132176474,
+      77.69556987407822
+    ],
+    "actual": null,
+    "heading": 120.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9401681,77.6955699&heading=120.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Wall remains the immediate roadside boundary. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0300-forward",
+    "checkpoint": 300,
+    "direction": "forward",
+    "requested": [
+      12.9403609837155,
+      77.69568845829475
+    ],
+    "actual": null,
+    "heading": 30.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9403610,77.6956885&heading=30.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Underpass corridor with striped walls; metro deck beside the road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0300-left",
+    "checkpoint": 300,
+    "direction": "left",
+    "requested": [
+      12.9403609837155,
+      77.69568845829475
+    ],
+    "actual": null,
+    "heading": 300.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9403610,77.6956885&heading=300.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue-glass office farther behind trees and wall; footprint match unresolved. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0300-right",
+    "checkpoint": 300,
+    "direction": "right",
+    "requested": [
+      12.9403609837155,
+      77.69568845829475
+    ],
+    "actual": null,
+    "heading": 120.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9403610,77.6956885&heading=120.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Retaining wall reduces in height. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:underpass"
+    ]
+  },
+  {
+    "id": "sv-0325-forward",
+    "checkpoint": 325,
+    "direction": "forward",
+    "requested": [
+      12.940553835254526,
+      77.6958070425113
+    ],
+    "actual": null,
+    "heading": 30.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9405538,77.6958070&heading=30.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0325-left",
+    "checkpoint": 325,
+    "direction": "left",
+    "requested": [
+      12.940553835254526,
+      77.6958070425113
+    ],
+    "actual": null,
+    "heading": 300.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9405538,77.6958070&heading=300.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Concrete frame/scaffolding beside blue-glass building; identities unresolved. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0325-right",
+    "checkpoint": 325,
+    "direction": "right",
+    "requested": [
+      12.940553835254526,
+      77.6958070425113
+    ],
+    "actual": null,
+    "heading": 120.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9405538,77.6958070&heading=120.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Low cream buildings and red/blue-clad building beyond the wall. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0350-forward",
+    "checkpoint": 350,
+    "direction": "forward",
+    "requested": [
+      12.94074668679355,
+      77.69592562672784
+    ],
+    "actual": null,
+    "heading": 30.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9407467,77.6959256&heading=30.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0350-left",
+    "checkpoint": 350,
+    "direction": "left",
+    "requested": [
+      12.94074668679355,
+      77.69592562672784
+    ],
+    "actual": null,
+    "heading": 300.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9407467,77.6959256&heading=300.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "DVK Spaces and Sumedha IT signs; HDFC Bank and maxicus signs visible. Blue glass with pale bands. Occupant-to-footprint matching pending. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0350-right",
+    "checkpoint": 350,
+    "direction": "right",
+    "requested": [
+      12.94074668679355,
+      77.69592562672784
+    ],
+    "actual": null,
+    "heading": 120.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9407467,77.6959256&heading=120.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Mixed cream shops and a red/blue-clad block; identities unresolved. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0375-forward",
+    "checkpoint": 375,
+    "direction": "forward",
+    "requested": [
+      12.940939538332577,
+      77.6960442109444
+    ],
+    "actual": null,
+    "heading": 30.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9409395,77.6960442&heading=30.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0375-left",
+    "checkpoint": 375,
+    "direction": "left",
+    "requested": [
+      12.940939538332577,
+      77.6960442109444
+    ],
+    "actual": null,
+    "heading": 300.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9409395,77.6960442&heading=300.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "IndianOil orange/blue petrol canopy, Sumedha IT/maxicus signs and a setback blue-glass office. Footprint matching pending. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0375-right",
+    "checkpoint": 375,
+    "direction": "right",
+    "requested": [
+      12.940939538332577,
+      77.6960442109444
+    ],
+    "actual": null,
+    "heading": 120.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9409395,77.6960442&heading=120.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Nilkamal SLEEP on narrow grey/cream shop; adjacent green fascia and yellow low-rise building. Matching pending. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0400-forward",
+    "checkpoint": 400,
+    "direction": "forward",
+    "requested": [
+      12.941132836023526,
+      77.69616202661672
+    ],
+    "actual": null,
+    "heading": 30.6,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9411328,77.6961620&heading=30.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0400-left",
+    "checkpoint": 400,
+    "direction": "left",
+    "requested": [
+      12.941132836023526,
+      77.69616202661672
+    ],
+    "actual": null,
+    "heading": 300.6,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9411328,77.6961620&heading=300.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Petrol station and unfinished entrance/wall with scaffolding; blue-glass office behind trees. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0400-right",
+    "checkpoint": 400,
+    "direction": "right",
+    "requested": [
+      12.941132836023526,
+      77.69616202661672
+    ],
+    "actual": null,
+    "heading": 120.6,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9411328,77.6961620&heading=120.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Nilkamal shop group visible; match individual shop units before assigning names. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0425-forward",
+    "checkpoint": 425,
+    "direction": "forward",
+    "requested": [
+      12.94131949197267,
+      77.69628998674787
+    ],
+    "actual": null,
+    "heading": 37,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9413195,77.6962900&heading=37.0&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0425-left",
+    "checkpoint": 425,
+    "direction": "left",
+    "requested": [
+      12.94131949197267,
+      77.69628998674787
+    ],
+    "actual": null,
+    "heading": 307,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9413195,77.6962900&heading=307.0&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue glass with broad pale horizontal bands; campus fence, trees and palms. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0425-right",
+    "checkpoint": 425,
+    "direction": "right",
+    "requested": [
+      12.94131949197267,
+      77.69628998674787
+    ],
+    "actual": null,
+    "heading": 127,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9413195,77.6962900&heading=127.0&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tall blue-glazed commercial facade, cream vertical fins and decorative top arches; Chin Lung/OLA signs. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0450-forward",
+    "checkpoint": 450,
+    "direction": "forward",
+    "requested": [
+      12.941509793972303,
+      77.6964123574844
+    ],
+    "actual": [
+      12.9415056,
+      77.6964394
+    ],
+    "heading": 30.3,
+    "imageryDate": "2020-11",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=CIHM0ogKEICAgIDqzd-haw&heading=30.3&pitch=0&fov=100",
+    "panoramaId": "CIHM0ogKEICAgIDqzd-haw",
+    "locationStatus": "matched",
+    "notes": "Contributor panorama, November 2020. Not used for 2026 construction conclusions; contemporary Street View missing here.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0450-left",
+    "checkpoint": 450,
+    "direction": "left",
+    "requested": [
+      12.941509793972303,
+      77.6964123574844
+    ],
+    "actual": [
+      12.9415056,
+      77.6964394
+    ],
+    "heading": 300.3,
+    "imageryDate": "2020-11",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=CIHM0ogKEICAgIDqzd-haw&heading=300.3&pitch=0&fov=100",
+    "panoramaId": "CIHM0ogKEICAgIDqzd-haw",
+    "locationStatus": "matched",
+    "notes": "Old contributor panorama shows campus entrance and trees. November 2020 is not evidence of the 2026 construction stage.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0450-right",
+    "checkpoint": 450,
+    "direction": "right",
+    "requested": [
+      12.941509793972303,
+      77.6964123574844
+    ],
+    "actual": [
+      12.9415056,
+      77.6964394
+    ],
+    "heading": 120.3,
+    "imageryDate": "2020-11",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=CIHM0ogKEICAgIDqzd-haw&heading=120.3&pitch=0&fov=100",
+    "panoramaId": "CIHM0ogKEICAgIDqzd-haw",
+    "locationStatus": "matched",
+    "notes": "Old contributor panorama substantially blurred/obstructed. No usable current frontage evidence.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0475-forward",
+    "checkpoint": 475,
+    "direction": "forward",
+    "requested": [
+      12.94170384806785,
+      77.69652885799833
+    ],
+    "actual": null,
+    "heading": 30.3,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9417038,77.6965289&heading=30.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0475-left",
+    "checkpoint": 475,
+    "direction": "left",
+    "requested": [
+      12.94170384806785,
+      77.69652885799833
+    ],
+    "actual": null,
+    "heading": 300.3,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9417038,77.6965289&heading=300.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue-glass office, pale bands, small guardhouse, vertical fence and trees. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0475-right",
+    "checkpoint": 475,
+    "direction": "right",
+    "requested": [
+      12.94170384806785,
+      77.69652885799833
+    ],
+    "actual": null,
+    "heading": 120.3,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9417038,77.6965289&heading=120.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Chin Lung Brewery sign; cream vertical fins, blue glazing and arched top. Nearby low cream buildings. Footprint association not established. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0500-forward",
+    "checkpoint": 500,
+    "direction": "forward",
+    "requested": [
+      12.941897902163394,
+      77.69664535851224
+    ],
+    "actual": null,
+    "heading": 30.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9418979,77.6966454&heading=30.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "service-road",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Google selected Service Road, not the requested carriageway. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0500-left",
+    "checkpoint": 500,
+    "direction": "left",
+    "requested": [
+      12.941897902163394,
+      77.69664535851224
+    ],
+    "actual": null,
+    "heading": 300.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9418979,77.6966454&heading=300.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "service-road",
+    "notes": "Service-road viewpoint: stone-base campus fence, palms, trees, shrubs and soil verge. Google selected Service Road, not the requested carriageway. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0500-right",
+    "checkpoint": 500,
+    "direction": "right",
+    "requested": [
+      12.941897902163394,
+      77.69664535851224
+    ],
+    "actual": null,
+    "heading": 120.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9418979,77.6966454&heading=120.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "service-road",
+    "notes": "Service-road viewpoint across main road: IndiQube green glass and neighbouring white decorative-screen facade; some lettering unclear. Google selected Service Road, not the requested carriageway. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0525-forward",
+    "checkpoint": 525,
+    "direction": "forward",
+    "requested": [
+      12.942092493303928,
+      77.69676090316347
+    ],
+    "actual": null,
+    "heading": 29.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9420925,77.6967609&heading=29.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Road emerges to service roads, shops and campus frontages; installed metro spans. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0525-left",
+    "checkpoint": 525,
+    "direction": "left",
+    "requested": [
+      12.942092493303928,
+      77.69676090316347
+    ],
+    "actual": null,
+    "heading": 299.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9420925,77.6967609&heading=299.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Campus greenery and partly hidden Prestige Tech Park entrance lettering. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0525-right",
+    "checkpoint": 525,
+    "direction": "right",
+    "requested": [
+      12.942092493303928,
+      77.69676090316347
+    ],
+    "actual": null,
+    "heading": 119.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9420925,77.6967609&heading=119.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "INDIQUBE white sign panel/green-glass facade; adjacent white patterned screen; entrances obscured by traffic. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "building:1066506638"
+    ]
+  },
+  {
+    "id": "sv-0550-forward",
+    "checkpoint": 550,
+    "direction": "forward",
+    "requested": [
+      12.94228799994023,
+      77.6968748181965
+    ],
+    "actual": [
+      12.9422886,
+      77.6969292
+    ],
+    "heading": 29.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=SwiK78kQZo0Labxw_sRVow&heading=29.6&pitch=0&fov=100",
+    "panoramaId": "SwiK78kQZo0Labxw_sRVow",
+    "locationStatus": "matched",
+    "notes": "Covered pedestrian bridge and bus shelters; mixed traffic obscures lower facades.",
+    "featureIds": [
+      "pier:14108040960"
+    ]
+  },
+  {
+    "id": "sv-0550-left",
+    "checkpoint": 550,
+    "direction": "left",
+    "requested": [
+      12.94228799994023,
+      77.6968748181965
+    ],
+    "actual": [
+      12.9422886,
+      77.6969292
+    ],
+    "heading": 299.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=SwiK78kQZo0Labxw_sRVow&heading=299.6&pitch=0&fov=100",
+    "panoramaId": "SwiK78kQZo0Labxw_sRVow",
+    "locationStatus": "matched",
+    "notes": "BMTC bus hides lower frontage; pale-framed green/blue office behind palms.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0550-right",
+    "checkpoint": 550,
+    "direction": "right",
+    "requested": [
+      12.94228799994023,
+      77.6968748181965
+    ],
+    "actual": [
+      12.9422886,
+      77.6969292
+    ],
+    "heading": 119.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=SwiK78kQZo0Labxw_sRVow&heading=119.6&pitch=0&fov=100",
+    "panoramaId": "SwiK78kQZo0Labxw_sRVow",
+    "locationStatus": "matched",
+    "notes": "IndiQube white frame, green glass and rooftop canopy; smaller dental sign between offices.",
+    "featureIds": [
+      "building:1066506638"
+    ]
+  },
+  {
+    "id": "sv-0575-forward",
+    "checkpoint": 575,
+    "direction": "forward",
+    "requested": [
+      12.942483506576533,
+      77.69698873322955
+    ],
+    "actual": null,
+    "heading": 29.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9424835,77.6969887&heading=29.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Covered pedestrian bridge and bus shelters; mixed traffic obscures lower facades. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0575-left",
+    "checkpoint": 575,
+    "direction": "left",
+    "requested": [
+      12.942483506576533,
+      77.69698873322955
+    ],
+    "actual": null,
+    "heading": 299.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9424835,77.6969887&heading=299.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Footbridge steel cross-bracing, enclosed stair/lift shaft and large bus obscure frontage. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0575-right",
+    "checkpoint": 575,
+    "direction": "right",
+    "requested": [
+      12.942483506576533,
+      77.69698873322955
+    ],
+    "actual": null,
+    "heading": 119.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9424835,77.6969887&heading=119.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Footbridge stairs and steel supports; IndiQube white frame/green glazing beyond. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "building:1066506638"
+    ]
+  },
+  {
+    "id": "sv-0600-forward",
+    "checkpoint": 600,
+    "direction": "forward",
+    "requested": [
+      12.942679013212835,
+      77.69710264826259
+    ],
+    "actual": null,
+    "heading": 29.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9426790,77.6971026&heading=29.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Covered pedestrian bridge and bus shelters; mixed traffic obscures lower facades. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "pier:14108040959"
+    ]
+  },
+  {
+    "id": "sv-0600-left",
+    "checkpoint": 600,
+    "direction": "left",
+    "requested": [
+      12.942679013212835,
+      77.69710264826259
+    ],
+    "actual": null,
+    "heading": 299.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9426790,77.6971026&heading=299.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Bus shelter/billboard, palm, campus entry and blue glazing with pale bands; a tall blue office behind. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0600-right",
+    "checkpoint": 600,
+    "direction": "right",
+    "requested": [
+      12.942679013212835,
+      77.69710264826259
+    ],
+    "actual": null,
+    "heading": 119.6,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9426790,77.6971026&heading=119.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "ROYALOAK lettering on broad shop facade; adjacent narrow pale/glazed Octave hotel. Names need footprint reconciliation. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0625-forward",
+    "checkpoint": 625,
+    "direction": "forward",
+    "requested": [
+      12.942875172988309,
+      77.69721537312606
+    ],
+    "actual": null,
+    "heading": 29.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9428752,77.6972154&heading=29.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree-lined campus frontage; metro spans lead toward wider station deck. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "pier:14108040958"
+    ]
+  },
+  {
+    "id": "sv-0625-left",
+    "checkpoint": 625,
+    "direction": "left",
+    "requested": [
+      12.942875172988309,
+      77.69721537312606
+    ],
+    "actual": null,
+    "heading": 299.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9428752,77.6972154&heading=299.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Green metal bus shelter with corrugated roof; blue-glass campus buildings behind. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0625-right",
+    "checkpoint": 625,
+    "direction": "right",
+    "requested": [
+      12.942875172988309,
+      77.69721537312606
+    ],
+    "actual": null,
+    "heading": 119.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9428752,77.6972154&heading=119.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Royaloak facade and rooftop name; commercial frontage and separate bus shelter. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0650-forward",
+    "checkpoint": 650,
+    "direction": "forward",
+    "requested": [
+      12.943076765261555,
+      77.69731729239895
+    ],
+    "actual": null,
+    "heading": 25.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9430768,77.6973173&heading=25.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree-lined campus frontage; metro spans lead toward wider station deck. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0650-left",
+    "checkpoint": 650,
+    "direction": "left",
+    "requested": [
+      12.943076765261555,
+      77.69731729239895
+    ],
+    "actual": null,
+    "heading": 295.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9430768,77.6973173&heading=295.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Bus-stop panels and trees partly screen blue office towers. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0650-right",
+    "checkpoint": 650,
+    "direction": "right",
+    "requested": [
+      12.943076765261555,
+      77.69731729239895
+    ],
+    "actual": null,
+    "heading": 115.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9430768,77.6973173&heading=115.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "ORP326 painted on circular pier. Petrol-station canopy, trees and pale hotel beyond. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "pier:14108040956"
+    ]
+  },
+  {
+    "id": "sv-0675-forward",
+    "checkpoint": 675,
+    "direction": "forward",
+    "requested": [
+      12.943282195795346,
+      77.69741092808762
+    ],
+    "actual": null,
+    "heading": 23,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9432822,77.6974109&heading=23.0&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree-lined campus frontage; metro spans lead toward wider station deck. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0675-left",
+    "checkpoint": 675,
+    "direction": "left",
+    "requested": [
+      12.943282195795346,
+      77.69741092808762
+    ],
+    "actual": null,
+    "heading": 293,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9432822,77.6974109&heading=293.0&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tall blue glazing bounded by pale vertical panels, deep roof overhang, tree row and planted entrance. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "building:381171222"
+    ]
+  },
+  {
+    "id": "sv-0675-right",
+    "checkpoint": 675,
+    "direction": "right",
+    "requested": [
+      12.943282195795346,
+      77.69741092808762
+    ],
+    "actual": null,
+    "heading": 113,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9432822,77.6974109&heading=113.0&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue-glazed low-rise commercial building with Croma sign; metro pier blocks part of view. Footprint match unresolved. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0700-forward",
+    "checkpoint": 700,
+    "direction": "forward",
+    "requested": [
+      12.943490379063157,
+      77.69749780026247
+    ],
+    "actual": null,
+    "heading": 19.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9434904,77.6974978&heading=19.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree-lined campus frontage; metro spans lead toward wider station deck. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "pier:14108040954"
+    ]
+  },
+  {
+    "id": "sv-0700-left",
+    "checkpoint": 700,
+    "direction": "left",
+    "requested": [
+      12.943490379063157,
+      77.69749780026247
+    ],
+    "actual": null,
+    "heading": 289.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9434904,77.6974978&heading=289.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tall pale-framed blue-glass block; tree-lined service road, fence and small white gatehouse. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "building:381171222"
+    ]
+  },
+  {
+    "id": "sv-0700-right",
+    "checkpoint": 700,
+    "direction": "right",
+    "requested": [
+      12.943490379063157,
+      77.69749780026247
+    ],
+    "actual": null,
+    "heading": 109.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9434904,77.6974978&heading=109.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Low blue-glass shop block and tree screening; coloured-panel office at left edge. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0725-forward",
+    "checkpoint": 725,
+    "direction": "forward",
+    "requested": [
+      12.943702658687432,
+      77.69757379787885
+    ],
+    "actual": null,
+    "heading": 19.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9437027,77.6975738&heading=19.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree-lined campus frontage; metro spans lead toward wider station deck. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0725-left",
+    "checkpoint": 725,
+    "direction": "left",
+    "requested": [
+      12.943702658687432,
+      77.69757379787885
+    ],
+    "actual": null,
+    "heading": 289.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9437027,77.6975738&heading=289.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue-glass/pale-panel tower and planted entrance; truck partly blocks lower frontage. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "building:381171222"
+    ]
+  },
+  {
+    "id": "sv-0725-right",
+    "checkpoint": 725,
+    "direction": "right",
+    "requested": [
+      12.943702658687432,
+      77.69757379787885
+    ],
+    "actual": null,
+    "heading": 109.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9437027,77.6975738&heading=109.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "ORP329 painted on circular pier; white office with red/blue horizontal panels beyond. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "building:431536369",
+      "pier:14108040953"
+    ]
+  },
+  {
+    "id": "sv-0750-forward",
+    "checkpoint": 750,
+    "direction": "forward",
+    "requested": [
+      12.943915099923842,
+      77.69764931342964
+    ],
+    "actual": [
+      12.9439129,
+      77.6976561
+    ],
+    "heading": 18.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=VfzV2xVzXwhYTCoyMnLpdw&heading=18.7&pitch=0&fov=100",
+    "panoramaId": "VfzV2xVzXwhYTCoyMnLpdw",
+    "locationStatus": "matched",
+    "notes": "Tree-lined campus frontage; metro spans lead toward wider station deck.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0750-left",
+    "checkpoint": 750,
+    "direction": "left",
+    "requested": [
+      12.943915099923842,
+      77.69764931342964
+    ],
+    "actual": [
+      12.9439129,
+      77.6976561
+    ],
+    "heading": 288.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=VfzV2xVzXwhYTCoyMnLpdw&heading=288.7&pitch=0&fov=100",
+    "panoramaId": "VfzV2xVzXwhYTCoyMnLpdw",
+    "locationStatus": "matched",
+    "notes": "Large roadside tree screens tower and gated entrance; autos and parked bikes hide some details.",
+    "featureIds": [
+      "building:381171222"
+    ]
+  },
+  {
+    "id": "sv-0750-right",
+    "checkpoint": 750,
+    "direction": "right",
+    "requested": [
+      12.943915099923842,
+      77.69764931342964
+    ],
+    "actual": [
+      12.9439129,
+      77.6976561
+    ],
+    "heading": 108.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=VfzV2xVzXwhYTCoyMnLpdw&heading=108.7&pitch=0&fov=100",
+    "panoramaId": "VfzV2xVzXwhYTCoyMnLpdw",
+    "locationStatus": "matched",
+    "notes": "Sattva facade: white vertical panels, horizontal glazing and red/blue accents; lower floors screened by trees.",
+    "featureIds": [
+      "building:431536369"
+    ]
+  },
+  {
+    "id": "sv-0775-forward",
+    "checkpoint": 775,
+    "direction": "forward",
+    "requested": [
+      12.944128022743644,
+      77.69772339248692
+    ],
+    "actual": null,
+    "heading": 18.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9441280,77.6977234&heading=18.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Tree-lined campus frontage; metro spans lead toward wider station deck. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0775-left",
+    "checkpoint": 775,
+    "direction": "left",
+    "requested": [
+      12.944128022743644,
+      77.69772339248692
+    ],
+    "actual": null,
+    "heading": 288.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9441280,77.6977234&heading=288.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Two large trees, pale compound wall and blue-glass building behind. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-0775-right",
+    "checkpoint": 775,
+    "direction": "right",
+    "requested": [
+      12.944128022743644,
+      77.69772339248692
+    ],
+    "actual": null,
+    "heading": 108.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9441280,77.6977234&heading=108.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Sattva white facade with blue/red panels; painted ORP331 support visible. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "building:431536369",
+      "pier:14108040951"
+    ]
+  },
+  {
+    "id": "sv-0800-forward",
+    "checkpoint": 800,
+    "direction": "forward",
+    "requested": [
+      12.944340945563447,
+      77.6977974715442
+    ],
+    "actual": null,
+    "heading": 18.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9443409,77.6977975&heading=18.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad unfinished station structure, rectangular columns, ribbed beams and construction edges. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0800-left",
+    "checkpoint": 800,
+    "direction": "left",
+    "requested": [
+      12.944340945563447,
+      77.6977974715442
+    ],
+    "actual": null,
+    "heading": 288.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9443409,77.6977975&heading=288.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Large roadside tree, cream compound wall/gate; blue-glass office at left, open construction land beyond. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0800-right",
+    "checkpoint": 800,
+    "direction": "right",
+    "requested": [
+      12.944340945563447,
+      77.6977974715442
+    ],
+    "actual": null,
+    "heading": 108.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9443409,77.6977975&heading=108.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "SATTVA wordmark and white, red and blue facade panels clearly visible. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station",
+      "building:431536369"
+    ]
+  },
+  {
+    "id": "sv-0825-forward",
+    "checkpoint": 825,
+    "direction": "forward",
+    "requested": [
+      12.944553868383247,
+      77.69787155060149
+    ],
+    "actual": null,
+    "heading": 18.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9445539,77.6978716&heading=18.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad unfinished station structure, rectangular columns, ribbed beams and construction edges. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0825-left",
+    "checkpoint": 825,
+    "direction": "left",
+    "requested": [
+      12.944553868383247,
+      77.69787155060149
+    ],
+    "actual": null,
+    "heading": 288.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9445539,77.6978716&heading=288.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "SNC construction gate/green hoarding, open site and shrubs; small cream building at boundary. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0825-right",
+    "checkpoint": 825,
+    "direction": "right",
+    "requested": [
+      12.944553868383247,
+      77.69787155060149
+    ],
+    "actual": null,
+    "heading": 108.7,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9445539,77.6978716&heading=108.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Station concrete deck and rectangular support; Sattva facade behind. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station",
+      "building:431536369"
+    ]
+  },
+  {
+    "id": "sv-0850-forward",
+    "checkpoint": 850,
+    "direction": "forward",
+    "requested": [
+      12.94476621556552,
+      77.69794733368533
+    ],
+    "actual": null,
+    "heading": 19.5,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9447662,77.6979473&heading=19.5&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad unfinished station structure, rectangular columns, ribbed beams and construction edges. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0850-left",
+    "checkpoint": 850,
+    "direction": "left",
+    "requested": [
+      12.94476621556552,
+      77.69794733368533
+    ],
+    "actual": null,
+    "heading": 289.5,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9447662,77.6979473&heading=289.5&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Station column and scaffolding, green mesh, roadside concrete barriers and green site fence across service road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0850-right",
+    "checkpoint": 850,
+    "direction": "right",
+    "requested": [
+      12.94476621556552,
+      77.69794733368533
+    ],
+    "actual": null,
+    "heading": 109.5,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9447662,77.6979473&heading=109.5&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Station underside ribbed beams, rectangular support, stored steelwork and soil within work area. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0875-forward",
+    "checkpoint": 875,
+    "direction": "forward",
+    "requested": [
+      12.944978481120343,
+      77.69802336120446
+    ],
+    "actual": null,
+    "heading": 18.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9449785,77.6980234&heading=18.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad unfinished station structure, rectangular columns, ribbed beams and construction edges. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0875-left",
+    "checkpoint": 875,
+    "direction": "left",
+    "requested": [
+      12.944978481120343,
+      77.69802336120446
+    ],
+    "actual": null,
+    "heading": 288.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9449785,77.6980234&heading=288.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Green construction hoarding, rebar cages/foundations and stacked paving material beside service road. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0875-right",
+    "checkpoint": 875,
+    "direction": "right",
+    "requested": [
+      12.944978481120343,
+      77.69802336120446
+    ],
+    "actual": null,
+    "heading": 108.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9449785,77.6980234&heading=108.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad station deck, rectangular supports and unfinished stair/entrance structure across carriageway. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0900-forward",
+    "checkpoint": 900,
+    "direction": "forward",
+    "requested": [
+      12.94519127761508,
+      77.69809782143389
+    ],
+    "actual": null,
+    "heading": 18.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9451913,77.6980978&heading=18.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad unfinished station structure, rectangular columns, ribbed beams and construction edges. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0900-left",
+    "checkpoint": 900,
+    "direction": "left",
+    "requested": [
+      12.94519127761508,
+      77.69809782143389
+    ],
+    "actual": null,
+    "heading": 288.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9451913,77.6980978&heading=288.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Green hoarding and exposed rebar; trees and low site buildings behind. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0900-right",
+    "checkpoint": 900,
+    "direction": "right",
+    "requested": [
+      12.94519127761508,
+      77.69809782143389
+    ],
+    "actual": null,
+    "heading": 108.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9451913,77.6980978&heading=108.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Unfinished concrete station entrance frames and steps, green safety mesh and deck ribs. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0925-forward",
+    "checkpoint": 925,
+    "direction": "forward",
+    "requested": [
+      12.94540407410982,
+      77.6981722816633
+    ],
+    "actual": null,
+    "heading": 18.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9454041,77.6981723&heading=18.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad unfinished station structure, rectangular columns, ribbed beams and construction edges. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0925-left",
+    "checkpoint": 925,
+    "direction": "left",
+    "requested": [
+      12.94540407410982,
+      77.6981722816633
+    ],
+    "actual": null,
+    "heading": 288.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9454041,77.6981723&heading=288.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Green hoarding, small yellow/cream hut, trees and cream low roadside structure. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0925-right",
+    "checkpoint": 925,
+    "direction": "right",
+    "requested": [
+      12.94540407410982,
+      77.6981722816633
+    ],
+    "actual": null,
+    "heading": 108.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9454041,77.6981723&heading=108.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Station beams/supports and unfinished entrance with stairs; traffic partially obscures ground. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0950-forward",
+    "checkpoint": 950,
+    "direction": "forward",
+    "requested": [
+      12.945616870604558,
+      77.69824674189273
+    ],
+    "actual": null,
+    "heading": 18.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9456169,77.6982467&heading=18.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Broad unfinished station structure, rectangular columns, ribbed beams and construction edges. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0950-left",
+    "checkpoint": 950,
+    "direction": "left",
+    "requested": [
+      12.945616870604558,
+      77.69824674189273
+    ],
+    "actual": null,
+    "heading": 288.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9456169,77.6982467&heading=288.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Low cream police-station structure with corrugated shelter, sign and parked vehicles. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station",
+      "building:1189287978"
+    ]
+  },
+  {
+    "id": "sv-0950-right",
+    "checkpoint": 950,
+    "direction": "right",
+    "requested": [
+      12.945616870604558,
+      77.69824674189273
+    ],
+    "actual": null,
+    "heading": 108.8,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9456169,77.6982467&heading=108.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue metal construction hoarding and trees beyond station supports. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0975-forward",
+    "checkpoint": 975,
+    "direction": "forward",
+    "requested": [
+      12.945829674445648,
+      77.69832117998212
+    ],
+    "actual": null,
+    "heading": 18.9,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9458297,77.6983212&heading=18.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Station exit, brown construction hoarding on right and vegetation/pipe structure on left. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0975-left",
+    "checkpoint": 975,
+    "direction": "left",
+    "requested": [
+      12.945829674445648,
+      77.69832117998212
+    ],
+    "actual": null,
+    "heading": 288.9,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9458297,77.6983212&heading=288.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Open vegetated strip and large pipe carried in a steel truss; paving/earthworks. No lake visible. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-0975-right",
+    "checkpoint": 975,
+    "direction": "right",
+    "requested": [
+      12.945829674445648,
+      77.69832117998212
+    ],
+    "actual": null,
+    "heading": 108.9,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9458297,77.6983212&heading=108.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Brown metal work hoarding and temporary barricades beside station edge; exact offsets not measured. Actual panorama coordinates were not retained; placement reconciliation remains open.",
+    "featureIds": [
+      "transport:station"
+    ]
+  },
+  {
+    "id": "sv-1000-forward",
+    "checkpoint": 1000,
+    "direction": "forward",
+    "requested": [
+      12.94604284507916,
+      77.69839450083263
+    ],
+    "actual": [
+      12.9460475,
+      77.6983857
+    ],
+    "heading": 18.4,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=mOux-na7J0W4sTaNtr_T1g&heading=18.4&pitch=0&fov=100",
+    "panoramaId": "mOux-na7J0W4sTaNtr_T1g",
+    "locationStatus": "matched",
+    "notes": "Station exit, brown construction hoarding on right and vegetation/pipe structure on left.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-1000-left",
+    "checkpoint": 1000,
+    "direction": "left",
+    "requested": [
+      12.94604284507916,
+      77.69839450083263
+    ],
+    "actual": [
+      12.9460475,
+      77.6983857
+    ],
+    "heading": 288.4,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=mOux-na7J0W4sTaNtr_T1g&heading=288.4&pitch=0&fov=100",
+    "panoramaId": "mOux-na7J0W4sTaNtr_T1g",
+    "locationStatus": "matched",
+    "notes": "Large pipe inside steel truss, shrubs, trees and open ground. No visible lake.",
+    "featureIds": []
+  },
+  {
+    "id": "sv-1000-right",
+    "checkpoint": 1000,
+    "direction": "right",
+    "requested": [
+      12.94604284507916,
+      77.69839450083263
+    ],
+    "actual": [
+      12.9460475,
+      77.6983857
+    ],
+    "heading": 108.4,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=mOux-na7J0W4sTaNtr_T1g&heading=108.4&pitch=0&fov=100",
+    "panoramaId": "mOux-na7J0W4sTaNtr_T1g",
+    "locationStatus": "matched",
+    "notes": "Continuous brown metal work hoarding below metro deck; utility lines and vegetation beyond.",
+    "featureIds": []
+  }
+]

@@ -1,0 +1,10 @@
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import {lazy,Suspense} from 'react';
+const App=lazy(()=>import('./App'));
+const SurveyView=lazy(()=>import('./survey/SurveyView'));
+const VehiclePreview=import.meta.env.DEV?lazy(()=>import('./game/VehiclePreview')):null;
+const isSurvey=new URLSearchParams(location.search).has('survey');
+const isVehicles=import.meta.env.DEV&&new URLSearchParams(location.search).has('vehicles');
+import './styles.css';
+createRoot(document.getElementById('root')!).render(<Suspense fallback={<div style={{padding:40}}>Opening the road…</div>}>{isVehicles&&VehiclePreview?<VehiclePreview/>:isSurvey?<SurveyView/>:<App/>}</Suspense>);

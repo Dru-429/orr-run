@@ -1,0 +1,2998 @@
+[
+  {
+    "id": "manipal-approach:sv-0000-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 0,
+    "checkpoint": 0,
+    "direction": "forward",
+    "requested": [
+      12.9203128,
+      77.6657051
+    ],
+    "actual": [
+      12.9203231,
+      77.665702
+    ],
+    "heading": 286.5,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9203128,77.6657051&heading=286.5&pitch=0&fov=100&pano=T9cxPbaOzrIr0KWkEO1K-w",
+    "panoramaId": "T9cxPbaOzrIr0KWkEO1K-w",
+    "locationStatus": "matched",
+    "notes": "Blue-glazed hospital frontage left; pedestrian overbridge ahead; ORR flyover and metro structures at junction.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0000-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 0,
+    "checkpoint": 0,
+    "direction": "left",
+    "requested": [
+      12.9203128,
+      77.6657051
+    ],
+    "actual": [
+      12.9203231,
+      77.665702
+    ],
+    "heading": 196.5,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9203128,77.6657051&heading=196.5&pitch=0&fov=100&pano=T9cxPbaOzrIr0KWkEO1K-w",
+    "panoramaId": "T9cxPbaOzrIr0KWkEO1K-w",
+    "locationStatus": "matched",
+    "notes": "Manipal Hospitals and 24 HOUR EMERGENCY wordmarks visible on blue-glazed/pale-clad hospital. Trees, gate and public frontage visible. Adjacent lattice facade remains unmatched.",
+    "featureIds": [
+      "building:609637726"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0000-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 0,
+    "checkpoint": 0,
+    "direction": "right",
+    "requested": [
+      12.9203128,
+      77.6657051
+    ],
+    "actual": [
+      12.9203231,
+      77.665702
+    ],
+    "heading": 16.5,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9203128,77.6657051&heading=16.5&pitch=0&fov=100&pano=T9cxPbaOzrIr0KWkEO1K-w",
+    "panoramaId": "T9cxPbaOzrIr0KWkEO1K-w",
+    "locationStatus": "matched",
+    "notes": "Patterned compound wall, covered pedestrian-bridge stair and elevated concrete structures; background white blocks. Dimensions and individual structure stages unresolved.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0025-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 25,
+    "checkpoint": 25,
+    "direction": "forward",
+    "requested": [
+      12.9203746,
+      77.6654833
+    ],
+    "actual": null,
+    "heading": 285,
+    "imageryDate": null,
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9203746,77.6654833&heading=285&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Contributor panorama with camera/person occlusion; older Columbia Asia branding. Header March 2021 and capture footer February 2021. Unsuitable for current signage or construction; actual panorama coordinate not retained. Needs replacement/reconciliation.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0025-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 25,
+    "checkpoint": 25,
+    "direction": "left",
+    "requested": [
+      12.9203746,
+      77.6654833
+    ],
+    "actual": null,
+    "heading": 195,
+    "imageryDate": "2021-02",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9203746,77.6654833&heading=195&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Contributor panorama with camera/person occlusion; older Columbia Asia branding. Header March 2021 and capture footer February 2021. Unsuitable for current signage or construction; actual panorama coordinate not retained. Needs replacement/reconciliation.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0025-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 25,
+    "checkpoint": 25,
+    "direction": "right",
+    "requested": [
+      12.9203746,
+      77.6654833
+    ],
+    "actual": null,
+    "heading": 15,
+    "imageryDate": "2021-02",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9203746,77.6654833&heading=15&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Contributor panorama with camera/person occlusion; older Columbia Asia branding. Header March 2021 and capture footer February 2021. Unsuitable for current signage or construction; actual panorama coordinate not retained. Needs replacement/reconciliation.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0050-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 50,
+    "checkpoint": 50,
+    "direction": "forward",
+    "requested": [
+      12.9204518,
+      77.6652688
+    ],
+    "actual": [
+      12.9204768,
+      77.6653231
+    ],
+    "heading": 315.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9204518,77.6652688&heading=315.4&pitch=0&fov=100&pano=ELOqrj3AFwgrk1Ask2jmEQ",
+    "panoramaId": "ELOqrj3AFwgrk1Ask2jmEQ",
+    "locationStatus": "unresolved",
+    "notes": "Bending junction beneath ORR flyover; elevated metro beams, green mesh and scaffolding. Zebra crossing and traffic obscure lane boundaries.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0050-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 50,
+    "checkpoint": 50,
+    "direction": "left",
+    "requested": [
+      12.9204518,
+      77.6652688
+    ],
+    "actual": [
+      12.9204768,
+      77.6653231
+    ],
+    "heading": 225.39999999999998,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9204518,77.6652688&heading=225.39999999999998&pitch=0&fov=100&pano=ELOqrj3AFwgrk1Ask2jmEQ",
+    "panoramaId": "ELOqrj3AFwgrk1Ask2jmEQ",
+    "locationStatus": "unresolved",
+    "notes": "Hospital blue-glazed base and pedestrian-bridge steel stairs; parked motorcycles and mature roadside trees.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0050-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 50,
+    "checkpoint": 50,
+    "direction": "right",
+    "requested": [
+      12.9204518,
+      77.6652688
+    ],
+    "actual": [
+      12.9204768,
+      77.6653231
+    ],
+    "heading": 45.39999999999998,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9204518,77.6652688&heading=45.39999999999998&pitch=0&fov=100&pano=ELOqrj3AFwgrk1Ask2jmEQ",
+    "panoramaId": "ELOqrj3AFwgrk1Ask2jmEQ",
+    "locationStatus": "unresolved",
+    "notes": "Pedestrian overbridge with advertising, ORR flyover and higher metro alignment; perimeter wall and white background blocks.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0075-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 75,
+    "checkpoint": 75,
+    "direction": "forward",
+    "requested": [
+      12.9206507,
+      77.6653148
+    ],
+    "actual": [
+      12.9207135,
+      77.665289
+    ],
+    "heading": 34.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=Exp-NcBFasz1FP4-r_l1LA&viewpoint=12.9207135,77.665289&heading=34.3&pitch=0&fov=100",
+    "panoramaId": "Exp-NcBFasz1FP4-r_l1LA",
+    "locationStatus": "unresolved",
+    "notes": "Junction beneath curved flyover and higher metro deck. Dense traffic obscures lane continuity.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0075-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 75,
+    "checkpoint": 75,
+    "direction": "left",
+    "requested": [
+      12.9206507,
+      77.6653148
+    ],
+    "actual": [
+      12.9207135,
+      77.665289
+    ],
+    "heading": 304.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=Exp-NcBFasz1FP4-r_l1LA&viewpoint=12.9207135,77.665289&heading=304.3&pitch=0&fov=100",
+    "panoramaId": "Exp-NcBFasz1FP4-r_l1LA",
+    "locationStatus": "unresolved",
+    "notes": "Cream residential blocks with projecting balconies, red-tile roof edges and trees; blue-glazed office behind. Identities not reconciled.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0075-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 75,
+    "checkpoint": 75,
+    "direction": "right",
+    "requested": [
+      12.9206507,
+      77.6653148
+    ],
+    "actual": [
+      12.9207135,
+      77.665289
+    ],
+    "heading": 124.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=Exp-NcBFasz1FP4-r_l1LA&viewpoint=12.9207135,77.665289&heading=124.3&pitch=0&fov=100",
+    "panoramaId": "Exp-NcBFasz1FP4-r_l1LA",
+    "locationStatus": "unresolved",
+    "notes": "Steel pedestrian overbridge with diagonal bracing; Y-shaped flyover piers and small roadside booths. Dimensions approximate.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0100-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 100,
+    "checkpoint": 100,
+    "direction": "forward",
+    "requested": [
+      12.9208266,
+      77.6654571
+    ],
+    "actual": [
+      12.9208446,
+      77.6654172
+    ],
+    "heading": 42.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=8X-UAgis1tSkBfNde8bfNA&viewpoint=12.9208446,77.6654172&heading=42.6&pitch=0&fov=100",
+    "panoramaId": "8X-UAgis1tSkBfNde8bfNA",
+    "locationStatus": "matched",
+    "notes": "Main road joins straight ORR; installed metro spans above right edge and parallel lower flyover.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0100-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 100,
+    "checkpoint": 100,
+    "direction": "left",
+    "requested": [
+      12.9208266,
+      77.6654571
+    ],
+    "actual": [
+      12.9208446,
+      77.6654172
+    ],
+    "heading": 312.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=8X-UAgis1tSkBfNde8bfNA&viewpoint=12.9208446,77.6654172&heading=312.6&pitch=0&fov=100",
+    "panoramaId": "8X-UAgis1tSkBfNde8bfNA",
+    "locationStatus": "matched",
+    "notes": "Cream apartments behind mature trees and compound wall; small entrance structures unresolved.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0100-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 100,
+    "checkpoint": 100,
+    "direction": "right",
+    "requested": [
+      12.9208266,
+      77.6654571
+    ],
+    "actual": [
+      12.9208446,
+      77.6654172
+    ],
+    "heading": 132.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=8X-UAgis1tSkBfNde8bfNA&viewpoint=12.9208446,77.6654172&heading=132.6&pitch=0&fov=100",
+    "panoramaId": "8X-UAgis1tSkBfNde8bfNA",
+    "locationStatus": "matched",
+    "notes": "Parallel concrete flyover with purple bands on Y-shaped piers, steel footbridge and small booths below.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0125-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 125,
+    "checkpoint": 125,
+    "direction": "forward",
+    "requested": [
+      12.9209695,
+      77.6656308
+    ],
+    "actual": [
+      12.9209618,
+      77.6656775
+    ],
+    "heading": 63.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=h4s4TuB-E4FJSqWOrHn14Q&viewpoint=12.9209618,77.6656775&heading=63.4&pitch=0&fov=100",
+    "panoramaId": "h4s4TuB-E4FJSqWOrHn14Q",
+    "locationStatus": "matched",
+    "notes": "Installed metro spans and mesh/scaffolding overhead; parallel road flyover right.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0125-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 125,
+    "checkpoint": 125,
+    "direction": "left",
+    "requested": [
+      12.9209695,
+      77.6656308
+    ],
+    "actual": [
+      12.9209618,
+      77.6656775
+    ],
+    "heading": 333.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=h4s4TuB-E4FJSqWOrHn14Q&viewpoint=12.9209618,77.6656775&heading=333.4&pitch=0&fov=100",
+    "panoramaId": "h4s4TuB-E4FJSqWOrHn14Q",
+    "locationStatus": "matched",
+    "notes": "Tree-lined entrance lane, palms, cream residential blocks behind; small roadside shelter.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0125-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 125,
+    "checkpoint": 125,
+    "direction": "right",
+    "requested": [
+      12.9209695,
+      77.6656308
+    ],
+    "actual": [
+      12.9209618,
+      77.6656775
+    ],
+    "heading": 153.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=h4s4TuB-E4FJSqWOrHn14Q&viewpoint=12.9209618,77.6656775&heading=153.4&pitch=0&fov=100",
+    "panoramaId": "h4s4TuB-E4FJSqWOrHn14Q",
+    "locationStatus": "matched",
+    "notes": "Metro column, concrete barriers and loose construction blocks; flyover and footbridge beyond.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0150-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 150,
+    "checkpoint": 150,
+    "direction": "forward",
+    "requested": [
+      12.9210702,
+      77.665837
+    ],
+    "actual": [
+      12.9210316,
+      77.6658464
+    ],
+    "heading": 63.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=J2RjxIv1Jhs6GuZY5f2UTg&viewpoint=12.9210316,77.6658464&heading=63.4&pitch=0&fov=100",
+    "panoramaId": "J2RjxIv1Jhs6GuZY5f2UTg",
+    "locationStatus": "matched",
+    "notes": "Metro alignment above right edge; bus stop and dense palms/tree canopy left.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0150-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 150,
+    "checkpoint": 150,
+    "direction": "left",
+    "requested": [
+      12.9210702,
+      77.665837
+    ],
+    "actual": [
+      12.9210316,
+      77.6658464
+    ],
+    "heading": 333.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=J2RjxIv1Jhs6GuZY5f2UTg&viewpoint=12.9210316,77.6658464&heading=333.4&pitch=0&fov=100",
+    "panoramaId": "J2RjxIv1Jhs6GuZY5f2UTg",
+    "locationStatus": "matched",
+    "notes": "Fenced park entrance and dense palms, bus shelter partly screened by traffic.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0150-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 150,
+    "checkpoint": 150,
+    "direction": "right",
+    "requested": [
+      12.9210702,
+      77.665837
+    ],
+    "actual": [
+      12.9210316,
+      77.6658464
+    ],
+    "heading": 153.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=J2RjxIv1Jhs6GuZY5f2UTg&viewpoint=12.9210316,77.6658464&heading=153.4&pitch=0&fov=100",
+    "panoramaId": "J2RjxIv1Jhs6GuZY5f2UTg",
+    "locationStatus": "matched",
+    "notes": "Flyover Y-piers and zebra crossing beneath; construction storage and pedestrian-bridge stair beyond.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0175-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 175,
+    "checkpoint": 175,
+    "direction": "forward",
+    "requested": [
+      12.9211704,
+      77.6660435
+    ],
+    "actual": [
+      12.9211063,
+      77.6660197
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=N2YTJb8rclmpGpLQ8eo8cw&viewpoint=12.9211063,77.6660197&heading=64&pitch=0&fov=100",
+    "panoramaId": "N2YTJb8rclmpGpLQ8eo8cw",
+    "locationStatus": "matched",
+    "notes": "Concrete work barriers beside metro columns. Road remains traversable; lane widths not measured.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0175-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 175,
+    "checkpoint": 175,
+    "direction": "left",
+    "requested": [
+      12.9211704,
+      77.6660435
+    ],
+    "actual": [
+      12.9211063,
+      77.6660197
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=N2YTJb8rclmpGpLQ8eo8cw&viewpoint=12.9211063,77.6660197&heading=334&pitch=0&fov=100",
+    "panoramaId": "N2YTJb8rclmpGpLQ8eo8cw",
+    "locationStatus": "matched",
+    "notes": "Bus shelter with advertisement panels; fenced park and tall palms behind. Advertisement is not a business occupancy claim.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0175-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 175,
+    "checkpoint": 175,
+    "direction": "right",
+    "requested": [
+      12.9211704,
+      77.6660435
+    ],
+    "actual": [
+      12.9211063,
+      77.6660197
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=N2YTJb8rclmpGpLQ8eo8cw&viewpoint=12.9211063,77.6660197&heading=154&pitch=0&fov=100",
+    "panoramaId": "N2YTJb8rclmpGpLQ8eo8cw",
+    "locationStatus": "matched",
+    "notes": "Painted ORP185 number visible on metro shaft beneath installed spans; parallel flyover beyond.",
+    "featureIds": [
+      "pier:11955008387"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0200-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 200,
+    "checkpoint": 200,
+    "direction": "forward",
+    "requested": [
+      12.9212688,
+      77.666251
+    ],
+    "actual": [
+      12.921225,
+      77.6662712
+    ],
+    "heading": 64.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=QfzpADkB9O7Ym048rJCxPA&viewpoint=12.921225,77.6662712&heading=64.4&pitch=0&fov=100",
+    "panoramaId": "QfzpADkB9O7Ym048rJCxPA",
+    "locationStatus": "matched",
+    "notes": "Installed metro deck and ORP186 shaft; continuous concrete edge barriers.",
+    "featureIds": [
+      "pier:11955008386"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0200-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 200,
+    "checkpoint": 200,
+    "direction": "left",
+    "requested": [
+      12.9212688,
+      77.666251
+    ],
+    "actual": [
+      12.921225,
+      77.6662712
+    ],
+    "heading": 334.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=QfzpADkB9O7Ym048rJCxPA&viewpoint=12.921225,77.6662712&heading=334.4&pitch=0&fov=100",
+    "panoramaId": "QfzpADkB9O7Ym048rJCxPA",
+    "locationStatus": "matched",
+    "notes": "Fenced landscaped park, shelter with advertisement, trees and palms; no frontage shop identity confirmed.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0200-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 200,
+    "checkpoint": 200,
+    "direction": "right",
+    "requested": [
+      12.9212688,
+      77.666251
+    ],
+    "actual": [
+      12.921225,
+      77.6662712
+    ],
+    "heading": 154.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=QfzpADkB9O7Ym048rJCxPA&viewpoint=12.921225,77.6662712&heading=154.4&pitch=0&fov=100",
+    "panoramaId": "QfzpADkB9O7Ym048rJCxPA",
+    "locationStatus": "matched",
+    "notes": "ORP186 painted shaft and installed deck; lower parallel flyover and fenced ground beyond.",
+    "featureIds": [
+      "pier:11955008386"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0225-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 225,
+    "checkpoint": 225,
+    "direction": "forward",
+    "requested": [
+      12.9213611,
+      77.6664613
+    ],
+    "actual": [
+      12.9214094,
+      77.6664367
+    ],
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=PfxeWn-vdJPNZH4lTgVoAg&viewpoint=12.9214094,77.6664367&heading=65.9&pitch=0&fov=100",
+    "panoramaId": "PfxeWn-vdJPNZH4lTgVoAg",
+    "locationStatus": "service-road",
+    "notes": "Google labels this panorama Service Rd; it is offset left of selected route. Metro line right and trees left.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0225-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 225,
+    "checkpoint": 225,
+    "direction": "left",
+    "requested": [
+      12.9213611,
+      77.6664613
+    ],
+    "actual": [
+      12.9214094,
+      77.6664367
+    ],
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=PfxeWn-vdJPNZH4lTgVoAg&viewpoint=12.9214094,77.6664367&heading=335.9&pitch=0&fov=100",
+    "panoramaId": "PfxeWn-vdJPNZH4lTgVoAg",
+    "locationStatus": "service-road",
+    "notes": "Black metal park fence, paved sidewalk, mature trees and palms.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0225-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 225,
+    "checkpoint": 225,
+    "direction": "right",
+    "requested": [
+      12.9213611,
+      77.6664613
+    ],
+    "actual": [
+      12.9214094,
+      77.6664367
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=PfxeWn-vdJPNZH4lTgVoAg&viewpoint=12.9214094,77.6664367&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "PfxeWn-vdJPNZH4lTgVoAg",
+    "locationStatus": "service-road",
+    "notes": "Parallel flyover, concrete metro spans, buses partly occlude right-side background offices.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0250-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 250,
+    "checkpoint": 250,
+    "direction": "forward",
+    "requested": [
+      12.9214531,
+      77.6666718
+    ],
+    "actual": [
+      12.9214276,
+      77.6666917
+    ],
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=pgLboM3ed25oMigQOGIDbw&viewpoint=12.9214276,77.6666917&heading=65.9&pitch=0&fov=100",
+    "panoramaId": "pgLboM3ed25oMigQOGIDbw",
+    "locationStatus": "matched",
+    "notes": "Narrowing carriageway beside metro; yellow/red barriers and scaffolding around left verge.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0250-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 250,
+    "checkpoint": 250,
+    "direction": "left",
+    "requested": [
+      12.9214531,
+      77.6666718
+    ],
+    "actual": [
+      12.9214276,
+      77.6666917
+    ],
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=pgLboM3ed25oMigQOGIDbw&viewpoint=12.9214276,77.6666917&heading=335.9&pitch=0&fov=100",
+    "panoramaId": "pgLboM3ed25oMigQOGIDbw",
+    "locationStatus": "matched",
+    "notes": "Fenced park and mature tree canopy; temporary barriers and scaffolding at near verge.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0250-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 250,
+    "checkpoint": 250,
+    "direction": "right",
+    "requested": [
+      12.9214531,
+      77.6666718
+    ],
+    "actual": [
+      12.9214276,
+      77.6666917
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=pgLboM3ed25oMigQOGIDbw&viewpoint=12.9214276,77.6666917&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "pgLboM3ed25oMigQOGIDbw",
+    "locationStatus": "matched",
+    "notes": "Cream flyover retaining wall with purple horizontal stripe/geometric panels. Barrier bases in foreground; office rooftops beyond.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0275-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 275,
+    "checkpoint": 275,
+    "direction": "forward",
+    "requested": [
+      12.921545,
+      77.6668823
+    ],
+    "actual": [
+      12.9215126,
+      77.6668571
+    ],
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=pL_bYIIE0ncpxMlTLyznKQ&viewpoint=12.9215126,77.6668571&heading=65.9&pitch=0&fov=100",
+    "panoramaId": "pL_bYIIE0ncpxMlTLyznKQ",
+    "locationStatus": "matched",
+    "notes": "Metro spans over the right edge; parallel flyover retaining wall with purple stripe.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0275-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 275,
+    "checkpoint": 275,
+    "direction": "left",
+    "requested": [
+      12.921545,
+      77.6668823
+    ],
+    "actual": [
+      12.9215126,
+      77.6668571
+    ],
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=pL_bYIIE0ncpxMlTLyznKQ&viewpoint=12.9215126,77.6668571&heading=335.9&pitch=0&fov=100",
+    "panoramaId": "pL_bYIIE0ncpxMlTLyznKQ",
+    "locationStatus": "matched",
+    "notes": "Tree-planted divider, service road, black fence and park/lake edge; distant white blocks.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0275-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 275,
+    "checkpoint": 275,
+    "direction": "right",
+    "requested": [
+      12.921545,
+      77.6668823
+    ],
+    "actual": [
+      12.9215126,
+      77.6668571
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=pL_bYIIE0ncpxMlTLyznKQ&viewpoint=12.9215126,77.6668571&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "pL_bYIIE0ncpxMlTLyznKQ",
+    "locationStatus": "matched",
+    "notes": "Cream retaining wall with purple band and geometric panels; office and school rooftops beyond.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0300-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 300,
+    "checkpoint": 300,
+    "direction": "forward",
+    "requested": [
+      12.921637,
+      77.6670928
+    ],
+    "actual": [
+      12.9216441,
+      77.6671002
+    ],
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=yOrNVWXbLLJ2u9nxmrVF2Q&viewpoint=12.9216441,77.6671002&heading=65.9&pitch=0&fov=100",
+    "panoramaId": "yOrNVWXbLLJ2u9nxmrVF2Q",
+    "locationStatus": "matched",
+    "notes": "Bus shelter and trees left; metro over road edge and lowering flyover wall right.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0300-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 300,
+    "checkpoint": 300,
+    "direction": "left",
+    "requested": [
+      12.921637,
+      77.6670928
+    ],
+    "actual": [
+      12.9216441,
+      77.6671002
+    ],
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=yOrNVWXbLLJ2u9nxmrVF2Q&viewpoint=12.9216441,77.6671002&heading=335.9&pitch=0&fov=100",
+    "panoramaId": "yOrNVWXbLLJ2u9nxmrVF2Q",
+    "locationStatus": "matched",
+    "notes": "Blue steel bus shelter with large advertisement panels and bench, paved platform; lake fence behind service road.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0300-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 300,
+    "checkpoint": 300,
+    "direction": "right",
+    "requested": [
+      12.921637,
+      77.6670928
+    ],
+    "actual": [
+      12.9216441,
+      77.6671002
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=yOrNVWXbLLJ2u9nxmrVF2Q&viewpoint=12.9216441,77.6671002&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "yOrNVWXbLLJ2u9nxmrVF2Q",
+    "locationStatus": "matched",
+    "notes": "Royale Concorde school sign visible beyond the opposite carriageway; red/grey narrow block, horizontal glazed offices. Building correspondence unresolved.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0325-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 325,
+    "checkpoint": 325,
+    "direction": "forward",
+    "requested": [
+      12.9217289,
+      77.6673033
+    ],
+    "actual": [
+      12.921724,
+      77.6672664
+    ],
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=09uG6irtN-R49qngbOzCHw&viewpoint=12.921724,77.6672664&heading=65.9&pitch=0&fov=100",
+    "panoramaId": "09uG6irtN-R49qngbOzCHw",
+    "locationStatus": "matched",
+    "notes": "Installed metro spans; planted service-road divider and fence left. Right flyover wall ends, revealing frontages.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0325-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 325,
+    "checkpoint": 325,
+    "direction": "left",
+    "requested": [
+      12.9217289,
+      77.6673033
+    ],
+    "actual": [
+      12.921724,
+      77.6672664
+    ],
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=09uG6irtN-R49qngbOzCHw&viewpoint=12.921724,77.6672664&heading=335.9&pitch=0&fov=100",
+    "panoramaId": "09uG6irtN-R49qngbOzCHw",
+    "locationStatus": "matched",
+    "notes": "Fenced lake edge and tree rows across service road. Shoreline partly obscured.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0325-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 325,
+    "checkpoint": 325,
+    "direction": "right",
+    "requested": [
+      12.9217289,
+      77.6673033
+    ],
+    "actual": [
+      12.921724,
+      77.6672664
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=09uG6irtN-R49qngbOzCHw&viewpoint=12.921724,77.6672664&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "09uG6irtN-R49qngbOzCHw",
+    "locationStatus": "matched",
+    "notes": "Open forecourt and trees across carriageway; school signage and glazed office buildings behind.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0350-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 350,
+    "checkpoint": 350,
+    "direction": "forward",
+    "requested": [
+      12.9218209,
+      77.6675138
+    ],
+    "actual": [
+      12.9218475,
+      77.6675315
+    ],
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=FB0aBMcVv_eyvUGIECECQg&viewpoint=12.9218475,77.6675315&heading=65.9&pitch=0&fov=100",
+    "panoramaId": "FB0aBMcVv_eyvUGIECECQg",
+    "locationStatus": "matched",
+    "notes": "Curved blue-glazed office with pale tall end walls on right; small dark retail frontage in front.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0350-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 350,
+    "checkpoint": 350,
+    "direction": "left",
+    "requested": [
+      12.9218209,
+      77.6675138
+    ],
+    "actual": null,
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=FB0aBMcVv_eyvUGIECECQg&viewpoint=12.9218475,77.6675315&heading=335.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Lake-side fence, tree row and open water partly visible through foliage. Actual panorama coordinates were not retained for this direction; do not substitute requested coordinates.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0350-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 350,
+    "checkpoint": 350,
+    "direction": "right",
+    "requested": [
+      12.9218209,
+      77.6675138
+    ],
+    "actual": [
+      12.9218475,
+      77.6675315
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=FB0aBMcVv_eyvUGIECECQg&viewpoint=12.9218475,77.6675315&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "FB0aBMcVv_eyvUGIECECQg",
+    "locationStatus": "matched",
+    "notes": "Dark grey/blue-glazed retail block with red Yamaha fascia; school further back, trees and open forecourt.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0375-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 375,
+    "checkpoint": 375,
+    "direction": "forward",
+    "requested": [
+      12.9219129,
+      77.6677244
+    ],
+    "actual": null,
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=2w1pDK-awGAmTFYkGicUxg&viewpoint=12.9219272,77.667698&heading=65.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Rounded Ferns Galaxy blue-glazed frontage with pale end walls behind Yamaha showroom; metro and service divider trees. Actual panorama coordinates were not retained for this direction; do not substitute requested coordinates.",
+    "featureIds": [
+      "building:524043737"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0375-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 375,
+    "checkpoint": 375,
+    "direction": "left",
+    "requested": [
+      12.9219129,
+      77.6677244
+    ],
+    "actual": [
+      12.9219272,
+      77.667698
+    ],
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=2w1pDK-awGAmTFYkGicUxg&viewpoint=12.9219272,77.667698&heading=335.9&pitch=0&fov=100",
+    "panoramaId": "2w1pDK-awGAmTFYkGicUxg",
+    "locationStatus": "matched",
+    "notes": "Lake water partly visible through black fence and sparse tree canopy. Background white building unresolved.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0375-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 375,
+    "checkpoint": 375,
+    "direction": "right",
+    "requested": [
+      12.9219129,
+      77.6677244
+    ],
+    "actual": [
+      12.9219272,
+      77.667698
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=2w1pDK-awGAmTFYkGicUxg&viewpoint=12.9219272,77.667698&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "2w1pDK-awGAmTFYkGicUxg",
+    "locationStatus": "matched",
+    "notes": "Yamaha wordmark on two-storey grey showroom with blue glazing. Open ground beside it; Royale Concorde sign farther behind.",
+    "featureIds": [
+      "building:1318195055",
+      "building:524043737"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0400-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 400,
+    "checkpoint": 400,
+    "direction": "forward",
+    "requested": [
+      12.9220048,
+      77.6679349
+    ],
+    "actual": [
+      12.922049,
+      77.6679589
+    ],
+    "heading": 65.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=ffNr2SgKVXL7e5yARN1HiQ&viewpoint=12.922049,77.6679589&heading=65.9&pitch=0&fov=100",
+    "panoramaId": "ffNr2SgKVXL7e5yARN1HiQ",
+    "locationStatus": "matched",
+    "notes": "Ferns Galaxy curved glazing and pale end wall right. Low green canopy and small frontage buildings begin at lake edge left.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0400-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 400,
+    "checkpoint": 400,
+    "direction": "left",
+    "requested": [
+      12.9220048,
+      77.6679349
+    ],
+    "actual": [
+      12.922049,
+      77.6679589
+    ],
+    "heading": 335.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=ffNr2SgKVXL7e5yARN1HiQ&viewpoint=12.922049,77.6679589&heading=335.9&pitch=0&fov=100",
+    "panoramaId": "ffNr2SgKVXL7e5yARN1HiQ",
+    "locationStatus": "matched",
+    "notes": "Lake entrance gate, low green-roof plant/pot stall and adjacent pale building with red vertical accents.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0400-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 400,
+    "checkpoint": 400,
+    "direction": "right",
+    "requested": [
+      12.9220048,
+      77.6679349
+    ],
+    "actual": [
+      12.922049,
+      77.6679589
+    ],
+    "heading": 155.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=ffNr2SgKVXL7e5yARN1HiQ&viewpoint=12.922049,77.6679589&heading=155.9&pitch=0&fov=100",
+    "panoramaId": "ffNr2SgKVXL7e5yARN1HiQ",
+    "locationStatus": "matched",
+    "notes": "Yamaha showroom and rounded Ferns Galaxy frontage behind, paved entries and trees.",
+    "featureIds": [
+      "building:1318195055",
+      "building:524043737"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0425-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 425,
+    "checkpoint": 425,
+    "direction": "forward",
+    "requested": [
+      12.9220999,
+      77.6681439
+    ],
+    "actual": [
+      12.9221286,
+      77.6681326
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=W-yNzlmLchw1Nn7nP8SdTg&viewpoint=12.9221286,77.6681326&heading=64&pitch=0&fov=100",
+    "panoramaId": "W-yNzlmLchw1Nn7nP8SdTg",
+    "locationStatus": "matched",
+    "notes": "Tree-planted divider; small frontage shops left, curved blue-glazed office right.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0425-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 425,
+    "checkpoint": 425,
+    "direction": "left",
+    "requested": [
+      12.9220999,
+      77.6681439
+    ],
+    "actual": [
+      12.9221286,
+      77.6681326
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=W-yNzlmLchw1Nn7nP8SdTg&viewpoint=12.9221286,77.6681326&heading=334&pitch=0&fov=100",
+    "panoramaId": "W-yNzlmLchw1Nn7nP8SdTg",
+    "locationStatus": "matched",
+    "notes": "Green-roof plant/pot stall and AGR Plaza partly hidden by tree canopies. Exact stall footprint unresolved.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0425-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 425,
+    "checkpoint": 425,
+    "direction": "right",
+    "requested": [
+      12.9220999,
+      77.6681439
+    ],
+    "actual": [
+      12.9221286,
+      77.6681326
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=W-yNzlmLchw1Nn7nP8SdTg&viewpoint=12.9221286,77.6681326&heading=154&pitch=0&fov=100",
+    "panoramaId": "W-yNzlmLchw1Nn7nP8SdTg",
+    "locationStatus": "matched",
+    "notes": "Ferns Galaxy entrance and Yamaha showroom behind trees; roadside advertising panels are not occupant records.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0450-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 450,
+    "checkpoint": 450,
+    "direction": "forward",
+    "requested": [
+      12.9221985,
+      77.6683512
+    ],
+    "actual": [
+      12.9222071,
+      77.6682986
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=cGiNU9XAaNvPi3ZzDNoIdg&viewpoint=12.9222071,77.6682986&heading=64&pitch=0&fov=100",
+    "panoramaId": "cGiNU9XAaNvPi3ZzDNoIdg",
+    "locationStatus": "matched",
+    "notes": "Metro supports right and service-road divider trees left; mixed-height frontage blocks ahead.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0450-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 450,
+    "checkpoint": 450,
+    "direction": "left",
+    "requested": [
+      12.9221985,
+      77.6683512
+    ],
+    "actual": [
+      12.9222071,
+      77.6682986
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=cGiNU9XAaNvPi3ZzDNoIdg&viewpoint=12.9222071,77.6682986&heading=334&pitch=0&fov=100",
+    "panoramaId": "cGiNU9XAaNvPi3ZzDNoIdg",
+    "locationStatus": "matched",
+    "notes": "AGR PLAZA rooftop name visible: grey panels, blue windows, red vertical accent strips, stepped roof edge and multiple ground-floor shutters/signs. Tenants partly obscured.",
+    "featureIds": [
+      "building:296155190"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0450-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 450,
+    "checkpoint": 450,
+    "direction": "right",
+    "requested": [
+      12.9221985,
+      77.6683512
+    ],
+    "actual": [
+      12.9222071,
+      77.6682986
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=cGiNU9XAaNvPi3ZzDNoIdg&viewpoint=12.9222071,77.6682986&heading=154&pitch=0&fov=100",
+    "panoramaId": "cGiNU9XAaNvPi3ZzDNoIdg",
+    "locationStatus": "matched",
+    "notes": "Ferns Galaxy curved blue glass and pale end walls with Microsoft wordmark; entrances screened by mature trees.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0475-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 475,
+    "checkpoint": 475,
+    "direction": "forward",
+    "requested": [
+      12.922297,
+      77.6685586
+    ],
+    "actual": [
+      12.922325,
+      77.668555
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=upwkNqMmeU94uRJ5fRpvAA&viewpoint=12.922325,77.668555&heading=64&pitch=0&fov=100",
+    "panoramaId": "upwkNqMmeU94uRJ5fRpvAA",
+    "locationStatus": "matched",
+    "notes": "Installed metro spans; planted service-road divider and cream residential blocks ahead.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0475-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 475,
+    "checkpoint": 475,
+    "direction": "left",
+    "requested": [
+      12.922297,
+      77.6685586
+    ],
+    "actual": [
+      12.922325,
+      77.668555
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=upwkNqMmeU94uRJ5fRpvAA&viewpoint=12.922325,77.668555&heading=334&pitch=0&fov=100",
+    "panoramaId": "upwkNqMmeU94uRJ5fRpvAA",
+    "locationStatus": "matched",
+    "notes": "AGR Plaza red vertical bands and grey/glazed facade, small adjacent kiosk and cream apartment blocks behind trees.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0475-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 475,
+    "checkpoint": 475,
+    "direction": "right",
+    "requested": [
+      12.922297,
+      77.6685586
+    ],
+    "actual": [
+      12.922325,
+      77.668555
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=upwkNqMmeU94uRJ5fRpvAA&viewpoint=12.922325,77.668555&heading=154&pitch=0&fov=100",
+    "panoramaId": "upwkNqMmeU94uRJ5fRpvAA",
+    "locationStatus": "matched",
+    "notes": "Full Ferns Galaxy curved blue-glazed frontage with horizontal bands, pale end walls, planted forecourt and gate.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0500-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 500,
+    "checkpoint": 500,
+    "direction": "forward",
+    "requested": [
+      12.9223956,
+      77.6687659
+    ],
+    "actual": [
+      12.922401,
+      77.66872
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=v4YF-j6TCHTLvYZhwV52Rw&viewpoint=12.922401,77.66872&heading=64&pitch=0&fov=100",
+    "panoramaId": "v4YF-j6TCHTLvYZhwV52Rw",
+    "locationStatus": "matched",
+    "notes": "IndiQube rooftop sign on green-glazed office ahead right; metro deck and rows of trees continue.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0500-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 500,
+    "checkpoint": 500,
+    "direction": "left",
+    "requested": [
+      12.9223956,
+      77.6687659
+    ],
+    "actual": [
+      12.922401,
+      77.66872
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=v4YF-j6TCHTLvYZhwV52Rw&viewpoint=12.922401,77.66872&heading=334&pitch=0&fov=100",
+    "panoramaId": "v4YF-j6TCHTLvYZhwV52Rw",
+    "locationStatus": "matched",
+    "notes": "Small kiosk, shaded apartment entrance and cream residential tower; trees obscure exact entrances and ground-floor boundaries.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0500-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 500,
+    "checkpoint": 500,
+    "direction": "right",
+    "requested": [
+      12.9223956,
+      77.6687659
+    ],
+    "actual": [
+      12.922401,
+      77.66872
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=v4YF-j6TCHTLvYZhwV52Rw&viewpoint=12.922401,77.66872&heading=154&pitch=0&fov=100",
+    "panoramaId": "v4YF-j6TCHTLvYZhwV52Rw",
+    "locationStatus": "matched",
+    "notes": "Ferns Galaxy forecourt and curved glazed block, green-glazed IndiQube office farther ahead.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0525-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 525,
+    "checkpoint": 525,
+    "direction": "forward",
+    "requested": [
+      12.9224941,
+      77.6689733
+    ],
+    "actual": [
+      12.9225159,
+      77.6689669
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=TmK-bpzwVeZdRM_K1Lo4Xw&viewpoint=12.9225159,77.6689669&heading=64&pitch=0&fov=100",
+    "panoramaId": "TmK-bpzwVeZdRM_K1Lo4Xw",
+    "locationStatus": "matched",
+    "notes": "Green-glazed AGR Pinnacle / IndiQube building to right; installed spans and tree-planted divider.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0525-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 525,
+    "checkpoint": 525,
+    "direction": "left",
+    "requested": [
+      12.9224941,
+      77.6689733
+    ],
+    "actual": null,
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=TmK-bpzwVeZdRM_K1Lo4Xw&viewpoint=12.9225159,77.6689669&heading=334&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue shuttered roadside hut below dense trees and cream residential blocks; small structure footprint unresolved. Actual panorama coordinates were not retained for this direction; do not substitute requested coordinates.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0525-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 525,
+    "checkpoint": 525,
+    "direction": "right",
+    "requested": [
+      12.9224941,
+      77.6689733
+    ],
+    "actual": [
+      12.9225159,
+      77.6689669
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=TmK-bpzwVeZdRM_K1Lo4Xw&viewpoint=12.9225159,77.6689669&heading=154&pitch=0&fov=100",
+    "panoramaId": "TmK-bpzwVeZdRM_K1Lo4Xw",
+    "locationStatus": "matched",
+    "notes": "Ferns Galaxy curved blue-glazed facade, green-glazed IndiQube office and trees screening entries.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0550-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 550,
+    "checkpoint": 550,
+    "direction": "forward",
+    "requested": [
+      12.9225926,
+      77.6691806
+    ],
+    "actual": [
+      12.9226021,
+      77.6691452
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=YJc4fYQuY8Eu1EhXHz8ZNQ&viewpoint=12.9226021,77.6691452&heading=64&pitch=0&fov=100",
+    "panoramaId": "YJc4fYQuY8Eu1EhXHz8ZNQ",
+    "locationStatus": "matched",
+    "notes": "Straight carriageway below installed metro spans; small right-side retail structures ahead beneath trees.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0550-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 550,
+    "checkpoint": 550,
+    "direction": "left",
+    "requested": [
+      12.9225926,
+      77.6691806
+    ],
+    "actual": [
+      12.9226021,
+      77.6691452
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=YJc4fYQuY8Eu1EhXHz8ZNQ&viewpoint=12.9226021,77.6691452&heading=334&pitch=0&fov=100",
+    "panoramaId": "YJc4fYQuY8Eu1EhXHz8ZNQ",
+    "locationStatus": "matched",
+    "notes": "Cream apartment facade and compound wall behind trees; blue roadside hut at edge.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0550-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 550,
+    "checkpoint": 550,
+    "direction": "right",
+    "requested": [
+      12.9225926,
+      77.6691806
+    ],
+    "actual": [
+      12.9226021,
+      77.6691452
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=YJc4fYQuY8Eu1EhXHz8ZNQ&viewpoint=12.9226021,77.6691452&heading=154&pitch=0&fov=100",
+    "panoramaId": "YJc4fYQuY8Eu1EhXHz8ZNQ",
+    "locationStatus": "matched",
+    "notes": "IndiQube / AGR Pinnacle: green glazing, projecting horizontal balcony bands, rooftop canopy and sign. Low small structures in front remain unmatched.",
+    "featureIds": [
+      "building:1066506701"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0575-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 575,
+    "checkpoint": 575,
+    "direction": "forward",
+    "requested": [
+      12.9226912,
+      77.669388
+    ],
+    "actual": null,
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9227213,77.6694&heading=64&pitch=0&fov=100&pano=bz7ChVbF7b9oNz5iHuOCaw",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Installed metro transitions to a steel-girder underside ahead; trees in left divider. Actual panorama coordinates were not retained for this direction; do not substitute requested coordinates.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0575-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 575,
+    "checkpoint": 575,
+    "direction": "left",
+    "requested": [
+      12.9226912,
+      77.669388
+    ],
+    "actual": [
+      12.9227213,
+      77.6694
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9227213,77.6694&heading=334&pitch=0&fov=100&pano=bz7ChVbF7b9oNz5iHuOCaw",
+    "panoramaId": "bz7ChVbF7b9oNz5iHuOCaw",
+    "locationStatus": "matched",
+    "notes": "Cream residential tower with balconies behind compound trees; entrance details obscured.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0575-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 575,
+    "checkpoint": 575,
+    "direction": "right",
+    "requested": [
+      12.9226912,
+      77.669388
+    ],
+    "actual": [
+      12.9227213,
+      77.6694
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9227213,77.6694&heading=154&pitch=0&fov=100&pano=bz7ChVbF7b9oNz5iHuOCaw",
+    "panoramaId": "bz7ChVbF7b9oNz5iHuOCaw",
+    "locationStatus": "matched",
+    "notes": "Green IndiQube building, small one-storey shops and shutters. Red/cream Bliss SPA building ahead remains unmatched.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0600-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 600,
+    "checkpoint": 600,
+    "direction": "forward",
+    "requested": [
+      12.9227897,
+      77.6695953
+    ],
+    "actual": [
+      12.9227972,
+      77.6695671
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9227972,77.6695671&heading=64&pitch=0&fov=100&pano=Gxja2B231PjpuKsUStZk_A",
+    "panoramaId": "Gxja2B231PjpuKsUStZk_A",
+    "locationStatus": "matched",
+    "notes": "Steel metro span overhead; black cult.fit frontage ahead left and red/cream spa block right.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0600-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 600,
+    "checkpoint": 600,
+    "direction": "left",
+    "requested": [
+      12.9227897,
+      77.6695953
+    ],
+    "actual": [
+      12.9227972,
+      77.6695671
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9227972,77.6695671&heading=334&pitch=0&fov=100&pano=Gxja2B231PjpuKsUStZk_A",
+    "panoramaId": "Gxja2B231PjpuKsUStZk_A",
+    "locationStatus": "matched",
+    "notes": "Side entrance beside cream residential block; small stalls and black cult.fit building ahead.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0600-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 600,
+    "checkpoint": 600,
+    "direction": "right",
+    "requested": [
+      12.9227897,
+      77.6695953
+    ],
+    "actual": [
+      12.9227972,
+      77.6695671
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9227972,77.6695671&heading=154&pitch=0&fov=100&pano=Gxja2B231PjpuKsUStZk_A",
+    "panoramaId": "Gxja2B231PjpuKsUStZk_A",
+    "locationStatus": "matched",
+    "notes": "Bliss SPA wordmark on red/cream facade; single-floor shops and shutters. Exact footprints not reconciled.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0625-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 625,
+    "checkpoint": 625,
+    "direction": "forward",
+    "requested": [
+      12.9228883,
+      77.6698027
+    ],
+    "actual": null,
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.922924,77.669819&heading=64&pitch=0&fov=100&pano=62DEYni4nFsG2WF_VIapiw",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Concrete metro span resumes. Petrol-station canopy and covered pedestrian bridge ahead. Actual panorama coordinates were not retained for this direction; do not substitute requested coordinates.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0625-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 625,
+    "checkpoint": 625,
+    "direction": "left",
+    "requested": [
+      12.9228883,
+      77.6698027
+    ],
+    "actual": [
+      12.922924,
+      77.669819
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.922924,77.669819&heading=334&pitch=0&fov=100&pano=62DEYni4nFsG2WF_VIapiw",
+    "panoramaId": "62DEYni4nFsG2WF_VIapiw",
+    "locationStatus": "matched",
+    "notes": "Black cult.fit frontage with white lettering, entrance steps and naturals rooftop sign. Matched to mapped Suramayi Plaza footprint; exact storey height approximate.",
+    "featureIds": [
+      "building:307875973"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0625-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 625,
+    "checkpoint": 625,
+    "direction": "right",
+    "requested": [
+      12.9228883,
+      77.6698027
+    ],
+    "actual": [
+      12.922924,
+      77.669819
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.922924,77.669819&heading=154&pitch=0&fov=100&pano=62DEYni4nFsG2WF_VIapiw",
+    "panoramaId": "62DEYni4nFsG2WF_VIapiw",
+    "locationStatus": "matched",
+    "notes": "Red/cream spa block and small shops partially hidden by piers; white and blue residential blocks behind.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0650-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 650,
+    "checkpoint": 650,
+    "direction": "forward",
+    "requested": [
+      12.9229868,
+      77.67001
+    ],
+    "actual": [
+      12.9230062,
+      77.6699871
+    ],
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9230062,77.6699871&heading=64&pitch=0&fov=100&pano=gACtLh3uL6kiU5lR8ECmqQ",
+    "panoramaId": "gACtLh3uL6kiU5lR8ECmqQ",
+    "locationStatus": "matched",
+    "notes": "Blue steel bus shelter with advertisement panels on left; covered pedestrian bridge ahead.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0650-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 650,
+    "checkpoint": 650,
+    "direction": "left",
+    "requested": [
+      12.9229868,
+      77.67001
+    ],
+    "actual": [
+      12.9230062,
+      77.6699871
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9230062,77.6699871&heading=334&pitch=0&fov=100&pano=gACtLh3uL6kiU5lR8ECmqQ",
+    "panoramaId": "gACtLh3uL6kiU5lR8ECmqQ",
+    "locationStatus": "matched",
+    "notes": "Blue shelter with bench and advertising; cult.fit facade and adjacent petrol-station canopy behind.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0650-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 650,
+    "checkpoint": 650,
+    "direction": "right",
+    "requested": [
+      12.9229868,
+      77.67001
+    ],
+    "actual": [
+      12.9230062,
+      77.6699871
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9230062,77.6699871&heading=154&pitch=0&fov=100&pano=gACtLh3uL6kiU5lR8ECmqQ",
+    "panoramaId": "gACtLh3uL6kiU5lR8ECmqQ",
+    "locationStatus": "matched",
+    "notes": "Spa facade, trees and shuttered shops; blue shelter beside footbridge stairs.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0675-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 675,
+    "checkpoint": 675,
+    "direction": "forward",
+    "requested": [
+      12.9230853,
+      77.6702174
+    ],
+    "actual": null,
+    "heading": 64,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9231223,77.6702348&heading=64&pitch=0&fov=100&pano=jmka7GPJSl_z9KgZlZdWGw",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Steel pedestrian bridge with grey-clad vertical stair/lift tower and exposed bracing crosses below metro. Actual panorama coordinates were not retained for this direction; do not substitute requested coordinates.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0675-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 675,
+    "checkpoint": 675,
+    "direction": "left",
+    "requested": [
+      12.9230853,
+      77.6702174
+    ],
+    "actual": [
+      12.9231223,
+      77.6702348
+    ],
+    "heading": 334,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9231223,77.6702348&heading=334&pitch=0&fov=100&pano=jmka7GPJSl_z9KgZlZdWGw",
+    "panoramaId": "jmka7GPJSl_z9KgZlZdWGw",
+    "locationStatus": "matched",
+    "notes": "IndianOil orange/white canopy, pumps and forecourt; adjacent low service structure. Canopy matched to building:370381639.",
+    "featureIds": [
+      "building:370381639"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0675-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 675,
+    "checkpoint": 675,
+    "direction": "right",
+    "requested": [
+      12.9230853,
+      77.6702174
+    ],
+    "actual": [
+      12.9231223,
+      77.6702348
+    ],
+    "heading": 154,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9231223,77.6702348&heading=154&pitch=0&fov=100&pano=jmka7GPJSl_z9KgZlZdWGw",
+    "panoramaId": "jmka7GPJSl_z9KgZlZdWGw",
+    "locationStatus": "matched",
+    "notes": "Exposed footbridge stairs and cross-braces, blue bus shelter and small shops behind; metro column.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0700-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 700,
+    "checkpoint": 700,
+    "direction": "forward",
+    "requested": [
+      12.9231838,
+      77.6704248
+    ],
+    "actual": [
+      12.9232043,
+      77.6704078
+    ],
+    "heading": 64.7,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9232043,77.6704078&heading=64.7&pitch=0&fov=100&pano=ogOCNYju-jC0d1fk3n2FjA",
+    "panoramaId": "ogOCNYju-jC0d1fk3n2FjA",
+    "locationStatus": "matched",
+    "notes": "Straight metro alignment; tree-lined divider left and white/blue residential blocks right.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0700-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 700,
+    "checkpoint": 700,
+    "direction": "left",
+    "requested": [
+      12.9231838,
+      77.6704248
+    ],
+    "actual": [
+      12.9232043,
+      77.6704078
+    ],
+    "heading": 334.7,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9232043,77.6704078&heading=334.7&pitch=0&fov=100&pano=ogOCNYju-jC0d1fk3n2FjA",
+    "panoramaId": "ogOCNYju-jC0d1fk3n2FjA",
+    "locationStatus": "matched",
+    "notes": "Steel footbridge stairs foreground and planted bed; large office with SATTVA roof wordmark, orange/brown horizontal panels and dark glazing. Footprint match pending.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0700-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 700,
+    "checkpoint": 700,
+    "direction": "right",
+    "requested": [
+      12.9231838,
+      77.6704248
+    ],
+    "actual": null,
+    "heading": 154.7,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9232043,77.6704078&heading=154.7&pitch=0&fov=100&pano=ogOCNYju-jC0d1fk3n2FjA",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Clad footbridge stairs, exposed bracing and bus shelter; white/blue balcony apartments behind trees. Actual panorama coordinates were not retained for this direction; do not substitute requested coordinates.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0725-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 725,
+    "checkpoint": 725,
+    "direction": "forward",
+    "requested": [
+      12.9232788,
+      77.6706339
+    ],
+    "actual": [
+      12.9232833,
+      77.6705799
+    ],
+    "heading": 65,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9232788,77.6706339&heading=65&pitch=0&fov=100&pano=8dN71QUJU9euE9ri20LVfw",
+    "panoramaId": "8dN71QUJU9euE9ri20LVfw",
+    "locationStatus": "matched",
+    "notes": "Concrete metro span, service-road tree divider.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0725-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 725,
+    "checkpoint": 725,
+    "direction": "left",
+    "requested": [
+      12.9232788,
+      77.6706339
+    ],
+    "actual": [
+      12.9232833,
+      77.6705799
+    ],
+    "heading": 335,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9232788,77.6706339&heading=335&pitch=0&fov=100&pano=8dN71QUJU9euE9ri20LVfw",
+    "panoramaId": "8dN71QUJU9euE9ri20LVfw",
+    "locationStatus": "matched",
+    "notes": "Dense planted campus frontage screens the lower office facade.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0725-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 725,
+    "checkpoint": 725,
+    "direction": "right",
+    "requested": [
+      12.9232788,
+      77.6706339
+    ],
+    "actual": [
+      12.9232833,
+      77.6705799
+    ],
+    "heading": 155,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9232788,77.6706339&heading=155&pitch=0&fov=100&pano=8dN71QUJU9euE9ri20LVfw",
+    "panoramaId": "8dN71QUJU9euE9ri20LVfw",
+    "locationStatus": "matched",
+    "notes": "White apartment wings with blue vertical accents, balconies and compound trees.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0750-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 750,
+    "checkpoint": 750,
+    "direction": "forward",
+    "requested": [
+      12.9233739,
+      77.6708429
+    ],
+    "actual": [
+      12.9234038,
+      77.6708297
+    ],
+    "heading": 65,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9233739,77.6708429&heading=65&pitch=0&fov=100&pano=63DxU_s2_CCQ0h0n4nCPxA",
+    "panoramaId": "63DxU_s2_CCQ0h0n4nCPxA",
+    "locationStatus": "matched",
+    "notes": "Service-road tree row; metro overhead; building renovation scaffold on right ahead.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-0750-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 750,
+    "checkpoint": 750,
+    "direction": "left",
+    "requested": [
+      12.9233739,
+      77.6708429
+    ],
+    "actual": [
+      12.9234038,
+      77.6708297
+    ],
+    "heading": 335,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9233739,77.6708429&heading=335&pitch=0&fov=100&pano=63DxU_s2_CCQ0h0n4nCPxA",
+    "panoramaId": "63DxU_s2_CCQ0h0n4nCPxA",
+    "locationStatus": "matched",
+    "notes": "Salarpuria Softzone entrance with small guardhouse, canopy, palms, blue glass and orange/brown panels. Footprint matched; gate dimensions approximate.",
+    "featureIds": [
+      "building:331512923"
+    ]
+  },
+  {
+    "id": "manipal-approach:sv-0750-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 750,
+    "checkpoint": 750,
+    "direction": "right",
+    "requested": [
+      12.9233739,
+      77.6708429
+    ],
+    "actual": [
+      12.9234038,
+      77.6708297
+    ],
+    "heading": 155,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9233739,77.6708429&heading=155&pitch=0&fov=100&pano=63DxU_s2_CCQ0h0n4nCPxA",
+    "panoramaId": "63DxU_s2_CCQ0h0n4nCPxA",
+    "locationStatus": "matched",
+    "notes": "White/blue apartment wings, planted frontage and small ground-level shops.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1000-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1000,
+    "checkpoint": 1000,
+    "direction": "forward",
+    "requested": [
+      12.9243228,
+      77.6729343
+    ],
+    "actual": null,
+    "heading": 65.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9243228,77.6729343&heading=65.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Metro overhead, narrow planted divider and mixed commercial frontage. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1000-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1000,
+    "checkpoint": 1000,
+    "direction": "left",
+    "requested": [
+      12.9243228,
+      77.6729343
+    ],
+    "actual": [
+      12.9243164,
+      77.6729005
+    ],
+    "heading": 335.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9243228,77.6729343&heading=335.2&pitch=0&fov=100&pano=gbD6ZuPUh0YDPi6CWsH6rQ",
+    "panoramaId": "gbD6ZuPUh0YDPi6CWsH6rQ",
+    "locationStatus": "matched",
+    "notes": "Blue-glazed commercial block behind compound wall and billboard. Kunjaree Silks and Subway wordmarks visible, footprint associations pending.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1000-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1000,
+    "checkpoint": 1000,
+    "direction": "right",
+    "requested": [
+      12.9243228,
+      77.6729343
+    ],
+    "actual": null,
+    "heading": 155.2,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9243228,77.6729343&heading=155.2&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Glass office with orange rectangular trim, adjoining narrow commercial block and The Eye Foundation sign. Associations unresolved. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1250-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1250,
+    "checkpoint": 1250,
+    "direction": "forward",
+    "requested": [
+      12.9253183,
+      77.6750019
+    ],
+    "actual": null,
+    "heading": 62.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9253183,77.6750019&heading=62.6&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Bellandur flyover rising with black/white parapets and twin-column metro supports. Curved blue Soul Space Spirit mall frontage left. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1250-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1250,
+    "checkpoint": 1250,
+    "direction": "left",
+    "requested": [
+      12.9253183,
+      77.6750019
+    ],
+    "actual": [
+      12.9253111,
+      77.6749703
+    ],
+    "heading": 332.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9253183,77.6750019&heading=332.6&pitch=0&fov=100&pano=EmnmqHXjRJclnc5D1sqi2w",
+    "panoramaId": "EmnmqHXjRJclnc5D1sqi2w",
+    "locationStatus": "matched",
+    "notes": "Vaishnavi entrance frame and guardhouse, tall pale/glazed office; rounded dark blue Soul Space Spirit mall adjoining. Entrances and heights estimated.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1250-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1250,
+    "checkpoint": 1250,
+    "direction": "right",
+    "requested": [
+      12.9253183,
+      77.6750019
+    ],
+    "actual": [
+      12.9253111,
+      77.6749703
+    ],
+    "heading": 152.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9253183,77.6750019&heading=152.6&pitch=0&fov=100&pano=EmnmqHXjRJclnc5D1sqi2w",
+    "panoramaId": "EmnmqHXjRJclnc5D1sqi2w",
+    "locationStatus": "matched",
+    "notes": "Orange/brown narrow office with projecting white roof, adjacent pale low-rise commercial buildings and trees.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1500-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1500,
+    "checkpoint": 1500,
+    "direction": "forward",
+    "requested": [
+      12.9263389,
+      77.6770574
+    ],
+    "actual": [
+      12.9263504,
+      77.6770719
+    ],
+    "heading": 63.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9263389,77.6770574&heading=63.9&pitch=0&fov=100&pano=OtG22VoUoBf3di-SFpqJLA",
+    "panoramaId": "OtG22VoUoBf3di-SFpqJLA",
+    "locationStatus": "matched",
+    "notes": "Raised flyover between black/white parapets, twin-column metro and utility cables.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1500-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1500,
+    "checkpoint": 1500,
+    "direction": "left",
+    "requested": [
+      12.9263389,
+      77.6770574
+    ],
+    "actual": [
+      12.9263504,
+      77.6770719
+    ],
+    "heading": 333.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9263389,77.6770574&heading=333.9&pitch=0&fov=100&pano=OtG22VoUoBf3di-SFpqJLA",
+    "panoramaId": "OtG22VoUoBf3di-SFpqJLA",
+    "locationStatus": "matched",
+    "notes": "Low-rise shops below flyover with shutters, pink canopy and large trees; taller cream blocks behind. Signs not matched to individual footprints.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1500-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1500,
+    "checkpoint": 1500,
+    "direction": "right",
+    "requested": [
+      12.9263389,
+      77.6770574
+    ],
+    "actual": [
+      12.9263504,
+      77.6770719
+    ],
+    "heading": 153.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9263389,77.6770574&heading=153.9&pitch=0&fov=100&pano=OtG22VoUoBf3di-SFpqJLA",
+    "panoramaId": "OtG22VoUoBf3di-SFpqJLA",
+    "locationStatus": "matched",
+    "notes": "Three-storey grey/cream building with open steel roof frame and nearby narrow residential towers.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1750-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1750,
+    "checkpoint": 1750,
+    "direction": "forward",
+    "requested": [
+      12.9273217,
+      77.6791322
+    ],
+    "actual": [
+      12.9273381,
+      77.6791331
+    ],
+    "heading": 63.8,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9273217,77.6791322&heading=63.8&pitch=0&fov=100&pano=SxtlOkMuow4u3ZDuAvPDbg",
+    "panoramaId": "SxtlOkMuow4u3ZDuAvPDbg",
+    "locationStatus": "matched",
+    "notes": "Flyover descends toward a station under construction with curved steel roof framing.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1750-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1750,
+    "checkpoint": 1750,
+    "direction": "left",
+    "requested": [
+      12.9273217,
+      77.6791322
+    ],
+    "actual": [
+      12.9273381,
+      77.6791331
+    ],
+    "heading": 333.8,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9273217,77.6791322&heading=333.8&pitch=0&fov=100&pano=SxtlOkMuow4u3ZDuAvPDbg",
+    "panoramaId": "SxtlOkMuow4u3ZDuAvPDbg",
+    "locationStatus": "matched",
+    "notes": "Blue/light-blue construction hoarding behind tree-lined service road; worksite screened.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-1750-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 1750,
+    "checkpoint": 1750,
+    "direction": "right",
+    "requested": [
+      12.9273217,
+      77.6791322
+    ],
+    "actual": null,
+    "heading": 153.8,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9273217,77.6791322&heading=153.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Pale horizontally banded office campus, palms and low street stalls below flyover. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2000-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2000,
+    "checkpoint": 2000,
+    "direction": "forward",
+    "requested": [
+      12.9283062,
+      77.6812062
+    ],
+    "actual": null,
+    "heading": 64.1,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9283062,77.6812062&heading=64.1&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Covered steel footbridge under metro; bus shelter left and large cream hotel right ahead. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2000-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2000,
+    "checkpoint": 2000,
+    "direction": "left",
+    "requested": [
+      12.9283062,
+      77.6812062
+    ],
+    "actual": [
+      12.9282945,
+      77.6812369
+    ],
+    "heading": 334.1,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9283062,77.6812062&heading=334.1&pitch=0&fov=100&pano=obGqVzkzFXYY9IWxYrtqBw",
+    "panoramaId": "obGqVzkzFXYY9IWxYrtqBw",
+    "locationStatus": "matched",
+    "notes": "White bus shelter, steel footbridge stairs; construction fence and crane behind. Advertisement text does not establish a business at this site.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2000-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2000,
+    "checkpoint": 2000,
+    "direction": "right",
+    "requested": [
+      12.9283062,
+      77.6812062
+    ],
+    "actual": [
+      12.9282945,
+      77.6812369
+    ],
+    "heading": 154.1,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9283062,77.6812062&heading=154.1&pitch=0&fov=100&pano=obGqVzkzFXYY9IWxYrtqBw",
+    "panoramaId": "obGqVzkzFXYY9IWxYrtqBw",
+    "locationStatus": "matched",
+    "notes": "Steel footbridge stairway in front of landscaped glazed campus; cream hotel and horizontal glazed office blocks.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2250-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2250,
+    "checkpoint": 2250,
+    "direction": "forward",
+    "requested": [
+      12.9292946,
+      77.6832773
+    ],
+    "actual": [
+      12.9292995,
+      77.6832812
+    ],
+    "heading": 63.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9292946,77.6832773&heading=63.4&pitch=0&fov=100&pano=0OYZjD0YD7sUhEifky8GOg",
+    "panoramaId": "0OYZjD0YD7sUhEifky8GOg",
+    "locationStatus": "matched",
+    "notes": "Raised road and black/white parapets, metro on twin supports, dense trees left.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2250-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2250,
+    "checkpoint": 2250,
+    "direction": "left",
+    "requested": [
+      12.9292946,
+      77.6832773
+    ],
+    "actual": [
+      12.9292995,
+      77.6832812
+    ],
+    "heading": 333.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9292946,77.6832773&heading=333.4&pitch=0&fov=100&pano=0OYZjD0YD7sUhEifky8GOg",
+    "panoramaId": "0OYZjD0YD7sUhEifky8GOg",
+    "locationStatus": "matched",
+    "notes": "Narrow grey Elmas Suites facade, canopy and adjacent ICICI Bank sign. Trees screen neighbouring buildings. Matching pending.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2250-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2250,
+    "checkpoint": 2250,
+    "direction": "right",
+    "requested": [
+      12.9292946,
+      77.6832773
+    ],
+    "actual": [
+      12.9292995,
+      77.6832812
+    ],
+    "heading": 153.4,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9292946,77.6832773&heading=153.4&pitch=0&fov=100&pano=0OYZjD0YD7sUhEifky8GOg",
+    "panoramaId": "0OYZjD0YD7sUhEifky8GOg",
+    "locationStatus": "matched",
+    "notes": "Palms and dense landscaped campus behind parapet, large pale buildings beyond.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2500-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2500,
+    "checkpoint": 2500,
+    "direction": "forward",
+    "requested": [
+      12.9303486,
+      77.6853093
+    ],
+    "actual": [
+      12.9303711,
+      77.6852901
+    ],
+    "heading": 53.8,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9303486,77.6853093&heading=53.8&pitch=0&fov=100&pano=79pXV0b7pfePBZcJWypYHg",
+    "panoramaId": "79pXV0b7pfePBZcJWypYHg",
+    "locationStatus": "matched",
+    "notes": "Flyover bend with large blue-glazed Shilpitha Tech Park left and pale hotel/apartment complex right.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2500-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2500,
+    "checkpoint": 2500,
+    "direction": "left",
+    "requested": [
+      12.9303486,
+      77.6853093
+    ],
+    "actual": null,
+    "heading": 323.8,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9303486,77.6853093&heading=323.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Low corrugated roofs, two-storey gallery-front shops, blue-glazed office with INDIQUBE and SHILPITHA TECH PARK wordmarks behind. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2500-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2500,
+    "checkpoint": 2500,
+    "direction": "right",
+    "requested": [
+      12.9303486,
+      77.6853093
+    ],
+    "actual": null,
+    "heading": 143.8,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9303486,77.6853093&heading=143.8&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Pale gridded hotel facade and apartment balconies, steel metro span beside concrete pier. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2750-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2750,
+    "checkpoint": 2750,
+    "direction": "forward",
+    "requested": [
+      12.9318382,
+      77.6870363
+    ],
+    "actual": null,
+    "heading": 48.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9318382,77.6870363&heading=48.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Large unfinished metro station overhead with open cantilevers, green mesh and unfinished side access structures. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2750-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2750,
+    "checkpoint": 2750,
+    "direction": "left",
+    "requested": [
+      12.9318382,
+      77.6870363
+    ],
+    "actual": null,
+    "heading": 318.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9318382,77.6870363&heading=318.3&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Small tyre/repair shops with shutters and corrugated roofs; blue site hoarding, mesh verge fence and unfinished concrete access tower. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-2750-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 2750,
+    "checkpoint": 2750,
+    "direction": "right",
+    "requested": [
+      12.9318382,
+      77.6870363
+    ],
+    "actual": [
+      12.931877,
+      77.6870637
+    ],
+    "heading": 138.3,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9318382,77.6870363&heading=138.3&pitch=0&fov=100&pano=rJpzzFbBgXcGqbEPQcFKFw",
+    "panoramaId": "rJpzzFbBgXcGqbEPQcFKFw",
+    "locationStatus": "matched",
+    "notes": "Glazed office with red diamond lattice, adjacent vertical gold trim and broad pale office beyond. Station access stair under construction.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3000-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3000,
+    "checkpoint": 3000,
+    "direction": "forward",
+    "requested": [
+      12.9333489,
+      77.6887445
+    ],
+    "actual": null,
+    "heading": 46.7,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9333489,77.6887445&heading=46.7&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "At-grade metro corridor, tree-lined service divider and white banded office tower ahead right. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3000-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3000,
+    "checkpoint": 3000,
+    "direction": "left",
+    "requested": [
+      12.9333489,
+      77.6887445
+    ],
+    "actual": [
+      12.9333466,
+      77.6887508
+    ],
+    "heading": 316.7,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9333489,77.6887445&heading=316.7&pitch=0&fov=100&pano=hw0z79YebSbh78YxDyjcDw",
+    "panoramaId": "hw0z79YebSbh78YxDyjcDw",
+    "locationStatus": "matched",
+    "notes": "Low industrial sheds with sloped corrugated roofs and blue shutters, fenced forecourt and mature trees.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3000-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3000,
+    "checkpoint": 3000,
+    "direction": "right",
+    "requested": [
+      12.9333489,
+      77.6887445
+    ],
+    "actual": [
+      12.9333466,
+      77.6887508
+    ],
+    "heading": 136.7,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9333489,77.6887445&heading=136.7&pitch=0&fov=100&pano=hw0z79YebSbh78YxDyjcDw",
+    "panoramaId": "hw0z79YebSbh78YxDyjcDw",
+    "locationStatus": "matched",
+    "notes": "JPMorgan Chase Kannada wordmark on broad blue-glazed campus with black grid framing; trees and bus shelter along frontage.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3250-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3250,
+    "checkpoint": 3250,
+    "direction": "forward",
+    "requested": [
+      12.9348902,
+      77.690424
+    ],
+    "actual": [
+      12.9348819,
+      77.6904033
+    ],
+    "heading": 45.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9348902,77.690424&heading=45.6&pitch=0&fov=100&pano=U3C_Q4hJ5YRtt11pi14B_w",
+    "panoramaId": "U3C_Q4hJ5YRtt11pi14B_w",
+    "locationStatus": "matched",
+    "notes": "Service-road junction, autos and buses; metro above.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3250-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3250,
+    "checkpoint": 3250,
+    "direction": "left",
+    "requested": [
+      12.9348902,
+      77.690424
+    ],
+    "actual": [
+      12.9348819,
+      77.6904033
+    ],
+    "heading": 315.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9348902,77.690424&heading=315.6&pitch=0&fov=100&pano=U3C_Q4hJ5YRtt11pi14B_w",
+    "panoramaId": "U3C_Q4hJ5YRtt11pi14B_w",
+    "locationStatus": "matched",
+    "notes": "Pale roadside shelter/screen, green construction fence and tree-shaded side-road entrance.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3250-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3250,
+    "checkpoint": 3250,
+    "direction": "right",
+    "requested": [
+      12.9348902,
+      77.690424
+    ],
+    "actual": [
+      12.9348819,
+      77.6904033
+    ],
+    "heading": 135.6,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9348902,77.690424&heading=135.6&pitch=0&fov=100&pano=U3C_Q4hJ5YRtt11pi14B_w",
+    "panoramaId": "U3C_Q4hJ5YRtt11pi14B_w",
+    "locationStatus": "matched",
+    "notes": "Bus completely obstructs frontage. Additional panorama needed; no facade inference from this view.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3500-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3500,
+    "checkpoint": 3500,
+    "direction": "forward",
+    "requested": [
+      12.936434,
+      77.6921009
+    ],
+    "actual": [
+      12.9364308,
+      77.6920697
+    ],
+    "heading": 46.5,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.936434,77.6921009&heading=46.5&pitch=0&fov=100&pano=KScQDfsiGtEOh9Hzi194pg",
+    "panoramaId": "KScQDfsiGtEOh9Hzi194pg",
+    "locationStatus": "matched",
+    "notes": "Wide main carriageway, metro and tree divider beside left service road.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3500-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3500,
+    "checkpoint": 3500,
+    "direction": "left",
+    "requested": [
+      12.936434,
+      77.6921009
+    ],
+    "actual": null,
+    "heading": 316.5,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.936434,77.6921009&heading=316.5&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Palm/tree compound with pale glazed office, guardhouse and entrance; BHIVE sign partly visible beyond. Footprints not reconciled. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3500-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3500,
+    "checkpoint": 3500,
+    "direction": "right",
+    "requested": [
+      12.936434,
+      77.6921009
+    ],
+    "actual": [
+      12.9364308,
+      77.6920697
+    ],
+    "heading": 136.5,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.936434,77.6921009&heading=136.5&pitch=0&fov=100&pano=KScQDfsiGtEOh9Hzi194pg",
+    "panoramaId": "KScQDfsiGtEOh9Hzi194pg",
+    "locationStatus": "matched",
+    "notes": "Tree-screened frontage, small roadside structures and parked construction equipment. Extent and equipment positions not established.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3750-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3750,
+    "checkpoint": 3750,
+    "direction": "forward",
+    "requested": [
+      12.9380016,
+      77.6937546
+    ],
+    "actual": [
+      12.9380266,
+      77.6937541
+    ],
+    "heading": 45.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9380016,77.6937546&heading=45.9&pitch=0&fov=100&pano=ohCAIQfmmqjwiUCaQKJUww",
+    "panoramaId": "ohCAIQfmmqjwiUCaQKJUww",
+    "locationStatus": "matched",
+    "notes": "Descending underpass enclosed by blue/white retaining walls, metro right overhead.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3750-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3750,
+    "checkpoint": 3750,
+    "direction": "left",
+    "requested": [
+      12.9380016,
+      77.6937546
+    ],
+    "actual": [
+      12.9380266,
+      77.6937541
+    ],
+    "heading": 315.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9380016,77.6937546&heading=315.9&pitch=0&fov=100&pano=ohCAIQfmmqjwiUCaQKJUww",
+    "panoramaId": "ohCAIQfmmqjwiUCaQKJUww",
+    "locationStatus": "matched",
+    "notes": "Blue/white retaining wall, mature trees and green fence above.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3750-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3750,
+    "checkpoint": 3750,
+    "direction": "right",
+    "requested": [
+      12.9380016,
+      77.6937546
+    ],
+    "actual": [
+      12.9380266,
+      77.6937541
+    ],
+    "heading": 135.9,
+    "imageryDate": "2026-04",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.9380016,77.6937546&heading=135.9&pitch=0&fov=100&pano=ohCAIQfmmqjwiUCaQKJUww",
+    "panoramaId": "ohCAIQfmmqjwiUCaQKJUww",
+    "locationStatus": "matched",
+    "notes": "Retaining wall, Prestige campus pylon, broad glazed buildings and crane beyond.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3787.6108871841584-forward",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3787.6108871841584,
+    "checkpoint": 3787.6108871841584,
+    "direction": "forward",
+    "requested": [
+      12.938237,
+      77.6940037
+    ],
+    "actual": [
+      12.938222,
+      77.6939942
+    ],
+    "heading": 45.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.938237,77.6940037&heading=45.9&pitch=0&fov=100&pano=FUqkbwF-uFLI8Ok8tXQG5Q",
+    "panoramaId": "FUqkbwF-uFLI8Ok8tXQG5Q",
+    "locationStatus": "matched",
+    "notes": "Exact join: underpass retaining walls and metro continue without a geographic road change. December 2025 imagery.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3787.6108871841584-left",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3787.6108871841584,
+    "checkpoint": 3787.6108871841584,
+    "direction": "left",
+    "requested": [
+      12.938237,
+      77.6940037
+    ],
+    "actual": null,
+    "heading": 315.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.938237,77.6940037&heading=315.9&pitch=0&fov=100",
+    "panoramaId": null,
+    "locationStatus": "unresolved",
+    "notes": "Blue/white retaining wall screens ground-level frontage; trees and cream buildings above. December 2025 imagery. Actual panorama coordinate was not retained for this direction; location reconciliation required.",
+    "featureIds": []
+  },
+  {
+    "id": "manipal-approach:sv-3787.6108871841584-right",
+    "segmentId": "manipal-approach",
+    "localCheckpoint": 3787.6108871841584,
+    "checkpoint": 3787.6108871841584,
+    "direction": "right",
+    "requested": [
+      12.938237,
+      77.6940037
+    ],
+    "actual": [
+      12.938222,
+      77.6939942
+    ],
+    "heading": 135.9,
+    "imageryDate": "2025-12",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=12.938237,77.6940037&heading=135.9&pitch=0&fov=100&pano=FUqkbwF-uFLI8Ok8tXQG5Q",
+    "panoramaId": "FUqkbwF-uFLI8Ok8tXQG5Q",
+    "locationStatus": "matched",
+    "notes": "Blue/white wall, Prestige pylon and Indian flag above; metro support and construction edge. December 2025 imagery.",
+    "featureIds": []
+  }
+]

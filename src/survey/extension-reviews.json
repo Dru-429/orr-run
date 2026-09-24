@@ -1,0 +1,1826 @@
+[
+  {
+    "segmentId": "manipal-approach",
+    "to": 50,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 0
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 50,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 0
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 100,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 50
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 100,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 50
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 150,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 150,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 200,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 200,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 250,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 250,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 300,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 300,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 350,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 350,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 400,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 400,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 450,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 450,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 500,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 500,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 550,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 550,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 600,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 600,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 650,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 650,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 700,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 700,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 750,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 750,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 800,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 750
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 800,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 750
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 850,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 800
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 850,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 800
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 900,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 850
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 900,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 850
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 950,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 900
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 950,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 900
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1000,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 950
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1000,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 950
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1050,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1000
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1050,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1000
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1100,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1050
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1100,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1050
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1150,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1150,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1200,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1200,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1250,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1250,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1300,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1300,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1350,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1350,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1400,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1400,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1450,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1450,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1500,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1500,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1550,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1550,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1600,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1600,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1650,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1650,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1700,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1700,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1750,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1750,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1800,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1750
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1800,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1750
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1850,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1800
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1850,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1800
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1900,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1850
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1900,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1850
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1950,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1900
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 1950,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1900
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2000,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1950
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2000,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 1950
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2050,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2000
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2050,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2000
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2100,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2050
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2100,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2050
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2150,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2150,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2200,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2200,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2250,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2250,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2300,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2300,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2350,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2350,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2400,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2400,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2450,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2450,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2500,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2500,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2550,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2550,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2600,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2600,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2650,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2650,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2700,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2700,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2750,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2750,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2800,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2750
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2800,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2750
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2850,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2800
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2850,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2800
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2900,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2850
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2900,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2850
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2950,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2900
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 2950,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2900
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3000,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2950
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3000,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 2950
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3050,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3000
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3050,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3000
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3100,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3050
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3100,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3050
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3150,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3150,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3100
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3200,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3200,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3150
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3250,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3250,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3200
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3300,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3300,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3250
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3350,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3350,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3300
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3400,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3400,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3350
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3450,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3450,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3400
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3500,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3500,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3450
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3550,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3550,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3500
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3600,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3600,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3550
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3650,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3650,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3600
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3700,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3700,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3650
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3750,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3750,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3700
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3787.6108871841584,
+    "side": "left",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3750
+  },
+  {
+    "segmentId": "manipal-approach",
+    "to": 3787.6108871841584,
+    "side": "right",
+    "reviewedOn": "2026-09-24",
+    "frontagesReconciled": false,
+    "openSpaceEvidence": [],
+    "unresolved": [
+      "Licensed overhead geometry imported; individual frontage, entrance and construction reconciliation remains incomplete"
+    ],
+    "from": 3750
+  }
+]
