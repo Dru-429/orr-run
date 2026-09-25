@@ -2,7 +2,6 @@ import * as T from 'three';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import type {VehicleKind} from './simulation';
-import {getVehicleArtwork,isVehicleArtworkTexture,disposeVehicleArtwork} from './vehicle-artwork';
 
 export function canvasTexture(w:number,h:number,draw:(c:CanvasRenderingContext2D)=>void){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d')!);const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.anisotropy=4;return t;}
 export function labelTexture(text:string,color='#eee9d9',bg='transparent',sub=''){
@@ -41,15 +40,16 @@ export function facadeTexture(kind:'glass'|'cream'|'shop'|'adobe'|'silver'|'satt
 }
 const vehicleTemplates=new Map<string,T.Group>();
 let vehicleGlass:T.Texture|undefined;
-export function vehicle(kind:VehicleKind,colorIndex:number){
- const key=kind==='car'||kind==='bike'?kind+colorIndex:kind;if(vehicleTemplates.has(key))return vehicleTemplates.get(key)!.clone();
+export function vehicle(kind:VehicleKind,colorIndex:number,variant:'city'|'tourist'='city'){
+ const tourist=kind==='bus'&&variant==='tourist';
+ const key=tourist?'tourist-coach':kind==='car'||kind==='bike'?kind+colorIndex:kind;if(vehicleTemplates.has(key))return vehicleTemplates.get(key)!.clone();
  const group=new T.Group(),b=new Batch();
  const colors=['#efeee3','#354a50','#adbbb8','#afa698','#8d3f36','#536c7d','#d5d5ce'];
- const paint=material(kind==='auto'?'#37694b':kind==='cab'?'#efede3':kind==='bus'?'#328a9c':kind==='truck'?'#b68b57':colors[colorIndex%7],.45);
+ const paint=material(kind==='auto'?'#37694b':kind==='cab'?'#efede3':kind==='bus'?(tourist?'#e8e2ce':'#328a9c'):kind==='truck'?'#b68b57':colors[colorIndex%7],.45);
  paint.metalness=.2;
- const trim=material('#20292b',.65),glass=material('#253d49',.17),chrome=material('#a7b3b9',.28),rubber=material('#171c20',.95),cream=material('#e5bd41');
+ const trim=material('#20292b',.65),glass=material('#253d49',.17),chrome=material('#a7b3b9',.28),rubber=material('#171c20',.95),cream=material(tourist?'#53777b':'#e5bd41');
  glass.metalness=.25;chrome.metalness=.65;
- vehicleGlass??=canvasTexture(32,128,c=>{const g=c.createLinearGradient(0,0,0,128);g.addColorStop(0,'#b2c9d0');g.addColorStop(.45,'#657f90');g.addColorStop(.5,'#455e6c');g.addColorStop(1,'#243947');c.fillStyle=g;c.fillRect(0,0,32,128);});glass.map=vehicleGlass;glass.color.set('#b7cbd2');
+ vehicleGlass??=canvasTexture(32,128,c=>{const g=c.createLinearGradient(0,0,0,128);g.addColorStop(0,'#b2c9d0');g.addColorStop(.45,'#657f90');g.addColorStop(.5,'#455e6c');g.addColorStop(1,'#243947');c.fillStyle=g;c.fillRect(0,0,32,128);});glass.map=vehicleGlass;glass.color.set(tourist?'#40545c':'#b7cbd2');
  const box=(w:number,h:number,d:number,x:number,y:number,z:number,m:T.Material)=>b.box(w,h,d,x,y,z,m);
  const wheel=(x:number,z:number,r=.32)=>{const g=new T.CylinderGeometry(r,r,.22,20);g.rotateZ(Math.PI/2);g.translate(x,r,z);b.add(g,rubber);g.dispose();const hub=new T.CylinderGeometry(r*.5,r*.5,.235,8);hub.rotateZ(Math.PI/2);hub.translate(x,r,z);b.add(hub,chrome);hub.dispose();};
  if(kind==='car'||kind==='cab'){
@@ -104,22 +104,16 @@ export function vehicle(kind:VehicleKind,colorIndex:number){
  } else {
   const bus=kind==='bus',length=bus?10.8:8,width=bus?2.55:2.45;
   box(width,bus?2.35:2.3,bus?length:5.7,0,bus?1.9:2.1,bus?0:1.1,bus?paint:material('#aca38c'));
-  if(bus){box(width+.02,.95,length-.4,0,2.35,0,glass);box(width+.06,.13,length,0,1.76,0,cream);box(width,.19,length,0,3.15,0,chrome);for(let z=-4.7;z<5;z+=1.05){box(width+.03,1,.075,0,2.36,z,paint);}box(width-.12,.9,.04,0,2.26,5.42,glass);}
+  if(bus){box(width+.02,.95,length-.4,0,2.35,0,glass);box(width+.06,.13,length,0,1.76,0,cream);box(width,.19,length,0,3.15,0,chrome);for(let z=-4.7;!tourist&&z<5;z+=1.05){box(width+.03,1,.075,0,2.36,z,paint);}box(width-.12,.9,.04,0,2.26,5.42,glass);}
   else{box(width,1.75,2.25,0,1.45,-2.83,paint);box(width-.15,.7,.04,0,1.94,-3.98,glass);for(let z=-1.4;z<4;z+=.4)box(width+.03,2.2,.04,0,2.1,z,chrome);}
   box(width-.25,.23,length-.3,0,.69,0,trim);
   for(const x of [-width/2,width/2])for(const z of [-(length/2-1.4),length/2-1.4])wheel(x,z,.5);
  }
  b.finish(group,true);
- if(kind==='bus'||kind==='truck'){
-  const artwork=getVehicleArtwork();
-  if(kind==='bus'){
-   const logoMaterial=new T.MeshBasicMaterial({map:artwork.bus,transparent:true,depthWrite:false,toneMapped:false});
-   const geometry=new T.PlaneGeometry(3.8,3.8*93/508);
-   for(const side of [-1,1]){const logo=new T.Mesh(geometry,logoMaterial);logo.name=side<0?'antimattr-left':'antimattr-right';logo.position.set(side*1.286,1.25,0);logo.rotation.y=side*Math.PI/2;group.add(logo);}
-  }else{
-   const poster=new T.Mesh(new T.PlaneGeometry(2.05*1080/1208,2.05),new T.MeshBasicMaterial({map:artwork.truck,toneMapped:false}));
-   poster.name='antimattr-rear';poster.position.set(0,2.1,3.975);group.add(poster);
-  }
+ if(kind==='bus'&&!tourist){
+  const logoMaterial=new T.MeshBasicMaterial({map:labelTexture('BMTC','#ffffff'),transparent:true,depthWrite:false,toneMapped:false});
+  const geometry=new T.PlaneGeometry(3.8,.8);
+  for(const side of [-1,1]){const logo=new T.Mesh(geometry,logoMaterial);logo.name=side<0?'bmtc-left':'bmtc-right';logo.position.set(side*1.286,1.25,0);logo.rotation.y=side*Math.PI/2;group.add(logo);}
  }
  const shadowTexture=canvasTexture(64,128,c=>{const gradient=c.createRadialGradient(32,64,3,32,64,62);gradient.addColorStop(0,'rgba(12,19,18,.6)');gradient.addColorStop(.55,'rgba(12,19,18,.24)');gradient.addColorStop(1,'rgba(12,19,18,0)');c.fillStyle=gradient;c.fillRect(0,0,64,128);});
  const shadow=new T.Mesh(new T.PlaneGeometry(kind==='bike'?1.2:kind==='bus'||kind==='truck'?3.8:2.7,kind==='bus'?12:kind==='truck'?9.5:5.4),new T.MeshBasicMaterial({map:shadowTexture,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}));shadow.name='contact-shadow';shadow.rotation.x=-Math.PI/2;shadow.position.y=.025;group.add(shadow);
@@ -128,8 +122,19 @@ export function vehicle(kind:VehicleKind,colorIndex:number){
  const lamps=new T.Group();lamps.name='brakes';const light=new T.MeshBasicMaterial({color:'#fb3a27'});
  for(const x of kind==='bike'?[0]:[-(kind==='bus'||kind==='truck'?1:passenger?.60:.65),kind==='bus'||kind==='truck'?1:passenger?.60:.65]){const m=new T.Mesh(new T.BoxGeometry(kind==='bike'?.18:passenger?.30:.28,passenger?.095:.16,passenger?.006:.03),light);m.position.set(x,passenger?.84:.8,rear);lamps.add(m);}group.add(lamps);
  const plate=sign(kind==='bus'?'KA 01 F 5029':'KA 03 MP 4921',.5,.13,'#202522',kind==='cab'||kind==='auto'||kind==='bus'?'#dbc647':'#e6e4d7');plate.position.set(0,.51,passenger?2.12:rear+.025);group.add(plate);
- if(kind==='bus'){const route=sign('500D  ·  MARATHAHALLI',2,.3,'#f5d756','#192b24');route.position.set(0,2.96,rear+.025);group.add(route);}
+ if(tourist){
+  const rearLabel=sign('VOLVO',2.2,.42,'#ffffff','#20363b');rearLabel.name='volvo-rear';rearLabel.position.set(0,2.96,5.455);group.add(rearLabel);
+  const frontLabel=rearLabel.clone();frontLabel.name='volvo-front';frontLabel.position.z=-5.455;frontLabel.rotation.y=Math.PI;group.add(frontLabel);
+ }else if(kind==='bus'){const route=sign('500D  ·  MARATHAHALLI',2,.3,'#f5d756','#192b24');route.position.set(0,2.96,rear+.025);group.add(route);}
  if(kind==='cab')group.scale.z=4.2/4.3;
+ if(kind==='car'||kind==='cab'){
+  const gesture=new T.Group();gesture.name='driver-gesture';gesture.visible=false;gesture.position.set(.73,1.19,-.28);const hand=new Batch(),skin=material('#ba8765'),sleeve=material('#617b80');
+  hand.box(.25,.14,.17,.1,0,0,sleeve);hand.box(.3,.11,.12,.34,.025,0,skin);hand.box(.12,.25,.11,.49,.14,0,skin);
+  // Palm faces the following driver; folded fingers surround the raised middle finger.
+  hand.box(.19,.18,.10,.49,.32,.015,skin);hand.box(.048,.24,.075,.49,.52,.025,skin);
+  for(const x of [.423,.457,.527,.561])hand.box(.035,.075,.09,x,.36,.075,skin);
+  hand.box(.06,.10,.09,.385,.27,.055,skin);hand.finish(gesture);group.add(gesture);
+ }
  vehicleTemplates.set(key,group);return group.clone();
 }
-export function disposeTemplates(){const geometries=new Set<T.BufferGeometry>(),materials=new Set<T.Material>(),textures=new Set<T.Texture>();for(const group of vehicleTemplates.values())group.traverse(o=>{if(o instanceof T.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material]){materials.add(m);Object.values(m).forEach(v=>{if(v instanceof T.Texture&&!isVehicleArtworkTexture(v))textures.add(v);});}}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());vehicleTemplates.clear();vehicleGlass=undefined;disposeVehicleArtwork();}
+export function disposeTemplates(){const geometries=new Set<T.BufferGeometry>(),materials=new Set<T.Material>(),textures=new Set<T.Texture>();for(const group of vehicleTemplates.values())group.traverse(o=>{if(o instanceof T.Mesh){geometries.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material]){materials.add(m);Object.values(m).forEach(v=>{if(v instanceof T.Texture)textures.add(v);});}}});geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());vehicleTemplates.clear();vehicleGlass=undefined;}

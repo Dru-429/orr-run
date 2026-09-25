@@ -1,11 +1,11 @@
 {
-  "version": 3,
-  "id": "silk-board-to-adobe-v3",
+  "version": 4,
+  "id": "silk-board-to-marathahalli-v4",
   "origin": [
     12.942,
     77.696
   ],
-  "length": 9748.223828601303,
+  "length": 11395.262089379816,
   "segments": [
     {
       "id": "silk-hsr",
@@ -50,6 +50,21 @@
       "end": [
         12.94604284507916,
         77.69839450083263
+      ]
+    },
+    {
+      "id": "adobe-marathahalli",
+      "name": "Adobe \u2192 Marathahalli underpass",
+      "offset": 9748.223828601303,
+      "length": 1647.0382607785123,
+      "sourceFrom": 0,
+      "start": [
+        12.94604284507916,
+        77.69839450083263
+      ],
+      "end": [
+        12.960511585435912,
+        77.70135844780202
       ]
     }
   ],
@@ -918,6 +933,235 @@
         "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
         "surface": "asphalt"
       }
+    },
+    {
+      "from": 9748.223828601303,
+      "to": 9766.021410747855,
+      "source": "https://www.openstreetmap.org/way/1203530535",
+      "tags": {
+        "alt_name": "Srinagar - Kanyakumari Highway",
+        "alt_name_1": "Delhi - Chennai Highway",
+        "bridge": "yes",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "layer": "1",
+        "lit": "yes",
+        "maxspeed": "60",
+        "maxweight:signed": "no",
+        "name": "Outer Ring Road",
+        "name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "shoulder": "no",
+        "sidewalk": "separate",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt",
+        "toll": "no"
+      }
+    },
+    {
+      "from": 9766.021410747855,
+      "to": 10591.068671053574,
+      "source": "https://www.openstreetmap.org/way/377096332",
+      "tags": {
+        "alt_name": "Srinagar - Kanyakumari Highway",
+        "alt_name_1": "Delhi - Chennai Highway",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "lit": "yes",
+        "maxspeed": "60",
+        "name": "Outer Ring Road",
+        "name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "shoulder": "no",
+        "sidewalk": "no",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt",
+        "toll": "no"
+      }
+    },
+    {
+      "from": 10591.068671053574,
+      "to": 10689.844314349493,
+      "source": "https://www.openstreetmap.org/way/1323814011",
+      "tags": {
+        "alt_name": "Outer Ring Road",
+        "alt_name_1": "Srinagar - Kanyakumari Highway",
+        "alt_name_2": "Delhi - Chennai Highway",
+        "alt_name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "lit": "yes",
+        "maxspeed": "60",
+        "name": "Marathahalli Underpass",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "shoulder": "no",
+        "sidewalk": "no",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt",
+        "toll": "no"
+      }
+    },
+    {
+      "from": 10689.844314349493,
+      "to": 10977.385711745328,
+      "source": "https://www.openstreetmap.org/way/376784366",
+      "tags": {
+        "alt_name": "Outer Ring Road",
+        "alt_name_1": "Srinagar - Kanyakumari Highway",
+        "alt_name_2": "Delhi - Chennai Highway",
+        "alt_name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "cutting": "yes",
+        "foot": "no",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "layer": "-1",
+        "maxspeed": "60",
+        "name": "Marathahalli Underpass",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref_1": "NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "shoulder": "no",
+        "sidewalk": "no",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "from": 10977.385711745328,
+      "to": 11018.198808039615,
+      "source": "https://www.openstreetmap.org/way/380704970",
+      "tags": {
+        "alt_name": "Outer Ring Road",
+        "alt_name_1": "Srinagar - Kanyakumari Highway",
+        "alt_name_2": "Delhi - Chennai Highway",
+        "alt_name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "covered": "yes",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "layer": "-1",
+        "maxspeed": "60",
+        "name": "Marathahalli Underpass",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref_1": "NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "shoulder": "no",
+        "sidewalk": "no",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt",
+        "tunnel": "yes"
+      }
+    },
+    {
+      "from": 11018.198808039615,
+      "to": 11295.262089379816,
+      "source": "https://www.openstreetmap.org/way/380704971",
+      "tags": {
+        "alt_name": "Outer Ring Road",
+        "alt_name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "cutting": "yes",
+        "foot": "no",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "layer": "-1",
+        "maxspeed": "60",
+        "name": "Marathahalli Underpass",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "shoulder": "no",
+        "sidewalk": "no",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "from": 11295.262089379816,
+      "to": 11365.09337296996,
+      "source": "https://www.openstreetmap.org/way/1086240288",
+      "tags": {
+        "alt_name": "Outer Ring Road",
+        "alt_name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "lit": "yes",
+        "maxspeed": "60",
+        "name": "Marathahalli Underpass",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "sidewalk": "no",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt"
+      }
+    },
+    {
+      "from": 11365.09337296996,
+      "to": 11395.262089379816,
+      "source": "https://www.openstreetmap.org/way/1105681083",
+      "tags": {
+        "alt_name": "Srinagar - Kanyakumari Highway",
+        "foot": "no",
+        "highway": "trunk",
+        "int_ref": "AH43",
+        "lanes": "3",
+        "lit": "yes",
+        "maxspeed": "60",
+        "name": "Outer Ring Road",
+        "name:kn": "\u0cb9\u0cca\u0cb0 \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6",
+        "official_name": "KC Reddy Ring Road",
+        "official_name:etymology:wikidata": "Q6323235",
+        "official_name:kn": "\u0c95\u0ccd\u0c9a\u0ccd \u0cb0\u0cc6\u0ca1\u0ccd\u0ca1\u0cbf \u0cb5\u0cb0\u0ccd\u0ca4\u0cc1\u0cb2 \u0cb0\u0cb8\u0ccd\u0ca4\u0cc6\u0ca8\u0ccd\u0c9f\u0ccd",
+        "oneway": "yes",
+        "ref": "NH44;NH48",
+        "ref:old": "NH7",
+        "short_name": "ORR",
+        "sidewalk": "no",
+        "source:official_name": "https://timesofindia.indiatimes.com/city/bengaluru/kc-reddy-vartula-raste-30km-orr-stretch-named-after-first-mysore-cm/articleshow/107002205.cms",
+        "surface": "asphalt"
+      }
     }
   ],
   "sourceDate": "2026-09-24",
@@ -1065,5 +1309,23 @@
       "height": 6.2,
       "confidence": "estimated"
     }
-  ]
+  ],
+  "marathahalliUnderpass": {
+    "id": "underpass:marathahalli",
+    "name": "Marathahalli ORR underpass",
+    "from": 10689.844314349493,
+    "downTo": 10977.385711745328,
+    "upFrom": 11018.198808039615,
+    "to": 11295.262089379816,
+    "depth": -5.5,
+    "coveredFrom": 10977.385711745328,
+    "coveredTo": 11018.198808039615,
+    "sources": [
+      "https://www.openstreetmap.org/way/376784366",
+      "https://www.openstreetmap.org/way/380704970",
+      "https://www.openstreetmap.org/way/380704971"
+    ],
+    "confidence": "estimated",
+    "note": "Horizontal cutting/covered intervals map-derived; depth and smooth ramps estimated. Finish is 100 m after mapped north cutting end."
+  }
 }

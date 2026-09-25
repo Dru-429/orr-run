@@ -1,8 +1,10 @@
+import {hoardings} from '../src/game/hoardings';
 import {supportOffset} from '../src/survey/corridor';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {survey,buildings,features,coverage,checkpoints,evidence,transport} from '../src/survey/records';
 mkdirSync('public/data',{recursive:true});
-writeFileSync('public/data/route-survey.json',JSON.stringify({...survey,gameplayLayout:{note:'Widened driving envelope; three lanes, 13.8 m nominal carriageway. Source centreline, footprints and support coordinates are preserved. Props are ambient estimates; floating labels identify mapped names, not physical facade signs.',metroSupports:transport.filter(f=>['metro-pier','metro-support-estimate'].includes(f.kind)).map(f=>({id:f.id,station:f.station,surveyOffset:f.offset,renderOffset:supportOffset(f.station,f.offset)}))}},null,2));
+writeFileSync('public/data/game-hoardings.json',JSON.stringify({note:'Game-added advertising; not surveyed roadside features.',placements:hoardings},null,2));
+writeFileSync('public/data/route-survey.json',JSON.stringify({...survey,gameplayLayout:{note:'Widened driving envelope; three lanes, 13.8 m nominal carriageway. Source centreline, footprints and support coordinates are preserved. Props are ambient estimates; added wall nameplates identify supported names; placement is approximate.',metroSupports:transport.filter(f=>['metro-pier','metro-support-estimate'].includes(f.kind)).map(f=>({id:f.id,station:f.station,surveyOffset:f.offset,renderOffset:supportOffset(f.station,f.offset)}))}},null,2));
 const escape=(s:string)=>s.replaceAll('|','/').replaceAll('\n',' ');
 const visualRefs=(b:typeof buildings[number])=>[...new Set(Object.values(b.attributes).flatMap(a=>a.evidence))].map(id=>evidence.find(e=>e.id===id)).filter(e=>e&&e.kind!=='osm').map(e=>`[${e!.imageryDate??'undated'}](${e!.url})`).join('; ');
 const rows=[...buildings].sort((a,b)=>a.side.localeCompare(b.side)||a.frontage-b.frontage).map(b=>`| ${b.serial} | ${b.id} | ${escape(b.name)} | ${b.side} | ${Math.round(b.frontage)} | ${Math.round(b.from)}–${Math.round(b.to)} | ${Number(b.model.height.toFixed(2))} (${b.attributes.height.confidence}) | ${b.attributes.facade.confidence} | [OSM](${b.model.source}) | ${visualRefs(b)||"Pending"} | ${escape(b.unresolved.join("; "))} |`);
@@ -15,6 +17,6 @@ writeFileSync('public/data/observation-template.json',JSON.stringify({id:'silk-h
 writeFileSync('public/data/survey-method.md',readFileSync('docs/SURVEY_METHOD.md','utf8'));
 console.log(`Exported ${buildings.length} buildings, ${features.length} features, ${checkpoints.length} checkpoints and ${coverage.length} explicit side-section reviews.`);
 
-const infrastructure=features.filter(f=>['traffic-signal','flyover-profile','flyover-deck','flyover-ramp'].includes(f.kind)||f.kind==='water');
+const infrastructure=features.filter(f=>['traffic-signal','flyover-profile','flyover-deck','flyover-ramp','underpass-profile'].includes(f.kind)||f.kind==='water');
 writeFileSync('public/data/infrastructure.json',JSON.stringify(infrastructure,null,2));
 writeFileSync('docs/INFRASTRUCTURE_INVENTORY.md','# Lake, flyover and signal inventory\n\nLocations are from OpenStreetMap. Signal presence is tied to dated Street View observations; operating cycles and movement paths are game estimates. Unknown signals do not control the player. Heights, clearances, widths, ramp transitions and support positions remain estimates.\n\n| Feature | ID | Interval m | Evidence | Outstanding |\n|---|---|---|---|---|\n'+infrastructure.map(f=>`| ${escape(f.name)} | ${f.id} | ${f.from.toFixed(1)}–${f.to.toFixed(1)} | ${f.evidence.map(id=>evidence.find(e=>e.id===id)).filter(Boolean).map(e=>`[${e!.imageryDate??e!.sourceDate??'reference'}](${e!.url})`).join('; ')} | ${escape(f.unresolved.join('; '))} |`).join('\n'));

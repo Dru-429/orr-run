@@ -1,0 +1,152 @@
+[
+  {
+    "id": "adobe-marathahalli:sv-junction-upper-forward",
+    "segmentId": "adobe-marathahalli",
+    "localCheckpoint": 1250,
+    "checkpoint": 10998.223828601303,
+    "direction": "forward",
+    "requested": [
+      12.9569,
+      77.70105
+    ],
+    "actual": [
+      12.9568922,
+      77.7010841
+    ],
+    "heading": 10,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=IU8gTCdWbpXbhL_b9VQS-Q&heading=10",
+    "panoramaId": "IU8gTCdWbpXbhL_b9VQS-Q",
+    "locationStatus": "unresolved",
+    "notes": "Panorama is on Marathahalli Main Road above the ORR underpass, not the playable road level. Shows retail frontage, barriers and unfinished metro station structure; cannot certify the underpass lane view.",
+    "featureIds": [
+      "underpass:marathahalli"
+    ]
+  },
+  {
+    "id": "adobe-marathahalli:sv-south-approach-forward",
+    "segmentId": "adobe-marathahalli",
+    "localCheckpoint": 1000,
+    "checkpoint": 10748.223828601303,
+    "direction": "forward",
+    "requested": [
+      12.95485,
+      77.70051
+    ],
+    "actual": [
+      12.9548119,
+      77.7005181
+    ],
+    "heading": 15,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=w5PjaehA8YXKudR7T0zTlg&heading=15",
+    "panoramaId": "w5PjaehA8YXKudR7T0zTlg",
+    "locationStatus": "matched",
+    "notes": "Northbound sunken ORR carriageway visible, blue/cream retaining barriers, metro deck and central shafts overhead. Shops on west service road and large glass-fronted construction on east. Exact clearance and lane widths unmeasured.",
+    "featureIds": [
+      "underpass:marathahalli"
+    ]
+  },
+  {
+    "id": "adobe-marathahalli:sv-0250-forward",
+    "segmentId": "adobe-marathahalli",
+    "localCheckpoint": 250,
+    "checkpoint": 9998.223828601303,
+    "direction": "forward",
+    "requested": [
+      12.9481874,
+      77.6990837
+    ],
+    "actual": [
+      12.9481387,
+      77.6990954
+    ],
+    "heading": 14,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=nTwqwKuBX7bl01pdKkhcZw&heading=14",
+    "panoramaId": "nTwqwKuBX7bl01pdKkhcZw",
+    "locationStatus": "matched",
+    "notes": "Two elevated metro alignments flank the northbound carriageway. Paved verge on left, commercial frontages on both sides and tree cover to east. Visible store boards include Nagarjuna and The Big Barbeque on west frontage.",
+    "featureIds": [
+      "building:349812283",
+      "building:631580851"
+    ]
+  },
+  {
+    "id": "adobe-marathahalli:sv-0250-left",
+    "segmentId": "adobe-marathahalli",
+    "localCheckpoint": 250,
+    "checkpoint": 9998.223828601303,
+    "direction": "left",
+    "requested": [
+      12.9481874,
+      77.6990837
+    ],
+    "actual": [
+      12.9481387,
+      77.6990954
+    ],
+    "heading": 284,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=nTwqwKuBX7bl01pdKkhcZw&heading=284",
+    "panoramaId": "nTwqwKuBX7bl01pdKkhcZw",
+    "locationStatus": "matched",
+    "notes": "West frontage: Barbeque Nation and Hashtag 88 Taproom occupy the glass/cream building with red vertical corner strip. Nagarjuna and The Big Barbeque are in the adjoining tan/glass building. Names match contained map business records.",
+    "featureIds": [
+      "building:349812283",
+      "building:631580851"
+    ]
+  },
+  {
+    "id": "adobe-marathahalli:sv-0250-right",
+    "segmentId": "adobe-marathahalli",
+    "localCheckpoint": 250,
+    "checkpoint": 9998.223828601303,
+    "direction": "right",
+    "requested": [
+      12.9481874,
+      77.6990837
+    ],
+    "actual": [
+      12.9481387,
+      77.6990954
+    ],
+    "heading": 104,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=nTwqwKuBX7bl01pdKkhcZw&heading=104",
+    "panoramaId": "nTwqwKuBX7bl01pdKkhcZw",
+    "locationStatus": "matched",
+    "notes": "East frontage: multi-storey retail buildings with broad glass bands and signs, screened by trees and fence; metro shaft in foreground. Visible board text includes MOVZ and Justdial; exact footprint associations not reconciled.",
+    "featureIds": []
+  },
+  {
+    "id": "adobe-marathahalli:sv-1500-forward",
+    "segmentId": "adobe-marathahalli",
+    "localCheckpoint": 1500,
+    "checkpoint": 11248.223828601303,
+    "direction": "forward",
+    "requested": [
+      12.9592007,
+      77.7011841
+    ],
+    "actual": [
+      12.9592347,
+      77.7012316
+    ],
+    "heading": 5,
+    "imageryDate": "2026-03",
+    "inspectedOn": "2026-09-24",
+    "url": "https://www.google.com/maps/@?api=1&map_action=pano&pano=4FtZ-OWf_uqTuowJCt3UCA&heading=5",
+    "panoramaId": "4FtZ-OWf_uqTuowJCt3UCA",
+    "locationStatus": "matched",
+    "notes": "Northbound climbing ORR approach with blue/cream retaining wall on left. Elevated metro alignment and unfinished wide concrete station spans on right; retail service-road frontage on left. Exact vertical dimensions and clearance unmeasured.",
+    "featureIds": [
+      "underpass:marathahalli"
+    ]
+  }
+]

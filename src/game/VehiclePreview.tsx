@@ -1,16 +1,15 @@
 import {useEffect,useRef,useState} from 'react';
 import * as T from 'three';
 import {vehicle,disposeTemplates} from './assets';
-import {loadVehicleArtwork} from './vehicle-artwork';
 import type {VehicleKind} from './simulation';
 
 /** Development-only turntable for checking artwork orientation and model silhouettes. */
 export default function VehiclePreview(){
- const canvas=useRef<HTMLCanvasElement>(null),[kind,setKind]=useState<VehicleKind>('car'),[view,setView]=useState('rear-quarter'),[low,setLow]=useState(false),[status,setStatus]=useState('Loading artwork…');
+ const canvas=useRef<HTMLCanvasElement>(null),[kind,setKind]=useState<VehicleKind>('car'),[view,setView]=useState('rear-quarter'),[low,setLow]=useState(false),[status,setStatus]=useState('Opening vehicle preview…');
  const select=useRef({kind,view,low});select.current={kind,view,low};
  useEffect(()=>{
   let cancelled=false,cleanup=()=>{};
-  loadVehicleArtwork().then(()=>{
+  Promise.resolve().then(()=>{
    if(cancelled){disposeTemplates();return;}
    const renderer=new T.WebGLRenderer({canvas:canvas.current!,antialias:true});renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;
    const scene=new T.Scene();scene.background=new T.Color('#c9d3d5');

@@ -3042,6 +3042,342 @@
     ]
   },
   {
+    "id": "signal:1464786119",
+    "kind": "traffic-signal",
+    "name": "Mapped traffic signal",
+    "geometry": {
+      "type": "point",
+      "coordinates": [
+        [
+          522.4971569900587,
+          -1668.3821033320091
+        ]
+      ]
+    },
+    "from": 10998.147412702572,
+    "to": 10998.147412702572,
+    "station": 10998.147412702572,
+    "offset": -28.26962627049755,
+    "side": "left",
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 1249.9235841012687,
+    "localTo": 1249.9235841012687,
+    "localStation": 1249.9235841012687,
+    "evidence": [
+      "osm:node/1464786119"
+    ],
+    "attributes": {
+      "geometry": {
+        "value": {
+          "type": "point",
+          "coordinates": [
+            [
+              522.4971569900587,
+              -1668.3821033320091
+            ]
+          ]
+        },
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:node/1464786119"
+        ]
+      },
+      "elevationBasis": {
+        "value": "local ground plane y=0; road elevation supplied by route profile",
+        "confidence": "estimated",
+        "evidence": [],
+        "note": "Ground and support elevations are not surveyed"
+      },
+      "signalRecord": {
+        "value": {
+          "id": "signal:1464786119",
+          "source": "https://www.openstreetmap.org/node/1464786119",
+          "position": [
+            522.4971569900587,
+            -1668.3821033320091
+          ],
+          "station": 10998.147412702574,
+          "offset": -28.26962627049755,
+          "name": "Mapped traffic signal",
+          "controlsPlayable": false,
+          "operationalConfidence": "unknown",
+          "imageryDate": null,
+          "status": "unresolved",
+          "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+          "inspectionDate": null,
+          "reference": null,
+          "facing": null,
+          "controlledLanes": null,
+          "roadLevel": null,
+          "stopLine": null,
+          "movementGeometryConfidence": "unknown",
+          "currentOperation": "not independently verified after imagery date"
+        },
+        "confidence": "estimated",
+        "evidence": [
+          "osm:node/1464786119"
+        ],
+        "note": "Mapped location and dated presence; movement assignment and timing are game estimates"
+      },
+      "controlsPlayable": {
+        "value": false,
+        "confidence": "estimated",
+        "evidence": [
+          "osm:node/1464786119"
+        ]
+      },
+      "operation": {
+        "value": "unresolved",
+        "confidence": "unknown",
+        "evidence": [],
+        "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player."
+      },
+      "imageryDate": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      },
+      "facing": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      },
+      "roadLevel": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      }
+    },
+    "unresolved": [
+      "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+      "Signal timing and stop-line dimensions estimated"
+    ]
+  },
+  {
+    "id": "signal:2406980229",
+    "kind": "traffic-signal",
+    "name": "Mapped traffic signal",
+    "geometry": {
+      "type": "point",
+      "coordinates": [
+        [
+          534.2553478762794,
+          -1631.7878024271442
+        ]
+      ]
+    },
+    "from": 10964.1922080376,
+    "to": 10964.1922080376,
+    "station": 10964.1922080376,
+    "offset": -9.890960751355841,
+    "side": "left",
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 1215.9683794362973,
+    "localTo": 1215.9683794362973,
+    "localStation": 1215.9683794362973,
+    "evidence": [
+      "osm:node/2406980229"
+    ],
+    "attributes": {
+      "geometry": {
+        "value": {
+          "type": "point",
+          "coordinates": [
+            [
+              534.2553478762794,
+              -1631.7878024271442
+            ]
+          ]
+        },
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:node/2406980229"
+        ]
+      },
+      "elevationBasis": {
+        "value": "local ground plane y=0; road elevation supplied by route profile",
+        "confidence": "estimated",
+        "evidence": [],
+        "note": "Ground and support elevations are not surveyed"
+      },
+      "signalRecord": {
+        "value": {
+          "id": "signal:2406980229",
+          "source": "https://www.openstreetmap.org/node/2406980229",
+          "position": [
+            534.2553478762794,
+            -1631.7878024271442
+          ],
+          "station": 10964.1922080376,
+          "offset": -9.890960751355841,
+          "name": "Mapped traffic signal",
+          "controlsPlayable": false,
+          "operationalConfidence": "unknown",
+          "imageryDate": null,
+          "status": "unresolved",
+          "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+          "inspectionDate": null,
+          "reference": null,
+          "facing": null,
+          "controlledLanes": null,
+          "roadLevel": null,
+          "stopLine": null,
+          "movementGeometryConfidence": "unknown",
+          "currentOperation": "not independently verified after imagery date"
+        },
+        "confidence": "estimated",
+        "evidence": [
+          "osm:node/2406980229"
+        ],
+        "note": "Mapped location and dated presence; movement assignment and timing are game estimates"
+      },
+      "controlsPlayable": {
+        "value": false,
+        "confidence": "estimated",
+        "evidence": [
+          "osm:node/2406980229"
+        ]
+      },
+      "operation": {
+        "value": "unresolved",
+        "confidence": "unknown",
+        "evidence": [],
+        "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player."
+      },
+      "imageryDate": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      },
+      "facing": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      },
+      "roadLevel": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      }
+    },
+    "unresolved": [
+      "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+      "Signal timing and stop-line dimensions estimated"
+    ]
+  },
+  {
+    "id": "signal:4465530917",
+    "kind": "traffic-signal",
+    "name": "Mapped traffic signal",
+    "geometry": {
+      "type": "point",
+      "coordinates": [
+        [
+          537.4522753515823,
+          -1658.318948570801
+        ]
+      ]
+    },
+    "from": 10990.976725219289,
+    "to": 10990.976725219289,
+    "station": 10990.976725219289,
+    "offset": -11.731673254108669,
+    "side": "left",
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 1242.7528966179852,
+    "localTo": 1242.7528966179852,
+    "localStation": 1242.7528966179852,
+    "evidence": [
+      "osm:node/4465530917"
+    ],
+    "attributes": {
+      "geometry": {
+        "value": {
+          "type": "point",
+          "coordinates": [
+            [
+              537.4522753515823,
+              -1658.318948570801
+            ]
+          ]
+        },
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:node/4465530917"
+        ]
+      },
+      "elevationBasis": {
+        "value": "local ground plane y=0; road elevation supplied by route profile",
+        "confidence": "estimated",
+        "evidence": [],
+        "note": "Ground and support elevations are not surveyed"
+      },
+      "signalRecord": {
+        "value": {
+          "id": "signal:4465530917",
+          "source": "https://www.openstreetmap.org/node/4465530917",
+          "position": [
+            537.4522753515823,
+            -1658.318948570801
+          ],
+          "station": 10990.976725219289,
+          "offset": -11.731673254108669,
+          "name": "Mapped traffic signal",
+          "controlsPlayable": false,
+          "operationalConfidence": "unknown",
+          "imageryDate": null,
+          "status": "unresolved",
+          "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+          "inspectionDate": null,
+          "reference": null,
+          "facing": null,
+          "controlledLanes": null,
+          "roadLevel": null,
+          "stopLine": null,
+          "movementGeometryConfidence": "unknown",
+          "currentOperation": "not independently verified after imagery date"
+        },
+        "confidence": "estimated",
+        "evidence": [
+          "osm:node/4465530917"
+        ],
+        "note": "Mapped location and dated presence; movement assignment and timing are game estimates"
+      },
+      "controlsPlayable": {
+        "value": false,
+        "confidence": "estimated",
+        "evidence": [
+          "osm:node/4465530917"
+        ]
+      },
+      "operation": {
+        "value": "unresolved",
+        "confidence": "unknown",
+        "evidence": [],
+        "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player."
+      },
+      "imageryDate": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      },
+      "facing": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      },
+      "roadLevel": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": []
+      }
+    },
+    "unresolved": [
+      "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+      "Signal timing and stop-line dimensions estimated"
+    ]
+  },
+  {
     "id": "flyover:611380787",
     "kind": "flyover-profile",
     "name": "HSR / 14th Main flyover",
@@ -5782,6 +6118,113 @@
     },
     "unresolved": [
       "Vertical dimensions, exact lane widths, support locations and ramp transitions need survey measurements"
+    ]
+  },
+  {
+    "id": "underpass:marathahalli",
+    "kind": "underpass-profile",
+    "name": "Marathahalli ORR underpass",
+    "geometry": {
+      "type": "line",
+      "coordinates": [
+        [
+          472.3975104819576,
+          -1365.2531951073431
+        ],
+        [
+          546.5120427059849,
+          -1642.8183543862328
+        ],
+        [
+          553.9462537178484,
+          -1682.948658842564
+        ],
+        [
+          566.1704374210728,
+          -1959.4685843672903
+        ]
+      ]
+    },
+    "from": 10689.844314349493,
+    "to": 11295.262089379816,
+    "station": 10994.716951322007,
+    "offset": -15.16613700973762,
+    "side": "crossing",
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 941.6204857481898,
+    "localTo": 1547.0382607785123,
+    "localStation": 1246.4931227207035,
+    "evidence": [
+      "osm:way/376784366",
+      "osm:way/380704970",
+      "osm:way/380704971"
+    ],
+    "attributes": {
+      "geometry": {
+        "value": {
+          "type": "line",
+          "coordinates": [
+            [
+              472.3975104819576,
+              -1365.2531951073431
+            ],
+            [
+              546.5120427059849,
+              -1642.8183543862328
+            ],
+            [
+              553.9462537178484,
+              -1682.948658842564
+            ],
+            [
+              566.1704374210728,
+              -1959.4685843672903
+            ]
+          ]
+        },
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:way/376784366",
+          "osm:way/380704970",
+          "osm:way/380704971"
+        ]
+      },
+      "elevationBasis": {
+        "value": "local ground plane y=0; road elevation supplied by route profile",
+        "confidence": "estimated",
+        "evidence": [],
+        "note": "Ground and support elevations are not surveyed"
+      },
+      "profile": {
+        "value": {
+          "id": "underpass:marathahalli",
+          "name": "Marathahalli ORR underpass",
+          "from": 10689.844314349493,
+          "downTo": 10977.385711745328,
+          "upFrom": 11018.198808039615,
+          "to": 11295.262089379816,
+          "depth": -5.5,
+          "coveredFrom": 10977.385711745328,
+          "coveredTo": 11018.198808039615,
+          "sources": [
+            "https://www.openstreetmap.org/way/376784366",
+            "https://www.openstreetmap.org/way/380704970",
+            "https://www.openstreetmap.org/way/380704971"
+          ],
+          "confidence": "estimated",
+          "note": "Horizontal cutting/covered intervals map-derived; depth and smooth ramps estimated. Finish is 100 m after mapped north cutting end."
+        },
+        "confidence": "estimated",
+        "evidence": [
+          "osm:way/376784366",
+          "osm:way/380704970",
+          "osm:way/380704971"
+        ],
+        "note": "Horizontal cutting/covered intervals map-derived; depth and smooth ramps estimated. Finish is 100 m after mapped north cutting end."
+      }
+    },
+    "unresolved": [
+      "Depth, clearances, current barriers and ramp transition heights remain estimated"
     ]
   },
   {
@@ -18718,15 +19161,15 @@
       ],
       "holes": []
     },
-    "from": 9848.223828601307,
-    "to": 9848.223828601307,
-    "station": 9848.223828601307,
-    "offset": -227.6673299444069,
+    "from": 9867.200757319693,
+    "to": 9904.84230136437,
+    "station": 9884.9723321029,
+    "offset": -225.58559876877283,
     "side": "left",
-    "segmentId": "adobe-electra",
-    "localFrom": 1100.0000000000036,
-    "localTo": 1100.0000000000036,
-    "localStation": 1100.0000000000036,
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 118.9769287183899,
+    "localTo": 156.61847276306617,
+    "localStation": 136.74850350159613,
     "evidence": [
       "osm:way/405432908"
     ],
@@ -19074,15 +19517,15 @@
       ],
       "holes": []
     },
-    "from": 9848.223828601307,
-    "to": 9848.223828601307,
-    "station": 9848.223828601307,
-    "offset": -169.25018893205385,
+    "from": 9883.758511519627,
+    "to": 9923.283752513293,
+    "station": 9901.525757850195,
+    "offset": -167.3401086574091,
     "side": "left",
-    "segmentId": "adobe-electra",
-    "localFrom": 1100.0000000000036,
-    "localTo": 1100.0000000000036,
-    "localStation": 1100.0000000000036,
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 135.5346829183236,
+    "localTo": 175.05992391198924,
+    "localStation": 153.3019292488916,
     "evidence": [
       "osm:way/405432910"
     ],
@@ -19430,15 +19873,15 @@
       ],
       "holes": []
     },
-    "from": 9848.223828601307,
-    "to": 9848.223828601307,
-    "station": 9848.223828601307,
-    "offset": -180.91391932414118,
+    "from": 9927.082696688178,
+    "to": 9979.562655824906,
+    "station": 9944.867195224218,
+    "offset": -179.17311493153383,
     "side": "left",
-    "segmentId": "adobe-electra",
-    "localFrom": 1100.0000000000036,
-    "localTo": 1100.0000000000036,
-    "localStation": 1100.0000000000036,
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 178.85886808687428,
+    "localTo": 231.3388272236025,
+    "localStation": 196.64336662291498,
     "evidence": [
       "osm:way/405432911"
     ],
@@ -19786,15 +20229,15 @@
       ],
       "holes": []
     },
-    "from": 9848.223828601307,
-    "to": 9848.223828601307,
-    "station": 9848.223828601307,
-    "offset": -238.9649340924057,
+    "from": 9907.901931364839,
+    "to": 9948.205287514866,
+    "station": 9928.32315623541,
+    "offset": -237.23449924618953,
     "side": "left",
-    "segmentId": "adobe-electra",
-    "localFrom": 1100.0000000000036,
-    "localTo": 1100.0000000000036,
-    "localStation": 1100.0000000000036,
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 159.6781027635352,
+    "localTo": 199.98145891356216,
+    "localStation": 180.09932763410688,
     "evidence": [
       "osm:way/405432912"
     ],
@@ -20046,15 +20489,15 @@
       ],
       "holes": []
     },
-    "from": 9763.2561754359,
-    "to": 9848.223828601307,
-    "station": 9833.83152037737,
-    "offset": -156.06648760970901,
+    "from": 9763.256175435898,
+    "to": 9883.670906012827,
+    "station": 9839.031627247734,
+    "offset": -153.70253026361848,
     "side": "left",
-    "segmentId": "adobe-electra",
-    "localFrom": 1015.032346834596,
-    "localTo": 1100.0000000000036,
-    "localStation": 1085.6076917760674,
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 15.032346834594136,
+    "localTo": 135.44707741152342,
+    "localStation": 90.80779864643046,
     "evidence": [
       "osm:way/405432913"
     ],
@@ -20210,15 +20653,15 @@
       ],
       "holes": []
     },
-    "from": 9749.123093933811,
-    "to": 9848.223828601307,
-    "station": 9819.700493687587,
-    "offset": -205.563489692753,
+    "from": 9749.12309393381,
+    "to": 9869.015566750126,
+    "station": 9826.569911463137,
+    "offset": -203.64594594797194,
     "side": "left",
-    "segmentId": "adobe-electra",
-    "localFrom": 1000.8992653325076,
-    "localTo": 1100.0000000000036,
-    "localStation": 1071.476665086284,
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 0.89926533250582,
+    "localTo": 120.79173814882233,
+    "localStation": 78.34608286183357,
     "evidence": [
       "osm:way/405432914"
     ],
@@ -21255,13 +21698,13 @@
       "holes": []
     },
     "from": 9295.993343381831,
-    "to": 9839.03697525196,
+    "to": 9822.838377012307,
     "station": 9669.268314788991,
     "offset": 321.176791119727,
     "side": "crossing",
     "segmentId": "adobe-electra",
     "localFrom": 547.769514780528,
-    "localTo": 1090.8131466506566,
+    "localTo": 1074.6145484110039,
     "localStation": 921.0444861876877,
     "evidence": [
       "osm:way/450584259"
@@ -22574,15 +23017,15 @@
       ],
       "holes": []
     },
-    "from": 9848.223828601307,
-    "to": 9848.223828601307,
-    "station": 9848.223828601307,
-    "offset": -251.0757935938611,
+    "from": 9987.489614275759,
+    "to": 10003.438299723848,
+    "station": 9995.207546763593,
+    "offset": -247.68744022299987,
     "side": "left",
-    "segmentId": "adobe-electra",
-    "localFrom": 1100.0000000000036,
-    "localTo": 1100.0000000000036,
-    "localStation": 1100.0000000000036,
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 239.2657856744554,
+    "localTo": 255.21447112254464,
+    "localStation": 246.98371816228973,
     "evidence": [
       "osm:way/1239811051"
     ],
@@ -32474,6 +32917,664 @@
         "confidence": "map-derived",
         "evidence": [
           "osm:relation/2683606"
+        ]
+      },
+      "elevation": {
+        "value": 0.015,
+        "confidence": "estimated",
+        "evidence": []
+      },
+      "height": {
+        "value": 0,
+        "confidence": "estimated",
+        "evidence": []
+      },
+      "visibility": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": [],
+        "note": "Visibility from the driver position has not been established"
+      },
+      "bank": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": [],
+        "note": "Bank, fences and planting require visual verification"
+      }
+    },
+    "unresolved": [
+      "Vegetation density and ground height approximate",
+      "Water level and shoreline appearance unverified"
+    ]
+  },
+  {
+    "id": "landscape:way/1239811050",
+    "kind": "water",
+    "name": "wastewater",
+    "geometry": {
+      "type": "polygon",
+      "coordinates": [
+        [
+          51.71436581053309,
+          -744.3176280671084
+        ],
+        [
+          53.36159623790628,
+          -741.860216794068
+        ],
+        [
+          55.799930753254905,
+          -740.1700515745191
+        ],
+        [
+          58.68258400231302,
+          -739.4806420771131
+        ],
+        [
+          61.60858542103938,
+          -739.8809443658913
+        ],
+        [
+          64.19863852868687,
+          -741.3153609008772
+        ],
+        [
+          66.09512092934246,
+          -743.5837405376818
+        ],
+        [
+          67.03794360807672,
+          -746.3413785275034
+        ],
+        [
+          66.92957318544612,
+          -749.2546896294958
+        ],
+        [
+          65.79168374474476,
+          -751.9344910632319
+        ],
+        [
+          63.775993879811516,
+          -754.0360780797123
+        ],
+        [
+          61.153429645682856,
+          -755.2814629782649
+        ],
+        [
+          58.24910231179062,
+          -755.503853138763
+        ],
+        [
+          55.83244187973608,
+          -754.8589216733776
+        ],
+        [
+          53.73005567546633,
+          -753.5023416944772
+        ],
+        [
+          52.14784750105549,
+          -751.5675472985185
+        ],
+        [
+          51.2375359488024,
+          -749.2324506135843
+        ],
+        [
+          51.08581735650355,
+          -746.7416808162815
+        ],
+        [
+          51.71436581053309,
+          -744.3176280671084
+        ]
+      ],
+      "polygons": [
+        [
+          [
+            51.71436581053309,
+            -744.3176280671084
+          ],
+          [
+            53.36159623790628,
+            -741.860216794068
+          ],
+          [
+            55.799930753254905,
+            -740.1700515745191
+          ],
+          [
+            58.68258400231302,
+            -739.4806420771131
+          ],
+          [
+            61.60858542103938,
+            -739.8809443658913
+          ],
+          [
+            64.19863852868687,
+            -741.3153609008772
+          ],
+          [
+            66.09512092934246,
+            -743.5837405376818
+          ],
+          [
+            67.03794360807672,
+            -746.3413785275034
+          ],
+          [
+            66.92957318544612,
+            -749.2546896294958
+          ],
+          [
+            65.79168374474476,
+            -751.9344910632319
+          ],
+          [
+            63.775993879811516,
+            -754.0360780797123
+          ],
+          [
+            61.153429645682856,
+            -755.2814629782649
+          ],
+          [
+            58.24910231179062,
+            -755.503853138763
+          ],
+          [
+            55.83244187973608,
+            -754.8589216733776
+          ],
+          [
+            53.73005567546633,
+            -753.5023416944772
+          ],
+          [
+            52.14784750105549,
+            -751.5675472985185
+          ],
+          [
+            51.2375359488024,
+            -749.2324506135843
+          ],
+          [
+            51.08581735650355,
+            -746.7416808162815
+          ],
+          [
+            51.71436581053309,
+            -744.3176280671084
+          ]
+        ]
+      ],
+      "holes": []
+    },
+    "from": 9983.156083679583,
+    "to": 9999.143351837287,
+    "station": 9990.973458769258,
+    "offset": -282.0131606379271,
+    "side": "left",
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 234.93225507827992,
+    "localTo": 250.91952323598343,
+    "localStation": 242.74963016795482,
+    "evidence": [
+      "osm:way/1239811050"
+    ],
+    "attributes": {
+      "geometry": {
+        "value": {
+          "type": "polygon",
+          "coordinates": [
+            [
+              51.71436581053309,
+              -744.3176280671084
+            ],
+            [
+              53.36159623790628,
+              -741.860216794068
+            ],
+            [
+              55.799930753254905,
+              -740.1700515745191
+            ],
+            [
+              58.68258400231302,
+              -739.4806420771131
+            ],
+            [
+              61.60858542103938,
+              -739.8809443658913
+            ],
+            [
+              64.19863852868687,
+              -741.3153609008772
+            ],
+            [
+              66.09512092934246,
+              -743.5837405376818
+            ],
+            [
+              67.03794360807672,
+              -746.3413785275034
+            ],
+            [
+              66.92957318544612,
+              -749.2546896294958
+            ],
+            [
+              65.79168374474476,
+              -751.9344910632319
+            ],
+            [
+              63.775993879811516,
+              -754.0360780797123
+            ],
+            [
+              61.153429645682856,
+              -755.2814629782649
+            ],
+            [
+              58.24910231179062,
+              -755.503853138763
+            ],
+            [
+              55.83244187973608,
+              -754.8589216733776
+            ],
+            [
+              53.73005567546633,
+              -753.5023416944772
+            ],
+            [
+              52.14784750105549,
+              -751.5675472985185
+            ],
+            [
+              51.2375359488024,
+              -749.2324506135843
+            ],
+            [
+              51.08581735650355,
+              -746.7416808162815
+            ],
+            [
+              51.71436581053309,
+              -744.3176280671084
+            ]
+          ],
+          "polygons": [
+            [
+              [
+                51.71436581053309,
+                -744.3176280671084
+              ],
+              [
+                53.36159623790628,
+                -741.860216794068
+              ],
+              [
+                55.799930753254905,
+                -740.1700515745191
+              ],
+              [
+                58.68258400231302,
+                -739.4806420771131
+              ],
+              [
+                61.60858542103938,
+                -739.8809443658913
+              ],
+              [
+                64.19863852868687,
+                -741.3153609008772
+              ],
+              [
+                66.09512092934246,
+                -743.5837405376818
+              ],
+              [
+                67.03794360807672,
+                -746.3413785275034
+              ],
+              [
+                66.92957318544612,
+                -749.2546896294958
+              ],
+              [
+                65.79168374474476,
+                -751.9344910632319
+              ],
+              [
+                63.775993879811516,
+                -754.0360780797123
+              ],
+              [
+                61.153429645682856,
+                -755.2814629782649
+              ],
+              [
+                58.24910231179062,
+                -755.503853138763
+              ],
+              [
+                55.83244187973608,
+                -754.8589216733776
+              ],
+              [
+                53.73005567546633,
+                -753.5023416944772
+              ],
+              [
+                52.14784750105549,
+                -751.5675472985185
+              ],
+              [
+                51.2375359488024,
+                -749.2324506135843
+              ],
+              [
+                51.08581735650355,
+                -746.7416808162815
+              ],
+              [
+                51.71436581053309,
+                -744.3176280671084
+              ]
+            ]
+          ],
+          "holes": []
+        },
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:way/1239811050"
+        ]
+      },
+      "elevationBasis": {
+        "value": "local ground plane y=0; road elevation supplied by route profile",
+        "confidence": "estimated",
+        "evidence": [],
+        "note": "Ground and support elevations are not surveyed"
+      },
+      "cover": {
+        "value": "water",
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:way/1239811050"
+        ]
+      },
+      "elevation": {
+        "value": 0.015,
+        "confidence": "estimated",
+        "evidence": []
+      },
+      "height": {
+        "value": 0,
+        "confidence": "estimated",
+        "evidence": []
+      },
+      "visibility": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": [],
+        "note": "Visibility from the driver position has not been established"
+      },
+      "bank": {
+        "value": null,
+        "confidence": "unknown",
+        "evidence": [],
+        "note": "Bank, fences and planting require visual verification"
+      }
+    },
+    "unresolved": [
+      "Vegetation density and ground height approximate",
+      "Water level and shoreline appearance unverified"
+    ]
+  },
+  {
+    "id": "landscape:way/1559241407",
+    "kind": "water",
+    "name": "Mapped water",
+    "geometry": {
+      "type": "line",
+      "coordinates": [
+        [
+          722.7982096445593,
+          -791.3976250380686
+        ],
+        [
+          721.4977645699121,
+          -790.4413473481437
+        ],
+        [
+          718.0840962478079,
+          -786.2937708553569
+        ],
+        [
+          714.5295463765921,
+          -781.3567092929695
+        ],
+        [
+          707.5504911416251,
+          -759.3400834068129
+        ],
+        [
+          695.9982040605585,
+          -746.5526491798482
+        ],
+        [
+          685.4537619111885,
+          -739.3583274888096
+        ],
+        [
+          679.7859887940559,
+          -735.5776947609335
+        ],
+        [
+          666.1313155071796,
+          -718.6426840413794
+        ],
+        [
+          655.1533916672872,
+          -708.6128878042363
+        ],
+        [
+          640.5450586600296,
+          -681.5813637994092
+        ],
+        [
+          637.055531043316,
+          -669.8169243106965
+        ],
+        [
+          636.15605653271,
+          -642.9966709584119
+        ],
+        [
+          636.2210787856724,
+          -634.5013668286467
+        ],
+        [
+          637.8574721713985,
+          -627.5961523460384
+        ],
+        [
+          638.5835540048715,
+          -624.8385143562168
+        ],
+        [
+          640.0790658414859,
+          -621.2357937566208
+        ],
+        [
+          641.9972223269757,
+          -618.9451751039046
+        ],
+        [
+          644.9123867025149,
+          -617.1326952960521
+        ],
+        [
+          655.4459918086978,
+          -612.84056519905
+        ],
+        [
+          660.0950829524868,
+          -609.1377690272595
+        ],
+        [
+          660.4635423900469,
+          -600.9982891542519
+        ],
+        [
+          638.9520134439716,
+          -511.6196836625481
+        ],
+        [
+          641.9755482421415,
+          -509.49585762995866
+        ]
+      ],
+      "polygons": [],
+      "holes": []
+    },
+    "from": 9925.804514879834,
+    "to": 10163.56118844889,
+    "station": 10057.734893835459,
+    "offset": 326.22371322266855,
+    "side": "right",
+    "segmentId": "adobe-marathahalli",
+    "localFrom": 177.58068627853027,
+    "localTo": 415.3373598475864,
+    "localStation": 309.51106523415547,
+    "evidence": [
+      "osm:way/1559241407"
+    ],
+    "attributes": {
+      "geometry": {
+        "value": {
+          "type": "line",
+          "coordinates": [
+            [
+              722.7982096445593,
+              -791.3976250380686
+            ],
+            [
+              721.4977645699121,
+              -790.4413473481437
+            ],
+            [
+              718.0840962478079,
+              -786.2937708553569
+            ],
+            [
+              714.5295463765921,
+              -781.3567092929695
+            ],
+            [
+              707.5504911416251,
+              -759.3400834068129
+            ],
+            [
+              695.9982040605585,
+              -746.5526491798482
+            ],
+            [
+              685.4537619111885,
+              -739.3583274888096
+            ],
+            [
+              679.7859887940559,
+              -735.5776947609335
+            ],
+            [
+              666.1313155071796,
+              -718.6426840413794
+            ],
+            [
+              655.1533916672872,
+              -708.6128878042363
+            ],
+            [
+              640.5450586600296,
+              -681.5813637994092
+            ],
+            [
+              637.055531043316,
+              -669.8169243106965
+            ],
+            [
+              636.15605653271,
+              -642.9966709584119
+            ],
+            [
+              636.2210787856724,
+              -634.5013668286467
+            ],
+            [
+              637.8574721713985,
+              -627.5961523460384
+            ],
+            [
+              638.5835540048715,
+              -624.8385143562168
+            ],
+            [
+              640.0790658414859,
+              -621.2357937566208
+            ],
+            [
+              641.9972223269757,
+              -618.9451751039046
+            ],
+            [
+              644.9123867025149,
+              -617.1326952960521
+            ],
+            [
+              655.4459918086978,
+              -612.84056519905
+            ],
+            [
+              660.0950829524868,
+              -609.1377690272595
+            ],
+            [
+              660.4635423900469,
+              -600.9982891542519
+            ],
+            [
+              638.9520134439716,
+              -511.6196836625481
+            ],
+            [
+              641.9755482421415,
+              -509.49585762995866
+            ]
+          ],
+          "polygons": [],
+          "holes": []
+        },
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:way/1559241407"
+        ]
+      },
+      "elevationBasis": {
+        "value": "local ground plane y=0; road elevation supplied by route profile",
+        "confidence": "estimated",
+        "evidence": [],
+        "note": "Ground and support elevations are not surveyed"
+      },
+      "cover": {
+        "value": "water",
+        "confidence": "map-derived",
+        "evidence": [
+          "osm:way/1559241407"
         ]
       },
       "elevation": {

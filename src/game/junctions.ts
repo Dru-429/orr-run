@@ -5,7 +5,7 @@ export const junctionRecords=[...records].sort((a,b)=>a.station-b.station);
 export type JunctionRecord=typeof records[number];
 export type Lamp='green'|'amber'|'red';
 export interface JunctionState {record:JunctionRecord;phase:number;elapsed:number;held:boolean;orr:Lamp;cross:Lamp}
-export interface Body {s?:number;speed?:number;x:number;z:number;y:number;yaw:number;length:number;width:number}
+export interface Body {player?:boolean;s?:number;speed?:number;x:number;z:number;y:number;yaw:number;length:number;width:number}
 export interface CrossingVehicle {id:number;junctionId:string|null;direction:1|-1;d:number;speed:number;active:boolean;braking:boolean;committed:boolean;kind:'car'|'cab'|'auto';length:number;width:number;color:number}
 export const CROSSING_POOL_SIZE=12;
 export function overlaps(a:Body,b:Body,margin=0){
@@ -57,7 +57,9 @@ export class JunctionSystem {
    // Never enter an occupied exit. Cars already crossing continue clearing on red.
    return {v,j,target,gap,stop,mergedStop,frontGap,blocked:gap>=0&&((state.cross!=='green'&&!v.committed)||!exitClear)};
   });
-  for(const {v,j,target,gap,stop,mergedStop,frontGap,blocked} of decisions){v.braking=target<v.speed-.5;v.speed=Math.max(0,v.speed+Math.max(-5*dt,Math.min(2*dt,target-v.speed)));let step=Math.min(v.speed*dt,mergedStop,frontGap);if(blocked)step=Math.min(step,Math.max(0,gap));v.d+=step*v.direction;
+  for(const {v,j,target,gap,stop,mergedStop,frontGap,blocked} of decisions){v.braking=target<v.speed-.5;v.speed=Math.max(0,v.speed+Math.max(-5*dt,Math.min(2*dt,target-v.speed)));let step=Math.min(v.speed*dt,mergedStop,frontGap);if(blocked)step=Math.min(step,Math.max(0,gap));// Test the swept step against NPC bodies before committing movement.
+   const canMove=(amount:number)=>{const candidate=crossingBody({...v,d:v.d+amount*v.direction},j);return !bodies.some(b=>!b.player&&Math.abs(b.x-candidate.x)<25&&Math.abs(b.z-candidate.z)<25&&overlaps(candidate,b,.1))&&!this.vehicles.some(o=>o!==v&&o.active&&overlaps(candidate,crossingBody(o,this.state(o.junctionId!).record),.1));};
+   if(!canMove(step)){step=0;v.speed=0;v.braking=true;}v.d+=step*v.direction;
    if(v.d*v.direction>j.crossingHalfLength+90){const b=crossingBody(v,j),p=pose(playerStation);if(Math.hypot(b.x-p.x,b.z-p.z)>450){v.active=false;v.junctionId=null;}}
   }
  }

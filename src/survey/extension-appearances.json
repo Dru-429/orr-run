@@ -90,5 +90,23 @@
       "manipal-approach:sv-1250-left"
     ],
     "note": "Tall blue-glazed office with pale vertical framing behind entrance arch and guardhouse. Exact entry dimensions not measured."
+  },
+  {
+    "buildingId": "349812283",
+    "facade": "cream",
+    "signage": "Barbeque Nation",
+    "observations": [
+      "adobe-marathahalli:sv-0250-left"
+    ],
+    "note": "Glass/cream frontage and red vertical corner strip, March 2026. Simplified window proportions; multiple occupants."
+  },
+  {
+    "buildingId": "631580851",
+    "facade": "cream",
+    "signage": "Nagarjuna",
+    "observations": [
+      "adobe-marathahalli:sv-0250-left"
+    ],
+    "note": "Tan/glass frontage with restaurant boards, March 2026. Multiple occupants; exact sign dimensions estimated."
   }
 ]

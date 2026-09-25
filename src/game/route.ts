@@ -43,6 +43,8 @@ export function locationName(s:number){
  if(oldLocal(s)<520)return 'Ibbalur Lake';
  if(oldLocal(s)<1800)return 'Bellandur · ORR';
  if(s<LEGACY_OFFSET)return 'Devarabisanahalli · ORR';
+ if(s>=manifest.marathahalliUnderpass.from)return 'Marathahalli · ORR underpass';
+ if(s>=LEGACY_OFFSET+1000)return 'Marathahalli · Outer Ring Road';
  const local=s-LEGACY_OFFSET;
  if(local<300)return 'Kadubeesanahalli underpass';
  if(local<565)return 'Prestige Tech Park';

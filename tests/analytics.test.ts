@@ -1,0 +1,26 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {RunAnalytics} from '../src/analytics/runAnalytics';
+import {Simulation,emptyInput} from '../src/game/simulation';
+function setup(){let now=0,id=0;const events:{name:string;p:Record<string,unknown>;urgent?:boolean}[]=[];const a=new RunAnalytics((name,p,urgent)=>events.push({name,p,urgent}),'test-route',1000,()=>`run-${++id}`,()=>now);const s=new Simulation().snapshot();s.phase='driving';return {a,s,events,advance:(seconds:number)=>{now+=seconds*1000;}};}
+test('single run identity, milestones, lap completion, and replay identities',()=>{
+ const {a,s,events,advance}=setup();a.begin(s,'home');a.begin(s,'home');advance(30);Object.assign(s,{s:350,distance:350,time:30,speed:10});a.observe(s,emptyInput());assert.equal(events.filter(e=>e.name==='game_started').length,1);assert.deepEqual(events.filter(e=>e.name==='game_progress').map(e=>e.p.milestone_percent),[10,20,30]);
+ advance(70);Object.assign(s,{s:1000,distance:1000,time:100,phase:'looping'});a.observe(s,emptyInput());a.observe(s,emptyInput());assert.equal(events.filter(e=>e.name==='route_lap_completed').length,1);
+ Object.assign(s,{s:0,lap:2});a.observe(s,emptyInput());assert.equal(a.summary().max_route_completion_percent,100);assert.equal(a.summary().route_progress_percent,0);
+ a.finish(s,'restart');a.finish(s,'restart');a.begin({...s,s:0,distance:0,time:0,lap:1,phase:'driving'},'restart');assert.deepEqual(events.filter(e=>e.name==='game_started').map(e=>e.p.run_id),['run-1','run-2']);assert.equal(events.filter(e=>e.name==='game_run_finished').length,1);
+});
+test('delta metrics add to totals once across heartbeat, pauses, visibility and ending',()=>{
+ const {a,s,events,advance}=setup();a.begin(s,'home');advance(30);Object.assign(s,{time:30,s:150,distance:150,speed:5,overtakes:3});a.observe(s,{...emptyInput(),horn:true});
+ advance(10);Object.assign(s,{time:40,s:150,distance:150,speed:0,phase:'paused'});a.observe(s,emptyInput(),'tab_hidden');a.setVisible(false);advance(300);a.setVisible(true);a.observe(s,emptyInput());advance(5);a.observe(s,emptyInput());s.phase='driving';a.observe(s,emptyInput());advance(10);Object.assign(s,{time:50,distance:200,s:200,speed:5,phase:'ended',health:0});a.observe(s,emptyInput());a.observe(s,emptyInput());a.leave(s);
+ const metrics=events.filter(e=>e.name==='game_run_metrics');const sum=(key:string)=>metrics.reduce((n,e)=>n+Number(e.p[key]),0);assert.equal(sum('delta_distance_m'),200);assert.equal(sum('delta_on_road_seconds'),50);assert.equal(sum('delta_moving_seconds'),40);assert.equal(sum('delta_waiting_seconds'),10);assert.equal(sum('delta_overtakes'),3);assert.equal(sum('delta_horn_presses'),1);assert.equal(sum('delta_visible_paused_seconds'),5);assert.equal(events.filter(e=>e.name==='game_ended').length,1);assert.equal(events.filter(e=>e.name==='game_paused').length,1);assert.equal(events.filter(e=>e.name==='game_resumed').length,1);
+ assert.equal(events.filter(e=>e.name==='game_page_engagement').reduce((n,e)=>n+Number(e.p.delta_visible_seconds),0),55);
+});
+test('pagehide is terminal once, but bfcache visibility remains resumable',()=>{
+ const {a,s,events,advance}=setup();a.begin(s,'home');advance(4);Object.assign(s,{time:4,distance:10,s:10});a.observe(s,emptyInput());a.leave(s,true);assert.equal(events.filter(e=>e.name==='game_run_finished').length,0);advance(300);a.setVisible(true);advance(2);Object.assign(s,{time:6,distance:20,s:20});a.observe(s,emptyInput());a.leave(s);a.leave(s);const end=events.filter(e=>e.name==='game_run_finished');assert.equal(end.length,1);assert.equal(end[0].p.finish_reason,'page_exit');assert.equal(end[0].urgent,true);assert.equal(events.filter(e=>e.name==='game_run_metrics').reduce((n,e)=>n+Number(e.p.delta_distance_m),0),20);
+});
+test('collision contacts are deduplicated and classified; capture failures cannot break play',()=>{
+ const {a,s,events}=setup();a.begin(s,'home');s.health=92;s.collisions=1;s.impactEvent={id:1,obstacle:'tourist-ibbalur-1',time:1,severity:.8,direction:{x:0,z:1}};a.observe(s,emptyInput());a.observe(s,emptyInput());const hits=events.filter(e=>e.name==='game_collision');assert.equal(hits.length,1);assert.equal(hits[0].p.obstacle_type,'parked_coach');assert.equal(hits[0].p.health_lost,8);const broken=new RunAnalytics(()=>{throw new Error('SDK blocked');},'test',1000,()=>'',()=>0);assert.doesNotThrow(()=>{broken.begin(s,'home');broken.finish(s,'page_exit');});
+});
+test('route-point reach events repeat once per lap and ending freezes run duration',()=>{
+ let now=0;const events:{name:string;p:Record<string,unknown>}[]=[];const a=new RunAnalytics((name,p)=>events.push({name,p}),'test',1000,()=> 'run',()=>now,[{id:'ad-1',kind:'hoarding',station:400,poster:1}]);const s=new Simulation().snapshot();s.phase='driving';a.begin(s,'home');now=50000;Object.assign(s,{s:500,distance:500,time:50});a.observe(s,emptyInput());a.observe(s,emptyInput());now=150000;Object.assign(s,{s:500,distance:1500,time:150,lap:2});a.observe(s,emptyInput());assert.deepEqual(events.filter(e=>e.name==='game_route_point_reached').map(e=>e.p.point_lap),[1,2]);a.finish(s,'health_depleted');now=300000;a.observe(s,emptyInput());assert.equal(a.summary().run_wall_seconds,150);
+});

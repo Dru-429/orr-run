@@ -16,6 +16,7 @@ export const ROAD_WORK={id:'construction:station-edge',from:LEGACY_OFFSET+840,to
 const smooth=(t:number)=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 export function elevationAt(s:number){
  const local=s-LEGACY_OFFSET;
+ const u=manifest.marathahalliUnderpass;if(s>=u.from&&s<=u.to)return s<u.downTo?u.depth*smooth((s-u.from)/(u.downTo-u.from)):s>u.upFrom?u.depth*(1-smooth((s-u.upFrom)/(u.to-u.upFrom))):u.depth;
  if(s<SILK_LENGTH)return flyoverHeight(s);
  if(local>=0){if(local<205)return -4.2;if(local>435)return 0;return -4.2*(1-smooth((local-205)/230));}
  if(s>LEGACY_OFFSET-260)return -4.2*smooth((s-(LEGACY_OFFSET-260))/200);

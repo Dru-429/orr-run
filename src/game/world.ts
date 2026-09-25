@@ -1,8 +1,11 @@
+import {addHoardings} from './hoardingScene';
+import {getPosterArtwork,isPosterTexture,disposePosterArtwork} from './poster-artwork';
+import {facadeSignFaces} from './facadeSigns';
 import {buildingLandmarks} from './landmarks';
 import {junctionRecords} from './junctions';
 import * as T from 'three';
 import {Batch,asphalt,facadeTexture,material,sign,canvasTexture} from './assets';
-import {map,pose,roadHeight,ROUTE_LENGTH,LEGACY_OFFSET} from './route';
+import {map,pose,roadHeight,ROUTE_LENGTH,LEGACY_OFFSET,manifest} from './route';
 import {APPEARANCE} from '../data/appearance';
 import {buildings,transport,landscape,construction} from '../survey/records';
 import {ROAD_WORK,crossSectionAt,oldStation,supportOffset} from '../survey/corridor';
@@ -12,6 +15,7 @@ import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js'
 
 function makeChunk(from:number,to:number,resources:WorldResources){
  const world=new T.Group();const material=resources.material;
+ addHoardings(world,from,to,resources.posters,material);
  const concrete=material('#b7b5a8'),lightConcrete=material('#d0cec0'),dark=material('#505851'),white=material('#deded0'),yellow=material('#d3b459'),green=material('#727b53'),black=material('#444744');
  const wallBlue=material('#93adbf');
  const pavement=material('#acac9c'),soil=material('#9c9176'),asphaltMat=resources.asphalt;
@@ -48,6 +52,9 @@ function makeChunk(from:number,to:number,resources:WorldResources){
   for(const d of [left-.3,right+.3]){const p=pose(s+2.5,d);const next=opposite?crossSectionAt(s+2.5).oppositeElevation:p.y;roadBatch.box(.36,.8,5.02,p.x,next-.4,p.z,deckConcrete,p.yaw);roadBatch.box(.35,.8,5.02,p.x,next+.4,p.z,Math.floor(s/5)%2?lightConcrete:black,p.yaw);roadBatch.box(.07,.07,5.02,p.x,next+1,p.z,dark,p.yaw);if(h<5.8)roadBatch.box(.4,h,5.02,p.x,h/2,p.z,concrete,p.yaw);}
   if(h>=5.8&&Math.round(s)%30===0){const p=pose(s,(left+right)/2);roadBatch.box(1.6,h-.8,2.3,p.x,(h-.8)/2,p.z,concrete,p.yaw);roadBatch.box(right-left-.8,.5,2.6,p.x,h-1,p.z,lightConcrete,p.yaw);}
  }
+ const under=manifest.marathahalliUnderpass;
+ for(let s=Math.max(from,under.from);s<Math.min(to,under.to);s+=3){const c=crossSectionAt(s);for(const d of [c.left-.3,c.right+.2,c.oppositeLeft-.2,c.oppositeRight+.3]){const p=pose(s,d),h=.6-p.y;roadBatch.box(.4,h,3.04,p.x,p.y+h/2,p.z,Math.floor(s/3)%2?wallBlue:lightConcrete,p.yaw);roadBatch.box(.43,.18,3.04,p.x,.6,p.z,lightConcrete,p.yaw);}}
+ if(under.coveredFrom>=from&&under.coveredFrom<to){const s=(under.coveredFrom+under.coveredTo)/2,c=crossSectionAt(s),p=pose(s,(c.left+c.oppositeRight)/2);roadBatch.box(c.oppositeRight-c.left+3,.7,under.coveredTo-under.coveredFrom,p.x,-.35,p.z,concrete,p.yaw);roadBatch.box(c.oppositeRight-c.left+3,.08,under.coveredTo-under.coveredFrom,p.x,.05,p.z,asphaltMat,p.yaw);}
  addSurveyStructures(world,roadBatch,from,to,material);
  // Tall LED streetlights on the verges.
  for(let s=Math.ceil(from/46)*46;s<to;s+=46)for(const o of [crossSectionAt(s).left-2.5,crossSectionAt(s).oppositeRight+2.5]){
@@ -66,7 +73,7 @@ function makeChunk(from:number,to:number,resources:WorldResources){
    const batch=new Batch();
    const deckHeight=Number(station.attributes.deckHeight.value),roofHeight=Number(station.attributes.roofHeight.value);
    const footprint=new T.Shape(station.geometry.coordinates.slice(0,-1).map(p=>new T.Vector2(p[0],-p[1])));
-   for(const [y,thickness] of [[deckHeight,1.4],[roofHeight,.45]]){const slab=new T.ExtrudeGeometry(footprint,{depth:thickness,bevelEnabled:false});slab.rotateX(-Math.PI/2);slab.translate(0,y,0);batch.add(slab,concrete);slab.dispose();}
+   for(const [y,thickness] of (station.station>=LEGACY_OFFSET+1000?[[deckHeight,1.4]]:[[deckHeight,1.4],[roofHeight,.45]])){const slab=new T.ExtrudeGeometry(footprint,{depth:thickness,bevelEnabled:false});slab.rotateX(-Math.PI/2);slab.translate(0,y,0);batch.add(slab,concrete);slab.dispose();}
    for(let a=station.from+8;a<station.to-5;a+=19){const p=pose(a,supportOffset(a,-9.5,.8));batch.box(1.6,deckHeight,1.6,p.x,deckHeight/2,p.z,concrete,p.yaw);const mid=pose(a,2.5);batch.box(29,.65,1,mid.x,deckHeight-.6,mid.z,concrete,mid.yaw);}
    for(const o of [-10,17])for(let a=station.from+6;a<station.to;a+=12){const p=pose(a,o);batch.box(.4,roofHeight-deckHeight,.4,p.x,(deckHeight+roofHeight)/2,p.z,lightConcrete,p.yaw);}
    const meshMat=new T.MeshStandardMaterial({color:'#789e88',transparent:true,opacity:.38,side:T.DoubleSide});
@@ -92,21 +99,15 @@ function makeChunk(from:number,to:number,resources:WorldResources){
   }
   if(building.height>15&&Math.abs(building.offset)<155){batch.box(5,2,4,building.center[0],height+1,building.center[1],concrete);batch.box(3,1.3,2,building.center[0]+8,height+.65,building.center[1],dark);}
   const signage=buildings.find(f=>f.model.id===building.id)?.attributes.signage;
-  if(signage?.confidence==='observed'&&typeof signage.value==='string'){
-   const text=signage.value;
-   const p=pose(building.station);let edge={x:points[0][0],z:points[0][1],nx:1,nz:0,length:15,score:Infinity};for(let j=0;j<points.length;j++){const a=points[j],c=points[(j+1)%points.length],dx=c[0]-a[0],dz=c[1]-a[1],len=Math.hypot(dx,dz);if(len<8)continue;const x=(a[0]+c[0])/2,z=(a[1]+c[1])/2;let nx=-dz/len,nz=dx/len;if(nx*(p.x-x)+nz*(p.z-z)<0){nx=-nx;nz=-nz;}const score=Math.hypot(x-p.x,z-p.z);if(score<edge.score)edge={x,z,nx,nz,length:len,score};}
-   const label=sign(text,Math.min(edge.length*.85,isAdobe?14:isJp?23:15),3.4,isAdobe?'#ee322c':'#f7f1df','transparent');
-   label.position.set(edge.x+edge.nx*.15,height-3.5,edge.z+edge.nz*.15);label.rotation.y=Math.atan2(edge.nx,edge.nz);world.add(label);
-   if(isAdobe){const logo=new T.Shape();logo.moveTo(-1.15,-1.2);logo.lineTo(-.36,1.2);logo.lineTo(.36,1.2);logo.lineTo(1.15,-1.2);logo.lineTo(.55,-1.2);logo.lineTo(0,.48);logo.lineTo(-.55,-1.2);logo.closePath();const mesh=new T.Mesh(new T.ShapeGeometry(logo),new T.MeshBasicMaterial({color:'#ef332c',side:T.DoubleSide}));mesh.position.copy(label.position);mesh.position.y+=3.0;mesh.rotation.copy(label.rotation);world.add(mesh);}
+  const landmark=buildingLandmarks.find(b=>b.id==='building:'+building.id);
+  const text=typeof signage?.value==='string'&&signage.confidence==='observed'?signage.value:landmark?.name;
+  if(text){
+   const p=pose(building.station),approach=pose(building.station-65);
+   const faces=facadeSignFaces(building.polygon as [number,number][],[p.x,p.z],[approach.x,approach.z]);
+   const texture=canvasTexture(1024,192,c=>{c.fillStyle=isAdobe?'#ececdf':'#203a33';c.fillRect(0,0,1024,192);c.fillStyle=isAdobe?'#ef332c':'#f5f4df';c.textAlign='center';c.textBaseline='middle';c.font='600 '+Math.min(104,1700/Math.max(8,text.length))+'px Arial';c.fillText(text,512,96,960);});
+   const nameMaterial=new T.MeshBasicMaterial({map:texture,side:T.FrontSide,polygonOffset:true,polygonOffsetFactor:-1});
+   for(const face of faces){const w=Math.min(28,face.length*.84),h=Math.min(3.2,Math.max(1.25,w/7));const label=new T.Mesh(new T.PlaneGeometry(w,h),nameMaterial);label.position.set(face.x+face.nx*.08,Math.max(h/2+.4,Math.min(height-h/2-.3,height*.72)),face.z+face.nz*.08);label.rotation.y=Math.atan2(face.nx,face.nz);world.add(label);}
   }
- }
- // Map identification cards float above their real footprint; verified facade signs stay separate.
- for(const landmark of buildingLandmarks.filter(b=>b.station>=from&&b.station<to)){
-  const texture=canvasTexture(768,144,c=>{c.fillStyle='#173c32';c.beginPath();c.roundRect(4,4,760,132,18);c.fill();c.fillStyle='#d4e79d';c.font='600 20px Arial';c.fillText('●  MAPPED PLACE',24,34);c.fillStyle='#ffffff';c.font='600 '+Math.min(44,1100/landmark.name.length)+'px Arial';c.fillText(landmark.name,24,94,718);});
-  const sprite=new T.Sprite(new T.SpriteMaterial({map:texture,depthTest:true,depthWrite:false,transparent:true}));
-  const road=pose(landmark.station);const points=landmark.building.geometry.coordinates;
-  const front=points.reduce((a,b)=>Math.hypot(a[0]-road.x,a[1]-road.z)<Math.hypot(b[0]-road.x,b[1]-road.z)?a:b);
-  sprite.position.set(front[0],landmark.height+3,front[1]);sprite.scale.set(20,3.75,1);sprite.userData.placeLabel=true;sprite.userData.station=landmark.station;world.add(sprite);
  }
  for(const batch of chunks.values())batch.finish(world);
  // Give mapped businesses real names; unknown buildings stay unsigned.
@@ -124,32 +125,31 @@ function makeChunk(from:number,to:number,resources:WorldResources){
  return world;
 }
 
-interface WorldResources {material:typeof material;asphalt:ReturnType<typeof asphalt>;facade:Record<Parameters<typeof facadeTexture>[0],T.MeshStandardMaterial>}
+interface WorldResources {posters:T.MeshBasicMaterial[];material:typeof material;asphalt:ReturnType<typeof asphalt>;facade:Record<Parameters<typeof facadeTexture>[0],T.MeshStandardMaterial>}
 export function makeWorld(scene:T.Scene){
  const world=new T.Group();scene.add(world);
  const palette=new Map<string,T.MeshStandardMaterial>();const sharedMaterial:typeof material=(color,roughness=.85)=>{const key=String(color)+roughness;if(!palette.has(key))palette.set(key,material(color,roughness));return palette.get(key)!;};
- const resources:WorldResources={material:sharedMaterial,asphalt:asphalt(),facade:Object.fromEntries((['glass','cream','shop','adobe','silver','sattva','green-glass','blue-glass'] as const).map(k=>[k,facadeTexture(k)])) as WorldResources['facade']};
- const shared=()=>new Set<T.Material>([...palette.values(),resources.asphalt,...Object.values(resources.facade)]);
+ const resources:WorldResources={posters:getPosterArtwork().map(map=>new T.MeshBasicMaterial({map,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2})),material:sharedMaterial,asphalt:asphalt(),facade:Object.fromEntries((['glass','cream','shop','adobe','silver','sattva','green-glass','blue-glass'] as const).map(k=>[k,facadeTexture(k)])) as WorldResources['facade']};
+ const shared=()=>new Set<T.Material>([...resources.posters,...palette.values(),resources.asphalt,...Object.values(resources.facade)]);
  const groundShape=new T.Shape([new T.Vector2(-13000,-13000),new T.Vector2(13000,-13000),new T.Vector2(13000,13000),new T.Vector2(-13000,13000)]);
  const trench:number[][]=[];for(let s=LEGACY_OFFSET-265;s<=LEGACY_OFFSET+440;s+=5){const p=pose(s,crossSectionAt(s).left-1);trench.push([p.x,-p.z]);}for(let s=LEGACY_OFFSET+440;s>=LEGACY_OFFSET-265;s-=5){const p=pose(s,crossSectionAt(s).oppositeRight+1);trench.push([p.x,-p.z]);}groundShape.holes.push(new T.Path(trench.map(p=>new T.Vector2(p[0],p[1]))));
+ const under=manifest.marathahalliUnderpass,cutout:number[][]=[];
+ for(let s=under.from;s<under.to;s+=5){const p=pose(s,crossSectionAt(s).left-1);cutout.push([p.x,-p.z]);}for(let s=under.to;s>under.from;s-=5){const p=pose(s,crossSectionAt(s).oppositeRight+1);cutout.push([p.x,-p.z]);}groundShape.holes.push(new T.Path(cutout.map(p=>new T.Vector2(p[0],p[1]))));
  const ground=new T.Mesh(new T.ShapeGeometry(groundShape),sharedMaterial('#a5aa8e'));ground.rotation.x=-Math.PI/2;ground.position.y=-.09;world.add(ground);
  // Soft atmospheric sky instead of an opaque flat background.
  const skyGeo=new T.SphereGeometry(1600,24,16);const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{top:{value:new T.Color('#83afbc')},bottom:{value:new T.Color('#e1dfca')}},vertexShader:'varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:'varying vec3 vP;uniform vec3 top;uniform vec3 bottom;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+1.),f.x),f.y);}void main(){vec3 d=normalize(vP);float h=clamp(d.y*1.6,0.,1.);vec3 c=mix(bottom,top,pow(h,.7));vec2 p=d.xz/max(.18,d.y)*2.;float n=noise(p)*.55+noise(p*2.2)*.25+noise(p*4.8)*.13+noise(p*9.)*.07;float cloud=smoothstep(.47,.73,n)*smoothstep(.02,.3,d.y);c=mix(c,vec3(.89,.91,.88),cloud*.65);gl_FragColor=vec4(c,1.);}'});const sky=new T.Mesh(skyGeo,skyMat);world.add(sky);
  // Large lake footprints are single persistent meshes, never split at chunk seams.
  const lakes=[...landscape,...construction].filter(f=>f.geometry.type==='polygon'&&(f.kind==='water'||f.to-f.from>200)).map(f=>{const geo=new T.ShapeGeometry(polygonShapes(f.geometry));geo.rotateX(-Math.PI/2);const mesh=new T.Mesh(geo,sharedMaterial(f.kind==='water'?'#638c87':f.kind==='construction'?'#b3a082':'#96a477',f.kind==='water'?.3:.9));mesh.position.y=.015;world.add(mesh);return {mesh,from:f.from,to:f.to};});
  const chunks=new Map<number,T.Group>();let current=-1;
- const release=(group:T.Group)=>{const common=shared(),mats=new Set<T.Material>();group.traverse(o=>{if(o instanceof T.Mesh||o instanceof T.Sprite){if(o instanceof T.Mesh)o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])if(!common.has(m))mats.add(m);}});mats.forEach(m=>{Object.values(m).forEach(v=>{if(v instanceof T.Texture)v.dispose();});m.dispose();});world.remove(group);};
+ const release=(group:T.Group)=>{const common=shared(),mats=new Set<T.Material>();group.traverse(o=>{if(o instanceof T.Mesh||o instanceof T.Sprite){if(o instanceof T.Mesh)o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])if(!common.has(m))mats.add(m);}});mats.forEach(m=>{Object.values(m).forEach(v=>{if(v instanceof T.Texture&&!isPosterTexture(v))v.dispose();});m.dispose();});world.remove(group);};
  function update(station:number){
-  const player=pose(station);const labels:T.Sprite[]=[];
-  for(const chunk of chunks.values())for(const obj of chunk.children)if(obj instanceof T.Sprite&&obj.userData.placeLabel){const distance=Math.hypot(obj.position.x-player.x,obj.position.z-player.z);obj.visible=distance<320&&obj.userData.station>station-25;obj.userData.distance=distance;if(obj.visible)labels.push(obj);}
-  labels.sort((a,b)=>a.userData.distance-b.userData.distance).forEach((label,i)=>{label.visible=i<6;const d=label.userData.distance;label.material.opacity=Math.min(1,(320-d)/65);const width=Math.max(14,Math.min(42,d*.23));label.scale.set(width,width*144/768,1);});
   for(const l of lakes)l.mesh.visible=station+1000>=l.from&&station-500<=l.to;const p=pose(station);sky.position.set(p.x,0,p.z);const index=Math.floor(station/200);if(index===current)return;current=index;const first=Math.max(0,index-2),last=Math.min(Math.ceil(ROUTE_LENGTH/200)-1,index+4);
   for(const [id,group] of chunks)if(id<first||id>last){release(group);chunks.delete(id);}
   for(let id=first;id<=last;id++)if(!chunks.has(id)){const group=makeChunk(id*200,id===Math.ceil(ROUTE_LENGTH/200)-1?ROUTE_LENGTH+160:(id+1)*200,resources);chunks.set(id,group);world.add(group);}
   world.userData.chunks=chunks.size;
  }
  update(0);
- return {group:world,update,dispose(){for(const g of chunks.values())release(g);chunks.clear();for(const m of shared()){Object.values(m).forEach(v=>{if(v instanceof T.Texture)v.dispose();});m.dispose();}lakes.forEach(l=>l.mesh.geometry.dispose());ground.geometry.dispose();skyGeo.dispose();skyMat.dispose();scene.remove(world);}};
+ return {group:world,update,dispose(){for(const g of chunks.values())release(g);chunks.clear();for(const m of shared()){Object.values(m).forEach(v=>{if(v instanceof T.Texture&&!isPosterTexture(v))v.dispose();});m.dispose();}disposePosterArtwork();lakes.forEach(l=>l.mesh.geometry.dispose());ground.geometry.dispose();skyGeo.dispose();skyMat.dispose();scene.remove(world);}};
 }
 export function place(mesh:T.Object3D,s:number,offset:number,y:number){const p=pose(s,offset);mesh.position.set(p.x,p.y+y,p.z);mesh.rotation.y=p.yaw;}
 

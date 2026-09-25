@@ -646,5 +646,77 @@
     "stopLine": null,
     "movementGeometryConfidence": "unknown",
     "currentOperation": "not independently verified after imagery date"
+  },
+  {
+    "id": "signal:1464786119",
+    "source": "https://www.openstreetmap.org/node/1464786119",
+    "position": [
+      522.4971569900587,
+      -1668.3821033320091
+    ],
+    "station": 10998.147412702574,
+    "offset": -28.26962627049755,
+    "name": "Mapped traffic signal",
+    "controlsPlayable": false,
+    "operationalConfidence": "unknown",
+    "imageryDate": null,
+    "status": "unresolved",
+    "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+    "inspectionDate": null,
+    "reference": null,
+    "facing": null,
+    "controlledLanes": null,
+    "roadLevel": null,
+    "stopLine": null,
+    "movementGeometryConfidence": "unknown",
+    "currentOperation": "not independently verified after imagery date"
+  },
+  {
+    "id": "signal:2406980229",
+    "source": "https://www.openstreetmap.org/node/2406980229",
+    "position": [
+      534.2553478762794,
+      -1631.7878024271442
+    ],
+    "station": 10964.1922080376,
+    "offset": -9.890960751355841,
+    "name": "Mapped traffic signal",
+    "controlsPlayable": false,
+    "operationalConfidence": "unknown",
+    "imageryDate": null,
+    "status": "unresolved",
+    "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+    "inspectionDate": null,
+    "reference": null,
+    "facing": null,
+    "controlledLanes": null,
+    "roadLevel": null,
+    "stopLine": null,
+    "movementGeometryConfidence": "unknown",
+    "currentOperation": "not independently verified after imagery date"
+  },
+  {
+    "id": "signal:4465530917",
+    "source": "https://www.openstreetmap.org/node/4465530917",
+    "position": [
+      537.4522753515823,
+      -1658.318948570801
+    ],
+    "station": 10990.976725219289,
+    "offset": -11.731673254108669,
+    "name": "Mapped traffic signal",
+    "controlsPlayable": false,
+    "operationalConfidence": "unknown",
+    "imageryDate": null,
+    "status": "unresolved",
+    "note": "Carriageway, facing and current operation require visual reconciliation; does not control the player.",
+    "inspectionDate": null,
+    "reference": null,
+    "facing": null,
+    "controlledLanes": null,
+    "roadLevel": null,
+    "stopLine": null,
+    "movementGeometryConfidence": "unknown",
+    "currentOperation": "not independently verified after imagery date"
   }
 ]

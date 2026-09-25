@@ -52,7 +52,7 @@ test('Ibbalur lake retains its island outside the old kilometre; potholes stay a
 test('extension measurement and seam preserve original metre geometry',()=>{
  const measure=(points:typeof map.centerline)=>points.slice(1).reduce((sum,b,i)=>sum+Math.hypot(b.p[0]-points[i].p[0],b.p[1]-points[i].p[1]),0);
  assert.ok(Math.abs(measure(map.centerline)-ROUTE_LENGTH)<1e-6);
- assert.equal(manifest.segments.find(s=>s.id==='adobe-electra')!.length,1000);assert.ok(Math.abs(ROUTE_LENGTH-LEGACY_OFFSET-1000)<1e-8);
+ assert.equal(manifest.segments.find(s=>s.id==='adobe-electra')!.length,1000);assert.ok(Math.abs(manifest.segments.find(s=>s.id==='adobe-marathahalli')!.offset-LEGACY_OFFSET-1000)<1e-8);
  const a=pose(LEGACY_OFFSET-.001),b=pose(LEGACY_OFFSET+.001);assert.ok(Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z)<.003);
  for(const p of [crossSectionAt(LEGACY_OFFSET-.001),crossSectionAt(LEGACY_OFFSET+.001)])assert.equal(p.laneCentres.length,3);
  assert.equal(checkpoints.at(-1)?.station,ROUTE_LENGTH);assert.equal(coverage.at(-1)?.to,ROUTE_LENGTH);
@@ -64,4 +64,11 @@ test('wide driving lanes and all rendered metro shafts have clearance on both ca
   for(const [left,right] of [[c.left,c.right],[c.oppositeLeft,c.oppositeRight]])assert.ok(d+1.1<left||d-1.1>right,`Pier ${f.id} intersects rendered road`);
  }
  const c=crossSectionAt(1048);assert.ok(c.laneCentres[1]-c.laneCentres[0]>4.3);
+});
+test('Marathahalli appends to the exact prior endpoint and ends 100 m after the north ramp',async()=>{
+ const previous=(await import('../src/data/segments/silk-v3.json')).default;
+ assert.deepEqual(map.centerline.slice(0,previous.centerline.length),previous.centerline);
+ const segment=manifest.segments.find(s=>s.id==='adobe-marathahalli')!;assert.equal(segment.offset,previous.length);assert.ok(Math.abs(ROUTE_LENGTH-manifest.marathahalliUnderpass.to-100)<1e-7);
+ for(const s of [segment.offset,manifest.marathahalliUnderpass.from,manifest.marathahalliUnderpass.downTo,manifest.marathahalliUnderpass.upFrom,manifest.marathahalliUnderpass.to]){const a=pose(s-.001),b=pose(s+.001);assert.ok(Math.abs(a.y-b.y)<.001);}
+ assert.equal(pose((manifest.marathahalliUnderpass.coveredFrom+manifest.marathahalliUnderpass.coveredTo)/2).y,-5.5);
 });
