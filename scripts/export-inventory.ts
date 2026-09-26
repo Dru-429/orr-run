@@ -1,8 +1,10 @@
+import {roadConditionExport} from '../src/game/roadConditions';
 import {hoardings} from '../src/game/hoardings';
 import {supportOffset} from '../src/survey/corridor';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {survey,buildings,features,coverage,checkpoints,evidence,transport} from '../src/survey/records';
 mkdirSync('public/data',{recursive:true});
+writeFileSync('public/data/game-road-conditions.json',JSON.stringify(roadConditionExport,null,2));
 writeFileSync('public/data/game-hoardings.json',JSON.stringify({note:'Game-added advertising; not surveyed roadside features.',placements:hoardings},null,2));
 writeFileSync('public/data/route-survey.json',JSON.stringify({...survey,gameplayLayout:{note:'Widened driving envelope; three lanes, 13.8 m nominal carriageway. Source centreline, footprints and support coordinates are preserved. Props are ambient estimates; added wall nameplates identify supported names; placement is approximate.',metroSupports:transport.filter(f=>['metro-pier','metro-support-estimate'].includes(f.kind)).map(f=>({id:f.id,station:f.station,surveyOffset:f.offset,renderOffset:supportOffset(f.station,f.offset)}))}},null,2));
 const escape=(s:string)=>s.replaceAll('|','/').replaceAll('\n',' ');

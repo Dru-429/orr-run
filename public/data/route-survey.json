@@ -1901073,7 +1901073,7 @@
           },
           "confidence": "estimated",
           "evidence": [],
-          "note": "Mapped station; exact barrier placement remains estimated. No potholes."
+          "note": "Mapped station; exact barrier placement remains estimated. Game-added potholes are recorded separately."
         },
         "barriers": {
           "value": {
@@ -1901086,11 +1901086,11 @@
             "stage": "station-works",
             "confidence": "estimated",
             "source": "https://www.openstreetmap.org/way/1508372367",
-            "note": "Mapped station; exact barrier placement remains estimated. No potholes."
+            "note": "Mapped station; exact barrier placement remains estimated. Game-added potholes are recorded separately."
           },
           "confidence": "estimated",
           "evidence": [],
-          "note": "Mapped station; exact barrier placement remains estimated. No potholes."
+          "note": "Mapped station; exact barrier placement remains estimated. Game-added potholes are recorded separately."
         },
         "usableWidth": {
           "value": 10.35,

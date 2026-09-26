@@ -30,7 +30,7 @@ Marathahalli's directed through-road geometry and covered interval are map-deriv
 
 The lake polygons and islands/holes remain intact. Fence runs follow estimated road-facing bank offsets, with 1.8 m height, approximately 3 m posts and visible mesh. Actual park boundaries, gates, drains and all openings still need reconciliation; these fences must not be called a verified complete survey. Vegetation density, water level and some scenery props are estimates.
 
-Widened three-lane carriageways and clearance-adjusted metro supports remain deliberate gameplay adaptations. Original coordinates and render offsets are separately exported. Sarjapur access is a disclosed player boundary. There are no potholes, live traffic feeds or bundled Google imagery. Earlier survey gaps remain visible. This is a local playable preview, not a public deployment.
+Widened three-lane carriageways and clearance-adjusted metro supports remain deliberate gameplay adaptations. Original coordinates and render offsets are separately exported. Sarjapur access is a disclosed player boundary. This earlier snapshot had no potholes. Game-added road damage was introduced later; there are no live traffic feeds or bundled Google imagery. Earlier survey gaps remain visible. This is a local playable preview, not a public deployment.
 
 
 ## Hoardings and traffic audio update
@@ -66,3 +66,43 @@ Observed 60 FPS / 17 ms P95 frame time at 1280 × 720 with Auto graphics and liv
 The end screen now has a secondary Checkout antimattr link immediately below Give it another go. Verified its exact UTM URL, diagonal-arrow icon, end-only display, and desktop/390 × 844 portrait/844 × 390 landscape layout. The popup scrolls when needed.
 
 Nineteen targeted checks pass, including five analytics lifecycle/accounting tests and the existing impact/horn regressions. Covered idempotent starts and finishes, unique restart IDs, per-lap milestones, cumulative versus additive metric accounting, moving/waiting/paused time, hidden-tab exclusion, bfcache resume, beacon-bound exits, collision-contact deduplication, route-point reach, frozen final duration and capture-failure isolation. TypeScript and production build pass; no browser console errors observed in the inspected popup. No driving simulation changes were required. SDK instrumentation is wired to the existing project configuration; ingestion and saved dashboards inside the PostHog project have not been verified.
+
+## Damaged roads and 25% traffic increase — 25 September 2026
+
+The moving pool is now 158 (105 forward / 53 opposing), with 25% denser initial spacing. Twelve crossing slots and ten parked coaches remain unchanged. The condition export measures exactly 50% mild, 20% severe and 30% smooth centreline coverage, with 746 individual forward-carriageway potholes and six shallow water patches. These are explicitly game-added conditions, not survey evidence. Map notes link the separate `game-road-conditions.json` export.
+
+Validation: the full regression suite passed all 75 checks at the merge-recovery revision. Final focused surface/merge validation passed 11 checks, including the subsequently added player-clearance scenario. The final code independently completed three full connected-route simulation loops, retaining health, distance and fixed pool counts. Production build and whitespace checks passed. Vite still reports the pre-existing large-bundle advisory for the map/Three.js application; this is not a build failure.
+
+The increased density and new slowdown timing exposed a pre-existing partial-merge deadlock at a bend around 2,183 m on lap two. Two adjacent cars could both fail forward movement validation while one straddled lanes. A blocked merging car now retreats gradually toward its source lane only when obstacle checks and player clearance permit. Captured-scenario regressions verify eventual discharge, no NPC overlap, no sideways teleport and waiting for a player occupying the return lane. Braking/signal and parked-coach tests continue to pass.
+
+Road checks cover exact contiguous coverage, the smooth first 100 m, both-carriageway ramp exclusions, junction buffers, complete water/mud containment, dry passing lanes, wheel hits/misses/straddling, high-speed swept contacts, progressive resistance, braking/steering, unchanged health/collision/overtake counters, speed-sensitive motion limits, stationary settling, pause, restart, loop reset and reduced-motion suppression. Road-surface mesh normals and finite coordinates pass three generated-geometry sweeps.
+
+Browser review inspected severe damage near 330 m and the first water patch near 1,500 m, followed by live driving through severe/mild/wet transitions. Water, broken rims, cracks and repairs appear at road level. Settings were tested with reduced motion and Low graphics; normal preferences were restored. HUD and touch controls remain independent of the camera response. Portrait 390 × 844 and landscape 844 × 390 layouts were checked. No browser errors were captured.
+
+Three rendered scenery sweeps completed all 174 stations. After initial warm-up, each return to the start retained **1,298 geometries / 88 textures / 5 chunks**, with a route-wide peak of **2,196 geometries / 175 textures**. Counts remained bounded. Forced inspection jumps can produce loading spikes (one sample: 49 FPS / 67 ms P95); these teleport sweeps are not ordinary driving measurements.
+
+Normal live driving sampled **60 FPS / 17 ms P95 at 1,280 × 720 with Auto graphics**, and **60 FPS / 17 ms P95 at 844 × 390 with Low graphics**. Earlier recorded checks were 60 FPS / 17 ms desktop and 60 FPS / 18 ms landscape. These are indicative desktop-host viewport comparisons at different route moments, not a controlled physical-device benchmark. Sustained midrange-phone performance, physical multitouch and phone speakers remain untested.
+
+## Street-life update — 25 September 2026
+
+- Added occasional safe voluntary lane changes for autos, bikes and buses in both directions, deterministic footpath dirt/snack packets, and reddish stains on actual flyover-support and underpass-wall faces.
+- Full regression: 80 checks passed, including three complete route loops with live traffic (loop check ~119 seconds). Two additional geometry/recycling tests passed afterward; final focused horn/traffic/dressing checks passed. Production build and whitespace checks pass; existing large-bundle warnings remain.
+- Browser cockpit review: underpass stains visible at 10,880 m. Busy traffic preview showed ten forward-frame candidates and up to four active horn voices. Mute and pause reduced audible voices to zero. All five decorative materials are shared; three automated geometry sweeps produced identical mesh counts and finite geometry.
+- Three rendered scenery sweeps completed all 174 stations. Warm returns to start remained at 1,527 geometries / 95 textures / five chunks across all three passes; peak 2,237 geometries / 180 textures. The first cold return was 1,436 / 79 before all reused vehicle templates had warmed. No increasing retained resources after warm-up.
+- 1280 × 720 desktop busy-traffic viewport: 60 FPS, 17 ms p95. 844 × 390 landscape viewport on the same desktop: 60 FPS, 18 ms p95. These are short built-in diagnostic samples, not physical-phone measurements or guarantees across hardware. Forced scenery jumps briefly reduced the rolling FPS sample to 49. Physical-phone performance, physical multitouch and loudspeaker sound quality were not tested.
+
+## Aggressive auto and bike weaving — 26 September 2026
+
+Autos and bikes now select continuous gaps on both carriageways, including between queues, with seeded temperament, speed-dependent clearance, three-second path checks and final swept body validation. Cars, buses and trucks remain lane-based. Rendering and collision geometry share the bounded turn angle; bikes lean slightly. A development-only **Preview weaving traffic** button sets up competing small vehicles beside the Ibbalur coach queue.
+
+The queue regressions include two captured turning-clearance deadlocks: a false initial reservation against a beside-bike, and a projected front gap that stopped an auto despite a safe diagonal exit. Existing collision, surface, junction, horns and fixed-pool rules remain active. See `STREET_LIFE.md` for behaviour and test details.
+
+Browser samples at 1280 × 720 and an actual 546 × 837 portrait canvas reported approximately 60 FPS / 17 ms p95 during the mixed weaving scenario. Three rendered scenery sweeps completed all 174 stations. After first-use template warm-up, returns to the start remained at 1,493 geometries, 93 textures and five chunks; peaks were 2,237 geometries and 180 textures. The NPC audio pool stayed at four voices. The intentionally rapid scenery sweep is a resource-lifetime stress test, not a frame-rate benchmark. Physical-phone performance and multitouch remain untested.
+
+Final verification: all 94 regression checks passed, including three full connected-route loops with live traffic and the 12 dedicated weaving checks. The final production build and whitespace checks passed. The existing Vite large-bundle advisory remains; no new assets or audio resources were added for weaving.
+
+## Recorded horns — 26 September 2026
+
+Six CC0 recordings replace the normal synthesized horn playback, shared across 15 NPC variants and the player horn. The processed mono WAV pack is 247,226 bytes. Source links, authors, license checks, processing and checksums are in `public/audio/horns/`. Auto variants are adapted electric-car recordings, not authenticated rickshaw recordings.
+
+All 98 regression checks passed, including three connected-route loops. Four new audio tests check asset integrity/loop bounds, fetch/decode caching, stable voice assignment, four NPC sources plus one player source, pause/mute/reset/disposal, failed-loading fallback and retry, and disposal during loading. Production build and whitespace checks passed; the existing large-bundle advisory remains. Browser inspection confirmed six decoded recordings with ready status, a four-channel NPC pool and zero active voices while paused/muted. The desktop preview reported approximately 60 FPS during this check. Physical-phone playback, output-device loudness and subjective listening quality have not been certified.

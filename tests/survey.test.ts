@@ -44,7 +44,7 @@ test('work-zone traffic respects the same barrier boundary as the player',()=>{
  for(const v of sim.traffic.filter(v=>v.s>=ROAD_WORK.from-2&&v.s<=ROAD_WORK.to+2)){assert.ok(v.x<=driveBounds(v.s,v.width/2).right+.01);}
  assert.ok(driveBounds(LEGACY_OFFSET+870,1.3).right-driveBounds(LEGACY_OFFSET+870,1.3).left>7);
 });
-test('Ibbalur lake retains its island outside the old kilometre; potholes stay absent',()=>{
+test('Ibbalur lake retains its island; game-added potholes stay outside survey evidence',()=>{
  assert.ok(!features.some(f=>/pothole/i.test(f.name+' '+f.kind)));
  const lake=landscape.find(f=>f.id==='landscape:relation/3120373');assert.ok(lake);assert.ok(lake.to<LEGACY_OFFSET);assert.ok(lake.geometry.holes?.length);assert.ok(landscape.some(f=>f.kind==='water'));assert.ok(landscape.some(f=>f.id==='landscape:row:adobe-left'));
 });

@@ -1,3 +1,5 @@
+import {writeFileSync} from 'node:fs';
+import {lateralHalf} from '../src/game/weaving';
 import {crossingBody} from '../src/game/junctions';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -43,10 +45,12 @@ test('pausing during a lap fade resumes the transition without losing the lap',(
 });
 test('three full connected-route loops with live traffic preserve a fixed pool and score',()=>{
  const s=new Simulation(42);s.start();
+ // Filtering bikes in a neighbouring gap are not in the test driver's corridor.
  for(let i=0;i<6500*30&&s.lap<4;i++){
+  if(process.env.ORR_SIM_TRACE&&i%3000===0)writeFileSync(process.env.ORR_SIM_TRACE,JSON.stringify({step:i,lap:s.lap,s:s.s,x:s.x,time:s.time,health:s.health,traffic:s.traffic,junctions:s.junctions}));
   let gap=s.junctions.stopFor(s.s,s.speed,4.2,false),lead=25;const bounds=driveBounds(s.s+15);const targetX=(bounds.left+bounds.right)/2;
-  for(const v of s.traffic){if(!v.opposite&&Math.abs(v.x-s.x)<2.8&&v.s>s.s){const d=v.s-s.s-(v.length+4.2)/2;if(d<gap){gap=d;lead=v.speed;}}}
-  for(const v of s.junctions.vehicles){if(!v.active)continue;const b=crossingBody(v,s.junctions.state(v.junctionId!).record),p=pose(s.s,s.x);if(b.s!>s.s&&Math.cos(b.yaw-p.yaw)>.85&&Math.abs(b.y-p.y)<2.5&&Math.abs((b.x-p.x)*p.rx+(b.z-p.z)*p.rz)<2.8){const d=b.s!-s.s-(v.length+4.2)/2;if(d<gap){gap=d;lead=v.speed;}}}
+  for(const v of s.traffic){if(!v.opposite&&Math.abs(v.x-s.x)<lateralHalf(v)+.9+.25&&v.s>s.s){const d=v.s-s.s-(v.length+4.2)/2;if(d<gap){gap=d;lead=v.speed;}}}
+  for(const v of s.junctions.vehicles){if(!v.active)continue;const b=crossingBody(v,s.junctions.state(v.junctionId!).record),p=pose(s.s,s.x);if(b.s!>s.s&&Math.cos(b.yaw-p.yaw)>.85&&Math.abs(b.y-p.y)<2.5&&Math.abs((b.x-p.x)*p.rx+(b.z-p.z)*p.rz)<b.width/2+.9+.25){const d=b.s!-s.s-(v.length+4.2)/2;if(d<gap){gap=d;lead=v.speed;}}}
   s.update(1/30,{...emptyInput(),left:s.x>targetX+.15,right:s.x<targetX-.15,throttle:gap>Math.max(18,s.speed*2)&&s.speed<15,brake:gap<Math.max(10,s.speed*1.5)||gap<30&&s.speed>lead+1});
   assert.notEqual(s.phase,'ended','Autopilot died at '+s.distance.toFixed(1)+' m');
  }

@@ -27,10 +27,12 @@ Length is measured along the mapped horizontal centreline, not as a straight lin
 ### What’s in the game
 
 - A right-hand-drive cockpit, speedometer, rear-view mirror, manual pedals and steering, and automatic gears.
-- Mixed traffic: cars, cabs, autos, motorcycles, BMTC buses and trucks, plus simulated junction traffic.
-- Lane changes, queues, signals, and horn reactions. Blocked drivers can respond with a brief comic middle-finger gesture.
+- Mixed traffic: 158 moving vehicles (105 same-direction, 53 opposing), approximately 25% above the original pool, plus 12 crossing slots and ten parked coaches. Cars, cabs, autos, motorcycles, BMTC buses and trucks share the road.
+- Game-added road conditions: 50% mildly rough, 20% severely damaged and 30% smooth, plus six shallow waterlogged patches. Wheel-path bumps, speed-sensitive suspension and progressive slowdown cause no health loss. Reduced motion keeps the view steady. See [road-condition notes](docs/ROAD_CONDITIONS.md).
+- Aggressive gap-seeking autos and motorcycles that filter between queues, straddle markings and make braking-room-checked cut-ins in both directions. Buses retain occasional lane changes, alongside queues, signals and horn reactions. Blocked drivers can respond with a brief comic middle-finger gesture.
 - Ten stationary VOLVO tourist coaches: three near Ibbalur Lake, three in Bellandur and four before Marathahalli. They block the left lane and create merging traffic.
-- Fifteen synthesized NPC horn presets, with distance attenuation, stereo positioning and a four-voice limit. Stopping in the lane can provoke the drivers behind you.
+- Game-added dirt and crumpled snack packets on service-road footpaths, plus reddish spit stains on flyover supports and underpass walls. These are procedural scenery, not surveyed conditions.
+- Fifteen recorded NPC horn variants from six bundled CC0 recordings, with distance attenuation, stereo positioning and a four-voice limit. Stopping in the lane can provoke the drivers behind you. Four or more moving-traffic vehicles in the forward cockpit view trigger a frequent, rotating horn soundscape.
 - Forgiving collision damage: one-quarter of the original damage, capped at eight health points per hit, with a two-second cooldown and sustained-contact protection. Camera recoil is independent of health loss.
 - A vertical heading-up navigation map with colours derived from **simulated game traffic**, not live traffic data.
 - Agara and Ibbalur lakes, directional flyovers, metro structures, construction, service roads, greenery and named buildings where names have supporting records.
@@ -132,7 +134,7 @@ src/
     parkedBuses.ts           Fixed coach queues and obstacle bodies
     hoardingScene.ts         Billboard frames and artwork
     poster-artwork.ts        Shared poster loading and quality variants
-    npcHorns.ts / audio.ts    NPC horn events and synthesized audio
+    npcHorns.ts / audio.ts    NPC horn events, recordings and synthesis fallback
     impact.ts                Visual collision response
     trafficMap.ts            Compact simulated congestion summaries
   survey/                    Feature records, observations, geometry and atlas
@@ -141,6 +143,7 @@ public/
   data/                      Generated survey exports
   hoardings/                 Seven PNG posters and supplied branding
   branding/                  Supplied brand assets
+  audio/horns/               CC0 horn recordings, credits and source manifest
   fonts/                     Local fonts and their license notices
 scripts/                     Geographic import and export utilities
 tests/                       Node test-runner regressions
@@ -167,7 +170,7 @@ The survey method describes features by route distance, side/offset, elevation, 
 
 **Systematic coverage is incomplete; no side-section is certified survey complete.** Imagery from different dates is not a claim of current conditions. The Marathahalli extension includes six March 2026 views at four locations, with the upper-junction view unresolved for the playable road level. More frontage, entrance, construction, metro-stage, elevation and clearance reconciliation is needed.
 
-Game adaptations include widened roads, adjusted metro-support clearances, estimated ramps and signal timings, wall-nameplate placement, lake fences, ambient trees/pedestrians, advertising hoardings and parked-coach queues. The coach queues and posters are not claims about real parking or advertising locations. No potholes are included. Sarjapur Road is a disclosed player boundary; simulated junction traffic can still use it.
+Game adaptations include widened roads, adjusted metro-support clearances, estimated ramps and signal timings, wall-nameplate placement, lake fences, ambient trees/pedestrians, advertising hoardings and parked-coach queues. The coach queues and posters are not claims about real parking or advertising locations. Game-added potholes, rough asphalt and six shallow waterlogged patches cover the route; these are not observations of current road damage. Sarjapur Road is a disclosed player boundary; simulated junction traffic can still use it.
 
 ### Changing the corridor
 
@@ -269,6 +272,7 @@ Do not invent business names, silently promote estimates to verified records, bu
 | [Coverage gaps](docs/SURVEY_COVERAGE.md) | Unresolved sections on both sides of the road |
 | [Quality notes](docs/QUALITY.md) | Validation results and remaining checks |
 | [Vehicle visuals](docs/vehicle-visuals.md) | Vehicle modelling notes; later branding changes are in the hoarding/audio notes |
+| [Street life](docs/STREET_LIFE.md) | Voluntary lane changes, busy-view horns, litter and wall stains |
 | [Hoardings and audio](docs/HOARDINGS_AND_AUDIO.md) | Posters, BMTC branding and NPC horns |
 | [Parked coaches](docs/PARKED_COACHES.md) | Fixed bus queues and merge behaviour |
 | [Analytics](docs/ANALYTICS.md) | Event catalogue and aggregation recipes |
@@ -281,6 +285,7 @@ Original code and documentation are released under the **[MIT License](LICENSE)*
 - Geographic geometry: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ODbL 1.0.
 - Fonts: DM Sans and Space Grotesk, with included SIL Open Font Licenses.
 - Game models: original procedural models. Dependencies retain their own licenses.
+- Horn recordings: CC0, with [source credits and processing details](public/audio/horns/CREDITS.md). Auto variants are adapted car recordings; these are not authenticated local fleet horns.
 - Supplied advertisements and branding are **excluded from the MIT code license**; obtain permission or replace them for your own use.
 
 This is an independent game, not affiliated with Bengaluru transport authorities or the businesses depicted. Real names provide local context; they do not imply endorsement.

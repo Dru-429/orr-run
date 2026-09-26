@@ -1,3 +1,5 @@
+import {makeStreetWearMaterials,addFootpathWear,stainConcrete} from './streetWear';
+import {addRoadSurfaces,makeSurfaceMaterials} from './roadSurfaceScene';
 import {addHoardings} from './hoardingScene';
 import {getPosterArtwork,isPosterTexture,disposePosterArtwork} from './poster-artwork';
 import {facadeSignFaces} from './facadeSigns';
@@ -16,6 +18,8 @@ import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js'
 function makeChunk(from:number,to:number,resources:WorldResources){
  const world=new T.Group();const material=resources.material;
  addHoardings(world,from,to,resources.posters,material);
+ addRoadSurfaces(world,from,to,resources.surfaces);
+ addFootpathWear(world,from,to,resources.wear);
  const concrete=material('#b7b5a8'),lightConcrete=material('#d0cec0'),dark=material('#505851'),white=material('#deded0'),yellow=material('#d3b459'),green=material('#727b53'),black=material('#444744');
  const wallBlue=material('#93adbf');
  const pavement=material('#acac9c'),soil=material('#9c9176'),asphaltMat=resources.asphalt;
@@ -32,15 +36,15 @@ function makeChunk(from:number,to:number,resources:WorldResources){
  strip(from,to,edge('left'),edge('right'),asphaltMat,s=>roadHeight(s)+.04);
  strip(from,to,edge('oppositeLeft'),edge('oppositeRight'),asphaltMat,s=>crossSectionAt(s).oppositeElevation+.04);
  for(let a=from;a<to;a+=5)if(!junctionRecords.some(j=>a>j.centre-20&&a<j.centre+20))strip(a,a+5,edge('right'),edge('oppositeLeft'),concrete,()=>.25);
- for(let s=from;s<to;s+=5){const c=crossSectionAt(s);if(c.serviceLeftActive){strip(s,s+5,c.serviceLeft[0],c.serviceLeft[1],asphaltMat,()=>.04);strip(s,s+5,c.serviceLeft[0]-1,c.serviceLeft[0],pavement,()=>.08);}if(c.serviceRightActive)strip(s,s+5,c.serviceRight[0],c.serviceRight[1],asphaltMat,()=>.04);}
+ for(let s=from;s<to;s+=5){const c=crossSectionAt(s);if(c.serviceLeftActive){strip(s,s+5,c.serviceLeft[0],c.serviceLeft[1],asphaltMat,()=>.04);strip(s,s+5,c.serviceLeft[0]-1,c.serviceLeft[0],pavement,()=>.08);}if(c.serviceRightActive){strip(s,s+5,c.serviceRight[0],c.serviceRight[1],asphaltMat,()=>.04);strip(s,s+5,c.serviceRight[1],c.serviceRight[1]+1,pavement,()=>.08);}}
  for(const key of ['left','right','oppositeLeft','oppositeRight'] as const){const shift=key==='left'||key==='oppositeLeft'?.25:-.35;strip(from,to,edge(key,shift),edge(key,shift+.09),white,s=>(key.startsWith('opposite')?crossSectionAt(s).oppositeElevation:roadHeight(s))+.055);}
  for(let s=Math.ceil(from/12)*12;s<to;s+=12)for(const opposite of [false,true]){const lanes=opposite?crossSectionAt(s).oppositeCentres:crossSectionAt(s).laneCentres;for(let i=1;i<lanes.length;i++){const at=(t:number)=>{const c=crossSectionAt(t),arr=opposite?c.oppositeCentres:c.laneCentres;return ((arr[Math.min(i-1,arr.length-1)]+arr[Math.min(i,arr.length-1)])/2);};strip(s,s+4,at,t=>at(t)+.11,white,t=>(opposite?crossSectionAt(t).oppositeElevation:roadHeight(t))+.062);}}
- const roadBatch=new Batch(),deckConcrete=material('#b6b4a7');deckConcrete.side=T.DoubleSide;
+ const wearBatch=new Batch();const roadBatch=new Batch(),deckConcrete=material('#b6b4a7');deckConcrete.side=T.DoubleSide;
  // Estimated flyover ramp wall, observed cream panels with purple band in April 2026.
  for(let s=Math.max(oldStation(230),from);s<Math.min(oldStation(380),to);s+=3){const c=crossSectionAt(s),p=pose(s,c.oppositeLeft-.3),h=c.oppositeElevation;if(h>.2){roadBatch.box(.4,h,3.05,p.x,h/2,p.z,lightConcrete,p.yaw);roadBatch.box(.43,.3,3.05,p.x,h*.45,p.z,material('#917394'),p.yaw);}}
  // Black-and-yellow curbs, retaining walls and transverse underpass deck.
  for(let s=Math.ceil(from/3)*3;s<to;s+=3){if(junctionRecords.some(j=>Math.abs(j.centre-s)<20))continue;const c=crossSectionAt(s);for(const o of [c.left-.15,c.right+.15,c.oppositeLeft-.15,c.oppositeRight+.15]){const p=pose(s,o);roadBatch.box(.28,.35,2.97,p.x,(o>=c.oppositeLeft-.2?c.oppositeElevation:p.y)+.17,p.z,(Math.floor(s/3)%2)?black:yellow,p.yaw);}}
- for(let s=Math.max(from,LEGACY_OFFSET-200);s<Math.min(to,LEGACY_OFFSET+435);s+=1.25){const c=crossSectionAt(s);for(const o of [c.left-.5,c.right+.2,c.oppositeLeft-.2,c.oppositeRight+.5]){const p=pose(s,o),height=Math.max(.1,.5-p.y);roadBatch.box(.42,height,1.3,p.x,p.y+height/2,p.z,Math.floor(s/1.25)%2?wallBlue:lightConcrete,p.yaw);}}
+ for(let s=Math.max(from,LEGACY_OFFSET-200);s<Math.min(to,LEGACY_OFFSET+435);s+=1.25){const c=crossSectionAt(s);for(const o of [c.left-.5,c.right+.2,c.oppositeLeft-.2,c.oppositeRight+.5]){const p=pose(s,o),height=Math.max(.1,.5-p.y);roadBatch.box(.42,height,1.3,p.x,p.y+height/2,p.z,Math.floor(s/1.25)%2?wallBlue:lightConcrete,p.yaw);if(Math.floor(s/1.25)%5===0)stainConcrete(wearBatch,resources.wear,p.x,p.y,p.z,p.yaw,.42,1.3,height,Math.round(s));}}
  const deck=transport.find(f=>f.kind==='underpass')!.attributes.deck.value as {from:number;to:number;width:number;top:number};const bridge=pose((deck.from+deck.to)/2,7.3);if(deck.from>=from&&deck.from<to){roadBatch.box(deck.width,1,deck.to-deck.from,bridge.x,deck.top-.65,bridge.z,concrete,bridge.yaw);
  roadBatch.box(deck.width,.15,deck.to-deck.from,bridge.x,deck.top-.07,bridge.z,asphaltMat,bridge.yaw);
  }
@@ -50,10 +54,10 @@ function makeChunk(from:number,to:number,resources:WorldResources){
   strip(s,s+5,left,right,deckConcrete,t=>(opposite?crossSectionAt(t).oppositeElevation:roadHeight(t))-.75);
   strip(s,s+5,left,right,asphaltMat,()=>.015);
   for(const d of [left-.3,right+.3]){const p=pose(s+2.5,d);const next=opposite?crossSectionAt(s+2.5).oppositeElevation:p.y;roadBatch.box(.36,.8,5.02,p.x,next-.4,p.z,deckConcrete,p.yaw);roadBatch.box(.35,.8,5.02,p.x,next+.4,p.z,Math.floor(s/5)%2?lightConcrete:black,p.yaw);roadBatch.box(.07,.07,5.02,p.x,next+1,p.z,dark,p.yaw);if(h<5.8)roadBatch.box(.4,h,5.02,p.x,h/2,p.z,concrete,p.yaw);}
-  if(h>=5.8&&Math.round(s)%30===0){const p=pose(s,(left+right)/2);roadBatch.box(1.6,h-.8,2.3,p.x,(h-.8)/2,p.z,concrete,p.yaw);roadBatch.box(right-left-.8,.5,2.6,p.x,h-1,p.z,lightConcrete,p.yaw);}
+  if(h>=5.8&&Math.round(s)%30===0){const p=pose(s,(left+right)/2);roadBatch.box(1.6,h-.8,2.3,p.x,(h-.8)/2,p.z,concrete,p.yaw);stainConcrete(wearBatch,resources.wear,p.x,0,p.z,p.yaw,1.6,2.3,h-.8,Math.round(s),true);roadBatch.box(right-left-.8,.5,2.6,p.x,h-1,p.z,lightConcrete,p.yaw);}
  }
  const under=manifest.marathahalliUnderpass;
- for(let s=Math.max(from,under.from);s<Math.min(to,under.to);s+=3){const c=crossSectionAt(s);for(const d of [c.left-.3,c.right+.2,c.oppositeLeft-.2,c.oppositeRight+.3]){const p=pose(s,d),h=.6-p.y;roadBatch.box(.4,h,3.04,p.x,p.y+h/2,p.z,Math.floor(s/3)%2?wallBlue:lightConcrete,p.yaw);roadBatch.box(.43,.18,3.04,p.x,.6,p.z,lightConcrete,p.yaw);}}
+ for(let s=Math.max(from,under.from);s<Math.min(to,under.to);s+=3){const c=crossSectionAt(s);for(const d of [c.left-.3,c.right+.2,c.oppositeLeft-.2,c.oppositeRight+.3]){const p=pose(s,d),h=.6-p.y;roadBatch.box(.4,h,3.04,p.x,p.y+h/2,p.z,Math.floor(s/3)%2?wallBlue:lightConcrete,p.yaw);if(Math.floor(s/3)%3===0)stainConcrete(wearBatch,resources.wear,p.x,p.y,p.z,p.yaw,.4,3.04,h,Math.round(s));roadBatch.box(.43,.18,3.04,p.x,.6,p.z,lightConcrete,p.yaw);}}
  if(under.coveredFrom>=from&&under.coveredFrom<to){const s=(under.coveredFrom+under.coveredTo)/2,c=crossSectionAt(s),p=pose(s,(c.left+c.oppositeRight)/2);roadBatch.box(c.oppositeRight-c.left+3,.7,under.coveredTo-under.coveredFrom,p.x,-.35,p.z,concrete,p.yaw);roadBatch.box(c.oppositeRight-c.left+3,.08,under.coveredTo-under.coveredFrom,p.x,.05,p.z,asphaltMat,p.yaw);}
  addSurveyStructures(world,roadBatch,from,to,material);
  // Tall LED streetlights on the verges.
@@ -62,7 +66,7 @@ function makeChunk(from:number,to:number,resources:WorldResources){
  }
  // Dated construction treatment: exact individual barrier positions remain approximate.
  for(let s=Math.max(ROAD_WORK.from,from);s<Math.min(ROAD_WORK.to,to);s+=2.8){const p=pose(s,ROAD_WORK.offset);roadBatch.box(ROAD_WORK.barrierWidth,ROAD_WORK.height,2.5,p.x,p.y+ROAD_WORK.height/2,p.z,s%5<2.5?material('#b3c0b8'):concrete,p.yaw);}
- roadBatch.finish(world);
+ roadBatch.finish(world);wearBatch.finish(world,false);
  if(LEGACY_OFFSET+825>=from&&LEGACY_OFFSET+825<to){const warning=sign('METRO WORK IN PROGRESS',3.3,.85,'#223b38','#e7d6a0','SLOW DOWN');place(warning,LEGACY_OFFSET+825,4.85,1.8);world.add(warning);}
  // Two signs are navigation cues, not assertions of surveyed signboard wording.
  for(const s of [160,LEGACY_OFFSET+35,LEGACY_OFFSET+540].filter(s=>s>=from&&s<to)){const p=pose(s,crossSectionAt(s).left-3);const g=new T.Group();const pole=new T.Mesh(new T.CylinderGeometry(.08,.08,6,8),dark);pole.position.y=3;g.add(pole);const panel=sign('MARATHAHALLI  ↑',5.5,1.45,'#faf8e4','#205242','ಮಾರತಹಳ್ಳಿ  •  OUTER RING ROAD');panel.position.set(1.8,5.6,0);g.add(panel);g.position.set(p.x,0,p.z);g.rotation.y=p.yaw;world.add(g);}
@@ -125,12 +129,12 @@ function makeChunk(from:number,to:number,resources:WorldResources){
  return world;
 }
 
-interface WorldResources {posters:T.MeshBasicMaterial[];material:typeof material;asphalt:ReturnType<typeof asphalt>;facade:Record<Parameters<typeof facadeTexture>[0],T.MeshStandardMaterial>}
+interface WorldResources {wear:ReturnType<typeof makeStreetWearMaterials>;surfaces:ReturnType<typeof makeSurfaceMaterials>;posters:T.MeshBasicMaterial[];material:typeof material;asphalt:ReturnType<typeof asphalt>;facade:Record<Parameters<typeof facadeTexture>[0],T.MeshStandardMaterial>}
 export function makeWorld(scene:T.Scene){
  const world=new T.Group();scene.add(world);
  const palette=new Map<string,T.MeshStandardMaterial>();const sharedMaterial:typeof material=(color,roughness=.85)=>{const key=String(color)+roughness;if(!palette.has(key))palette.set(key,material(color,roughness));return palette.get(key)!;};
- const resources:WorldResources={posters:getPosterArtwork().map(map=>new T.MeshBasicMaterial({map,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2})),material:sharedMaterial,asphalt:asphalt(),facade:Object.fromEntries((['glass','cream','shop','adobe','silver','sattva','green-glass','blue-glass'] as const).map(k=>[k,facadeTexture(k)])) as WorldResources['facade']};
- const shared=()=>new Set<T.Material>([...resources.posters,...palette.values(),resources.asphalt,...Object.values(resources.facade)]);
+ const resources:WorldResources={wear:makeStreetWearMaterials(),surfaces:makeSurfaceMaterials(),posters:getPosterArtwork().map(map=>new T.MeshBasicMaterial({map,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2})),material:sharedMaterial,asphalt:asphalt(),facade:Object.fromEntries((['glass','cream','shop','adobe','silver','sattva','green-glass','blue-glass'] as const).map(k=>[k,facadeTexture(k)])) as WorldResources['facade']};
+ const shared=()=>new Set<T.Material>([...resources.wear.all,...resources.surfaces.all,...resources.posters,...palette.values(),resources.asphalt,...Object.values(resources.facade)]);
  const groundShape=new T.Shape([new T.Vector2(-13000,-13000),new T.Vector2(13000,-13000),new T.Vector2(13000,13000),new T.Vector2(-13000,13000)]);
  const trench:number[][]=[];for(let s=LEGACY_OFFSET-265;s<=LEGACY_OFFSET+440;s+=5){const p=pose(s,crossSectionAt(s).left-1);trench.push([p.x,-p.z]);}for(let s=LEGACY_OFFSET+440;s>=LEGACY_OFFSET-265;s-=5){const p=pose(s,crossSectionAt(s).oppositeRight+1);trench.push([p.x,-p.z]);}groundShape.holes.push(new T.Path(trench.map(p=>new T.Vector2(p[0],p[1]))));
  const under=manifest.marathahalliUnderpass,cutout:number[][]=[];
@@ -149,7 +153,7 @@ export function makeWorld(scene:T.Scene){
   world.userData.chunks=chunks.size;
  }
  update(0);
- return {group:world,update,dispose(){for(const g of chunks.values())release(g);chunks.clear();for(const m of shared()){Object.values(m).forEach(v=>{if(v instanceof T.Texture&&!isPosterTexture(v))v.dispose();});m.dispose();}disposePosterArtwork();lakes.forEach(l=>l.mesh.geometry.dispose());ground.geometry.dispose();skyGeo.dispose();skyMat.dispose();scene.remove(world);}};
+ return {group:world,update,surfaceTime(time:number,low:boolean){resources.surfaces.time.value=time;resources.surfaces.detail.value=low?0:1;},dispose(){for(const g of chunks.values())release(g);chunks.clear();for(const m of shared()){Object.values(m).forEach(v=>{if(v instanceof T.Texture&&!isPosterTexture(v))v.dispose();});m.dispose();}disposePosterArtwork();lakes.forEach(l=>l.mesh.geometry.dispose());ground.geometry.dispose();skyGeo.dispose();skyMat.dispose();scene.remove(world);}};
 }
 export function place(mesh:T.Object3D,s:number,offset:number,y:number){const p=pose(s,offset);mesh.position.set(p.x,p.y+y,p.z);mesh.rotation.y=p.yaw;}
 

@@ -33,6 +33,14 @@ Business names and logos depicted in the game remain the property of their
 respective owners. Their appearance does not imply affiliation or endorsement,
 and the code license does not grant trademark rights.
 
+## Horn recordings
+
+The six processed WAV files in `public/audio/horns/` use CC0-1.0 recordings from
+BigSoundBank and Freesound. They are separate from the MIT code license. See
+[recording credits](public/audio/horns/CREDITS.md) and the machine-readable
+[source manifest](public/audio/horns/sources.json) for individual authors, source
+pages, download URLs, license verification dates, edits and checksums.
+
 ## Dependencies
 
 React, Three.js, Vite, Lucide, PostHog and other packages retain their own licenses.

@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "processing": "Trimmed single honks; 90 Hz high-pass and 7 kHz low-pass; mono 22,050 Hz PCM16; sustain RMS normalized to 0.22 with peak cap 0.88; 10 ms sustain seam crossfade, 8 ms attack and 40 ms tail fades. Runtime pitch variations and pulse envelopes. Original MP3 downloads are not bundled.",
+  "recordings": [
+    {
+      "id": "car",
+      "file": "car.wav",
+      "title": "Car horn #4",
+      "author": "DenisChardonnet",
+      "source": "https://bigsoundbank.com/car-horn-4-s0260.html",
+      "download": "https://bigsoundbank.com/UPLOAD/mp3/0260.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedOn": "2026-09-26",
+      "cropSeconds": [
+        0,
+        0.34
+      ],
+      "loopSeconds": [
+        0.065,
+        0.18
+      ],
+      "sourceSha256": "f1f86c2e63c331e5f6c191fb97881f8f6c202c1e26119176c40254dd7fc47750",
+      "sha256": "be3385a41aba6c8b482bb9e667db926a55094311a9cc2088bdcfc775f229c56a"
+    },
+    {
+      "id": "car2",
+      "file": "car2.wav",
+      "title": "Recent Car Horn #2",
+      "author": "DenisChardonnet",
+      "source": "https://bigsoundbank.com/recent-car-horn-2-s0258.html",
+      "download": "https://bigsoundbank.com/UPLOAD/mp3/0258.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedOn": "2026-09-26",
+      "cropSeconds": [
+        0.04,
+        1.52
+      ],
+      "loopSeconds": [
+        0.23,
+        1.13
+      ],
+      "sourceSha256": "aa9a1054b63e5d48934f324dca2f7c0b0b517e6f9535017fce892b639172f854",
+      "sha256": "de5e79f9f3d3c77955df5f94cda94f4064272c30d62805fff55f81153dc77dad"
+    },
+    {
+      "id": "compact",
+      "file": "compact.wav",
+      "title": "Recent Car Horn #7",
+      "author": "Joseph SARDIN",
+      "source": "https://bigsoundbank.com/recent-car-horn-7-s0969.html",
+      "download": "https://bigsoundbank.com/UPLOAD/mp3/0969.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedOn": "2026-09-26",
+      "cropSeconds": [
+        0.2,
+        0.74
+      ],
+      "loopSeconds": [
+        0.095,
+        0.24
+      ],
+      "sourceSha256": "ef13cb63dab4a07334c2001b383cd5cfddbc5e96c9e431cf3a3aae2602f40d9e",
+      "sha256": "02a7c39457a5f63f23f3c5ab09e3bc280589ff4d3123107300e03380ad214d02"
+    },
+    {
+      "id": "bike",
+      "file": "bike.wav",
+      "title": "13FMikovaA_simson klakson.wav",
+      "author": "13FPanska_Mikova_Adela",
+      "source": "https://freesound.org/people/13FPanska_Mikova_Adela/sounds/378351/",
+      "download": "https://cdn.freesound.org/previews/378/378351_7020243-hq.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedOn": "2026-09-26",
+      "cropSeconds": [
+        0.48,
+        1.17
+      ],
+      "loopSeconds": [
+        0.135,
+        0.28
+      ],
+      "sourceSha256": "0a714b3672cd3efd67cec9230d5ca5256e6e19dd5539606bbc317b51a4c1abc4",
+      "sha256": "415a1535f4303645a2d6b041255331ee6d1d39999b582d28f6641be7035558c1"
+    },
+    {
+      "id": "bus",
+      "file": "bus.wav",
+      "title": "Bus horn",
+      "author": "Joseph SARDIN",
+      "source": "https://bigsoundbank.com/bus-horn-s3594.html",
+      "download": "https://bigsoundbank.com/UPLOAD/mp3/3594.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedOn": "2026-09-26",
+      "cropSeconds": [
+        0,
+        1.15
+      ],
+      "loopSeconds": [
+        0.18,
+        0.49
+      ],
+      "sourceSha256": "e641ffd0aa478db82747fde476da4ef692360a7d0944a48b003c0dd5502e325e",
+      "sha256": "d599bcd908f839d69c5d69ba9d1726f97a7fd18810253329feea34367c82dd5a"
+    },
+    {
+      "id": "truck",
+      "file": "truck.wav",
+      "title": "Truck Horn",
+      "author": "Pierre SIBANARCO",
+      "source": "https://bigsoundbank.com/truck-horn-s2721.html",
+      "download": "https://bigsoundbank.com/UPLOAD/mp3/2721.mp3",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verifiedOn": "2026-09-26",
+      "cropSeconds": [
+        0,
+        1.4
+      ],
+      "loopSeconds": [
+        0.12,
+        0.32
+      ],
+      "sourceSha256": "506dc9b45458e2984f02b58d18a5bd56920b8ac1f305ef649ed7d3143d9c0b75",
+      "sha256": "3e6faecf32cee2b5ee543eb0b0d205777dc0466e2cf797de76752f0a7e950b9e"
+    }
+  ]
+}

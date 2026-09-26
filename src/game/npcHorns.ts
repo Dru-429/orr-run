@@ -23,11 +23,11 @@ export interface HornPlayer {s:number;lateral:number;x:number;y:number;z:number;
 export interface HornSignal {s:number;y:number;red:boolean}
 const noise=(seed:number,id:number,n:number)=>{let x=Math.imul(seed^id*374761393^n*668265263,1274126177);x=(x^(x>>>13))>>>0;return x/4294967296;};
 export class NPCHornSystem {
- events:NPCHornEvent[]=[];private stopped=0;private serial=0;private states=new Map<number,{next:number;queued:number;count:number;station:number;priority:boolean}>();
+ events:NPCHornEvent[]=[];private ambienceNext=0;private stopped=0;private serial=0;private states=new Map<number,{next:number;queued:number;count:number;station:number;priority:boolean}>();
  constructor(private seed=92926){}
- reset(){this.events=[];this.states.clear();this.stopped=0;}
+ reset(){this.events=[];this.states.clear();this.stopped=0;this.ambienceNext=0;}
  recycle(id:number){this.states.delete(id);this.events=this.events.filter(e=>e.vehicleId!==id);}
- update(dt:number,time:number,player:HornPlayer,actors:HornActor[],signals:HornSignal[]){
+ update(dt:number,time:number,player:HornPlayer,actors:HornActor[],signals:HornSignal[],visibleIds:readonly number[]=[]){
   this.stopped=player.speed<1/3.6?this.stopped+dt:0;
   const redQueue=(s:number,y:number)=>signals.some(j=>j.red&&j.s>=s-3&&j.s-s<150&&Math.abs(j.y-y)<2.5);
   const close=actors.filter(v=>!v.silent&&Math.hypot(v.x-player.x,v.z-player.z)<140),activeIds=new Set(close.map(v=>v.id));
@@ -36,6 +36,8 @@ export class NPCHornSystem {
   const priorityIds=new Set(followers.map(v=>v.id));
   this.events=this.events.filter(e=>time<e.start+e.duration&&activeIds.has(e.vehicleId)&&(!e.priority||priorityIds.has(e.vehicleId)));
   for(const e of this.events){const v=close.find(v=>v.id===e.vehicleId)!;e.x=v.x;e.y=v.y;e.z=v.z;}
+  const visible=new Set(visibleIds),ahead=close.filter(v=>visible.has(v.id)&&v.s>player.s);
+  const busyView=ahead.length>3;
   const candidates:{v:HornActor;priority:boolean}[]=[];
   for(const v of close){
    let state=this.states.get(v.id);if(!state){state={next:time+2+noise(this.seed,v.id,0)*4,queued:0,count:0,station:v.s,priority:false};this.states.set(v.id,state);}
@@ -47,10 +49,16 @@ export class NPCHornSystem {
    if(this.events.some(e=>e.vehicleId===v.id))continue;
    if(priority&&time>=state.next||priority&&state.count===0||!priority&&state.queued>2&&time>=state.next&&noise(this.seed,v.id,1)<.48)candidates.push({v,priority});
   }
+  if(busyView&&time>=this.ambienceNext&&!this.events.some(e=>visible.has(e.vehicleId)&&time<e.start+e.duration-.12)){
+   const available=ahead.filter(v=>this.states.has(v.id)&&!this.events.some(e=>e.vehicleId===v.id)&&!candidates.some(c=>c.v.id===v.id));
+   available.sort((a,b)=>(this.states.get(a.id)?.count??0)-(this.states.get(b.id)?.count??0)||noise(this.seed,a.id,this.serial)-noise(this.seed,b.id,this.serial));
+   if(available.length)candidates.push({v:available[0],priority:false});
+   this.ambienceNext=time+.12;
+  }
   candidates.sort((a,b)=>Number(b.priority)-Number(a.priority)||Math.abs(a.v.s-player.s)-Math.abs(b.v.s-player.s)||a.v.id-b.v.id);
   for(const {v,priority} of candidates){
    if(this.events.length>=4){if(!priority)break;const other=this.events.findIndex(e=>!e.priority);if(other<0)break;this.events.splice(other,1);}
-   const state=this.states.get(v.id)!,n=state.count++,r=noise(this.seed,v.id,n+2),family=v.kind==='cab'?'car':v.kind,first=HORN_PRESETS.findIndex(p=>p.family===family),duration=priority?1.15+r*.8:.28+r*.7;
+   const state=this.states.get(v.id)!,n=state.count++,r=noise(this.seed,v.id,n+2),family=v.kind==='cab'?'car':v.kind,first=HORN_PRESETS.findIndex(p=>p.family===family),duration=priority?1.15+r*.8:busyView&&visible.has(v.id)?1+r*.8:.28+r*.7;
    this.events.push({id:++this.serial,vehicleId:v.id,preset:first+Math.floor(noise(this.seed,v.id,n+50)*3),start:time,duration,x:v.x,y:v.y,z:v.z,priority});
    state.next=time+duration+(priority?.16+noise(this.seed,v.id,n+20)*.18:3+noise(this.seed,v.id,n+30)*5);
   }

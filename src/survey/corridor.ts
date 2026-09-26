@@ -12,7 +12,7 @@ export function flyoverHeight(s:number,opposite=false){
  return 0;
 }
 import oppositeFlyovers from '../data/opposite-flyovers.json';
-export const ROAD_WORK={id:'construction:station-edge',from:LEGACY_OFFSET+840,to:LEGACY_OFFSET+950,offset:5,barrierWidth:.5,height:1.05,stage:'station-works',confidence:'estimated' as const,source:'https://www.openstreetmap.org/way/1508372367',note:'Mapped station; exact barrier placement remains estimated. No potholes.'};
+export const ROAD_WORK={id:'construction:station-edge',from:LEGACY_OFFSET+840,to:LEGACY_OFFSET+950,offset:5,barrierWidth:.5,height:1.05,stage:'station-works',confidence:'estimated' as const,source:'https://www.openstreetmap.org/way/1508372367',note:'Mapped station; exact barrier placement remains estimated. Game-added potholes are recorded separately.'};
 const smooth=(t:number)=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 export function elevationAt(s:number){
  const local=s-LEGACY_OFFSET;

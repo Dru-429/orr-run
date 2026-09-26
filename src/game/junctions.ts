@@ -36,7 +36,7 @@ export class JunctionSystem {
  constructor(){this.reset();}
  reset(){this.amberEntries.clear();this.states=junctionRecords.map(record=>{let elapsed=record.phaseOffset,phase=0;while(elapsed>=record.timing[phase]){elapsed-=record.timing[phase];phase=(phase+1)%6;}const s:JunctionState={record,phase,elapsed,held:false,orr:'red',cross:'red'};lamps(s);return s;});for(const v of this.vehicles){v.active=false;v.junctionId=null;v.speed=0;v.committed=false;}}
  state(id:string){return this.states.find(s=>s.record.id===id)!;}
- tick(dt:number,playerStation:number,bodies:Body[]){
+ tick(dt:number,playerStation:number,bodies:Body[],surfaceLimit?:(s:number,x:number,speed:number,width:number,length:number)=>number){
   for(const s of this.states){const j=s.record,c=crossSectionAt(j.centre),p=pose(j.centre,(c.left+c.oppositeRight)/2);const conflict:Body={...p,y:j.elevation,length:j.halfConflict*2,width:c.oppositeRight-c.left+4};
    const occupied=s.phase===2?(bodies.some(b=>overlaps(b,conflict))||this.vehicles.some(v=>v.active&&v.junctionId!==j.id&&overlaps(crossingBody(v,this.state(v.junctionId!).record),conflict))):s.phase===5?this.vehicles.some(v=>v.active&&v.junctionId===j.id&&overlaps(crossingBody(v,j),conflict)):false;
    s.held=false;s.elapsed+=dt;if(s.elapsed>=j.timing[s.phase]){if(occupied){s.elapsed=j.timing[s.phase];s.held=true;}else{s.elapsed-=j.timing[s.phase];s.phase=(s.phase+1)%6;if(s.phase===0)for(const key of this.amberEntries.keys())if(key.startsWith(j.id+':'))this.amberEntries.delete(key);}}lamps(s);
@@ -47,7 +47,7 @@ export class JunctionSystem {
    const state=this.state(v.junctionId!),j=state.record,c=crossSectionAt(j.centre),stop=j.layout==='right-branch'?-c.oppositeRight-7:v.direction===1?c.left-5:c.oppositeRight+5;
    const gap=(stop-v.d)*v.direction-v.length/2;
    if(state.cross==='amber'&&gap>=0&&gap<v.speed*v.speed/8+v.speed*.3)v.committed=true;
-   let target=9,mergedStop=Infinity,frontGap=Infinity;if(j.layout==='right-branch'&&v.d>35){mergedStop=this.stopFor(crossingBody(v,j).s!,v.speed,v.length,false,1000+v.id);target=Math.min(target,Math.sqrt(8*Math.max(0,mergedStop-.4)));}
+   let target=9,mergedStop=Infinity,frontGap=Infinity;if(j.layout==='right-branch'&&v.d>35){const b=crossingBody(v,j);target=Math.min(target,surfaceLimit?.(b.s!,crossSectionAt(b.s!).laneCentres[0],v.speed,v.width,v.length)??25);mergedStop=this.stopFor(crossingBody(v,j).s!,v.speed,v.length,false,1000+v.id);target=Math.min(target,Math.sqrt(8*Math.max(0,mergedStop-.4)));}
    const exitD=j.layout==='right-branch'?45:v.direction===1?c.oppositeRight+9:c.left-9,exit=crossingBody({...v,d:exitD},j);
    const exitClear=!bodies.some(b=>overlaps(b,exit,3));
    // Crossing amber clears committed cars; waiting cars stay outside the conflict area.
