@@ -1,4 +1,5 @@
 import {makeStreetWearMaterials,addFootpathWear,stainConcrete} from './streetWear';
+import {surfaceDetail} from './presentationMaterials';
 import {addRoadSurfaces,makeSurfaceMaterials} from './roadSurfaceScene';
 import {addHoardings} from './hoardingScene';
 import {getPosterArtwork,isPosterTexture,disposePosterArtwork} from './poster-artwork';
@@ -132,7 +133,9 @@ function makeChunk(from:number,to:number,resources:WorldResources){
 interface WorldResources {wear:ReturnType<typeof makeStreetWearMaterials>;surfaces:ReturnType<typeof makeSurfaceMaterials>;posters:T.MeshBasicMaterial[];material:typeof material;asphalt:ReturnType<typeof asphalt>;facade:Record<Parameters<typeof facadeTexture>[0],T.MeshStandardMaterial>}
 export function makeWorld(scene:T.Scene){
  const world=new T.Group();scene.add(world);
- const palette=new Map<string,T.MeshStandardMaterial>();const sharedMaterial:typeof material=(color,roughness=.85)=>{const key=String(color)+roughness;if(!palette.has(key))palette.set(key,material(color,roughness));return palette.get(key)!;};
+ const concreteDetail=surfaceDetail(512,true);
+ const concreteColors=new Set(['#b7b5a8','#d0cec0','#b6b4a7','#b6b4a8','#c5c3b7','#bdbdb0']);
+ const palette=new Map<string,T.MeshStandardMaterial>();const sharedMaterial:typeof material=(color,roughness=.85)=>{const key=String(color)+roughness;if(!palette.has(key)){const m=material(color,roughness);if(concreteColors.has(String(color))){m.bumpMap=concreteDetail;m.bumpScale=.065;m.roughnessMap=concreteDetail;m.roughness=.95;}palette.set(key,m);}return palette.get(key)!;};
  const resources:WorldResources={wear:makeStreetWearMaterials(),surfaces:makeSurfaceMaterials(),posters:getPosterArtwork().map(map=>new T.MeshBasicMaterial({map,toneMapped:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2})),material:sharedMaterial,asphalt:asphalt(),facade:Object.fromEntries((['glass','cream','shop','adobe','silver','sattva','green-glass','blue-glass'] as const).map(k=>[k,facadeTexture(k)])) as WorldResources['facade']};
  const shared=()=>new Set<T.Material>([...resources.wear.all,...resources.surfaces.all,...resources.posters,...palette.values(),resources.asphalt,...Object.values(resources.facade)]);
  const groundShape=new T.Shape([new T.Vector2(-13000,-13000),new T.Vector2(13000,-13000),new T.Vector2(13000,13000),new T.Vector2(-13000,13000)]);

@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {surfaceDetail,varyRoad} from './presentationMaterials';
 import {pose} from './route';
 import {crossSectionAt} from '../survey/corridor';
 import {roadConditions,potholes,waterPatches,patchRadius,noise,type SurfacePatch} from './roadConditions';
@@ -18,6 +19,8 @@ function wornTexture(severe:boolean){
 export function makeSurfaceMaterials(){
  const mild=new T.MeshStandardMaterial({map:wornTexture(false),roughness:.97,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1});
  const severe=new T.MeshStandardMaterial({map:wornTexture(true),roughness:1,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-1});
+ const asphaltDetail=surfaceDetail(1024);
+ for(const m of [mild,severe]){m.color.set('#b3b7b9');m.bumpMap=asphaltDetail;m.bumpScale=.03;m.roughnessMap=asphaltDetail;varyRoad(m);}
  const holes=new T.MeshStandardMaterial({vertexColors:true,roughness:1,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2});
  const mud=new T.MeshStandardMaterial({color:'#77694e',roughness:.96});
  const water=new T.MeshStandardMaterial({color:'#81938c',roughness:.25,metalness:.25,transparent:true,opacity:.91,depthWrite:false});

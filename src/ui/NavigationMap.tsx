@@ -3,7 +3,7 @@ import {map,pose,ROUTE_LENGTH,locationName} from '../game/route';
 import {buildingLandmarks} from '../game/landmarks';
 import {junctionRecords} from '../game/junctions';
 import type {TrafficSection} from '../game/trafficMap';
-const colors={red:'#df524c',yellow:'#edbb3f',blue:'#4285eb',unknown:'#a5b1b5'};
+const colors={red:'#df524c',yellow:'#edbb3f',blue:'#4285eb',unknown:'#32b8ff'};
 export function NavigationMap({s,x=0,traffic=[]}:{s:number;x?:number;traffic?:TrafficSection[]}){
  const tile=Math.floor(s/100),player=pose(s,x),heading=useRef({s,yaw:player.yaw});
  const delta=Math.atan2(Math.sin(player.yaw-heading.current.yaw),Math.cos(player.yaw-heading.current.yaw));
@@ -22,18 +22,19 @@ export function NavigationMap({s,x=0,traffic=[]}:{s:number;x?:number;traffic?:Tr
  return <section className="navigation-map" aria-label="Live navigation map" data-station={s.toFixed(1)}>
   <div className="nav-instruction"><span className="nav-turn">↑</span><div><strong>Stay on Outer Ring Road</strong><span>{distance<1000?`${Math.round(distance/10)*10} m`:`${(distance/1000).toFixed(1)} km`} · {next?'next signal':'Marathahalli finish'}</span></div></div>
   <svg viewBox="0 0 240 320" role="img" aria-label={`Car at ${Math.round(s)} metres, ${locationName(s)}; heading-up game traffic`}>
-   <rect width="240" height="320" fill="#edf0e6"/>
-   {data.areas.map(f=><path key={f.id} d={[...f.polygons,...f.holes].map(r=>path(r)+'Z').join(' ')} fillRule="evenodd" fill={f.kind==='water'?'#a9d8e6':'#d4e3c2'}/>)}
-   {data.buildings.map(b=><path key={b.id} d={path(b.polygon)+'Z'} fill="#deded5" stroke="#d0d1c7" strokeWidth=".5"/>)}
-   {data.roads.map((r,i)=><path key={i} d={path(r.points)} fill="none" stroke="#fff" strokeWidth={r.tags.highway==='residential'?3:6} strokeLinejoin="round"/>)}
-   <path d={routePath(Math.max(0,s-150),Math.min(ROUTE_LENGTH,s+650))} fill="none" stroke="#fff" strokeWidth="13" strokeLinejoin="round"/>
+   <rect width="240" height="320" fill="#243b47"/>
+   {data.areas.map(f=><path key={f.id} d={[...f.polygons,...f.holes].map(r=>path(r)+'Z').join(' ')} fillRule="evenodd" fill={f.kind==='water'?'#204e60':'#304f47'}/>)}
+   {data.buildings.map(b=><path key={b.id} d={path(b.polygon)+'Z'} fill="#3b515e" stroke="#49616e" strokeWidth=".5"/>)}
+   {data.roads.map((r,i)=><path key={i} d={path(r.points)} fill="none" stroke="#71848b" strokeWidth={r.tags.highway==='residential'?3:6} strokeLinejoin="round"/>)}
+   <path d={routePath(Math.max(0,s-150),Math.min(ROUTE_LENGTH,s+650))} fill="none" stroke="#229fea" strokeOpacity=".3" strokeWidth="19" strokeLinejoin="round"/>
    <path d={routePath(Math.max(0,s-150),Math.min(ROUTE_LENGTH,s+650))} fill="none" stroke={colors.unknown} strokeWidth="7"/>
-   {traffic.map(t=><path key={t.from} data-traffic={t.color} d={routePath(t.from,t.to)} fill="none" stroke={colors[t.color]} strokeWidth="7" strokeLinejoin="round"/>)}
+   {traffic.map(t=><path key={t.from} data-traffic={t.color} d={routePath(t.from,t.to)} fill="none" stroke={colors[t.color]} strokeWidth="3" strokeLinejoin="round"/>)}
    {data.areas.filter(f=>['relation/8469370','relation/3120373'].includes(f.id)).map(f=>{const p=f.points[Math.floor(f.points.length/2)],[x,y]=project(p[0],p[1]);return <text key={f.id} x={x} y={y} className="nav-water">{f.tags.name}</text>;})}
    {names.map(b=><g key={b.id}><circle cx={b.x} cy={b.y+5} r="2.5" fill="#697b68"/><text x={b.x} y={b.y} className="nav-place">{b.name.length>25?b.name.slice(0,23)+'…':b.name}</text></g>)}
-   <g transform={`translate(120,255) rotate(${-(player.yaw-yaw)*180/Math.PI})`} data-player-arrow="true"><circle r="20" fill="#4285eb" opacity=".13"/><path d="M0 -14 L10 10 L0 6 L-10 10 Z" fill="#2976e5" stroke="white" strokeWidth="2.5" strokeLinejoin="round"/></g>
-   <g transform={`translate(220 21) rotate(${yaw*180/Math.PI})`}><circle r="12" fill="white"/><path d="M0 -8 L4 5 L0 2 L-4 5Z" fill="#678375"/></g>
+   <g transform={`translate(120,255) rotate(${-(player.yaw-yaw)*180/Math.PI})`} data-player-arrow="true"><circle r="20" fill="#4285eb" opacity=".13"/><path d="M0 -14 L10 10 L0 6 L-10 10 Z" fill="#f4fcff" stroke="#23aaff" strokeWidth="2.5" strokeLinejoin="round"/></g>
+   <g transform={`translate(220 21) rotate(${yaw*180/Math.PI})`}><circle r="12" fill="#142f3b" stroke="#b9d9e2"/><path d="M0 -8 L4 5 L0 2 L-4 5Z" fill="#f3f9fa"/></g>
   </svg>
   <footer><strong>{((ROUTE_LENGTH-s)/1000).toFixed(1)} km left</strong><span>Marathahalli</span></footer>
+  <div className="nav-destination-progress"><progress max={ROUTE_LENGTH} value={s} aria-label="Destination progress"/></div>
  </section>;
 }

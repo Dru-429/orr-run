@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {surfaceDetail,varyRoad} from './presentationMaterials';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
 import type {VehicleKind} from './simulation';
@@ -21,7 +22,7 @@ export class Batch {
 }
 export function asphalt(){
  let r=321;const rnd=()=>{r=(r*1664525+1013904223)>>>0;return r/4294967296;};
- const t=canvasTexture(512,512,c=>{c.fillStyle='#606460';c.fillRect(0,0,512,512);for(let i=0;i<33000;i++){const v=60+Math.floor(rnd()*70);c.fillStyle='rgba('+v+','+v+','+v+',.3)';c.fillRect(rnd()*512,rnd()*512,1.4,1.4);}c.strokeStyle='rgba(30,35,34,.15)';c.lineWidth=2;for(let i=0;i<14;i++){c.beginPath();const x=rnd()*512,y=rnd()*512;c.moveTo(x,y);c.lineTo(x+25,y+12);c.lineTo(x+40,y+40);c.stroke();}});t.wrapS=t.wrapT=T.RepeatWrapping;return new T.MeshStandardMaterial({map:t,roughness:.98});
+ const t=canvasTexture(512,512,c=>{c.fillStyle='#606460';c.fillRect(0,0,512,512);for(let i=0;i<33000;i++){const v=60+Math.floor(rnd()*70);c.fillStyle='rgba('+v+','+v+','+v+',.3)';c.fillRect(rnd()*512,rnd()*512,1.4,1.4);}c.strokeStyle='rgba(30,35,34,.15)';c.lineWidth=2;for(let i=0;i<14;i++){c.beginPath();const x=rnd()*512,y=rnd()*512;c.moveTo(x,y);c.lineTo(x+25,y+12);c.lineTo(x+40,y+40);c.stroke();}});t.wrapS=t.wrapT=T.RepeatWrapping;const detail=surfaceDetail(1024);const road=new T.MeshStandardMaterial({map:t,color:'#b1b6ba',bumpMap:detail,bumpScale:.025,roughnessMap:detail,roughness:.98});varyRoad(road);return road;
 }
 export function facadeTexture(kind:'glass'|'cream'|'shop'|'adobe'|'silver'|'sattva'|'green-glass'|'blue-glass'){
  const texture=canvasTexture(512,512,c=>{
@@ -31,12 +32,17 @@ export function facadeTexture(kind:'glass'|'cream'|'shop'|'adobe'|'silver'|'satt
    const grad=c.createLinearGradient(x,y,x,y+128);grad.addColorStop(0,glass?'#8da6ad':'#86999d');grad.addColorStop(.5,glass?'#728f98':'#354b50');grad.addColorStop(1,glass?'#a6b9bb':'#62777a');
    c.fillStyle=kind==='blue-glass'?'#38647e':kind==='green-glass'?'#527365':grad;c.fillRect(x+(glass?3:24),y+(glass?3:20),glass?122:76,glass?108:74);
    c.fillStyle='rgba(36,50,53,.22)';c.fillRect(x+4,y+80,120,25);
+   // Per-window blinds, reflected skyline and interior depth, baked into the atlas.
+   c.fillStyle=(row*7+col*3)%5===0?'rgba(214,202,151,.22)':'rgba(12,27,37,.20)';c.fillRect(x+8,y+7,110,68);
+   for(let j=0;j<4;j++){c.fillStyle='rgba(190,218,230,.10)';c.fillRect(x+12+j*26,y+12,9,38+(col*13+j*17)%44);}
+   if((row+col)%3===0){c.fillStyle='rgba(215,216,200,.22)';for(let y0=18;y0<60;y0+=5)c.fillRect(x+8,y+y0,110,2);}
+   c.fillStyle='rgba(15,29,36,.5)';c.fillRect(x+62,y+3,3,105);
    c.fillStyle=kind==='adobe'?'#e4dfd3':kind==='silver'?'#ccd1ce':'#acb9b9';if(glass)c.fillRect(x,y+113,128,8);
    if(kind==='sattva'){c.fillStyle=(row+col)%3===0?'#b65d53':(row+col)%3===1?'#527ea4':'#e1ded0';c.fillRect(x,y+95,128,18);c.fillStyle='#e7e2d5';c.fillRect(x,y,6,128);}
    if(kind==='adobe'){c.fillStyle='#eeeadf';c.fillRect(x+((row+col)%2?105:0),y,8,128);}
    if(!glass){c.fillStyle='#a9a79c';c.fillRect(x+20,y+94,84,5);c.fillStyle='rgba(0,0,0,.1)';c.fillRect(x+20,y+99,84,5);}
   }
- });texture.wrapS=texture.wrapT=T.RepeatWrapping;return new T.MeshStandardMaterial({map:texture,roughness:.44,metalness:.15});
+ });texture.wrapS=texture.wrapT=T.RepeatWrapping;return new T.MeshStandardMaterial({map:texture,roughness:['cream','shop'].includes(kind)?.85:.32,metalness:['cream','shop'].includes(kind)?0:.28});
 }
 const vehicleTemplates=new Map<string,T.Group>();
 let vehicleGlass:T.Texture|undefined;
@@ -46,7 +52,7 @@ export function vehicle(kind:VehicleKind,colorIndex:number,variant:'city'|'touri
  const group=new T.Group(),b=new Batch();
  const colors=['#efeee3','#354a50','#adbbb8','#afa698','#8d3f36','#536c7d','#d5d5ce'];
  const paint=material(kind==='auto'?'#37694b':kind==='cab'?'#efede3':kind==='bus'?(tourist?'#e8e2ce':'#328a9c'):kind==='truck'?'#b68b57':colors[colorIndex%7],.45);
- paint.metalness=.2;
+ paint.metalness=.3;paint.roughness=.3;
  const trim=material('#20292b',.65),glass=material('#253d49',.17),chrome=material('#a7b3b9',.28),rubber=material('#171c20',.95),cream=material(tourist?'#53777b':'#e5bd41');
  glass.metalness=.25;chrome.metalness=.65;
  vehicleGlass??=canvasTexture(32,128,c=>{const g=c.createLinearGradient(0,0,0,128);g.addColorStop(0,'#b2c9d0');g.addColorStop(.45,'#657f90');g.addColorStop(.5,'#455e6c');g.addColorStop(1,'#243947');c.fillStyle=g;c.fillRect(0,0,32,128);});glass.map=vehicleGlass;glass.color.set(tourist?'#40545c':'#b7cbd2');
@@ -109,6 +115,11 @@ export function vehicle(kind:VehicleKind,colorIndex:number,variant:'city'|'touri
   box(width-.25,.23,length-.3,0,.69,0,trim);
   for(const x of [-width/2,width/2])for(const z of [-(length/2-1.4),length/2-1.4])wheel(x,z,.5);
  }
+ if(kind==='car'&&colorIndex%3===1){
+  // Compact hatch profile, inside the existing car bounds and collision height.
+  box(1.22,.035,.32,0,1.60,.57,paint);box(.045,.035,1.12,-.53,1.61,0,trim);box(.045,.035,1.12,.53,1.61,0,trim);
+ }
+ if(kind==='bus'){for(const side of [-1,1]){for(let z=-4;z<4;z+=1.4)box(.025,.035,.95,side*1.285,1.13,z,chrome);box(.025,.42,1.15,side*1.29,.96,3.5,trim);for(let y=.8;y<1.14;y+=.07)box(.03,.018,1.1,side*1.31,y,3.5,chrome);}}
  b.finish(group,true);
  if(kind==='bus'&&!tourist){
   const logoMaterial=new T.MeshBasicMaterial({map:labelTexture('BMTC','#ffffff'),transparent:true,depthWrite:false,toneMapped:false});
