@@ -47,3 +47,25 @@ React, Three.js, Vite, Lucide, PostHog and other packages retain their own licen
 See `package.json`, `package-lock.json` and the license files distributed with each
 installed package. Original game models are generated in code; any incorporated
 third-party assets must be documented here with their source and license.
+
+## Roadster model and flight concepts
+
+The procedural Roadster proportions, wheel/nozzle layout, quaternion integration,
+body-rate stabilisation and cold-gas flight-control concepts are adapted from
+[Tesla Roadster Simulator](https://github.com/eduardmur/tesla-roadster-simulator),
+Copyright (c) 2026 Tesla Roadster Simulator contributors, under the MIT License.
+The adapted model contains no Tesla logos or badges. Tesla and Roadster are
+trademarks of Tesla, Inc.; this independent fan project is not affiliated with or
+endorsed by Tesla, Inc. or SpaceX.
+
+MIT License — Copyright (c) 2026 Tesla Roadster Simulator contributors.
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the “Software”), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to inclusion of this copyright and permission notice. The Software is
+provided “as is”, without warranty of any kind, express or implied, including
+merchantability, fitness for a particular purpose and noninfringement. In no
+event shall the authors or copyright holders be liable for any claim, damages or
+other liability arising from, out of or in connection with the Software or its use.

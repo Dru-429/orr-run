@@ -5,23 +5,25 @@ import {NPCHornSystem,type NPCHornEvent,type HornActor} from './npcHorns';
 import {collisionDamage,type ImpactEvent} from './impact';
 import {TrafficOverview,type TrafficSection} from './trafficMap';
 import {JunctionSystem,roadBody,crossingBody,overlaps} from './junctions';
-import {ROUTE_LENGTH,pose} from './route';
+import {ROUTE_LENGTH,nearestStation,pose} from './route';
 import {driveBounds,laneCentresAt} from '../survey/corridor';
 import {TRAFFIC_CONFIG,TRAFFIC_COUNT} from '../data/traffic';
+import {RoadsterFlightController,type FlightSnapshot} from './roadsterFlight';
 export type VehicleKind='car'|'cab'|'auto'|'bike'|'bus'|'truck';
 export type Phase='ready'|'driving'|'paused'|'looping'|'ended';
-export interface Input {throttle:boolean;brake:boolean;left:boolean;right:boolean;horn:boolean}
-export const emptyInput=():Input=>({throttle:false,brake:false,left:false,right:false,horn:false});
+export interface Input {throttle:boolean;brake:boolean;left:boolean;right:boolean;horn:boolean;ascend?:boolean;descend?:boolean;yawLeft?:boolean;yawRight?:boolean}
+export const emptyInput=():Input=>({throttle:false,brake:false,left:false,right:false,horn:false,ascend:false,descend:false,yawLeft:false,yawRight:false});
 export interface Traffic {weave?:WeaveState;id:number;s:number;x:number;lane:number;targetLane:number;speed:number;cruise:number;kind:VehicleKind;length:number;width:number;opposite:boolean;braking:boolean;changeTimer:number;passed:boolean;color:number;hornPressure:number;gestureUntil:number;gestureCooldown:number;responding:boolean}
-export interface Snapshot {phase:Phase;s:number;x:number;speed:number;health:number;distance:number;lap:number;collisions:number;overtakes:number;time:number;steer:number;impact:number;impactEvent:ImpactEvent|null;trafficSections:TrafficSection[];npcHorns:NPCHornEvent[];fade:number;surface:Suspension}
+export interface Snapshot {phase:Phase;s:number;x:number;speed:number;health:number;distance:number;lap:number;collisions:number;overtakes:number;time:number;steer:number;impact:number;impactEvent:ImpactEvent|null;trafficSections:TrafficSection[];npcHorns:NPCHornEvent[];fade:number;surface:Suspension;flight:FlightSnapshot}
 export const DIMENSIONS:Record<VehicleKind,[number,number]>={car:[4.3,1.85],cab:[4.2,1.8],auto:[2.7,1.5],bike:[2.05,.7],bus:[10.8,2.6],truck:[8.0,2.5]};
 function random(seed:number){let a=seed;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
 export class Simulation {
+  flight=new RoadsterFlightController();
   visibleHornActors:readonly number[]=[];roadResponse=new RoadResponse();npcHorns:NPCHornSystem;private hornStep=0;
   phase:Phase='ready';s=0;x=laneCentresAt(0)[0];speed=0;health=100;distance=0;lap=1;collisions=0;overtakes=0;time=0;steer=0;impact=0;fade=0;
   impactEvent:ImpactEvent|null=null;private impactId=0;private contacts=new Map<string,number>();private frameContacts=new Set<string>();private hornTarget:number|null=null;private hornGap=0;private overview=new TrafficOverview();
   junctions=new JunctionSystem();traffic:Traffic[]=[];private seed:number;private rng:()=>number;private cooldown=0;private loopTimer=0;private loopReset=false;private resumePhase:Phase='driving';
-  constructor(seed=TRAFFIC_CONFIG.seed){this.seed=seed;this.npcHorns=new NPCHornSystem(seed);this.rng=random(seed);this.populate();}
+  constructor(seed=TRAFFIC_CONFIG.seed){this.seed=seed;this.npcHorns=new NPCHornSystem(seed);this.rng=random(seed);this.populate();this.flight.reset(this.s,this.x);}
   populate(){
     this.npcHorns.reset();this.visibleHornActors=[];this.hornStep=0;
     const r=this.rng; const kinds:VehicleKind[]=['car','car','cab','auto','bike','car','bus','bike','truck','auto'];
@@ -46,8 +48,9 @@ export class Simulation {
   start(){if(this.phase==='ready')this.phase='driving';}
   pause(){if(this.phase==='driving'||this.phase==='looping'){this.resumePhase=this.phase;this.phase='paused';}}
   resume(){if(this.phase==='paused')this.phase=this.resumePhase;}
-  restart(){this.roadResponse.reset();this.s=0;this.x=laneCentresAt(0)[0];this.speed=0;this.health=100;this.distance=0;this.lap=1;this.collisions=0;this.overtakes=0;this.time=0;this.steer=0;this.impact=0;this.fade=0;this.cooldown=0;this.contacts.clear();this.impactEvent=null;this.overview.reset();this.hornTarget=null;this.hornGap=0;this.rng=random(++this.seed);this.populate();this.junctions.reset();this.phase='driving';}
-  snapshot():Snapshot{return {phase:this.phase,s:this.s,x:this.x,speed:this.speed,health:this.health,distance:this.distance,lap:this.lap,collisions:this.collisions,overtakes:this.overtakes,time:this.time,steer:this.steer,impact:this.impact,impactEvent:this.impactEvent,trafficSections:this.overview.sections,npcHorns:this.npcHorns.events,fade:this.fade,surface:{...this.roadResponse.state}};}
+  restart(){this.roadResponse.reset();this.s=0;this.x=laneCentresAt(0)[0];this.speed=0;this.health=100;this.distance=0;this.lap=1;this.collisions=0;this.overtakes=0;this.time=0;this.steer=0;this.impact=0;this.fade=0;this.cooldown=0;this.contacts.clear();this.impactEvent=null;this.overview.reset();this.hornTarget=null;this.hornGap=0;this.rng=random(++this.seed);this.populate();this.junctions.reset();this.flight.reset(this.s,this.x);this.phase='driving';}
+  toggleFlightMode(){return this.flight.toggle(this.s,this.x,this.speed);}
+  snapshot():Snapshot{return {phase:this.phase,s:this.s,x:this.x,speed:this.speed,health:this.health,distance:this.distance,lap:this.lap,collisions:this.collisions,overtakes:this.overtakes,time:this.time,steer:this.steer,impact:this.impact,impactEvent:this.impactEvent,trafficSections:this.overview.sections,npcHorns:this.npcHorns.events,fade:this.fade,surface:{...this.roadResponse.state},flight:this.flight.snapshot()};}
   update(dt:number,input:Input){
     dt=Math.min(dt,.05);if(dt<=0)return;
     if(this.phase==='looping'){
@@ -60,6 +63,12 @@ export class Simulation {
     }
     if(this.phase!=='driving')return;
     this.time+=dt;this.cooldown=Math.max(0,this.cooldown-dt);this.impact=this.impactEvent?Math.max(0,1-(this.time-this.impactEvent.time)/.6)*this.impactEvent.severity:0;this.frameContacts.clear();
+    if(this.flight.active&&this.flight.state==='GROUNDED'&&input.ascend)this.flight.beginTakeoff(this.s,this.x,this.speed);
+    if(this.flight.state!=='GROUNDED'){
+      this.flight.step(dt,{lift:!!input.ascend,descend:!!input.descend,pitchDown:input.throttle,pitchUp:input.brake,rollLeft:input.left,rollRight:input.right,yawLeft:!!input.yawLeft,yawRight:!!input.yawRight});
+      const f=this.flight.snapshot(),nearest=nearestStation(f.position[0],f.position[2]);this.s=Math.max(0,Math.min(ROUTE_LENGTH,nearest.s));this.x=nearest.offset;const p=pose(this.s);this.speed=f.state==='GROUNDED'?Math.max(0,f.velocity[0]*p.tx+f.velocity[2]*p.tz):Math.hypot(...f.velocity);this.steer=0;this.roadResponse.reset();
+      this.junctions.tick(dt,this.s,[...parkedBuses.map(b=>b.body),...this.traffic.filter(v=>Math.abs(v.s-this.s)<150).map(v=>trafficBody(v))],approachingSurfaceLimit);this.updateTraffic(dt,false);this.overview.update(dt,this.s,this.traffic.filter(v=>!v.opposite).map(v=>({s:v.s,speed:v.speed})));this.distance=Math.max(this.distance,(this.lap-1)*ROUTE_LENGTH+this.s);return;
+    }
     const previousS=this.s,previousX=this.x;
     const target=(Number(input.right)-Number(input.left));this.steer+=(target-this.steer)*Math.min(1,dt*7);
     let acceleration=input.brake?-10.5:input.throttle?4.0-this.speed*.075:-(.4+this.speed*.024);
@@ -108,6 +117,7 @@ export class Simulation {
       this.npcHorns.update(this.hornStep,this.time,{...p,s:this.s,lateral:this.x,speed:this.speed},actors,this.junctions.states.map(j=>({s:j.record.stopLine,y:j.record.elevation,red:j.orr!=='green'})),this.visibleHornActors);this.hornStep=0;
     }
     this.roadResponse.update(dt,previousS,previousX,this.s,this.x,this.speed);
+    this.flight.grounded(dt,this.speed<.5,this.s,this.x,this.speed);
     this.distance=Math.max(this.distance,(this.lap-1)*ROUTE_LENGTH+this.s);
     if(this.health<=0){this.health=0;this.phase='ended';this.speed=0;}
     else if(this.s>=ROUTE_LENGTH-0.001){this.phase='looping';this.loopTimer=0;this.loopReset=false;}
@@ -125,9 +135,9 @@ export class Simulation {
     if(id!==this.hornTarget||this.hornGap>.5){for(const v of this.traffic){v.hornPressure=0;v.responding=false;}this.hornTarget=id;}
     if(horn&&id!==null){const v=this.traffic.find(v=>v.id===id)!;v.hornPressure+=dt;v.responding=v.hornPressure>=.5;}
   }
-  private updateTraffic(dt:number){
+  private updateTraffic(dt:number,includePlayer=true){
     for(const v of this.traffic)ensureWeave(v,this.seed);
-    const player={s:this.s,x:this.x,speed:this.speed,velocity:this.steer*Math.min(4.7,this.speed*.38)};
+    const player=includePlayer?{s:this.s,x:this.x,speed:this.speed,velocity:this.steer*Math.min(4.7,this.speed*.38)}:{s:-1e9,x:0,speed:0,velocity:0};
     const crossingBodies=this.junctions.vehicles.filter(v=>v.active).map(v=>crossingBody(v,this.junctions.state(v.junctionId!).record));
     const neighbourhood=new Map(this.traffic.map(v=>[v.id,this.traffic.filter(o=>Math.abs(o.s-v.s)<120)]));
     const decisions=this.traffic.map(v=>{
@@ -140,7 +150,7 @@ export class Simulation {
         const d=(o.s-v.s)*direction-longitudinalHalf(o)-longitudinalHalf(v);
         if(d>=-1&&d<gap){gap=d;frontSpeed=o.speed;}
       }
-      if(!v.opposite&&Math.abs(this.x-v.x)<(1.8+v.width)/2+.4&&this.s>v.s){const d=this.s-v.s-(4.2+v.length)/2;if(d<gap){gap=d;frontSpeed=this.speed;}}
+      if(includePlayer&&!v.opposite&&Math.abs(this.x-v.x)<(1.8+v.width)/2+.4&&this.s>v.s){const d=this.s-v.s-(4.2+v.length)/2;if(d<gap){gap=d;frontSpeed=this.speed;}}
       // Merged junction vehicles participate in the same leader/follower rules.
       if(crossingBodies.length){const body=trafficBody(v),tx=-Math.sin(body.yaw),tz=-Math.cos(body.yaw);for(const b of crossingBodies){if(Math.abs(body.y-b.y)>2.5||Math.cos(body.yaw-b.yaw)<.85)continue;const dx=b.x-body.x,dz=b.z-body.z,forward=dx*tx+dz*tz,lateral=Math.abs(-dx*tz+dz*tx);if(forward<=0||lateral>(v.width+b.width)/2+.15)continue;const d=forward-(v.length+b.length)/2;if(d<gap){gap=Math.max(0,d);frontSpeed=b.speed??0;}}}
       // Slow waves feel busy, but recover and never permanently seal the three lanes.
@@ -177,7 +187,7 @@ export class Simulation {
         const candidates=[v.lane-1,v.lane+1].filter(l=>l>=0&&l<lanes.length).map(l=>({lane:l,gap:Math.min(150,parkedGap(v.s,lanes[l],v.length,v.width,v.opposite),...this.traffic.filter(o=>o!==v&&o.opposite===v.opposite&&(o.s-v.s)*direction>0&&Math.abs(o.x-lanes[l])<(o.width+v.width)/2+.8).map(o=>(o.s-v.s)*direction-(o.length+v.length)/2))}));
         if(escape)candidates.sort((a,b)=>b.gap-a.gap||a.lane-b.lane);
         else if(this.rng()<.5)candidates.reverse();
-        for(const choice of candidates)if((escape?choice.gap>front+4:choice.gap>Math.max(24,v.speed*3))&&this.laneSafe(v,lanes[choice.lane],crossingBodies)){v.targetLane=choice.lane;break;}
+        for(const choice of candidates)if((escape?choice.gap>front+4:choice.gap>Math.max(24,v.speed*3))&&this.laneSafe(v,lanes[choice.lane],crossingBodies,includePlayer)){v.targetLane=choice.lane;break;}
         // Coaches wander less often than nimble autos and bikes; failed requests also wait.
         v.changeTimer=escape?4+this.rng()*9:(v.kind==='bus'?18:9)+this.rng()*16;
       }
@@ -208,7 +218,7 @@ export class Simulation {
         // At a bend a partially completed merge can lose its reserved space.
         // Retreat incrementally into the source lane instead of holding two lanes forever.
         const retreatX=oldX+(lanes[v.lane]-oldX)*Math.min(1,dt*.8)*.22;
-        if(!isWeaver(v)&&v.targetLane!==v.lane&&!overlaps(roadBody(oldS,lanes[v.lane],v.length+12,v.width,v.opposite),roadBody(this.s,this.x,4.2,1.8),.4)&&safe(oldS,retreatX)){v.targetLane=v.lane;v.x=retreatX;v.changeTimer=4;}
+        if(!isWeaver(v)&&v.targetLane!==v.lane&&(!includePlayer||!overlaps(roadBody(oldS,lanes[v.lane],v.length+12,v.width,v.opposite),roadBody(this.s,this.x,4.2,1.8),.4))&&safe(oldS,retreatX)){v.targetLane=v.lane;v.x=retreatX;v.changeTimer=4;}
         else v.x=oldX;
         v.s=oldS;v.speed=0;v.braking=true;if(v.weave){v.weave.velocity=0;v.weave.timer=0;v.weave.targetX=v.x;}
       }
@@ -218,7 +228,7 @@ export class Simulation {
       if(v.s>this.s+940)this.recycle(v,this.s-180,true);
     }
   }
-  private laneSafe(v:Traffic,targetX:number,crossingBodies:ReturnType<typeof crossingBody>[]){
+  private laneSafe(v:Traffic,targetX:number,crossingBodies:ReturnType<typeof crossingBody>[],includePlayer=true){
     const lo=Math.min(v.x,targetX)-v.width/2-.5,hi=Math.max(v.x,targetX)+v.width/2+.5;
     for(const o of this.traffic){if(o===v||o.opposite!==v.opposite)continue;const ox=reservedX(o);if(Math.max(o.x,ox)+o.width/2<lo||Math.min(o.x,ox)-o.width/2>hi)continue;
       const gap=Math.abs(o.s-v.s)-(o.length+v.length)/2,closing=(o.s-v.s)*(v.opposite?-1:1)>0?Math.max(0,v.speed-o.speed):Math.max(0,o.speed-v.speed);
@@ -227,7 +237,7 @@ export class Simulation {
       // escape into an empty lane. Destination traffic still reserves closing space.
       if(gap<(destination?Math.max(12,closing*3+7):.4))return false;
     }
-    if(!v.opposite&&this.x+1>lo&&this.x-1<hi&&Math.abs(this.s-v.s)<Math.max(18,Math.abs(this.speed-v.speed)*3+7))return false;
+    if(includePlayer&&!v.opposite&&this.x+1>lo&&this.x-1<hi&&Math.abs(this.s-v.s)<Math.max(18,Math.abs(this.speed-v.speed)*3+7))return false;
     if(parkedBuses.some(b=>Math.abs(b.s-v.s)<30&&overlaps(roadBody(v.s,(v.x+targetX)/2,v.length,hi-lo,v.opposite),b.body,.25)))return false;
     return !crossingBodies.some(o=>{if(Math.abs((o.s??v.s)-v.s)>60)return false;const destination=roadBody(v.s,targetX,v.length+24,v.width,v.opposite),swept=roadBody(v.s,(v.x+targetX)/2,v.length,hi-lo,v.opposite);return overlaps(swept,o,.3)||overlaps(destination,o,.5);});
   }

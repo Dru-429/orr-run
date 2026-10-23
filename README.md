@@ -27,6 +27,7 @@ Length is measured along the mapped horizontal centreline, not as a straight lin
 ### What’s in the game
 
 - A right-hand-drive cockpit, speedometer, rear-view mirror, manual pedals and steering, and automatic gears.
+- A procedurally modelled white Roadster with a switchable chase camera, a 5× thruster-fuel reserve, and shader-driven cold-gas flight effects: take off, retain momentum, control pitch/roll/yaw, land and continue driving.
 - Mixed traffic: 158 moving vehicles (105 same-direction, 53 opposing), approximately 25% above the original pool, plus 12 crossing slots and ten parked coaches. Cars, cabs, autos, motorcycles, BMTC buses and trucks share the road.
 - Game-added road conditions: 50% mildly rough, 20% severely damaged and 30% smooth, plus six shallow waterlogged patches. Wheel-path bumps, speed-sensitive suspension and progressive slowdown cause no health loss. Reduced motion keeps the view steady. See [road-condition notes](docs/ROAD_CONDITIONS.md).
 - Aggressive gap-seeking autos and motorcycles that filter between queues, straddle markings and make braking-room-checked cut-ins in both directions. Buses retain occasional lane changes, alongside queues, signals and horn reactions. Blocked drivers can respond with a brief comic middle-finger gesture.
@@ -87,6 +88,10 @@ The checked-in map and assets are sufficient to run the game. You do not need to
 | Brake | S or ↓ |
 | Steer | A / D or ← / → |
 | Horn | Space |
+| Switch cockpit / chase camera | C or the camera control |
+| Toggle Roadster flight mode | Alt + Enter |
+| Flight lift / descend | Space / Shift |
+| Flight pitch / roll / yaw | W S / A D / Q E |
 | Look left / right | Q / E, or drag the windshield |
 | Pause / resume | Escape or the pause control |
 | Restart, sound, graphics, camera motion | On-screen menus |
