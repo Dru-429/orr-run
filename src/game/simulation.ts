@@ -5,10 +5,13 @@ import {NPCHornSystem,type NPCHornEvent,type HornActor} from './npcHorns';
 import {collisionDamage,type ImpactEvent} from './impact';
 import {TrafficOverview,type TrafficSection} from './trafficMap';
 import {JunctionSystem,roadBody,crossingBody,overlaps} from './junctions';
-import {ROUTE_LENGTH,nearestStation,pose} from './route';
-import {driveBounds,laneCentresAt} from '../survey/corridor';
+import {ROUTE_LENGTH,nearestStation,pose,roadHeight} from './route';
+import {driveBounds,laneCentresAt,ROAD_WORK} from '../survey/corridor';
 import {TRAFFIC_CONFIG,TRAFFIC_COUNT} from '../data/traffic';
-import {RoadsterFlightController,type FlightSnapshot} from './roadsterFlight';
+import {RoadsterFlightController,rotate,type FlightCrash,type FlightSnapshot,type V3} from './roadsterFlight';
+import {buildings} from '../survey/records';
+import {contains} from '../survey/geometry';
+import type {Point} from '../survey/types';
 export type VehicleKind='car'|'cab'|'auto'|'bike'|'bus'|'truck';
 export type Phase='ready'|'driving'|'paused'|'looping'|'ended';
 export interface Input {throttle:boolean;brake:boolean;left:boolean;right:boolean;horn:boolean;ascend?:boolean;descend?:boolean;yawLeft?:boolean;yawRight?:boolean}
@@ -16,6 +19,11 @@ export const emptyInput=():Input=>({throttle:false,brake:false,left:false,right:
 export interface Traffic {weave?:WeaveState;id:number;s:number;x:number;lane:number;targetLane:number;speed:number;cruise:number;kind:VehicleKind;length:number;width:number;opposite:boolean;braking:boolean;changeTimer:number;passed:boolean;color:number;hornPressure:number;gestureUntil:number;gestureCooldown:number;responding:boolean}
 export interface Snapshot {phase:Phase;s:number;x:number;speed:number;health:number;distance:number;lap:number;collisions:number;overtakes:number;time:number;steer:number;impact:number;impactEvent:ImpactEvent|null;trafficSections:TrafficSection[];npcHorns:NPCHornEvent[];fade:number;surface:Suspension;flight:FlightSnapshot}
 export const DIMENSIONS:Record<VehicleKind,[number,number]>={car:[4.3,1.85],cab:[4.2,1.8],auto:[2.7,1.5],bike:[2.05,.7],bus:[10.8,2.6],truck:[8.0,2.5]};
+interface FlightCollision {obstacle:string;severity:number;safePosition:V3;direction:{x:number;z:number}}
+const CHASSIS_LENGTH=4.34,CHASSIS_WIDTH=2,CHASSIS_HALF_HEIGHT=.58;
+const distanceToSegmentSquared=(p:Point,a:Point,b:Point)=>{const dx=b[0]-a[0],dz=b[1]-a[1],l=dx*dx+dz*dz||1,t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/l)),x=a[0]+dx*t,z=a[1]+dz*t;return (p[0]-x)**2+(p[1]-z)**2;};
+function footprintHit(point:Point,polygon:Point[],radius:number){if(contains(point,polygon))return true;for(let i=1;i<polygon.length;i++)if(distanceToSegmentSquared(point,polygon[i-1],polygon[i])<=radius*radius)return true;return false;}
+const vehicleHeight=(kind:VehicleKind)=>kind==='bus'||kind==='truck'?3.45:kind==='auto'?1.8:kind==='bike'?1.5:1.7;
 function random(seed:number){let a=seed;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};}
 export class Simulation {
   flight=new RoadsterFlightController();
@@ -63,11 +71,24 @@ export class Simulation {
     }
     if(this.phase!=='driving')return;
     this.time+=dt;this.cooldown=Math.max(0,this.cooldown-dt);this.impact=this.impactEvent?Math.max(0,1-(this.time-this.impactEvent.time)/.6)*this.impactEvent.severity:0;this.frameContacts.clear();
+    if(this.flight.state==='CRASHED'||this.flight.state==='RECOVERING'){
+      const recovery=this.flight.advanceRecovery(dt),safe=this.flight.lastSafeGroundedTransform;
+      if(recovery==='recovering'||recovery==='complete'){this.s=safe.s;this.x=safe.x;}
+      this.speed=0;this.steer=0;this.roadResponse.reset();this.updateFlightWorld(dt);this.distance=Math.max(this.distance,(this.lap-1)*ROUTE_LENGTH+this.s);
+      if(this.health<=0){this.health=0;this.phase='ended';}return;
+    }
     if(this.flight.active&&this.flight.state==='GROUNDED'&&input.ascend)this.flight.beginTakeoff(this.s,this.x,this.speed);
     if(this.flight.state!=='GROUNDED'){
-      this.flight.step(dt,{lift:!!input.ascend,descend:!!input.descend,pitchDown:input.throttle,pitchUp:input.brake,rollLeft:input.left,rollRight:input.right,yawLeft:!!input.yawLeft,yawRight:!!input.yawRight});
-      const f=this.flight.snapshot(),nearest=nearestStation(f.position[0],f.position[2]);this.s=Math.max(0,Math.min(ROUTE_LENGTH,nearest.s));this.x=nearest.offset;const p=pose(this.s);this.speed=f.state==='GROUNDED'?Math.max(0,f.velocity[0]*p.tx+f.velocity[2]*p.tz):Math.hypot(...f.velocity);this.steer=0;this.roadResponse.reset();
-      this.junctions.tick(dt,this.s,[...parkedBuses.map(b=>b.body),...this.traffic.filter(v=>Math.abs(v.s-this.s)<150).map(v=>trafficBody(v))],approachingSurfaceLimit);this.updateTraffic(dt,false);this.overview.update(dt,this.s,this.traffic.filter(v=>!v.opposite).map(v=>({s:v.s,speed:v.speed})));this.distance=Math.max(this.distance,(this.lap-1)*ROUTE_LENGTH+this.s);return;
+      const previous:[number,number,number]=[...this.flight.position];
+      let crash=this.flight.step(dt,{lift:!!input.ascend,descend:!!input.descend,pitchDown:input.throttle,pitchUp:input.brake,rollLeft:input.left,rollRight:input.right,yawLeft:!!input.yawLeft,yawRight:!!input.yawRight});
+      let crashDirection={x:0,z:1},obstacle=crash?`flight:${crash.kind}`:'';
+      if(!crash){
+        const moving=this.flight.snapshot(),collision=this.flightCollision(previous,moving.position,moving.orientation,moving.velocity);
+        if(collision){this.flight.position=[...collision.safePosition];crash=this.flight.crash('solid-impact',collision.severity,Math.hypot(...moving.velocity));crashDirection=collision.direction;obstacle=collision.obstacle;}
+      }
+      if(crash)this.applyFlightCrash(crash,obstacle,crashDirection);
+      const f=this.flight.snapshot(),nearest=nearestStation(f.position[0],f.position[2]);this.s=Math.max(0,Math.min(ROUTE_LENGTH,nearest.s));this.x=nearest.offset;const p=pose(this.s);this.speed=f.state==='GROUNDED'?Math.max(0,f.velocity[0]*p.tx+f.velocity[2]*p.tz):f.state==='CRASHED'||f.state==='RECOVERING'?0:Math.hypot(...f.velocity);this.steer=0;this.roadResponse.reset();
+      this.updateFlightWorld(dt);this.distance=Math.max(this.distance,(this.lap-1)*ROUTE_LENGTH+this.s);if(this.health<=0){this.health=0;this.phase='ended';this.speed=0;}return;
     }
     const previousS=this.s,previousX=this.x;
     const target=(Number(input.right)-Number(input.left));this.steer+=(target-this.steer)*Math.min(1,dt*7);
@@ -118,9 +139,57 @@ export class Simulation {
     }
     this.roadResponse.update(dt,previousS,previousX,this.s,this.x,this.speed);
     this.flight.grounded(dt,this.speed<.5,this.s,this.x,this.speed);
+    if(this.frameContacts.size===0&&this.x>=leftLimit&&this.x<=rightLimit&&Number.isFinite(this.s)&&Number.isFinite(this.x)&&Number.isFinite(this.speed))this.flight.rememberSafeGrounded(this.s,this.x,this.time);
     this.distance=Math.max(this.distance,(this.lap-1)*ROUTE_LENGTH+this.s);
     if(this.health<=0){this.health=0;this.phase='ended';this.speed=0;}
     else if(this.s>=ROUTE_LENGTH-0.001){this.phase='looping';this.loopTimer=0;this.loopReset=false;}
+  }
+  private updateFlightWorld(dt:number){
+    this.junctions.tick(dt,this.s,[...parkedBuses.map(b=>b.body),...this.traffic.filter(v=>Math.abs(v.s-this.s)<150).map(v=>trafficBody(v))],approachingSurfaceLimit);
+    this.updateTraffic(dt,false);
+    this.overview.update(dt,this.s,this.traffic.filter(v=>!v.opposite).map(v=>({s:v.s,speed:v.speed})));
+  }
+  private applyFlightCrash(crash:FlightCrash,obstacle:string,direction:{x:number;z:number}){
+    const damage=collisionDamage(8+crash.severity*30);
+    this.health=Math.max(0,Math.min(100,this.health-damage));this.collisions++;this.cooldown=2;
+    this.impactEvent={id:++this.impactId,obstacle:obstacle||`flight:${crash.kind}`,time:this.time,severity:crash.severity,direction};this.impact=crash.severity;
+  }
+  private flightCollision(from:V3,to:V3,orientation:FlightSnapshot['orientation'],velocity:V3):FlightCollision|null{
+    if(![...from,...to,...orientation,...velocity].every(Number.isFinite))return null;
+    // Deterministic CCD equivalent: test the complete motion segment in sub-metre increments
+    // before committing it, using a chassis box that matches the procedural Roadster body.
+    const forward=rotate(orientation,[0,0,1]),yaw=Math.atan2(forward[0],forward[2]),travel=Math.hypot(to[0]-from[0],to[1]-from[1],to[2]-from[2]);
+    const steps=Math.max(1,Math.ceil(travel/.55)),horizontalSpeed=Math.hypot(velocity[0],velocity[2]),speed=Math.hypot(...velocity),direction=horizontalSpeed>.01?{x:velocity[0]/horizontalSpeed,z:velocity[2]/horizontalSpeed}:{x:0,z:1};
+    const dynamic=[
+      ...this.traffic.map(v=>({id:`flight-traffic:${v.id}`,body:trafficBody(v),height:vehicleHeight(v.kind),speed:v.speed})),
+      ...parkedBuses.map(b=>({id:`flight-${b.id}`,body:b.body,height:3.45,speed:0})),
+      ...this.junctions.vehicles.filter(v=>v.active).map(v=>({id:`flight-cross:${v.id}`,body:crossingBody(v,this.junctions.state(v.junctionId!).record),height:vehicleHeight(v.kind),speed:v.speed})),
+    ];
+    let safePosition:[number,number,number]=[...from];
+    for(let i=0;i<=steps;i++){
+      const t=i/steps,sample:[number,number,number]=[from[0]+(to[0]-from[0])*t,from[1]+(to[1]-from[1])*t,from[2]+(to[2]-from[2])*t];
+      const near=nearestStation(sample[0],sample[2]),bottom=sample[1]-CHASSIS_HALF_HEIGHT,top=sample[1]+CHASSIS_HALF_HEIGHT;
+      if(near.s>=ROAD_WORK.from-1.5&&near.s<=ROAD_WORK.to+1.5&&Math.abs(near.offset-ROAD_WORK.offset)<CHASSIS_WIDTH/2+ROAD_WORK.barrierWidth/2&&bottom<roadHeight(near.s)+ROAD_WORK.height&&top>roadHeight(near.s))return {obstacle:'flight:construction-barrier',severity:Math.min(1,.3+speed/28),safePosition,direction};
+
+      const sin=Math.sin(yaw),cos=Math.cos(yaw),rightX=cos,rightZ=-sin,forwardX=sin,forwardZ=cos;
+      const probes:Point[]=[[sample[0],sample[2]]];
+      for(const longitudinal of [-CHASSIS_LENGTH/2,CHASSIS_LENGTH/2])for(const lateral of [-CHASSIS_WIDTH/2,CHASSIS_WIDTH/2])probes.push([sample[0]+forwardX*longitudinal+rightX*lateral,sample[2]+forwardZ*longitudinal+rightZ*lateral]);
+      for(const building of buildings){
+        if(near.s<building.from-8||near.s>building.to+8)continue;
+        const height=Number(building.attributes.height.value??building.model.height);if(bottom>height||top<0)continue;
+        const polygons=building.geometry.polygons?.length?building.geometry.polygons:[building.geometry.coordinates],holes=building.geometry.holes??[];
+        const hit=probes.some(point=>polygons.some(polygon=>footprintHit(point,polygon,.2))&&!holes.some(hole=>contains(point,hole)&&hole.every((p,index)=>index===0||distanceToSegmentSquared(point,hole[index-1],p)>.04)));
+        if(hit)return {obstacle:`flight:${building.id}`,severity:Math.min(1,.35+speed/24),safePosition,direction};
+      }
+
+      for(const other of dynamic){
+        if(Math.abs(other.body.x-sample[0])>15||Math.abs(other.body.z-sample[2])>15||bottom>other.body.y+other.height||top<other.body.y)continue;
+        const chassis={x:sample[0],z:sample[2],y:other.body.y,yaw,length:CHASSIS_LENGTH,width:CHASSIS_WIDTH};
+        if(overlaps(chassis,other.body,.08))return {obstacle:other.id,severity:Math.min(1,.3+Math.hypot(horizontalSpeed,other.speed)/26),safePosition,direction};
+      }
+      safePosition=sample;
+    }
+    return null;
   }
   private contact(obstacle:string,rawDamage:number,closingSpeed:number,direction:{x:number;z:number},moving=true){
     this.frameContacts.add(obstacle);if(this.contacts.has(obstacle)||!moving)return;this.contacts.set(obstacle,this.time);
