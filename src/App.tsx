@@ -448,7 +448,7 @@ export default function App () {
       )}
       {!ready && !paused && !ended && !dialog && (
         <div className='touch-controls'>
-          <div className='touch-steering'>
+          <div className='touch-steering steering-wheel'>
             <TouchButton
               action='left'
               label={
@@ -457,9 +457,11 @@ export default function App () {
                   : 'Roll left'
               }
               engine={engine.current}
+              className='wheel-button wheel-left'
             >
               <ChevronLeft />
             </TouchButton>
+            <div className='steering-wheel-core'>ORR</div>
             <TouchButton
               action='right'
               label={
@@ -468,6 +470,7 @@ export default function App () {
                   : 'Roll right'
               }
               engine={engine.current}
+              className='wheel-button wheel-right'
             >
               <ChevronRight />
             </TouchButton>

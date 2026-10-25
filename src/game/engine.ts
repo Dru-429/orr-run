@@ -11,12 +11,13 @@ import {crossingBody} from './junctions';
 import * as T from 'three';
 import {Simulation,emptyInput,type Input,type Snapshot} from './simulation';
 import {pose,ROUTE_LENGTH,ROUTE_ID,manifest} from './route';
-import {crossSectionAt,laneCentresAt} from '../survey/corridor';
+import {crossSectionAt,driveBounds,laneCentresAt} from '../survey/corridor';
 import {makeWorld,makeCockpit} from './world';
 import {vehicle,disposeTemplates} from './assets';
 import {DrivingAudio} from './audio';
 import {capture,captureException,captureLog} from '../posthog';
 import {makeRoadster,type RoadsterModel} from './roadster';
+import {ThrusterGroundEffect} from './thrusterGroundEffect';
 import {daylightEnvironment} from './presentationMaterials';
 export type Quality='auto'|'high'|'low';
 export type CameraView='cockpit'|'chase';
@@ -34,6 +35,7 @@ export class GameEngine {
  private observeAnalytics(reason='manual'){if(this.analyticsEnabled)this.analytics.observe(this.sim.snapshot(),this.input,reason);}
  private runContext(){return {graphics_setting:this.settings.quality,actual_graphics_quality:this.activeQuality,graphics_quality:this.activeQuality,reduced_motion:this.settings.reducedMotion,muted:this.settings.muted,viewport_width:this.canvas.clientWidth,viewport_height:this.canvas.clientHeight};}
  private recordInput(method:string){if(!this.inputMethods.has(method)){this.inputMethods.add(method);this.track('game_control_used',{input_method:method});}}
+ private thrusterGround:ThrusterGroundEffect;
  private spray:ReturnType<typeof makeWheelSpray>;private junctionScene:ReturnType<typeof makeJunctionScene>;private crossingVehicles:T.Group[]=[];private world:ReturnType<typeof makeWorld>;private sweep:{stations:number[];index:number;frames:number;returns:unknown[];peakGeometry:number;peakTextures:number}|null=null;private lookYaw=0;private lookTarget=0;private lookStart=0;private dragging=false;private mirrorTarget=new T.WebGLRenderTarget(256,96);private mirrorCamera=new T.PerspectiveCamera(48,256/96,.3,150);private raf=0;private previous=0;private accumulator=0;private frames=0;private lastUi=0;private cockpit:ReturnType<typeof makeCockpit>;private playerVehicle:RoadsterModel;private chasePosition=new T.Vector3();private chaseTarget=new T.Vector3();private chaseDesired=new T.Vector3();private chaseAim=new T.Vector3();private chaseReady=false;private vehicles:T.Group[]=[];private parkedVehicles:T.Group[]=[];private resizeObserver:ResizeObserver;private disposed=false;private pressed=new Set<string>();private touches=new Set<keyof Input>();private directional:T.DirectionalLight;private onState:(s:Snapshot)=>void;private errors:(s:string)=>void;private activeQuality:'high'|'low'='high';private performanceSamples:number[]=[];private frameSamples=0;private frameTotal=0;
  constructor(private canvas:HTMLCanvasElement,settings:Settings,onState:(s:Snapshot)=>void,onError:(s:string)=>void,private onCameraView:(view:CameraView)=>void=()=>{}){
   this.settings=settings;this.onState=onState;this.errors=onError;
@@ -41,7 +43,7 @@ export class GameEngine {
   this.renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});this.renderer.setClearColor('#ccd3c4');this.renderer.outputColorSpace=T.SRGBColorSpace;this.renderer.toneMapping=T.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.02;this.renderer.shadowMap.type=T.PCFSoftShadowMap;
   this.scene.fog=new T.FogExp2('#bdcbd0',.0021);this.scene.add(new T.HemisphereLight('#c8e0f0','#756b55',1.65));this.scene.add(new T.AmbientLight('#e2e5e0',.18));
   this.directional=new T.DirectionalLight('#ffe4bb',3.2);this.directional.castShadow=true;this.directional.shadow.mapSize.set(2048,2048);this.directional.shadow.camera.left=-48;this.directional.shadow.camera.right=48;this.directional.shadow.camera.top=70;this.directional.shadow.camera.bottom=-48;this.directional.shadow.camera.near=1;this.directional.shadow.camera.far=220;this.directional.shadow.bias=-.0009;this.directional.shadow.normalBias=.06;this.scene.add(this.directional,this.directional.target);
-  this.world=makeWorld(this.scene);this.spray=makeWheelSpray(this.scene);this.scene.add(this.camera);this.cockpit=makeCockpit(this.camera);this.playerVehicle=makeRoadster();this.playerVehicle.group.name='player-roadster';this.playerVehicle.group.visible=false;this.scene.add(this.playerVehicle.group);this.mirrorTarget.texture.colorSpace=T.SRGBColorSpace;this.mirrorTarget.texture.repeat.x=-1;this.mirrorTarget.texture.offset.x=1;(this.cockpit.mirror.material as T.MeshBasicMaterial).map=this.mirrorTarget.texture;
+  this.world=makeWorld(this.scene);this.spray=makeWheelSpray(this.scene);this.thrusterGround=new ThrusterGroundEffect(this.scene);this.scene.add(this.camera);this.cockpit=makeCockpit(this.camera);this.playerVehicle=makeRoadster();this.playerVehicle.group.name='player-roadster';this.playerVehicle.group.visible=false;this.scene.add(this.playerVehicle.group);this.mirrorTarget.texture.colorSpace=T.SRGBColorSpace;this.mirrorTarget.texture.repeat.x=-1;this.mirrorTarget.texture.offset.x=1;(this.cockpit.mirror.material as T.MeshBasicMaterial).map=this.mirrorTarget.texture;
   this.vehicles=this.sim.traffic.map(v=>{const g=vehicle(v.kind,v.color);this.scene.add(g);return g;});
   this.parkedVehicles=parkedBuses.map(v=>{const g=vehicle('bus',0,'tourist');g.name=v.id;g.position.set(v.body.x,v.body.y+.03,v.body.z);g.rotation.y=v.body.yaw;this.scene.add(g);return g;});
   this.junctionScene=makeJunctionScene(this.scene);this.crossingVehicles=this.sim.junctions.vehicles.map(v=>{const g=vehicle(v.kind,v.color);this.scene.add(g);return g;});
@@ -131,10 +133,16 @@ export class GameEngine {
   const cap=(v:number,limit:number)=>Math.max(-limit,Math.min(limit,v));
   const shake=cap(effect.y+surface.y,.045),chase=this.cameraView==='chase'&&!ready;
   const lateralSpeed=this.sim.steer*Math.min(4.7,this.sim.speed*.38),headingX=carPose.tx*this.sim.speed+carPose.rx*lateralSpeed,headingZ=carPose.tz*this.sim.speed+carPose.rz*lateralSpeed,headingLength=Math.hypot(headingX,headingZ),forwardX=headingLength>.01?headingX/headingLength:carPose.tx,forwardZ=headingLength>.01?headingZ/headingLength:carPose.tz;
-  this.cockpit.group.visible=!chase;this.playerVehicle.group.visible=chase;if(airborne){this.playerVehicle.group.position.fromArray(flight.position);this.playerVehicle.group.quaternion.fromArray(flight.orientation);}else{this.playerVehicle.group.position.set(carPose.x,carPose.y+.46,carPose.z);this.playerVehicle.group.rotation.set(0,Math.atan2(-forwardX,-forwardZ)+Math.PI,0);}this.playerVehicle.update(this.sim.speed,this.sim.steer,airborne&&flight.active?flight.thrust:0,airborne&&flight.active&&this.input.throttle?1:0,dt);
+  this.cockpit.group.visible=!chase;this.playerVehicle.group.visible=chase;if(airborne){this.playerVehicle.group.position.fromArray(flight.position);this.playerVehicle.group.quaternion.fromArray(flight.orientation);}else{this.playerVehicle.group.position.set(carPose.x,carPose.y+.46,carPose.z);this.playerVehicle.group.rotation.set(0,Math.atan2(-forwardX,-forwardZ)+Math.PI,0);}const landingBoost=Math.max(airborne&&flight.active?flight.thrust:0,flight.touchdownBoost);this.playerVehicle.update(this.sim.speed,this.sim.steer,landingBoost,airborne&&flight.active&&this.input.throttle?1:0,dt);
+  const flightRoadBounds=driveBounds(this.sim.s,.05),overRoad=this.sim.x>=flightRoadBounds.left&&this.sim.x<=flightRoadBounds.right;
+  this.thrusterGround.update(flight.position,carPose.y,flight.altitude,overRoad?landingBoost:0,dt,this.activeQuality==='low');
   if(chase){
    this.camera.up.set(0,1,0);
-   if(airborne){const q=this.playerVehicle.group.quaternion,forward=new T.Vector3(0,0,1).applyQuaternion(q),up=new T.Vector3(0,1,0).applyQuaternion(q);this.chaseDesired.copy(this.playerVehicle.group.position).addScaledVector(forward,-8.6).add(new T.Vector3(0,3.5,0));this.chaseAim.copy(this.playerVehicle.group.position).addScaledVector(up,.4);}else{this.chaseDesired.set(carPose.x-forwardX*8.6,carPose.y+4.15,carPose.z-forwardZ*8.6);this.chaseAim.set(carPose.x,carPose.y+1.05,carPose.z);}
+   // Keep chase framing independent of the car quaternion. The route tangent
+   // moves the camera through bends, while yaw/roll/spins cannot orbit it.
+   const chaseCar=airborne?this.playerVehicle.group.position:new T.Vector3(carPose.x,carPose.y+.46,carPose.z);
+   this.chaseDesired.set(chaseCar.x-carPose.tx*8.6,chaseCar.y+(airborne?3.5:3.69),chaseCar.z-carPose.tz*8.6);
+   this.chaseAim.set(chaseCar.x,chaseCar.y+.59,chaseCar.z);
    if(!this.chaseReady){this.chasePosition.copy(this.chaseDesired);this.chaseTarget.copy(this.chaseAim);this.chaseReady=true;}else{const follow=1-Math.exp(-dt*5.5),aim=1-Math.exp(-dt*8);this.chasePosition.lerp(this.chaseDesired,follow);this.chaseTarget.lerp(this.chaseAim,aim);}
    this.camera.position.copy(this.chasePosition);this.camera.lookAt(this.chaseTarget);const fov=this.camera.aspect<1?70:58;if(Math.abs(this.camera.fov-fov)>.001){this.camera.fov=fov;this.camera.updateProjectionMatrix();}
   }else{

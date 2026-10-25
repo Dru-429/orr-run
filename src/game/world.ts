@@ -173,10 +173,23 @@ export function makeCockpit(camera:T.Camera){
  for(const x of [-1.15,-.62,.71]){b.box(.28,.10,.06,x,-.72,-.56,dark);for(let i=0;i<3;i++)b.box(.24,.009,.01,x,-.746+i*.03,-.52,trim);}
  b.finish(group,false);
  const wheel=new T.Group();wheel.position.set(.055,-.34,-.92);wheel.rotation.x=-.12;
- const ring=new T.Mesh(new T.TorusGeometry(.235,.025,12,48),leather);wheel.add(ring);
- const hub=new T.Mesh(new T.CylinderGeometry(.083,.083,.07,18),dark);hub.rotation.x=Math.PI/2;wheel.add(hub);
- for(const angle of [-Math.PI/2,Math.PI/2,Math.PI]){const spoke=new T.Mesh(new T.BoxGeometry(.035,.21,.027),trim);spoke.rotation.z=angle;spoke.position.set(-Math.sin(angle)*.13,Math.cos(angle)*.13,0);wheel.add(spoke);}
- const badge=sign('ORR',.09,.032,'#cdd4c4');badge.position.z=.04;wheel.add(badge);group.add(wheel);
+ // Open-top yoke: flat bottom bar, vertical side grips, rounded horns — no upper rim.
+ const yokePath=new T.CatmullRomCurve3([
+  new T.Vector3(-.17,.2,0),new T.Vector3(-.22,.12,0),new T.Vector3(-.235,.02,0),
+  new T.Vector3(-.23,-.1,0),new T.Vector3(-.16,-.2,0),new T.Vector3(0,-.225,0),
+  new T.Vector3(.16,-.2,0),new T.Vector3(.23,-.1,0),new T.Vector3(.235,.02,0),
+  new T.Vector3(.22,.12,0),new T.Vector3(.17,.2,0),
+ ],false,'catmullrom',.35);
+ const rim=new T.Mesh(new T.TubeGeometry(yokePath,56,.03,10,false),leather);wheel.add(rim);
+ for(const tip of [yokePath.getPoint(0),yokePath.getPoint(1)]){const cap=new T.Mesh(new T.SphereGeometry(.03,10,8),leather);cap.position.copy(tip);wheel.add(cap);}
+ const hub=new T.Mesh(new RoundedBoxGeometry(.2,.18,.055,2,.02),dark);hub.position.z=.01;wheel.add(hub);
+ const chrome=material('#c5cbc4',.28);const chromeTrim=new T.Mesh(new T.TorusGeometry(.095,.006,6,28,Math.PI),chrome);
+ chromeTrim.rotation.set(Math.PI/2,0,Math.PI);chromeTrim.position.set(0,-.055,.035);wheel.add(chromeTrim);
+ for(const side of [-1,1]){
+  const wing=new T.Mesh(new RoundedBoxGeometry(.11,.055,.03,1,.01),dark);wing.position.set(side*.145,-.01,.02);wheel.add(wing);
+  const dial=new T.Mesh(new T.CylinderGeometry(.012,.012,.018,10),trim);dial.rotation.x=Math.PI/2;dial.position.set(side*.145,-.01,.04);wheel.add(dial);
+ }
+ const badge=sign('ORR',.11,.034,'#cdd4c4','transparent');badge.position.z=.04;wheel.add(badge);group.add(wheel);
  const c=document.createElement('canvas');c.width=512;c.height=180;const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;
  const screen=new T.Mesh(new T.PlaneGeometry(.66,.20),new T.MeshBasicMaterial({map:texture}));screen.position.set(.05,-.28,-1.027);group.add(screen);
  const nav=sign('ORR',.36,.20,'#dce39f','#182d2a','MARATHAHALLI  ↑');nav.position.set(-.62,-.90,-.225);group.add(nav);
