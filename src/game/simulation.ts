@@ -57,7 +57,6 @@ export class Simulation {
   pause(){if(this.phase==='driving'||this.phase==='looping'){this.resumePhase=this.phase;this.phase='paused';}}
   resume(){if(this.phase==='paused')this.phase=this.resumePhase;}
   restart(){this.roadResponse.reset();this.s=0;this.x=laneCentresAt(0)[0];this.speed=0;this.health=100;this.distance=0;this.lap=1;this.collisions=0;this.overtakes=0;this.time=0;this.steer=0;this.impact=0;this.fade=0;this.cooldown=0;this.contacts.clear();this.impactEvent=null;this.overview.reset();this.hornTarget=null;this.hornGap=0;this.rng=random(++this.seed);this.populate();this.junctions.reset();this.flight.reset(this.s,this.x);this.phase='driving';}
-  toggleFlightMode(){return this.flight.toggle(this.s,this.x,this.speed);}
   snapshot():Snapshot{return {phase:this.phase,s:this.s,x:this.x,speed:this.speed,health:this.health,distance:this.distance,lap:this.lap,collisions:this.collisions,overtakes:this.overtakes,time:this.time,steer:this.steer,impact:this.impact,impactEvent:this.impactEvent,trafficSections:this.overview.sections,npcHorns:this.npcHorns.events,fade:this.fade,surface:{...this.roadResponse.state},flight:this.flight.snapshot()};}
   update(dt:number,input:Input){
     dt=Math.min(dt,.05);if(dt<=0)return;
@@ -77,7 +76,7 @@ export class Simulation {
       this.speed=0;this.steer=0;this.roadResponse.reset();this.updateFlightWorld(dt);this.distance=Math.max(this.distance,(this.lap-1)*ROUTE_LENGTH+this.s);
       if(this.health<=0){this.health=0;this.phase='ended';}return;
     }
-    if(this.flight.active&&this.flight.state==='GROUNDED'&&input.ascend)this.flight.beginTakeoff(this.s,this.x,this.speed);
+    if(this.flight.state==='GROUNDED'&&input.ascend)this.flight.beginTakeoff(this.s,this.x,this.speed);
     if(this.flight.state!=='GROUNDED'){
       const previous:[number,number,number]=[...this.flight.position];
       let crash=this.flight.step(dt,{lift:!!input.ascend,descend:!!input.descend,pitchDown:input.throttle,pitchUp:input.brake,rollLeft:input.left,rollRight:input.right,yawLeft:!!input.yawLeft,yawRight:!!input.yawRight});

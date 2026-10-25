@@ -15,6 +15,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Volume2,
+  Volume1,
   VolumeX,
   Pause,
   Play,
@@ -67,6 +68,7 @@ const lengthLabel = (ROUTE_LENGTH / 1000).toFixed(2)
 const initial = new Simulation().snapshot()
 const defaults: Settings = {
   muted: false,
+  reducedNoise: false,
   reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
   quality: 'auto'
 }
@@ -194,6 +196,7 @@ export default function App () {
     if (settingsReady.current)
       engine.current?.track('game_settings_updated', {
         muted: settings.muted,
+        reduced_noise: settings.reducedNoise,
         reduced_motion: settings.reducedMotion,
         graphics_quality: settings.quality
       })
@@ -343,6 +346,28 @@ export default function App () {
             {settings.muted ? <VolumeX size={19} /> : <Volume2 size={19} />}
           </button>
           <button
+            className={`icon-button reduce-noise-button${settings.reducedNoise ? ' active' : ''}`}
+            title={
+              settings.reducedNoise
+                ? 'Restore full volume'
+                : 'Reduce background horns by 75%'
+            }
+            aria-label={
+              settings.reducedNoise
+                ? 'Restore full volume'
+                : 'Reduce background horns by 75%'
+            }
+            aria-pressed={settings.reducedNoise}
+            onClick={() =>
+              setSettings({
+                ...settings,
+                reducedNoise: !settings.reducedNoise
+              })
+            }
+          >
+            <Volume1 size={19} />
+          </button>
+          <button
             className='icon-button'
             title='Settings'
             aria-label='Settings'
@@ -448,7 +473,12 @@ export default function App () {
       )}
       {!ready && !paused && !ended && !dialog && (
         <div className='touch-controls'>
-          <div className='touch-steering steering-wheel'>
+          <div
+            className='touch-steering steering-wheel'
+            style={{
+              transform: `rotate(${(-snapshot.steer * 38).toFixed(1)}deg)`
+            }}
+          >
             <TouchButton
               action='left'
               label={
@@ -476,16 +506,12 @@ export default function App () {
             </TouchButton>
           </div>
           <TouchButton
-            action={snapshot.flight.active ? 'ascend' : 'horn'}
-            label={snapshot.flight.active ? 'Vertical thrust' : 'Horn'}
+            action='ascend'
+            label='Vertical thrust'
             engine={engine.current}
             className='horn-touch'
           >
-            {snapshot.flight.active ? (
-              <ArrowUp size={20} />
-            ) : (
-              <Volume2 size={20} />
-            )}
+            <ArrowUp size={20} />
           </TouchButton>
           <div className='touch-pedals'>
             <TouchButton
@@ -621,6 +647,22 @@ export default function App () {
                     checked={!settings.muted}
                     onChange={e =>
                       setSettings({ ...settings, muted: !e.target.checked })
+                    }
+                  />
+                </label>
+                <label className='setting-row'>
+                  <span>
+                    Reduce background horns by 75%
+                    <small>Hear fewer traffic horns at their normal volume.</small>
+                  </span>
+                  <input
+                    type='checkbox'
+                    checked={settings.reducedNoise}
+                    onChange={e =>
+                      setSettings({
+                        ...settings,
+                        reducedNoise: e.target.checked
+                      })
                     }
                   />
                 </label>

@@ -21,7 +21,7 @@ import {ThrusterGroundEffect} from './thrusterGroundEffect';
 import {daylightEnvironment} from './presentationMaterials';
 export type Quality='auto'|'high'|'low';
 export type CameraView='cockpit'|'chase';
-export interface Settings {muted:boolean;reducedMotion:boolean;quality:Quality}
+export interface Settings {muted:boolean;reducedNoise:boolean;reducedMotion:boolean;quality:Quality}
 export class GameEngine {
  sim=new Simulation();input=emptyInput();settings:Settings;renderer:T.WebGLRenderer;scene=new T.Scene();camera=new T.PerspectiveCamera(64,1,.05,1000);audio=new DrivingAudio();uiBlocked=false;
  cameraView:CameraView='cockpit';
@@ -33,9 +33,10 @@ export class GameEngine {
  private inputMethods=new Set<string>();
  track(name:string,properties:Record<string,unknown>={},urgent=false){this.analytics.event(name,properties,urgent);}
  private observeAnalytics(reason='manual'){if(this.analyticsEnabled)this.analytics.observe(this.sim.snapshot(),this.input,reason);}
- private runContext(){return {graphics_setting:this.settings.quality,actual_graphics_quality:this.activeQuality,graphics_quality:this.activeQuality,reduced_motion:this.settings.reducedMotion,muted:this.settings.muted,viewport_width:this.canvas.clientWidth,viewport_height:this.canvas.clientHeight};}
+ private runContext(){return {graphics_setting:this.settings.quality,actual_graphics_quality:this.activeQuality,graphics_quality:this.activeQuality,reduced_motion:this.settings.reducedMotion,muted:this.settings.muted,reduced_noise:this.settings.reducedNoise,viewport_width:this.canvas.clientWidth,viewport_height:this.canvas.clientHeight};}
  private recordInput(method:string){if(!this.inputMethods.has(method)){this.inputMethods.add(method);this.track('game_control_used',{input_method:method});}}
  private thrusterGround:ThrusterGroundEffect;
+ private chaseCar=new T.Vector3();
  private spray:ReturnType<typeof makeWheelSpray>;private junctionScene:ReturnType<typeof makeJunctionScene>;private crossingVehicles:T.Group[]=[];private world:ReturnType<typeof makeWorld>;private sweep:{stations:number[];index:number;frames:number;returns:unknown[];peakGeometry:number;peakTextures:number}|null=null;private lookYaw=0;private lookTarget=0;private lookStart=0;private dragging=false;private mirrorTarget=new T.WebGLRenderTarget(256,96);private mirrorCamera=new T.PerspectiveCamera(48,256/96,.3,150);private raf=0;private previous=0;private accumulator=0;private frames=0;private lastUi=0;private cockpit:ReturnType<typeof makeCockpit>;private playerVehicle:RoadsterModel;private chasePosition=new T.Vector3();private chaseTarget=new T.Vector3();private chaseDesired=new T.Vector3();private chaseAim=new T.Vector3();private chaseReady=false;private vehicles:T.Group[]=[];private parkedVehicles:T.Group[]=[];private resizeObserver:ResizeObserver;private disposed=false;private pressed=new Set<string>();private touches=new Set<keyof Input>();private directional:T.DirectionalLight;private onState:(s:Snapshot)=>void;private errors:(s:string)=>void;private activeQuality:'high'|'low'='high';private performanceSamples:number[]=[];private frameSamples=0;private frameTotal=0;
  constructor(private canvas:HTMLCanvasElement,settings:Settings,onState:(s:Snapshot)=>void,onError:(s:string)=>void,private onCameraView:(view:CameraView)=>void=()=>{}){
   this.settings=settings;this.onState=onState;this.errors=onError;
@@ -50,7 +51,7 @@ export class GameEngine {
   this.applySettings(settings);this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(canvas);this.resize();
   window.addEventListener('keydown',this.keydown);window.addEventListener('keyup',this.keyup);window.addEventListener('blur',this.blur);window.addEventListener('pagehide',this.pagehide);document.addEventListener('visibilitychange',this.visibility);canvas.addEventListener('webglcontextlost',this.contextLost);canvas.addEventListener('pointerdown',this.lookDown);canvas.addEventListener('pointermove',this.lookMove);canvas.addEventListener('pointerup',this.lookUp);canvas.addEventListener('pointercancel',this.lookUp);this.raf=requestAnimationFrame(this.frame);captureLog('game engine initialized','info',{graphics_quality:this.activeQuality,reduced_motion:this.settings.reducedMotion,route_length_m:Math.round(ROUTE_LENGTH)});
  }
- applySettings(settings:Settings){this.settings=settings;this.audio.muted=settings.muted;const low=settings.quality==='low'||settings.quality==='auto'&&(matchMedia('(pointer:coarse)').matches||devicePixelRatio>2);this.activeQuality=low?'low':'high';this.analytics.updateContext({graphics_setting:settings.quality,actual_graphics_quality:this.activeQuality,muted:settings.muted,reduced_motion:settings.reducedMotion});setPosterQuality(low);this.renderer.setPixelRatio(Math.min(devicePixelRatio,low?1.25:1.75));this.renderer.shadowMap.enabled=!low;this.resize();}
+ applySettings(settings:Settings){this.settings=settings;this.audio.muted=settings.muted;this.audio.reducedNoise=settings.reducedNoise;const low=settings.quality==='low'||settings.quality==='auto'&&(matchMedia('(pointer:coarse)').matches||devicePixelRatio>2);this.activeQuality=low?'low':'high';this.analytics.updateContext({graphics_setting:settings.quality,actual_graphics_quality:this.activeQuality,muted:settings.muted,reduced_noise:settings.reducedNoise,reduced_motion:settings.reducedMotion});setPosterQuality(low);this.renderer.setPixelRatio(Math.min(devicePixelRatio,low?1.25:1.75));this.renderer.shadowMap.enabled=!low;this.resize();}
  resetCar(){
   if(this.uiBlocked||this.sim.phase!=='driving'||this.sim.flight.state==='CRASHED'||this.sim.flight.state==='RECOVERING')return;
   this.clearInput();
@@ -70,17 +71,16 @@ export class GameEngine {
  private keydown=(e:KeyboardEvent)=>{
   if(this.uiBlocked)return;
   if(e.target instanceof HTMLInputElement||e.target instanceof HTMLSelectElement||e.target instanceof HTMLTextAreaElement)return;
-  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code)||e.altKey&&e.code==='Enter')e.preventDefault();
-  if(e.altKey&&e.code==='Enter'&&!e.repeat&&this.sim.phase==='driving'){this.sim.toggleFlightMode();this.syncInput();this.onState(this.sim.snapshot());return;}
-  if(e.code==='Escape'){if(this.sim.flight.active&&this.sim.flight.state==='GROUNDED'){this.sim.toggleFlightMode();this.syncInput();this.onState(this.sim.snapshot());}else if(this.sim.phase==='driving')this.pause();else if(this.sim.phase==='paused')this.resume();return;}
+  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code))e.preventDefault();
+  if(e.code==='Escape'){if(this.sim.phase==='driving')this.pause();else if(this.sim.phase==='paused')this.resume();return;}
   if(e.code==='KeyC'&&!e.repeat&&this.sim.phase!=='ready'&&this.sim.phase!=='ended'){this.toggleCameraView();return;}
   if(e.code==='KeyR'&&this.sim.phase==='ended'){this.restart();return;}
   if(e.code==='Enter'&&this.sim.phase==='ready'){this.start();return;}
-  if(['KeyW','KeyS','KeyA','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code)&&this.sim.phase==='driving')this.recordInput('keyboard');
+  if(['KeyW','KeyS','KeyA','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','ShiftLeft','ShiftRight'].includes(e.code)&&this.sim.phase==='driving')this.recordInput('keyboard');
   this.pressed.add(e.code);this.syncInput();
  };
  private keyup=(e:KeyboardEvent)=>{this.pressed.delete(e.code);this.syncInput();};
- private syncInput(){const flight=this.sim.flight.active;this.input={throttle:this.pressed.has('KeyW')||this.pressed.has('ArrowUp')||this.touches.has('throttle'),brake:this.pressed.has('KeyS')||this.pressed.has('ArrowDown')||this.touches.has('brake'),left:this.pressed.has('KeyA')||this.pressed.has('ArrowLeft')||this.touches.has('left'),right:this.pressed.has('KeyD')||this.pressed.has('ArrowRight')||this.touches.has('right'),horn:!flight&&(this.pressed.has('Space')||this.touches.has('horn')),ascend:flight&&(this.pressed.has('Space')||this.touches.has('ascend')),descend:flight&&(this.pressed.has('ShiftLeft')||this.pressed.has('ShiftRight')||this.touches.has('descend')),yawLeft:flight&&this.pressed.has('KeyQ'),yawRight:flight&&this.pressed.has('KeyE')};}
+ private syncInput(){this.input={throttle:this.pressed.has('KeyW')||this.pressed.has('ArrowUp')||this.touches.has('throttle'),brake:this.pressed.has('KeyS')||this.pressed.has('ArrowDown')||this.touches.has('brake'),left:this.pressed.has('KeyA')||this.pressed.has('ArrowLeft')||this.touches.has('left'),right:this.pressed.has('KeyD')||this.pressed.has('ArrowRight')||this.touches.has('right'),horn:this.pressed.has('ShiftLeft')||this.pressed.has('ShiftRight')||this.touches.has('horn'),ascend:this.pressed.has('Space')||this.touches.has('ascend'),descend:this.touches.has('descend'),yawLeft:this.pressed.has('KeyQ'),yawRight:this.pressed.has('KeyE')};}
  private clearInput(){this.lookUp();this.pressed.clear();this.touches.clear();this.input=emptyInput();}
  touch(action:keyof Input,down:boolean){if(down&&this.sim.phase==='driving')this.recordInput('touch');if(down)this.touches.add(action);else this.touches.delete(action);this.syncInput();}
  toggleCameraView(){this.cameraView=this.cameraView==='cockpit'?'chase':'cockpit';this.chaseReady=false;this.lookYaw=0;this.lookTarget=0;this.onCameraView(this.cameraView);this.canvas.dataset.cameraView=this.cameraView;this.track('game_camera_view_changed',{camera_view:this.cameraView});return this.cameraView;}
@@ -140,9 +140,9 @@ export class GameEngine {
    this.camera.up.set(0,1,0);
    // Keep chase framing independent of the car quaternion. The route tangent
    // moves the camera through bends, while yaw/roll/spins cannot orbit it.
-   const chaseCar=airborne?this.playerVehicle.group.position:new T.Vector3(carPose.x,carPose.y+.46,carPose.z);
-   this.chaseDesired.set(chaseCar.x-carPose.tx*8.6,chaseCar.y+(airborne?3.5:3.69),chaseCar.z-carPose.tz*8.6);
-   this.chaseAim.set(chaseCar.x,chaseCar.y+.59,chaseCar.z);
+   if(airborne)this.chaseCar.copy(this.playerVehicle.group.position);else this.chaseCar.set(carPose.x,carPose.y+.46,carPose.z);
+   this.chaseDesired.set(this.chaseCar.x-carPose.tx*8.6,this.chaseCar.y+(airborne?3.5:3.69),this.chaseCar.z-carPose.tz*8.6);
+   this.chaseAim.set(this.chaseCar.x,this.chaseCar.y+.59,this.chaseCar.z);
    if(!this.chaseReady){this.chasePosition.copy(this.chaseDesired);this.chaseTarget.copy(this.chaseAim);this.chaseReady=true;}else{const follow=1-Math.exp(-dt*5.5),aim=1-Math.exp(-dt*8);this.chasePosition.lerp(this.chaseDesired,follow);this.chaseTarget.lerp(this.chaseAim,aim);}
    this.camera.position.copy(this.chasePosition);this.camera.lookAt(this.chaseTarget);const fov=this.camera.aspect<1?70:58;if(Math.abs(this.camera.fov-fov)>.001){this.camera.fov=fov;this.camera.updateProjectionMatrix();}
   }else{
@@ -159,6 +159,8 @@ export class GameEngine {
    this.sim.visibleHornActors=visible;this.canvas.dataset.visibleHornActors=String(visible.length);
   }
   this.directional.position.set(p.x-55,p.y+90,p.z-38);this.directional.target.position.set(p.x,p.y,p.z-20);
+  // Steer the yoke every frame; dash canvas redraw stays throttled.
+  this.cockpit.wheel.rotation.z=-this.sim.steer*1.05;
   if(this.frames++%4===0)this.cockpit.update(this.sim.speed,this.sim.steer,this.sim.health);
   this.audio.update(this.sim.speed,this.input.throttle,this.input.horn,this.sim.phase==='driving',this.sim.npcHorns.events,pose(this.sim.s,this.sim.x),this.sim.time);this.canvas.dataset.npcHorns=String(this.sim.npcHorns.events.length);this.canvas.dataset.audioVoices=String(this.audio.activeVoices);this.canvas.dataset.audioPool=String(this.audio.voiceCount);this.canvas.dataset.hornSamples=String(this.audio.sampleCount);this.canvas.dataset.hornSampleStatus=this.audio.sampleStatus;
   if(!chase&&this.frames%12===1){this.cockpit.group.visible=false;this.mirrorCamera.position.copy(this.camera.position);const behind=pose(s-20,this.sim.x+.4);this.mirrorCamera.lookAt(behind.x,behind.y+1.4,behind.z);this.renderer.shadowMap.autoUpdate=false;this.renderer.setRenderTarget(this.mirrorTarget);this.renderer.render(this.scene,this.mirrorCamera);this.renderer.setRenderTarget(null);this.renderer.shadowMap.autoUpdate=true;this.cockpit.group.visible=true;}

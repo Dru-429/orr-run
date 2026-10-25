@@ -1,18 +1,18 @@
 import {memo} from 'react';
-import {Car, Rocket, Heart, MapPin, Flag, Share2, RotateCcw, Maximize, Map, Check} from 'lucide-react';
+import {Rocket, Heart, MapPin, Flag, Share2, RotateCcw, Maximize, Map, Check} from 'lucide-react';
 import type {Snapshot} from '../../game/simulation';
 import {ROUTE_LENGTH} from '../../game/route';
 import {junctionRecords} from '../../game/junctions';
 import './hud.css';
 
 export const Speedometer=memo(function Speedometer({speed,flight}:{speed:number;flight:Snapshot['flight']}){
- const state=flight.state,mode=state==='GROUNDED'?(flight.active?'THRUSTER MODE':'DRIVE MODE'):state==='FLYING'?'FLIGHT MODE':state==='TAKEOFF'?'THRUSTER MODE':state;
+ const state=flight.state,mode=state==='GROUNDED'?'THRUSTER MODE':state==='FLYING'?'FLIGHT MODE':state==='TAKEOFF'?'THRUSTER MODE':state;
  const damaged=state==='CRASHED'||state==='RECOVERING';
  return <div className="hud-speed-stack"><section className={'hud-glass hud-speed '+(damaged?'hud-damaged':'')} aria-label="Vehicle speed and mode">
   <svg className="hud-gauge" viewBox="0 0 300 108" aria-hidden="true"><path d="M16 85 Q20 40 53 18 M247 18 Q280 40 284 85" className="gauge-track"/><path d="M16 85 Q20 40 53 18 M284 85 Q280 40 247 18" className="gauge-fill" pathLength="100" strokeDasharray={`${Math.min(100,speed*3.6/1.8)} 100`}/><path d="M49 86 L54 73 M246 73 L251 86" className="gauge-track"/></svg>
   <output aria-label={`${Math.round(speed*3.6)} kilometres per hour`}><strong>{Math.round(speed*3.6)}</strong><span>km/h</span></output>
-  <div className="hud-mode">{flight.active?<Rocket size={16}/>:<Car size={16}/>}<span>{mode}</span></div>
- </section>{(flight.active||state!=='GROUNDED')&&<ThrusterFuel fuel={flight.fuel}/>}</div>;
+  <div className="hud-mode"><Rocket size={16}/><span>{mode}</span></div>
+ </section><ThrusterFuel fuel={flight.fuel}/></div>;
 });
 
 export function ThrusterFuel({fuel}:{fuel:number}){
@@ -31,8 +31,8 @@ export function RouteProgress({s}:{s:number}){
 }
 
 export function ControlsBar({flight}:{flight:Snapshot['flight']}){
- const flying=flight.active||flight.state!=='GROUNDED';
- const controls=[{keys:['W'],label:flying?'Pitch':'Drive',detail:flying?'Forward':'Accelerate'},{keys:['S'],label:flying?'Pitch':'Brake',detail:flying?'Back':'Slow down'},{keys:['A','D'],label:flying?'Roll':'Steer',detail:'Left / Right'},{keys:['SPACE'],label:flying?'Lift':'Horn',detail:flying?'Ascend':'Sound'},{keys:['SHIFT'],label:'Descend',detail:'Lower',dim:!flying},{keys:['Q','E'],label:flying?'Yaw':'Look',detail:flying?'Rotate':'Left / Right'},{keys:['ALT','ENTER'],label:'Thrusters',detail:'Toggle'},{keys:['C'],label:'View',detail:'Change'}];
+ const flying=flight.state!=='GROUNDED';
+ const controls=[{keys:['W'],label:flying?'Pitch':'Drive',detail:flying?'Forward':'Accelerate'},{keys:['S'],label:flying?'Pitch':'Brake',detail:flying?'Back':'Slow down'},{keys:['A','D'],label:flying?'Roll':'Steer',detail:'Left / Right'},{keys:['SPACE'],label:'Lift',detail:'Ascend'},{keys:['SHIFT'],label:'Horn',detail:'Honk'},{keys:['Q','E'],label:flying?'Yaw':'Look',detail:flying?'Rotate':'Left / Right'},{keys:['C'],label:'View',detail:'Change'}];
  return <aside className="hud-controls hud-glass" aria-label="Keyboard controls">{controls.map(c=><div className={c.dim?'control-dim':''} key={c.keys.join()}><div className="hud-keys">{c.keys.map(k=><kbd key={k}>{k}</kbd>)}</div><div><span>{c.label}</span><small>{c.detail}</small></div></div>)}</aside>;
 }
 

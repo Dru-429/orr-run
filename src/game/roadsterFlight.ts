@@ -61,7 +61,7 @@ function roadIsValid(s:number,offset:number){
 }
 
 export class RoadsterFlightController{
- active=false;
+ active=true;
  state:FlightState='GROUNDED';
  fuel=FLIGHT_CONFIG.maxFuel;
  position:V3=[0,0,0];
@@ -79,22 +79,13 @@ export class RoadsterFlightController{
 
  reset(s:number,x:number){
   const safe=safeTransform(s,x,0);
-  this.active=false;this.state='GROUNDED';this.fuel=FLIGHT_CONFIG.maxFuel;
+  this.active=true;this.state='GROUNDED';this.fuel=FLIGHT_CONFIG.maxFuel;
   this.position=[...safe.position];this.orientation=[...safe.orientation];this.velocity=[0,0,0];this.angularVelocity=[0,0,0];
   this.altitude=0;this.thrust=0;this.landingAssist=0;this.touchdownBoost=0;this.stateTimer=0;this.tippedContactTime=0;this.fallingTime=0;this.lastSafeGroundedTransform=safe;
  }
 
- toggle(s:number,x:number,speed:number){
-  if(this.state==='CRASHED'||this.state==='RECOVERING')return false;
-  this.active=!this.active;
-  if(this.active&&this.state==='GROUNDED'){
-   const p=pose(s,x);this.position=[p.x,p.y+.46,p.z];this.orientation=yawQuat(p.yaw+Math.PI);this.velocity=[p.tx*speed,0,p.tz*speed];
-  }
-  return this.active;
- }
-
  beginTakeoff(s:number,x:number,speed:number){
-  if(!this.active||this.state!=='GROUNDED'||this.fuel<=0)return false;
+  if(this.state!=='GROUNDED'||this.fuel<=0)return false;
   const p=pose(s,x);this.position=[p.x,p.y+.46,p.z];this.orientation=yawQuat(p.yaw+Math.PI);this.velocity=[p.tx*speed,0,p.tz*speed];this.state='TAKEOFF';
   this.tippedContactTime=0;this.fallingTime=0;return true;
  }
@@ -126,13 +117,13 @@ export class RoadsterFlightController{
   }
   const safe=this.lastSafeGroundedTransform;this.position=[safe.position[0],safe.position[1]+.14,safe.position[2]];this.orientation=[...safe.orientation];
   if(this.stateTimer<FLIGHT_CONFIG.recoveryDelay)return 'recovering';
-  this.state='GROUNDED';this.stateTimer=0;this.position=[...safe.position];this.altitude=0;this.active=false;
+  this.state='GROUNDED';this.stateTimer=0;this.position=[...safe.position];this.altitude=0;this.active=true;
   return 'complete';
  }
 
  grounded(dt:number,stable:boolean,s?:number,x?:number,speed=0){
   if(this.state==='CRASHED'||this.state==='RECOVERING')return;
-  this.state='GROUNDED';this.thrust=0;this.landingAssist=0;this.touchdownBoost=Math.max(0,this.touchdownBoost-dt*1.25);this.altitude=0;this.tippedContactTime=0;this.fallingTime=0;
+  this.active=true;this.state='GROUNDED';this.thrust=0;this.landingAssist=0;this.touchdownBoost=Math.max(0,this.touchdownBoost-dt*1.25);this.altitude=0;this.tippedContactTime=0;this.fallingTime=0;
   if(s!==undefined&&x!==undefined){const p=pose(s,x);this.position=[p.x,p.y+.46,p.z];this.orientation=yawQuat(p.yaw+Math.PI);this.velocity=[p.tx*speed,0,p.tz*speed];this.angularVelocity=[0,0,0];}
   if(stable)this.fuel=Math.min(FLIGHT_CONFIG.maxFuel,this.fuel+FLIGHT_CONFIG.rechargePerSecond*dt);
  }
@@ -227,7 +218,7 @@ export class RoadsterFlightController{
    if(roadIsValid(nextNear.s,nextNear.offset)){
     const heading=rotate(this.orientation,[0,0,1]),horizontal=Math.hypot(heading[0],heading[2]);
     const fallback=pose(nextNear.s),yaw=horizontal>.001?Math.atan2(heading[0],heading[2]):fallback.yaw+Math.PI;
-    this.orientation=yawQuat(yaw);this.velocity[1]=0;this.angularVelocity=[0,0,0];this.state='GROUNDED';this.active=false;
+    this.orientation=yawQuat(yaw);this.velocity[1]=0;this.angularVelocity=[0,0,0];this.state='GROUNDED';this.active=true;
     this.landingAssist=0;this.touchdownBoost=1;this.tippedContactTime=0;return null;
    }
    const roof=landingUp<-.12,side=landingUp<.48;
@@ -241,7 +232,7 @@ export class RoadsterFlightController{
    }
    const stableTouchdown=roadIsValid(nextNear.s,nextNear.offset)&&landingUp>landing.touchdownMinUprightness&&contactVerticalSpeed<=landing.touchdownMaxSpeed&&angularSpeed<=landing.touchdownMaxAngularSpeed;
    if(stableTouchdown){
-    this.velocity[1]=0;this.angularVelocity=[this.angularVelocity[0]*.12,this.angularVelocity[1]*.5,this.angularVelocity[2]*.12];this.state='GROUNDED';this.active=false;this.landingAssist=0;this.tippedContactTime=0;
+    this.velocity[1]=0;this.angularVelocity=[this.angularVelocity[0]*.12,this.angularVelocity[1]*.5,this.angularVelocity[2]*.12];this.state='GROUNDED';this.active=true;this.landingAssist=0;this.tippedContactTime=0;
    }else{
     this.velocity[1]=Math.abs(this.velocity[1])*.16;this.velocity[0]*=.45;this.velocity[2]*=.45;this.angularVelocity=scale(this.angularVelocity,.45);
    }
