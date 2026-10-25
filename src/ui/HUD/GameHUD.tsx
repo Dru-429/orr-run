@@ -33,7 +33,7 @@ export function RouteProgress({s}:{s:number}){
 export function ControlsBar({flight}:{flight:Snapshot['flight']}){
  const flying=flight.state!=='GROUNDED';
  const controls=[{keys:['W'],label:flying?'Pitch':'Drive',detail:flying?'Forward':'Accelerate'},{keys:['S'],label:flying?'Pitch':'Brake',detail:flying?'Back':'Slow down'},{keys:['A','D'],label:flying?'Roll':'Steer',detail:'Left / Right'},{keys:['SPACE'],label:'Lift',detail:'Ascend'},{keys:['SHIFT'],label:'Horn',detail:'Honk'},{keys:['Q','E'],label:flying?'Yaw':'Look',detail:flying?'Rotate':'Left / Right'},{keys:['C'],label:'View',detail:'Change'}];
- return <aside className="hud-controls hud-glass" aria-label="Keyboard controls">{controls.map(c=><div className={c.dim?'control-dim':''} key={c.keys.join()}><div className="hud-keys">{c.keys.map(k=><kbd key={k}>{k}</kbd>)}</div><div><span>{c.label}</span><small>{c.detail}</small></div></div>)}</aside>;
+ return <aside className="hud-controls hud-glass" aria-label="Keyboard controls">{controls.map(c=><div key={c.keys.join()}><div className="hud-keys">{c.keys.map(k=><kbd key={k}>{k}</kbd>)}</div><div><span>{c.label}</span><small>{c.detail}</small></div></div>)}</aside>;
 }
 
 export function UtilityControls({copy,reset,fullscreen,notes,copied}:{copy:()=>void;reset:()=>void;fullscreen:()=>void;notes:()=>void;copied:boolean}){

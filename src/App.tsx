@@ -707,11 +707,10 @@ export default function App () {
                     <strong>W / ↑</strong> accelerate · <strong>S / ↓</strong>{' '}
                     brake
                     <br />
-                    <strong>A D / ← →</strong> steer · <strong>Space</strong>{' '}
+                    <strong>A D / ← →</strong> steer · <strong>Shift</strong>{' '}
                     horn · <strong>C</strong> camera
                     <br />
-                    <strong>Alt + Enter</strong> flight · then{' '}
-                    <strong>Space / Shift</strong> climb / descend
+                    <strong>Space</strong> upward thruster
                     <br />
                     <strong>W S</strong> pitch · <strong>A D</strong> roll ·{' '}
                     <strong>Q E</strong> yaw

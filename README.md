@@ -87,16 +87,15 @@ The checked-in map and assets are sufficient to run the game. You do not need to
 | Accelerate | W or ↑ |
 | Brake | S or ↓ |
 | Steer | A / D or ← / → |
-| Horn | Space |
+| Horn | Shift |
 | Switch cockpit / chase camera | C or the camera control |
-| Toggle Roadster flight mode | Alt + Enter |
-| Flight lift / descend | Space / Shift |
+| Roadster upward thruster | Space |
 | Flight pitch / roll / yaw | W S / A D / Q E |
 | Look left / right | Q / E, or drag the windshield |
 | Pause / resume | Escape or the pause control |
 | Restart, sound, graphics, camera motion | On-screen menus |
 
-On phones and tablets, use the steering buttons, accelerator, brake and horn. Separate pointers allow steering and accelerating together. Landscape orientation gives the widest driving view.
+On phones and tablets, use the steering buttons, accelerator, brake and upward-thruster control. Separate pointers allow steering and accelerating together. Landscape orientation gives the widest driving view.
 
 Best distance is stored locally under `orr.best.silk-board-to-marathahalli-v4`; older route records are retained. Settings use `orr.settings`. These are browser-local saves, with no account or cross-device sync.
 
