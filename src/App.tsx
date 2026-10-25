@@ -67,10 +67,54 @@ const bestKey = 'orr.best.' + ROUTE_ID
 const lengthLabel = (ROUTE_LENGTH / 1000).toFixed(2)
 const initial = new Simulation().snapshot()
 const defaults: Settings = {
-  muted: false,
-  reducedNoise: false,
+  trafficHornLevel: 2,
   reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
   quality: 'auto'
+}
+function loadSettings (): Settings {
+  const saved = read<Partial<Settings> & { muted?: boolean; reducedNoise?: boolean }>(
+    'orr.settings',
+    {}
+  )
+  const legacyLevel = saved.muted ? 0 : saved.reducedNoise ? 1 : 2
+  return {
+    ...defaults,
+    ...saved,
+    trafficHornLevel: saved.trafficHornLevel ?? legacyLevel
+  }
+}
+const hornLevelText = ['No traffic horns', 'Low traffic horns', 'All traffic horns'] as const
+function TrafficHornSlider ({
+  value,
+  onChange,
+  settings = false
+}: {
+  value: Settings['trafficHornLevel']
+  onChange: (value: Settings['trafficHornLevel']) => void
+  settings?: boolean
+}) {
+  return (
+    <div
+      className={`traffic-horn-slider${settings ? ' settings-horn-slider' : ''}`}
+      title={`${hornLevelText[value]}. Player horn and vehicle sounds stay on.`}
+    >
+      <div className='traffic-horn-options' aria-hidden='true'>
+        <VolumeX size={settings ? 18 : 16} />
+        <Volume1 size={settings ? 18 : 16} />
+        <Volume2 size={settings ? 18 : 16} />
+      </div>
+      <input
+        type='range'
+        min='0'
+        max='2'
+        step='1'
+        value={value}
+        aria-label='Amount of background traffic horns'
+        aria-valuetext={hornLevelText[value]}
+        onChange={e => onChange(Number(e.target.value) as Settings['trafficHornLevel'])}
+      />
+    </div>
+  )
 }
 function TouchButton ({
   action,
@@ -116,10 +160,7 @@ export default function App () {
   const [snapshot, setSnapshot] = useState<Snapshot>(initial),
     [loaded, setLoaded] = useState(false),
     [error, setError] = useState(''),
-    [settings, setSettings] = useState<Settings>(() => ({
-      ...defaults,
-      ...read('orr.settings', defaults)
-    }))
+    [settings, setSettings] = useState<Settings>(loadSettings)
   const [dialog, setDialog] = useState<'settings' | 'notes' | null>(null),
     [best, setBest] = useState(() =>
       Math.max(0, Number(read(bestKey, 0)) || 0)
@@ -195,8 +236,7 @@ export default function App () {
   useEffect(() => {
     if (settingsReady.current)
       engine.current?.track('game_settings_updated', {
-        muted: settings.muted,
-        reduced_noise: settings.reducedNoise,
+        traffic_horn_level: settings.trafficHornLevel,
         reduced_motion: settings.reducedMotion,
         graphics_quality: settings.quality
       })
@@ -337,36 +377,12 @@ export default function App () {
               <Camera size={19} />
             </button>
           )}
-          <button
-            className='icon-button'
-            title={settings.muted ? 'Unmute' : 'Mute'}
-            aria-label={settings.muted ? 'Unmute' : 'Mute'}
-            onClick={() => setSettings({ ...settings, muted: !settings.muted })}
-          >
-            {settings.muted ? <VolumeX size={19} /> : <Volume2 size={19} />}
-          </button>
-          <button
-            className={`icon-button reduce-noise-button${settings.reducedNoise ? ' active' : ''}`}
-            title={
-              settings.reducedNoise
-                ? 'Restore full volume'
-                : 'Reduce background horns by 75%'
+          <TrafficHornSlider
+            value={settings.trafficHornLevel}
+            onChange={trafficHornLevel =>
+              setSettings({ ...settings, trafficHornLevel })
             }
-            aria-label={
-              settings.reducedNoise
-                ? 'Restore full volume'
-                : 'Reduce background horns by 75%'
-            }
-            aria-pressed={settings.reducedNoise}
-            onClick={() =>
-              setSettings({
-                ...settings,
-                reducedNoise: !settings.reducedNoise
-              })
-            }
-          >
-            <Volume1 size={19} />
-          </button>
+          />
           <button
             className='icon-button'
             title='Settings'
@@ -637,35 +653,19 @@ export default function App () {
             </h2>
             {dialog === 'settings' ? (
               <>
-                <label className='setting-row'>
+                <div className='setting-row'>
                   <span>
-                    Traffic & engine sound
-                    <small>A little less honking, if you prefer.</small>
+                    Background traffic horns
+                    <small>Off, low (25%), or full. Player horn and vehicle sounds stay on.</small>
                   </span>
-                  <input
-                    type='checkbox'
-                    checked={!settings.muted}
-                    onChange={e =>
-                      setSettings({ ...settings, muted: !e.target.checked })
+                  <TrafficHornSlider
+                    settings
+                    value={settings.trafficHornLevel}
+                    onChange={trafficHornLevel =>
+                      setSettings({ ...settings, trafficHornLevel })
                     }
                   />
-                </label>
-                <label className='setting-row'>
-                  <span>
-                    Reduce background horns by 75%
-                    <small>Hear fewer traffic horns at their normal volume.</small>
-                  </span>
-                  <input
-                    type='checkbox'
-                    checked={settings.reducedNoise}
-                    onChange={e =>
-                      setSettings({
-                        ...settings,
-                        reducedNoise: e.target.checked
-                      })
-                    }
-                  />
-                </label>
+                </div>
                 <label className='setting-row'>
                   <span>
                     Reduce camera motion

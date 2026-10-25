@@ -40,8 +40,8 @@ test('recordings decode once; continuing events keep their sources, bounded at f
   for(let i=0;i<1000;i++)a.update(10,true,true,true,events,undefined,.5);assert.equal(f.stats().created,5);assert.equal(f.stats().requests,6);assert.equal(f.stats().decodes,6);
   const retained=f.sources[2];a.update(0,false,false,true,events.slice(1),undefined,.8);assert.equal(f.stats().live,3);assert.ok(f.sources.includes(retained));assert.equal(f.stats().created,5);
   a.update(0,false,false,false,events,undefined,.8);assert.equal(f.stats().live,0);assert.equal(a.activeVoices,0);
-  a.start();await flush();assert.equal(f.stats().requests,6);a.update(0,false,false,true,events,undefined,1);a.muted=true;a.update(0,false,true,true,events,undefined,1.1);assert.equal(f.stats().live,0);
-  a.muted=false;for(let lap=0;lap<3;lap++){a.update(0,false,false,true,events,undefined,.2);assert.equal(f.stats().live,4);a.update(0,false,false,false,[],undefined,0);assert.equal(f.stats().live,0);}
+  a.start();await flush();assert.equal(f.stats().requests,6);a.update(0,false,false,true,events,undefined,1);a.trafficHornLevel=0;a.update(0,false,true,true,events,undefined,1.1);assert.equal(f.stats().live,1);
+  a.trafficHornLevel=2;for(let lap=0;lap<3;lap++){a.update(0,false,false,true,events,undefined,.2);assert.equal(f.stats().live,4);a.update(0,false,false,false,[],undefined,0);assert.equal(f.stats().live,0);}
   a.dispose();assert.equal(a.sampleCount,0);assert.equal(f.stats().closed,1);
  }finally{f.restore();}
 });

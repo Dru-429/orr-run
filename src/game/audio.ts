@@ -1,15 +1,16 @@
 import {HORN_PRESETS,hornEnvelope,type NPCHornEvent} from './npcHorns';
 import {HORN_SAMPLES,RECORDED_HORNS,loadHornSamples,type HornSampleId} from './hornSamples';
 interface Voice {osc:OscillatorNode[];fallback:GainNode;filter:BiquadFilterNode;gain:GainNode;pan:StereoPannerNode;id:number;active:boolean;source:AudioBufferSourceNode|null;sampled:boolean}
+export type TrafficHornLevel=0|1|2;
 export class DrivingAudio {
- private ctx:AudioContext|null=null;private gain:GainNode|null=null;private engine:OscillatorNode|null=null;private harmonic:OscillatorNode|null=null;private player:Voice|null=null;private voices:Voice[]=[];muted=false;private noiseReduced=false;
+ private ctx:AudioContext|null=null;private gain:GainNode|null=null;private engine:OscillatorNode|null=null;private harmonic:OscillatorNode|null=null;private player:Voice|null=null;private voices:Voice[]=[];private hornLevel:TrafficHornLevel=2;
  private buffers=new Map<HornSampleId,AudioBuffer>();private loading:Promise<void>|null=null;private abort:AbortController|null=null;
  get activeVoices(){return this.voices.filter(v=>v.active).length;}
  get voiceCount(){return this.voices.length;}
  get sampleCount(){return this.buffers.size;}
  get sampleStatus(){return this.loading?'loading':this.buffers.size===Object.keys(HORN_SAMPLES).length?'ready':'fallback';}
- get reducedNoise(){return this.noiseReduced;}
- set reducedNoise(value:boolean){this.noiseReduced=value;}
+ get trafficHornLevel(){return this.hornLevel;}
+ set trafficHornLevel(value:TrafficHornLevel){this.hornLevel=value;}
  private makeVoice(c:AudioContext,out:AudioNode):Voice {
   const gain=c.createGain(),pan=c.createStereoPanner(),filter=c.createBiquadFilter(),fallback=c.createGain();gain.gain.value=0;fallback.gain.value=0;filter.type='lowpass';fallback.connect(filter);filter.connect(gain);gain.connect(pan);pan.connect(out);
   const osc=[c.createOscillator(),c.createOscillator()];osc.forEach(o=>{o.connect(fallback);o.start();});return {osc,fallback,filter,gain,pan,id:-1,active:false,source:null,sampled:false};
@@ -39,10 +40,10 @@ export class DrivingAudio {
   else v.osc.forEach((o,j)=>{o.type=preset.wave;o.frequency.setValueAtTime(preset.frequencies[j],time);});
  }
  update(speed:number,throttle:boolean,horn:boolean,playing:boolean,events:NPCHornEvent[]=[],listener={x:0,y:0,z:0,rx:1,rz:0},simulationTime=0){
-  if(!this.ctx||!this.gain)return;const time=this.ctx.currentTime,audible=!this.muted&&playing;
+  if(!this.ctx||!this.gain)return;const time=this.ctx.currentTime,audible=playing;
   this.gain.gain.setTargetAtTime(audible?.014+speed*.0009:0,time,.1);this.engine?.frequency.setTargetAtTime(32+speed*3+(throttle?8:0),time,.15);this.harmonic?.frequency.setTargetAtTime(65+speed*6,time,.15);
   if(this.player){const v=this.player;if(audible&&horn){if(!v.active)this.begin(v,-2,1,time);v.filter.frequency.setTargetAtTime(v.sampled?5500:1700,time,.03);v.gain.gain.setTargetAtTime(v.sampled?.24:.045,time,.015);}else if(v.active)this.stop(v,time);}
-  const selected=audible?events.filter(e=>simulationTime>=e.start&&simulationTime<e.start+e.duration&&!!RECORDED_HORNS[e.preset]&&(!this.noiseReduced||e.id%4===0)).slice(0,4):[];
+  const selected=audible?events.filter(e=>simulationTime>=e.start&&simulationTime<e.start+e.duration&&!!RECORDED_HORNS[e.preset]&&(this.hornLevel===2||this.hornLevel===1&&e.id%4===0)).slice(0,4):[];
   // Stable voice assignment prevents a continuing honk restarting when another event ends.
   for(const v of this.voices)if(v.active&&!selected.some(e=>e.id===v.id))this.stop(v,time);
   for(const e of selected){
