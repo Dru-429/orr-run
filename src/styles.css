@@ -35,3 +35,54 @@
 
 .footer-actions .github-link{width:44px;min-height:44px;text-decoration:none;flex-shrink:0;border-radius:50%;transition:background .18s}
 .footer-actions .github-link:hover{background:#e1e8c122}
+
+:root{--ui-navy:#0d1b2a;--ui-deep:#1b263b;--ui-blue:#415a77;--ui-slate:#778da9;--ui-light:#e0e1dd;background:var(--ui-navy);color:var(--ui-light)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline-color:var(--ui-slate)}
+.game .wordmark span,.game .wordmark svg,.start-screen h1 em,.route-line svg{color:var(--ui-slate)}
+.game .live-dot{background:var(--ui-slate);box-shadow:0 0 0 4px #778da91f}
+.start-route{border-top-color:#778da94d}
+.route-line>span{border-color:var(--ui-light)}
+.route-line i{border-left-color:#778da966}
+.route-distance>span,.start-meta,.personal-best{color:#c4cbd3}
+.key,kbd{color:var(--ui-light)}
+.key{border-color:#778da966}
+.desktop-controls{color:#c4cbd3}
+.text-button{color:#e0e1dd}
+.game .icon-button{background:#1b263b99;border-color:#778da966;color:var(--ui-light)}
+.game .icon-button:hover{background:#415a77e6}
+.game .drive-button{background:var(--ui-blue);color:var(--ui-light)}
+.game .drive-button:hover{background:var(--ui-slate)}
+.is-ready .bottom-bar{border-top-color:#778da92e}
+.traffic-horn-slider{background:#1b263b;color:var(--ui-light);border-color:#778da966}
+.traffic-horn-slider input[type=range],.setting-row .traffic-horn-slider input[type=range]{accent-color:var(--ui-slate)}
+.traffic-horn-slider input[type=range]:focus-visible{outline-color:var(--ui-slate)}
+.settings-horn-slider{background:var(--ui-light);border-color:var(--ui-slate);color:var(--ui-navy)}
+.modal-backdrop{background:#0d1b2ad9}
+.pause-panel,.settings-panel{background:var(--ui-light);color:var(--ui-navy);box-shadow:0 20px 100px #0d1b2a70}
+.eyebrow{color:var(--ui-blue)}
+.pause-panel>p,.settings-panel>p{color:var(--ui-deep)}
+.setting-row{border-color:#778da966}
+.settings-panel input:not([type=range]),.settings-panel select,.copy-fallback input{background:#fff;color:var(--ui-navy);border-color:#778da9}
+.settings-panel input[type=range]{accent-color:var(--ui-blue)}
+.settings-panel button:not(.drive-button){background:var(--ui-deep);color:var(--ui-light)}
+.settings-panel button:not(.drive-button):hover{background:var(--ui-blue)}
+.result-grid{border-color:#415a7733}
+.result-grid small{color:var(--ui-blue)}
+.pause-panel .drive-button{background:var(--ui-blue);color:var(--ui-light)}
+.pause-panel .drive-button:hover{background:var(--ui-slate)}
+.pause-panel .antimattr-button{background:var(--ui-deep);color:var(--ui-light);border-color:var(--ui-blue)}
+.pause-panel .antimattr-button:hover{background:var(--ui-blue)}
+.touch-button{background:#0d1b2ae6;border-color:#778da988;color:var(--ui-light)}
+.touch-button.pressed{background:var(--ui-slate);color:var(--ui-navy)}
+.steering-wheel-core{background:linear-gradient(165deg,#415a77,#1b263b 60%,#0d1b2a);color:var(--ui-light)}
+.steering-wheel-core::before{background:linear-gradient(90deg,transparent,#e0e1ddaa,transparent)}
+.wheel-button{background:linear-gradient(180deg,#415a77,#1b263b);border-color:#778da9;color:var(--ui-light)}
+.wheel-button.pressed{background:linear-gradient(180deg,#e0e1dd,#778da9);color:var(--ui-navy)}
+.touch-pedals .accelerator{background:#778da9;color:var(--ui-navy)}
+.horn-touch{background:#1b263b}
+.rotate-hint{color:var(--ui-light)}
+.copy-fallback{background:var(--ui-light);color:var(--ui-navy)}
+.copy-fallback button{color:var(--ui-navy)}
+.inspect-tools{background:var(--ui-light);color:var(--ui-navy)}
+.inspect-tools button{background:var(--ui-deep);color:var(--ui-light)}
+.footer-actions .github-link:hover{background:#778da933}
