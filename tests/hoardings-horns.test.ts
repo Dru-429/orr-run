@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {existsSync} from 'node:fs';
 import {hoardings,clearHoardingPoint} from '../src/game/hoardings';
+import {billboards,getBillboard} from '../src/data/billboards';
 import {pose} from '../src/game/route';
 import {crossSectionAt} from '../src/survey/corridor';
 import {NPCHornSystem,HORN_PRESETS,hornEnvelope,type HornActor} from '../src/game/npcHorns';
@@ -10,9 +11,9 @@ import {Simulation,emptyInput} from '../src/game/simulation';
 const player={s:4100,lateral:0,x:0,y:0,z:0,speed:0};
 const car=(id:number,s=4092):HornActor=>({id,s,lateral:0,x:0,y:0,z:s-4100,speed:0,length:4.3,width:1.85,opposite:false,kind:'car'});
 const tick=(h:NPCHornSystem,seconds:number,actors:HornActor[],signals:{s:number;y:number;red:boolean}[]=[])=>{let priority=0,seen=new Set<number>();for(let i=0;i<seconds*10;i++){h.update(.1,(i+1)*.1,player,actors,signals);assert.ok(h.events.length<=4);assert.ok(h.events.filter(e=>e.priority).length<=2);priority+=h.events.filter(e=>e.priority).length;h.events.forEach(e=>seen.add(e.preset));}return {priority,seen};};
-test('14 close left-side hoardings repeat seven unchanged 4:3 posters at exact 800 m stations',()=>{
- assert.equal(hoardings.length,14);assert.equal(new Set(hoardings.map(h=>h.id)).size,14);
- hoardings.forEach((h,i)=>{assert.equal(h.station,400+800*i);assert.equal(h.side,'left');const setback=crossSectionAt(h.station).left-h.offset;assert.ok(setback>=6.75&&setback<=18);assert.equal(h.poster,i%7+1);assert.equal(h.width/h.height,4/3);const png=readFileSync(`public/hoardings/${h.poster}.png`);assert.equal(png.readUInt32BE(16)/png.readUInt32BE(20),4/3);assert.ok(h.bottom>=6&&h.bottom>=pose(h.station).y+3);assert.ok(clearHoardingPoint([h.x,h.z],1.2));for(const t of [-6.3,-3,0,3,6.3])assert.ok(clearHoardingPoint([h.x+Math.cos(h.yaw)*t,h.z-Math.sin(h.yaw)*t],.3,h.bottom));const p=pose(h.station-120);assert.ok(Math.sin(h.yaw)*(p.x-h.x)+Math.cos(h.yaw)*(p.z-h.z)>0);});
+test('14 close left-side hoardings use centralized IDs, stations, names and branding assets',()=>{
+ assert.equal(hoardings.length,14);assert.equal(billboards.length,14);assert.equal(new Set(hoardings.map(h=>h.id)).size,14);assert.equal(new Set(billboards.map(b=>b.id)).size,14);
+ hoardings.forEach((h,i)=>{const billboard=getBillboard(h.billboardId);assert.equal(h.id,billboard.id);assert.equal(h.station,billboard.distanceFromStart);assert.equal(h.side,'left');assert.ok(billboard.name);assert.match(billboard.image,/^\/brandings\//);assert.ok(existsSync(`public${billboard.image}`));const setback=crossSectionAt(h.station).left-h.offset;assert.ok(setback>=6.75&&setback<=18);assert.equal(h.width/h.height,4/3);assert.ok(h.bottom>=6&&h.bottom>=pose(h.station).y+3);assert.ok(clearHoardingPoint([h.x,h.z],1.2));for(const t of [-6.3,-3,0,3,6.3])assert.ok(clearHoardingPoint([h.x+Math.cos(h.yaw)*t,h.z-Math.sin(h.yaw)*t],.3,h.bottom));const p=pose(h.station-120);assert.ok(Math.sin(h.yaw)*(p.x-h.x)+Math.cos(h.yaw)*(p.z-h.z)>0);});
 });
 test('stopped-player horns begin after two seconds, repeat, and stop when moving',()=>{
  const h=new NPCHornSystem();const actors=[car(1),car(2,4083),car(3,4078)];tick(h,1.9,actors);assert.equal(h.events.filter(e=>e.priority).length,0);h.update(.2,2.1,player,actors,[]);assert.equal(h.events.filter(e=>e.priority).length,2);assert.ok(tick(new NPCHornSystem(),15,actors).priority>150);h.update(.1,2.2,{...player,speed:1},actors,[]);assert.ok(h.events.every(e=>!e.priority));

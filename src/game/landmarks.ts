@@ -1,8 +1,13 @@
-import {buildings,businesses} from '../survey/records';
+import {mapLocations} from '../data/mapLocations';
+import {buildings} from '../survey/records';
+
+const buildingById=new Map(buildings.map(building=>[building.id,building]));
+
 // Identifications, not claims that a physical sign exists on the facade.
-export const buildingLandmarks=buildings.flatMap(b=>{
- const occupants=businesses.filter(p=>p.buildingId===b.id);
- const name=b.name!=='Unidentified building'?b.name:occupants[0]?.name.value;
- if(!name||/^(Block|Tower|Wing)\s/i.test(name)||Math.abs(b.offset)>180)return [];
- return [{id:b.id,name,station:b.station,offset:b.offset,x:b.model.center[0],z:b.model.center[1],height:b.model.height,building:b,source:b.model.source}];
+// Names and board overrides are owned by mapLocations; survey records supply
+// only the existing footprint/render geometry.
+export const buildingLandmarks=mapLocations.flatMap(location=>{
+ const building=buildingById.get(location.id);
+ if(!building)return [];
+ return [{...location,station:location.distanceFromStart,offset:building.offset,x:building.model.center[0],z:building.model.center[1],height:building.model.height,building,source:building.model.source}];
 });

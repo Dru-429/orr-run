@@ -103,9 +103,8 @@ function makeChunk(from:number,to:number,resources:WorldResources){
    if(isAdobe){for(let j=0;j<len;j+=12){const t=j/len;batch.box(.65,height,.65,a[0]+(b[0]-a[0])*t,height/2,a[1]+(b[1]-a[1])*t,lightConcrete);}}
   }
   if(building.height>15&&Math.abs(building.offset)<155){batch.box(5,2,4,building.center[0],height+1,building.center[1],concrete);batch.box(3,1.3,2,building.center[0]+8,height+.65,building.center[1],dark);}
-  const signage=buildings.find(f=>f.model.id===building.id)?.attributes.signage;
   const landmark=buildingLandmarks.find(b=>b.id==='building:'+building.id);
-  const text=typeof signage?.value==='string'&&signage.confidence==='observed'?signage.value:landmark?.name;
+  const text=landmark&&(landmark.signName??landmark.name);
   if(text){
    const p=pose(building.station),approach=pose(building.station-65);
    const faces=facadeSignFaces(building.polygon as [number,number][],[p.x,p.z],[approach.x,approach.z]);

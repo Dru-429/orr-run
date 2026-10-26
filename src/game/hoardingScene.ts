@@ -1,9 +1,10 @@
 import * as T from 'three';
 import {Batch,material} from './assets';
 import {hoardings} from './hoardings';
+import {billboardIndex,getBillboard} from '../data/billboards';
 export function addHoardings(world:T.Group,from:number,to:number,posters:T.MeshBasicMaterial[],palette:typeof material){
  for(const h of hoardings.filter(h=>h.station>=from&&h.station<to)){
-  const group=new T.Group();group.name=h.id;group.userData.poster=h.poster;
+  const billboard=getBillboard(h.billboardId);const group=new T.Group();group.name=h.id;group.userData.billboardId=billboard.id;group.userData.billboardName=billboard.name;
   const steel=palette('#c4c8c6',.55),dark=palette('#455251',.6),concrete=palette('#a1a397');const batch=new Batch();
   const box=(w:number,height:number,d:number,x:number,y:number,z:number,m:T.Material)=>batch.box(w,height,d,h.x+Math.cos(h.yaw)*x+Math.sin(h.yaw)*z,y,h.z-Math.sin(h.yaw)*x+Math.cos(h.yaw)*z,m,h.yaw);
   box(2.4,.65,2.4,0,.325,0,concrete);box(.85,h.bottom+4.5,.85,0,(h.bottom+4.5)/2,-.55,steel);
@@ -15,6 +16,6 @@ export function addHoardings(world:T.Group,from:number,to:number,posters:T.MeshB
   box(12.4,.14,1,0,h.bottom-.6,.2,steel);
   for(const x of [-4,0,4]){box(.12,.5,.12,x,h.bottom-.8,.65,dark);box(.65,.22,.4,x,h.bottom-.55,.8,dark);}
   batch.finish(group);
-  const poster=new T.Mesh(new T.PlaneGeometry(12,9),posters[h.poster-1]);poster.name='poster-face';poster.position.set(h.x+Math.sin(h.yaw)*.3,h.bottom+4.5,h.z+Math.cos(h.yaw)*.3);poster.rotation.y=h.yaw;group.add(poster);world.add(group);
+  const poster=new T.Mesh(new T.PlaneGeometry(12,9),posters[billboardIndex(billboard.id)]);poster.name='poster-face';poster.userData.billboardName=billboard.name;poster.position.set(h.x+Math.sin(h.yaw)*.3,h.bottom+4.5,h.z+Math.cos(h.yaw)*.3);poster.rotation.y=h.yaw;group.add(poster);world.add(group);
  }
 }

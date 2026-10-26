@@ -3,7 +3,9 @@ import {map,pose,ROUTE_LENGTH,locationName} from '../game/route';
 import {buildingLandmarks} from '../game/landmarks';
 import {junctionRecords} from '../game/junctions';
 import type {TrafficSection} from '../game/trafficMap';
+import {getMapLocation} from '../data/mapLocations';
 const colors={red:'#df524c',yellow:'#edbb3f',blue:'#4285eb',unknown:'#415a77'};
+const roadName=getMapLocation('navigation:road')!.name,destinationName=getMapLocation('navigation:destination')!.name;
 export function NavigationMap({s,x=0,traffic=[]}:{s:number;x?:number;traffic?:TrafficSection[]}){
  const tile=Math.floor(s/100),player=pose(s,x),heading=useRef({s,yaw:player.yaw});
  const delta=Math.atan2(Math.sin(player.yaw-heading.current.yaw),Math.cos(player.yaw-heading.current.yaw));
@@ -20,7 +22,7 @@ export function NavigationMap({s,x=0,traffic=[]}:{s:number;x?:number;traffic?:Tr
  const boxes:{x:number;y:number}[]=[];
  const names=[...data.names].sort((a,b)=>Math.abs(a.station-s)-Math.abs(b.station-s)).flatMap(b=>{const [x,y]=project(b.x,b.z);if(x<52||x>188||y<22||y>297||Math.hypot(x-120,y-255)<27||boxes.some(p=>Math.abs(p.x-x)<108&&Math.abs(p.y-y)<28))return [];boxes.push({x,y});return [{...b,x,y}];}).slice(0,5);
  return <section className="navigation-map" aria-label="Live navigation map" data-station={s.toFixed(1)}>
-  <div className="nav-instruction"><span className="nav-turn">↑</span><div><strong>Stay on Outer Ring Road</strong><span>{distance<1000?`${Math.round(distance/10)*10} m`:`${(distance/1000).toFixed(1)} km`} · {next?'next signal':'Marathahalli finish'}</span></div></div>
+  <div className="nav-instruction"><span className="nav-turn">↑</span><div><strong>Stay on {roadName}</strong><span>{distance<1000?`${Math.round(distance/10)*10} m`:`${(distance/1000).toFixed(1)} km`} · {next?'next signal':`${destinationName} finish`}</span></div></div>
   <svg viewBox="0 0 240 320" role="img" aria-label={`Car at ${Math.round(s)} metres, ${locationName(s)}; heading-up game traffic`}>
    <rect width="240" height="320" fill="#e0e1dd"/>
    {data.areas.map(f=><path key={f.id} d={[...f.polygons,...f.holes].map(r=>path(r)+'Z').join(' ')} fillRule="evenodd" fill={f.kind==='water'?'#778da9':'#c9ced2'}/>)}
@@ -29,12 +31,12 @@ export function NavigationMap({s,x=0,traffic=[]}:{s:number;x?:number;traffic?:Tr
    <path d={routePath(Math.max(0,s-150),Math.min(ROUTE_LENGTH,s+650))} fill="none" stroke="#778da9" strokeOpacity=".45" strokeWidth="19" strokeLinejoin="round"/>
    <path d={routePath(Math.max(0,s-150),Math.min(ROUTE_LENGTH,s+650))} fill="none" stroke={colors.unknown} strokeWidth="7"/>
    {traffic.map(t=><path key={t.from} data-traffic={t.color} d={routePath(t.from,t.to)} fill="none" stroke={colors[t.color]} strokeWidth="3" strokeLinejoin="round"/>)}
-   {data.areas.filter(f=>['relation/8469370','relation/3120373'].includes(f.id)).map(f=>{const p=f.points[Math.floor(f.points.length/2)],[x,y]=project(p[0],p[1]);return <text key={f.id} x={x} y={y} className="nav-water">{f.tags.name}</text>;})}
+   {data.areas.filter(f=>['relation/8469370','relation/3120373'].includes(f.id)).map(f=>{const location=getMapLocation(`landscape:${f.id}`);if(!location)return null;const p=f.points[Math.floor(f.points.length/2)],[x,y]=project(p[0],p[1]);return <text key={f.id} x={x} y={y} className="nav-water">{location.name}</text>;})}
    {names.map(b=><g key={b.id}><circle cx={b.x} cy={b.y+5} r="2.5" fill="#415a77"/><text x={b.x} y={b.y} className="nav-place">{b.name.length>25?b.name.slice(0,23)+'…':b.name}</text></g>)}
    <g transform={`translate(120,255) rotate(${-(player.yaw-yaw)*180/Math.PI})`} data-player-arrow="true"><circle r="20" fill="#415a77" opacity=".2"/><path d="M0 -14 L10 10 L0 6 L-10 10 Z" fill="#e0e1dd" stroke="#415a77" strokeWidth="2.5" strokeLinejoin="round"/></g>
    <g transform={`translate(220 21) rotate(${yaw*180/Math.PI})`}><circle r="12" fill="#e0e1dd" stroke="#778da9"/><path d="M0 -8 L4 5 L0 2 L-4 5Z" fill="#1b263b"/></g>
   </svg>
-  <footer><strong>{((ROUTE_LENGTH-s)/1000).toFixed(1)} km left</strong><span>Marathahalli</span></footer>
+  <footer><strong>{((ROUTE_LENGTH-s)/1000).toFixed(1)} km left</strong><span>{destinationName}</span></footer>
   <div className="nav-destination-progress"><progress max={ROUTE_LENGTH} value={s} aria-label="Destination progress"/></div>
  </section>;
 }

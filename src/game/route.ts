@@ -1,6 +1,7 @@
 import map from '../data/map.json';
 import manifest from '../data/route-manifest.json';
-import {elevationAt,LEGACY_OFFSET,OLD_SHIFT,SILK_LENGTH,oldLocal} from '../survey/corridor';
+import {elevationAt,LEGACY_OFFSET,OLD_SHIFT,SILK_LENGTH} from '../survey/corridor';
+import {getRouteLocation} from '../data/mapLocations';
 export const ROUTE_LENGTH = manifest.length;
 export const ROUTE_ID = manifest.id;
 export {manifest,LEGACY_OFFSET,OLD_SHIFT,SILK_LENGTH};
@@ -33,21 +34,5 @@ export function nearestStation(x:number,z:number) {
   return best;
 }
 export function locationName(s:number){
- if(s<600)return 'Silk Board · ORR';
- if(s<1450)return 'HSR Layout · ORR';
- if(s<2000)return 'HSR / 14th Main flyover';
- if(s<3200)return 'Agara Lake';
- if(s<3850)return 'Agara flyover';
- if(s<SILK_LENGTH-200)return 'Agara → Ibbalur';
- if(s<SILK_LENGTH)return 'Ibbalur · Sarjapur crossing';
- if(oldLocal(s)<520)return 'Ibbalur Lake';
- if(oldLocal(s)<1800)return 'Bellandur · ORR';
- if(s<LEGACY_OFFSET)return 'Devarabisanahalli · ORR';
- if(s>=manifest.marathahalliUnderpass.from)return 'Marathahalli · ORR underpass';
- if(s>=LEGACY_OFFSET+1000)return 'Marathahalli · Outer Ring Road';
- const local=s-LEGACY_OFFSET;
- if(local<300)return 'Kadubeesanahalli underpass';
- if(local<565)return 'Prestige Tech Park';
- if(local<800)return 'Adobe · Prestige Platina';
- return 'Towards Marathahalli';
+ return getRouteLocation(s).name;
 }
