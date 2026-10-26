@@ -90,7 +90,9 @@ The checked-in map and assets are sufficient to run the game. You do not need to
 | Horn | Shift |
 | Switch cockpit / chase camera | C or the camera control |
 | Roadster upward thruster | Space |
-| Flight pitch / roll / yaw | W S / A D / Q E |
+| Roadster backflip | Hold Space, then press B while airborne |
+| Flight forward / reverse | W or ↑ / S or ↓ |
+| Flight pitch / roll / yaw | I K / A D / Q E |
 | Look left / right | Q / E, or drag the windshield |
 | Pause / resume | Escape or the pause control |
 | Restart, sound, graphics, camera motion | On-screen menus |

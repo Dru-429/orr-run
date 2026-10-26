@@ -712,7 +712,9 @@ export default function App () {
                     <br />
                     <strong>Space</strong> upward thruster
                     <br />
-                    <strong>W S</strong> pitch · <strong>A D</strong> roll ·{' '}
+                    Hold <strong>Space</strong> + press <strong>B</strong> backflip
+                    <br />
+                    <strong>I K</strong> pitch · <strong>A D</strong> roll ·{' '}
                     <strong>Q E</strong> yaw
                   </p>
                 </div>

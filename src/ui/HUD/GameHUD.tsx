@@ -1,4 +1,4 @@
-import {memo} from 'react';
+import {Fragment,memo} from 'react';
 import {Rocket, Heart, MapPin, Flag, Share2, RotateCcw, Maximize, Map, Check} from 'lucide-react';
 import type {Snapshot} from '../../game/simulation';
 import {ROUTE_LENGTH} from '../../game/route';
@@ -32,8 +32,8 @@ export function RouteProgress({s}:{s:number}){
 
 export function ControlsBar({flight}:{flight:Snapshot['flight']}){
  const flying=flight.state!=='GROUNDED';
- const controls=[{keys:['W'],label:flying?'Pitch':'Drive',detail:flying?'Forward':'Accelerate'},{keys:['S'],label:flying?'Pitch':'Brake',detail:flying?'Back':'Slow down'},{keys:['A','D'],label:flying?'Roll':'Steer',detail:'Left / Right'},{keys:['SPACE'],label:'Lift',detail:'Ascend'},{keys:['SHIFT'],label:'Horn',detail:'Honk'},{keys:['Q','E'],label:flying?'Yaw':'Look',detail:flying?'Rotate':'Left / Right'},{keys:['C'],label:'View',detail:'Change'}];
- return <aside className="hud-controls hud-glass" aria-label="Keyboard controls">{controls.map(c=><div key={c.keys.join()}><div className="hud-keys">{c.keys.map(k=><kbd key={k}>{k}</kbd>)}</div><div><span>{c.label}</span><small>{c.detail}</small></div></div>)}</aside>;
+ const controls:{keys:string[];label:string;detail:string;join?:string}[]=[{keys:['W'],label:flying?'Thrust':'Drive',detail:flying?'Forward':'Accelerate'},{keys:['S'],label:flying?'Air brake':'Brake',detail:flying?'Reverse':'Slow down'},{keys:['A','D'],label:flying?'Roll':'Steer',detail:'Left / Right'},...(flying?[{keys:['I','K'],label:'Pitch',detail:'Up / Down'}]:[]),{keys:['SPACE'],label:'Lift',detail:'Ascend'},{keys:['SPACE','B'],join:'+',label:'Backflip',detail:'Hold + press'},{keys:['SHIFT'],label:'Horn',detail:'Honk'},{keys:['Q','E'],label:flying?'Yaw':'Look',detail:flying?'Rotate':'Left / Right'},{keys:['C'],label:'View',detail:'Change'}];
+ return <aside className="hud-controls hud-glass" aria-label="Keyboard controls">{controls.map(c=><div key={c.keys.join()}><div className="hud-keys">{c.keys.map((k,i)=><Fragment key={k}>{i>0&&c.join?<b className="hud-key-join">{c.join}</b>:null}<kbd>{k}</kbd></Fragment>)}</div><div><span>{c.label}</span><small>{c.detail}</small></div></div>)}</aside>;
 }
 
 export function UtilityControls({copy,reset,fullscreen,notes,copied}:{copy:()=>void;reset:()=>void;fullscreen:()=>void;notes:()=>void;copied:boolean}){

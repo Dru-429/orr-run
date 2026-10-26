@@ -14,8 +14,8 @@ import {contains} from '../survey/geometry';
 import type {Point} from '../survey/types';
 export type VehicleKind='car'|'cab'|'auto'|'bike'|'bus'|'truck';
 export type Phase='ready'|'driving'|'paused'|'looping'|'ended';
-export interface Input {throttle:boolean;brake:boolean;left:boolean;right:boolean;horn:boolean;ascend?:boolean;descend?:boolean;yawLeft?:boolean;yawRight?:boolean}
-export const emptyInput=():Input=>({throttle:false,brake:false,left:false,right:false,horn:false,ascend:false,descend:false,yawLeft:false,yawRight:false});
+export interface Input {throttle:boolean;brake:boolean;left:boolean;right:boolean;horn:boolean;ascend?:boolean;descend?:boolean;pitchUp?:boolean;pitchDown?:boolean;yawLeft?:boolean;yawRight?:boolean;backflipPressed?:boolean}
+export const emptyInput=():Input=>({throttle:false,brake:false,left:false,right:false,horn:false,ascend:false,descend:false,pitchUp:false,pitchDown:false,yawLeft:false,yawRight:false,backflipPressed:false});
 export interface Traffic {weave?:WeaveState;id:number;s:number;x:number;lane:number;targetLane:number;speed:number;cruise:number;kind:VehicleKind;length:number;width:number;opposite:boolean;braking:boolean;changeTimer:number;passed:boolean;color:number;hornPressure:number;gestureUntil:number;gestureCooldown:number;responding:boolean}
 export interface Snapshot {phase:Phase;s:number;x:number;speed:number;health:number;distance:number;lap:number;collisions:number;overtakes:number;time:number;steer:number;impact:number;impactEvent:ImpactEvent|null;trafficSections:TrafficSection[];npcHorns:NPCHornEvent[];fade:number;surface:Suspension;flight:FlightSnapshot}
 export const DIMENSIONS:Record<VehicleKind,[number,number]>={car:[4.3,1.85],cab:[4.2,1.8],auto:[2.7,1.5],bike:[2.05,.7],bus:[10.8,2.6],truck:[8.0,2.5]};
@@ -77,9 +77,10 @@ export class Simulation {
       if(this.health<=0){this.health=0;this.phase='ended';}return;
     }
     if(this.flight.state==='GROUNDED'&&input.ascend)this.flight.beginTakeoff(this.s,this.x,this.speed);
+    if(input.ascend&&input.backflipPressed&&this.backflipObstacleClear())this.flight.startBackflip();
     if(this.flight.state!=='GROUNDED'){
       const previous:[number,number,number]=[...this.flight.position];
-      let crash=this.flight.step(dt,{lift:!!input.ascend,descend:!!input.descend,pitchDown:input.throttle,pitchUp:input.brake,rollLeft:input.left,rollRight:input.right,yawLeft:!!input.yawLeft,yawRight:!!input.yawRight});
+      let crash=this.flight.step(dt,{lift:!!input.ascend,descend:!!input.descend,forward:input.throttle,reverse:input.brake,pitchDown:!!input.pitchDown,pitchUp:!!input.pitchUp,rollLeft:input.left,rollRight:input.right,yawLeft:!!input.yawLeft,yawRight:!!input.yawRight});
       let crashDirection={x:0,z:1},obstacle=crash?`flight:${crash.kind}`:'';
       if(!crash){
         const moving=this.flight.snapshot(),collision=this.flightCollision(previous,moving.position,moving.orientation,moving.velocity);
@@ -152,6 +153,11 @@ export class Simulation {
     const damage=collisionDamage(8+crash.severity*30);
     this.health=Math.max(0,Math.min(100,this.health-damage));this.collisions++;this.cooldown=2;
     this.impactEvent={id:++this.impactId,obstacle:obstacle||`flight:${crash.kind}`,time:this.time,severity:crash.severity,direction};this.impact=crash.severity;
+  }
+  private backflipObstacleClear(){
+    const flight=this.flight.snapshot(),right=rotate(flight.orientation,[1,0,0]),forward=rotate(flight.orientation,[0,0,1]),distance=1.5;
+    const probes:V3[]=[right,[-right[0],-right[1],-right[2]],forward,[-forward[0],-forward[1],-forward[2]]];
+    return probes.every(axis=>!this.flightCollision(flight.position,[flight.position[0]+axis[0]*distance,flight.position[1]+axis[1]*distance,flight.position[2]+axis[2]*distance],flight.orientation,[0,0,0]));
   }
   private flightCollision(from:V3,to:V3,orientation:FlightSnapshot['orientation'],velocity:V3):FlightCollision|null{
     if(![...from,...to,...orientation,...velocity].every(Number.isFinite))return null;

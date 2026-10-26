@@ -1,10 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {FLIGHT_CONFIG,LANDING_ASSIST_CONFIG,RoadsterFlightController,rotate,type Quat} from '../src/game/roadsterFlight';
+import {BACKFLIP_CONFIG,FLIGHT_CONFIG,LANDING_ASSIST_CONFIG,RoadsterFlightController,rotate,type Quat} from '../src/game/roadsterFlight';
 import {Simulation,emptyInput} from '../src/game/simulation';
 import {trafficBody} from '../src/game/weaving';
 
-const controls=(overrides:Partial<Parameters<RoadsterFlightController['step']>[1]>={})=>({lift:false,descend:false,pitchDown:false,pitchUp:false,rollLeft:false,rollRight:false,yawLeft:false,yawRight:false,...overrides});
+const controls=(overrides:Partial<Parameters<RoadsterFlightController['step']>[1]>={})=>({lift:false,descend:false,forward:false,reverse:false,pitchDown:false,pitchUp:false,rollLeft:false,rollRight:false,yawLeft:false,yawRight:false,...overrides});
 const multiply=(a:Quat,b:Quat):Quat=>[a[3]*b[0]+a[0]*b[3]+a[1]*b[2]-a[2]*b[1],a[3]*b[1]-a[0]*b[2]+a[1]*b[3]+a[2]*b[0],a[3]*b[2]+a[0]*b[1]-a[1]*b[0]+a[2]*b[3],a[3]*b[3]-a[0]*b[0]-a[1]*b[1]-a[2]*b[2]];
 
 test('held and repeated lift stop at the altitude ceiling without storing upward momentum',()=>{
@@ -36,6 +36,35 @@ test('fuel never drops below zero and only recharges while grounded and stable',
 
 test('auto-level reduces tilt when attitude controls are released',()=>{
  const f=new RoadsterFlightController();f.reset(100,0);f.beginTakeoff(100,0,0);for(let i=0;i<40;i++)f.step(1/60,controls({lift:true,rollRight:true}));const tilted=rotate(f.orientation,[0,1,0])[1];for(let i=0;i<150;i++)f.step(1/60,controls({lift:true}));const levelled=rotate(f.orientation,[0,1,0])[1];assert.ok(levelled>tilted);
+});
+
+test('forward flight thrust accelerates through the centre of mass without pitching or losing altitude',()=>{
+ const f=new RoadsterFlightController();f.reset(120,0);f.beginTakeoff(120,0,2);f.position[1]+=15;const angle=-.2;f.orientation=multiply(f.orientation,[Math.sin(angle/2),0,0,Math.cos(angle/2)]);f.step(1/60,controls({lift:true}));
+ const initialPitch=Math.asin(rotate(f.orientation,[0,0,1])[1]),initialAltitude=f.altitude,initialFuel=f.fuel,initialSpeed=Math.hypot(f.velocity[0],f.velocity[2]);
+ for(let i=0;i<120;i++)assert.equal(f.step(1/60,controls({forward:true})),null);
+ const finalPitch=Math.asin(rotate(f.orientation,[0,0,1])[1]);assert.ok(Math.hypot(f.velocity[0],f.velocity[2])>initialSpeed+5);assert.ok(Math.abs(finalPitch-initialPitch)<.035);assert.ok(Math.abs(f.altitude-initialAltitude)<1,`altitude changed from ${initialAltitude} to ${f.altitude}`);assert.ok(Math.abs(f.angularVelocity[0])<.08);assert.ok(f.forwardThrust>0);assert.ok(f.fuel<initialFuel);
+});
+
+test('reverse input air-brakes while dedicated pitch input remains available',()=>{
+ const f=new RoadsterFlightController();f.reset(180,0);f.beginTakeoff(180,0,4);f.position[1]+=14;f.step(1/60,controls({lift:true}));for(let i=0;i<70;i++)f.step(1/60,controls({forward:true}));
+ const before=Math.hypot(f.velocity[0],f.velocity[2]),pitchBefore=rotate(f.orientation,[0,0,1])[1];for(let i=0;i<45;i++)f.step(1/60,controls({reverse:true,pitchUp:true}));
+ assert.ok(Math.hypot(f.velocity[0],f.velocity[2])<before);assert.ok(rotate(f.orientation,[0,0,1])[1]>pitchBefore+.08);assert.ok(f.forwardThrust<0);
+});
+
+test('combined lift and forward thrust consumes more shared fuel than lift alone',()=>{
+ const make=()=>{const f=new RoadsterFlightController();f.reset(240,0);f.beginTakeoff(240,0,0);f.position[1]+=12;f.step(1/60,controls({lift:true}));return f;},lift=make(),combined=make();
+ for(let i=0;i<60;i++){lift.step(1/60,controls({lift:true}));combined.step(1/60,controls({lift:true,forward:true}));}assert.ok(combined.fuel<lift.fuel);
+});
+
+test('aerodynamic drag reduces forward acceleration naturally at high flight speed',()=>{
+ const make=(speed:number)=>{const f=new RoadsterFlightController();f.reset(260,0);f.beginTakeoff(260,0,speed);f.position[1]+=15;f.step(1/60,controls({lift:true}));return f;},slow=make(2),fast=make(45);
+ const advance=(f:RoadsterFlightController)=>{const direction=rotate(f.orientation,[0,0,1]),before=f.velocity[0]*direction[0]+f.velocity[2]*direction[2];f.step(1/60,controls({forward:true}));return f.velocity[0]*direction[0]+f.velocity[2]*direction[2]-before;};
+ assert.ok(advance(slow)>advance(fast));
+});
+
+test('landing assist attenuates forward thrust without introducing nose-down torque',()=>{
+ const f=new RoadsterFlightController();f.reset(280,0);f.beginTakeoff(280,0,4);f.position[1]+=2;f.step(1/60,controls({lift:true}));f.velocity[1]=-.5;f.step(1/60,controls({forward:true}));
+ assert.ok(f.landingAssist>0);assert.ok(f.forwardThrust>0&&f.forwardThrust<1);assert.ok(Math.abs(f.angularVelocity[0])<.15);
 });
 
 test('flight integrates through the existing simulation loop while traffic keeps moving',()=>{
@@ -88,4 +117,37 @@ test('swept flight collision catches a high-speed traffic pass-through',()=>{
 test('invalid and distant flight positions trigger the out-of-bounds recovery path',()=>{
  const invalid=new RoadsterFlightController();invalid.reset(100,0);invalid.beginTakeoff(100,0,0);invalid.state='FLYING';invalid.position=[Number.NaN,0,0];assert.equal(invalid.step(1/60,controls())?.kind,'invalid');assert.ok(invalid.position.every(Number.isFinite));
  const distant=new RoadsterFlightController();distant.reset(100,0);const safe=distant.lastSafeGroundedTransform;distant.beginTakeoff(100,0,0);distant.state='FLYING';distant.position=[safe.position[0]+10000,safe.position[1]+10,safe.position[2]+10000];assert.equal(distant.step(1/60,controls())?.kind,'out-of-bounds');assert.equal(distant.state,'CRASHED');
+});
+
+test('backflip requires flight clearance and fuel',()=>{
+ const f=new RoadsterFlightController();f.reset(100,0);assert.equal(f.startBackflip(),false);
+ f.beginTakeoff(100,0,0);assert.equal(f.startBackflip(),false);f.position[1]+=BACKFLIP_CONFIG.minClearance+1;f.step(1/60,controls({lift:true}));
+ f.fuel=0;assert.equal(f.startBackflip(),false);f.fuel=1;assert.equal(f.startBackflip(),true);assert.equal(f.startBackflip(),false);
+});
+
+test('one backflip completes a quaternion-driven backward rotation and stabilizes without losing momentum',()=>{
+ const f=new RoadsterFlightController();f.reset(100,0);f.beginTakeoff(100,0,8);f.position[1]+=18;f.velocity=[3,0,7];f.step(1/60,controls({lift:true}));
+ const fuel=f.fuel,velocity=[...f.velocity];assert.equal(f.startBackflip(),true);let inverted=false,assist=false;
+ for(let i=0;i<360&&f.stunt==='BACKFLIP';i++){assert.equal(f.step(1/60,controls({lift:true,forward:true})),null);inverted ||= rotate(f.orientation,[0,1,0])[1]<-.8;assist ||= f.landingAssist>0;}
+ assert.equal(inverted,true);assert.equal(assist,false);assert.ok(f.backflipRotation>=BACKFLIP_CONFIG.targetRotation);assert.equal(f.stunt,'BACKFLIP_RECOVERY');assert.ok(f.fuel<fuel);
+ for(let i=0;i<90;i++)f.step(1/60,controls({lift:true}));assert.equal(f.stunt,'NONE');assert.ok(rotate(f.orientation,[0,1,0])[1]>.75);
+ assert.ok(Math.hypot(f.velocity[0],f.velocity[2])>Math.hypot(velocity[0],velocity[2])*.65);
+});
+
+test('backflip physics is deterministic for the same input sequence and timestep',()=>{
+ const run=()=>{const f=new RoadsterFlightController();f.reset(200,0);f.beginTakeoff(200,0,5);f.position[1]+=16;f.step(1/60,controls({lift:true}));assert.equal(f.startBackflip(),true);for(let i=0;i<240;i++)f.step(1/60,controls({lift:true,yawLeft:i>50&&i<90,rollRight:i>120&&i<145}));return f.snapshot();};
+ assert.deepEqual(run(),run());
+});
+
+test('simulation requires lift with the backflip edge and cannot restart an active stunt',()=>{
+ const sim=new Simulation(45);sim.start();sim.flight.beginTakeoff(sim.s,sim.x,4);sim.flight.position[1]+=15;sim.flight.step(1/60,controls({lift:true}));
+ sim.update(1/60,{...emptyInput(),backflipPressed:true});assert.equal(sim.flight.stunt,'NONE');
+ sim.update(1/60,{...emptyInput(),ascend:true,backflipPressed:true});assert.equal(sim.flight.stunt,'BACKFLIP');const started=sim.flight.backflipRotation;
+ for(let i=0;i<12;i++)sim.update(1/60,{...emptyInput(),ascend:true,backflipPressed:true});assert.ok(sim.flight.backflipRotation>started);
+});
+
+test('fuel exhaustion stops assisted torque but preserves ongoing backflip momentum',()=>{
+ const f=new RoadsterFlightController();f.reset(300,0);f.beginTakeoff(300,0,0);f.position[1]+=15;f.step(1/60,controls({lift:true}));f.fuel=.001;assert.equal(f.startBackflip(),true);
+ f.step(1/60,controls({lift:true}));const position=[...f.position],spin=Math.abs(f.angularVelocity[0]);assert.equal(f.fuel,0);f.step(1/60,controls({lift:true}));
+ assert.ok(Math.abs(f.angularVelocity[0])>0&&Math.abs(f.angularVelocity[0])<=spin);assert.notDeepEqual(f.position,position);assert.notEqual(f.state,'CRASHED');
 });

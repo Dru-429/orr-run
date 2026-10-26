@@ -4,19 +4,20 @@ import {nearestStation,pose,roadHeight,ROUTE_LENGTH} from './route';
 import {driveBounds} from '../survey/corridor';
 
 export type FlightState='GROUNDED'|'TAKEOFF'|'FLYING'|'LANDING'|'CRASHED'|'RECOVERING';
+export type StuntState='NONE'|'BACKFLIP'|'BACKFLIP_RECOVERY';
 export type FlightCrashKind='hard-landing'|'side-landing'|'roof-landing'|'solid-impact'|'stuck'|'out-of-bounds'|'invalid';
 export type V3=[number,number,number];
 export type Quat=[number,number,number,number];
 
-export interface FlightControls {lift:boolean;descend:boolean;pitchDown:boolean;pitchUp:boolean;rollLeft:boolean;rollRight:boolean;yawLeft:boolean;yawRight:boolean}
+export interface FlightControls {lift:boolean;descend:boolean;forward:boolean;reverse:boolean;pitchDown:boolean;pitchUp:boolean;rollLeft:boolean;rollRight:boolean;yawLeft:boolean;yawRight:boolean}
 export interface FlightCrash {kind:FlightCrashKind;severity:number;speed:number;upDot:number}
 export interface SafeGroundedTransform {s:number;x:number;position:V3;orientation:Quat;forward:V3;timestamp:number}
-export interface FlightSnapshot {active:boolean;state:FlightState;fuel:number;position:V3;orientation:Quat;velocity:V3;angularVelocity:V3;altitude:number;thrust:number;landingAssist:number;touchdownBoost:number}
+export interface FlightSnapshot {active:boolean;state:FlightState;stunt:StuntState;backflipRotation:number;fuel:number;position:V3;orientation:Quat;velocity:V3;angularVelocity:V3;altitude:number;thrust:number;forwardThrust:number;landingAssist:number;touchdownBoost:number}
 
 export const FLIGHT_CONFIG={
- gravity:9.81,liftAcceleration:18,forwardAcceleration:6,maxFuel:5,
- liftFuelPerSecond:.085,attitudeFuelPerSecond:.018,rechargePerSecond:.035,
- linearDrag:.055,angularDrag:1.7,maxRate:[1.7,1.25,2.15] as V3,
+ gravity:9.81,liftAcceleration:18,forwardAcceleration:6,reverseAcceleration:4.5,maxFuel:5,
+ liftFuelPerSecond:.085,forwardFuelPerSecond:.04,attitudeFuelPerSecond:.018,rechargePerSecond:.035,
+ linearDrag:.055,quadraticHorizontalDrag:.003,hoverVelocityGain:1.35,angularDrag:1.7,maxRate:[1.7,1.25,2.15] as V3,
  rateGain:6,levelGain:3.1,touchdownSpeed:2.4,maxAltitude:30,
  crashDelay:.7,recoveryDelay:.35,minWorldY:-40,maxWorldOffset:180,maxFallingTime:12,
 };
@@ -26,6 +27,12 @@ export const LANDING_ASSIST_CONFIG={
  rotationStrength:4.8,rotationDamping:3.2,yawDamping:1.15,
  farDescentSpeed:2.25,touchdownDescentSpeed:.65,verticalGain:2.8,
  touchdownMaxSpeed:3.2,touchdownMinUprightness:.72,touchdownMaxAngularSpeed:1.3,
+};
+
+export const BACKFLIP_CONFIG={
+ minClearance:7,targetRotation:Math.PI*2,targetAngularSpeed:3.2,
+ torque:11,maxTorque:10,damping:1.1,recoveryStrength:4.5,recoveryDuration:.7,
+ worldLiftBlend:.72,
 };
 
 const clamp=(v:number,a:number,b:number)=>Math.max(a,Math.min(b,v));
@@ -60,6 +67,21 @@ function roadIsValid(s:number,offset:number){
  return offset>=bounds.left&&offset<=bounds.right;
 }
 
+function computeForwardThrust(c:FlightControls,fuel:number,landingAssist:number){
+ if(fuel<=0)return 0;
+ const command=c.forward?1:c.reverse?-FLIGHT_CONFIG.reverseAcceleration/FLIGHT_CONFIG.forwardAcceleration:0;
+ return command*(1-landingAssist*.72);
+}
+
+function computeLiftAcceleration(c:FlightControls,translating:boolean,fuel:number,verticalSpeed:number,forwardVerticalAcceleration:number){
+ if(fuel<=0)return 0;
+ const command=clamp(Number(c.lift)-Number(c.descend)*.45,0,1);
+ if(command>0)return command*FLIGHT_CONFIG.liftAcceleration;
+ return translating?clamp(FLIGHT_CONFIG.gravity-forwardVerticalAcceleration-verticalSpeed*FLIGHT_CONFIG.hoverVelocityGain,0,FLIGHT_CONFIG.liftAcceleration*.72):0;
+}
+
+const pitchAngle=(forward:V3)=>Math.asin(clamp(forward[1],-1,1));
+
 export class RoadsterFlightController{
  active=true;
  state:FlightState='GROUNDED';
@@ -70,29 +92,39 @@ export class RoadsterFlightController{
  angularVelocity:V3=[0,0,0];
  altitude=0;
  thrust=0;
+ forwardThrust=0;
  landingAssist=0;
  touchdownBoost=0;
+ stunt:StuntState='NONE';
+ backflipRotation=0;
  lastSafeGroundedTransform:SafeGroundedTransform=safeTransform(0,0,0);
  private stateTimer=0;
+ private stuntTimer=0;
  private tippedContactTime=0;
  private fallingTime=0;
+ private heldPitch:number|null=null;
 
  reset(s:number,x:number){
   const safe=safeTransform(s,x,0);
   this.active=true;this.state='GROUNDED';this.fuel=FLIGHT_CONFIG.maxFuel;
   this.position=[...safe.position];this.orientation=[...safe.orientation];this.velocity=[0,0,0];this.angularVelocity=[0,0,0];
-  this.altitude=0;this.thrust=0;this.landingAssist=0;this.touchdownBoost=0;this.stateTimer=0;this.tippedContactTime=0;this.fallingTime=0;this.lastSafeGroundedTransform=safe;
+  this.altitude=0;this.thrust=0;this.forwardThrust=0;this.landingAssist=0;this.touchdownBoost=0;this.stunt='NONE';this.backflipRotation=0;this.stuntTimer=0;this.stateTimer=0;this.tippedContactTime=0;this.fallingTime=0;this.heldPitch=null;this.lastSafeGroundedTransform=safe;
  }
 
  beginTakeoff(s:number,x:number,speed:number){
   if(this.state!=='GROUNDED'||this.fuel<=0)return false;
   const p=pose(s,x);this.position=[p.x,p.y+.46,p.z];this.orientation=yawQuat(p.yaw+Math.PI);this.velocity=[p.tx*speed,0,p.tz*speed];this.state='TAKEOFF';
-  this.tippedContactTime=0;this.fallingTime=0;return true;
+  this.tippedContactTime=0;this.fallingTime=0;this.heldPitch=null;return true;
  }
 
  rememberSafeGrounded(s:number,x:number,timestamp:number){
   if(this.state!=='GROUNDED'||![s,x,timestamp].every(Number.isFinite))return;
   this.lastSafeGroundedTransform=safeTransform(s,x,timestamp);
+ }
+
+ startBackflip(){
+  if(this.stunt!=='NONE'||(this.state!=='TAKEOFF'&&this.state!=='FLYING')||this.altitude<BACKFLIP_CONFIG.minClearance||this.fuel<=0)return false;
+  this.stunt='BACKFLIP';this.backflipRotation=0;this.stuntTimer=0;this.landingAssist=0;this.heldPitch=null;return true;
  }
 
  crash(kind:FlightCrashKind,severity:number,speed=length(this.velocity),upDot=rotate(this.orientation,[0,1,0])[1]):FlightCrash|null{
@@ -101,14 +133,14 @@ export class RoadsterFlightController{
   if(!finiteV3(this.position)||!finiteQuat(this.orientation)){
    this.position=[...safe.position];this.orientation=[...safe.orientation];
   }
-  this.active=false;this.state='CRASHED';this.stateTimer=0;this.thrust=0;this.landingAssist=0;this.touchdownBoost=0;
+  this.active=false;this.state='CRASHED';this.stunt='NONE';this.backflipRotation=0;this.stuntTimer=0;this.stateTimer=0;this.thrust=0;this.forwardThrust=0;this.landingAssist=0;this.touchdownBoost=0;this.heldPitch=null;
   this.velocity=[0,0,0];this.angularVelocity=[0,0,0];this.tippedContactTime=0;this.fallingTime=0;
   return {kind,severity:clamp(severity,.15,1),speed:Number.isFinite(speed)?Math.max(0,speed):50,upDot:Number.isFinite(upDot)?upDot:-1};
  }
 
  advanceRecovery(dt:number):'waiting'|'recovering'|'complete'|null{
   if(this.state!=='CRASHED'&&this.state!=='RECOVERING')return null;
-  this.stateTimer+=Math.max(0,dt);this.thrust=0;this.landingAssist=0;this.touchdownBoost=0;this.velocity=[0,0,0];this.angularVelocity=[0,0,0];
+  this.stateTimer+=Math.max(0,dt);this.thrust=0;this.forwardThrust=0;this.landingAssist=0;this.touchdownBoost=0;this.velocity=[0,0,0];this.angularVelocity=[0,0,0];
   if(this.state==='CRASHED'){
    if(this.stateTimer<FLIGHT_CONFIG.crashDelay)return 'waiting';
    this.state='RECOVERING';this.stateTimer=0;
@@ -117,13 +149,13 @@ export class RoadsterFlightController{
   }
   const safe=this.lastSafeGroundedTransform;this.position=[safe.position[0],safe.position[1]+.14,safe.position[2]];this.orientation=[...safe.orientation];
   if(this.stateTimer<FLIGHT_CONFIG.recoveryDelay)return 'recovering';
-  this.state='GROUNDED';this.stateTimer=0;this.position=[...safe.position];this.altitude=0;this.active=true;
+  this.state='GROUNDED';this.stunt='NONE';this.backflipRotation=0;this.stateTimer=0;this.position=[...safe.position];this.altitude=0;this.active=true;
   return 'complete';
  }
 
  grounded(dt:number,stable:boolean,s?:number,x?:number,speed=0){
   if(this.state==='CRASHED'||this.state==='RECOVERING')return;
-  this.active=true;this.state='GROUNDED';this.thrust=0;this.landingAssist=0;this.touchdownBoost=Math.max(0,this.touchdownBoost-dt*1.25);this.altitude=0;this.tippedContactTime=0;this.fallingTime=0;
+  this.active=true;this.state='GROUNDED';this.stunt='NONE';this.backflipRotation=0;this.thrust=0;this.forwardThrust=0;this.landingAssist=0;this.touchdownBoost=Math.max(0,this.touchdownBoost-dt*1.25);this.altitude=0;this.tippedContactTime=0;this.fallingTime=0;this.heldPitch=null;
   if(s!==undefined&&x!==undefined){const p=pose(s,x);this.position=[p.x,p.y+.46,p.z];this.orientation=yawQuat(p.yaw+Math.PI);this.velocity=[p.tx*speed,0,p.tz*speed];this.angularVelocity=[0,0,0];}
   if(stable)this.fuel=Math.min(FLIGHT_CONFIG.maxFuel,this.fuel+FLIGHT_CONFIG.rechargePerSecond*dt);
  }
@@ -138,17 +170,23 @@ export class RoadsterFlightController{
 
   const ground=roadHeight(near.s),up=rotate(this.orientation,[0,1,0]),forward=rotate(this.orientation,[0,0,1]),normal=roadNormal(near.s);
   this.altitude=Math.max(0,this.position[1]-(ground+.46));
-  const liftCommand=c.lift&&this.fuel>0?1:0,descend=c.descend ? .45 : 0;this.thrust=Math.max(0,liftCommand-descend);
-  const pitch=Number(c.pitchDown)-Number(c.pitchUp),roll=Number(c.rollRight)-Number(c.rollLeft),yaw=Number(c.yawLeft)-Number(c.yawRight),manual=Math.abs(pitch)+Math.abs(roll)+Math.abs(yaw)>0;
+  const stunting=this.stunt==='BACKFLIP',translationRequested=c.forward||c.reverse;
+  const pitch=stunting?0:Number(c.pitchDown)-Number(c.pitchUp),roll=Number(c.rollRight)-Number(c.rollLeft),yaw=Number(c.yawLeft)-Number(c.yawRight);
   const worldUpBody=rotate(conjugate(this.orientation),[0,1,0]);
   const target:V3=[pitch*cfg.maxRate[0],yaw*cfg.maxRate[1],roll*cfg.maxRate[2]];
-  if(!manual){
-   target[0]=clamp(Math.atan2(worldUpBody[2],Math.max(.05,worldUpBody[1]))*cfg.levelGain,-cfg.maxRate[0],cfg.maxRate[0]);
+  if(stunting)this.heldPitch=null;
+  else if(pitch===0){
+   if(translationRequested&&this.stunt==='NONE'){
+    const currentPitch=pitchAngle(forward);if(this.heldPitch===null)this.heldPitch=currentPitch;
+    target[0]=clamp((currentPitch-this.heldPitch)*cfg.levelGain,-cfg.maxRate[0],cfg.maxRate[0]);
+   }else{this.heldPitch=null;target[0]=clamp(Math.atan2(worldUpBody[2],Math.max(.05,worldUpBody[1]))*cfg.levelGain,-cfg.maxRate[0],cfg.maxRate[0]);}
+  }else this.heldPitch=null;
+  if(roll===0&&!stunting){
    target[2]=clamp(-Math.atan2(worldUpBody[0],Math.max(.05,worldUpBody[1]))*cfg.levelGain,-cfg.maxRate[2],cfg.maxRate[2]);
   }
   const landing=LANDING_ASSIST_CONFIG,uprightness=dot(up,normal),angularSpeedBefore=length(this.angularVelocity),validRoad=roadIsValid(near.s,near.offset);
   const emergencyLanding=uprightness<=landing.minUprightness||this.velocity[1]<=-landing.maxDescentSpeed||angularSpeedBefore>=landing.maxAngularSpeed;
-  const landingEligible=(this.state==='FLYING'||this.state==='LANDING')&&validRoad&&
+  const landingEligible=!stunting&&(this.state==='FLYING'||this.state==='LANDING')&&validRoad&&
    this.altitude<landing.height&&this.velocity[1]<=.15;
   if(landingEligible){
    const proximity=clamp((landing.height-this.altitude)/(landing.height-landing.fullHeight),0,1);
@@ -164,34 +202,50 @@ export class RoadsterFlightController{
    this.angularVelocity[2]*=Math.exp(-landing.rotationDamping*this.landingAssist*dt);
    this.state='LANDING';
   }else this.landingAssist=0;
-  const attitudeAuthority=this.fuel>0?1:0;
-  for(let i=0;i<3;i++)this.angularVelocity[i]+=clamp((target[i]-this.angularVelocity[i])*cfg.rateGain*dt,-3*dt,3*dt)*attitudeAuthority;
-  this.angularVelocity=scale(this.angularVelocity,Math.exp(-cfg.angularDrag*dt));this.orientation=integrate(this.orientation,this.angularVelocity,dt);
+  const attitudeAuthority=this.fuel>0?1:0,orientationBefore:[number,number,number,number]=[...this.orientation];
+  for(let i=stunting?1:0;i<3;i++)this.angularVelocity[i]+=clamp((target[i]-this.angularVelocity[i])*cfg.rateGain*dt,-3*dt,3*dt)*attitudeAuthority;
+  if(stunting&&this.fuel>0){
+   const remaining=Math.max(0,BACKFLIP_CONFIG.targetRotation-this.backflipRotation),speedScale=clamp(remaining/.72,.24,1),desired=-BACKFLIP_CONFIG.targetAngularSpeed*speedScale;
+   this.angularVelocity[0]+=clamp((desired-this.angularVelocity[0])*BACKFLIP_CONFIG.torque*dt,-BACKFLIP_CONFIG.maxTorque*dt,BACKFLIP_CONFIG.maxTorque*dt);
+  }
+  if(this.stunt==='BACKFLIP_RECOVERY'){
+   this.stuntTimer+=dt;this.angularVelocity[0]*=Math.exp(-BACKFLIP_CONFIG.recoveryStrength*dt);this.angularVelocity[2]*=Math.exp(-BACKFLIP_CONFIG.recoveryStrength*.45*dt);
+   if(this.stuntTimer>=BACKFLIP_CONFIG.recoveryDuration)this.stunt='NONE';
+  }
+  this.angularVelocity=scale(this.angularVelocity,Math.exp(-(stunting?BACKFLIP_CONFIG.damping:cfg.angularDrag)*dt));this.orientation=integrate(this.orientation,this.angularVelocity,dt);
+  if(stunting){
+   let delta=multiply(conjugate(orientationBefore),this.orientation);if(delta[3]<0)delta=[-delta[0],-delta[1],-delta[2],-delta[3]];
+   this.backflipRotation+=Math.max(0,-2*Math.atan2(delta[0],delta[3]));
+   if(this.backflipRotation>=BACKFLIP_CONFIG.targetRotation||(this.fuel<=0&&Math.abs(this.angularVelocity[0])<.2)){this.stunt='BACKFLIP_RECOVERY';this.stuntTimer=0;}
+  }
 
-  let liftAccel=liftCommand*cfg.liftAcceleration;
+  this.forwardThrust=computeForwardThrust(c,this.fuel,this.landingAssist);
+  const forwardAccel=this.forwardThrust*cfg.forwardAcceleration;
+  let liftAccel=computeLiftAcceleration(c,Math.abs(this.forwardThrust)>0,this.fuel,this.velocity[1],forward[1]*forwardAccel);
   if(this.landingAssist>0&&(this.fuel>0||emergencyLanding)){
    const targetDescent=-(landing.farDescentSpeed+(landing.touchdownDescentSpeed-landing.farDescentSpeed)*this.landingAssist);
    if(this.velocity[1]<targetDescent){
-    const braking=cfg.gravity/Math.max(.5,up[1])+(targetDescent-this.velocity[1])*landing.verticalGain;
+    const braking=cfg.gravity+(targetDescent-this.velocity[1])*landing.verticalGain;
     liftAccel=Math.max(liftAccel,Math.min(cfg.liftAcceleration,braking));
    }
    if(emergencyLanding)liftAccel=cfg.liftAcceleration;
   }
   this.thrust=liftAccel/cfg.liftAcceleration;
-  const forwardAccel=c.pitchDown&&this.fuel>0?cfg.forwardAcceleration:0;
-  this.velocity[0]+=(up[0]*liftAccel+forward[0]*forwardAccel)*dt;
-  this.velocity[1]+=(up[1]*liftAccel-cfg.gravity+forward[1]*forwardAccel)*dt;
-  this.velocity[2]+=(up[2]*liftAccel+forward[2]*forwardAccel)*dt;
+  const liftVector:V3=stunting?[up[0]*(1-BACKFLIP_CONFIG.worldLiftBlend),up[1]*(1-BACKFLIP_CONFIG.worldLiftBlend)+BACKFLIP_CONFIG.worldLiftBlend,up[2]*(1-BACKFLIP_CONFIG.worldLiftBlend)]:[0,1,0];
+  this.velocity[0]+=(liftVector[0]*liftAccel+forward[0]*forwardAccel)*dt;
+  this.velocity[1]+=(liftVector[1]*liftAccel-cfg.gravity+forward[1]*forwardAccel)*dt;
+  this.velocity[2]+=(liftVector[2]*liftAccel+forward[2]*forwardAccel)*dt;
   if(emergencyLanding&&this.landingAssist>0){
    const emergencyTarget=-(landing.farDescentSpeed+(landing.touchdownDescentSpeed-landing.farDescentSpeed)*this.landingAssist);
    if(this.velocity[1]<emergencyTarget)this.velocity[1]+=(emergencyTarget-this.velocity[1])*Math.min(1,dt*(5+this.landingAssist*24));
   }
-  this.velocity=scale(this.velocity,Math.exp(-cfg.linearDrag*dt));
+  const horizontalSpeed=Math.hypot(this.velocity[0],this.velocity[2]),horizontalDamping=Math.exp(-(cfg.linearDrag+cfg.quadraticHorizontalDrag*horizontalSpeed)*dt),verticalDamping=Math.exp(-cfg.linearDrag*dt);
+  this.velocity=[this.velocity[0]*horizontalDamping,this.velocity[1]*verticalDamping,this.velocity[2]*horizontalDamping];
   const contactVerticalSpeed=Math.max(0,-this.velocity[1]),contactSpeed=length(this.velocity);
   this.position=add(this.position,scale(this.velocity,dt));
 
-  const attitudeUse=Math.min(1,(Math.abs(target[0])/cfg.maxRate[0]+Math.abs(target[1])/cfg.maxRate[1]+Math.abs(target[2])/cfg.maxRate[2])*.34);
-  this.fuel=Math.max(0,this.fuel-dt*(liftAccel/cfg.liftAcceleration*cfg.liftFuelPerSecond+attitudeUse*cfg.attitudeFuelPerSecond));
+  const attitudeUse=stunting?1:Math.min(1,(Math.abs(target[0])/cfg.maxRate[0]+Math.abs(target[1])/cfg.maxRate[1]+Math.abs(target[2])/cfg.maxRate[2])*.34);
+  this.fuel=Math.max(0,this.fuel-dt*(liftAccel/cfg.liftAcceleration*cfg.liftFuelPerSecond+Math.abs(this.forwardThrust)*cfg.forwardFuelPerSecond+attitudeUse*cfg.attitudeFuelPerSecond));
   if(!finiteV3(this.position)||!finiteV3(this.velocity)||!finiteQuat(this.orientation))return this.crash('invalid',1,contactSpeed,-1);
   if(this.position[1]<cfg.minWorldY)return this.crash('out-of-bounds',1,contactSpeed,up[1]);
 
@@ -218,7 +272,7 @@ export class RoadsterFlightController{
    if(roadIsValid(nextNear.s,nextNear.offset)){
     const heading=rotate(this.orientation,[0,0,1]),horizontal=Math.hypot(heading[0],heading[2]);
     const fallback=pose(nextNear.s),yaw=horizontal>.001?Math.atan2(heading[0],heading[2]):fallback.yaw+Math.PI;
-    this.orientation=yawQuat(yaw);this.velocity[1]=0;this.angularVelocity=[0,0,0];this.state='GROUNDED';this.active=true;
+    this.orientation=yawQuat(yaw);this.velocity[1]=0;this.angularVelocity=[0,0,0];this.state='GROUNDED';this.stunt='NONE';this.backflipRotation=0;this.forwardThrust=0;this.heldPitch=null;this.active=true;
     this.landingAssist=0;this.touchdownBoost=1;this.tippedContactTime=0;return null;
    }
    const roof=landingUp<-.12,side=landingUp<.48;
@@ -232,7 +286,7 @@ export class RoadsterFlightController{
    }
    const stableTouchdown=roadIsValid(nextNear.s,nextNear.offset)&&landingUp>landing.touchdownMinUprightness&&contactVerticalSpeed<=landing.touchdownMaxSpeed&&angularSpeed<=landing.touchdownMaxAngularSpeed;
    if(stableTouchdown){
-    this.velocity[1]=0;this.angularVelocity=[this.angularVelocity[0]*.12,this.angularVelocity[1]*.5,this.angularVelocity[2]*.12];this.state='GROUNDED';this.active=true;this.landingAssist=0;this.tippedContactTime=0;
+    this.velocity[1]=0;this.angularVelocity=[this.angularVelocity[0]*.12,this.angularVelocity[1]*.5,this.angularVelocity[2]*.12];this.state='GROUNDED';this.stunt='NONE';this.backflipRotation=0;this.forwardThrust=0;this.heldPitch=null;this.active=true;this.landingAssist=0;this.tippedContactTime=0;
    }else{
     this.velocity[1]=Math.abs(this.velocity[1])*.16;this.velocity[0]*=.45;this.velocity[2]*=.45;this.angularVelocity=scale(this.angularVelocity,.45);
    }
@@ -241,6 +295,6 @@ export class RoadsterFlightController{
  }
 
  snapshot():FlightSnapshot{
-  return {active:this.active,state:this.state,fuel:this.fuel/FLIGHT_CONFIG.maxFuel,position:[...this.position],orientation:[...this.orientation],velocity:[...this.velocity],angularVelocity:[...this.angularVelocity],altitude:Math.max(0,this.altitude),thrust:this.thrust,landingAssist:this.landingAssist,touchdownBoost:this.touchdownBoost};
+  return {active:this.active,state:this.state,stunt:this.stunt,backflipRotation:this.backflipRotation,fuel:this.fuel/FLIGHT_CONFIG.maxFuel,position:[...this.position],orientation:[...this.orientation],velocity:[...this.velocity],angularVelocity:[...this.angularVelocity],altitude:Math.max(0,this.altitude),thrust:this.thrust,forwardThrust:this.forwardThrust,landingAssist:this.landingAssist,touchdownBoost:this.touchdownBoost};
  }
 }
