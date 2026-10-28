@@ -31,7 +31,7 @@
 @media(max-width:700px){.navigation-map{width:150px}.nav-instruction{padding:6px}.nav-turn{font-size:22px}.navigation-map footer span{font-size:7px}}
 @media(max-height:500px) and (orientation:landscape){.navigation-map{width:100px;border-radius:10px}.navigation-map>svg{height:116px;aspect-ratio:auto}.nav-instruction{padding:4px;gap:3px}.nav-instruction strong{font-size:6px}.nav-instruction span:not(.nav-turn){font-size:5px}.nav-turn{font-size:13px}.navigation-map footer{padding:4px}.navigation-map footer strong{font-size:7px}.navigation-map footer span{font-size:5px}.is-driving .map-position{bottom:120px}}
 
-.pause-panel .antimattr-button{margin-top:12px;text-decoration:none;background:#e4e8d9;color:#29422e;border:1px solid #b5c3a3;box-shadow:none}.pause-panel .antimattr-button:hover{background:#d8e2c7}.pause-panel{max-height:92dvh;overflow-y:auto}
+.pause-panel .creator-button{margin-top:12px;text-decoration:none;background:#e4e8d9;color:#29422e;border:1px solid #b5c3a3;box-shadow:none}.pause-panel .creator-button:hover{background:#d8e2c7}.pause-panel{max-height:92dvh;overflow-y:auto}
 
 .footer-actions .github-link{width:44px;min-height:44px;text-decoration:none;flex-shrink:0;border-radius:50%;transition:background .18s}
 .footer-actions .github-link:hover{background:#e1e8c122}
@@ -70,8 +70,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .result-grid small{color:var(--ui-blue)}
 .pause-panel .drive-button{background:var(--ui-blue);color:var(--ui-light)}
 .pause-panel .drive-button:hover{background:var(--ui-slate)}
-.pause-panel .antimattr-button{background:var(--ui-deep);color:var(--ui-light);border-color:var(--ui-blue)}
-.pause-panel .antimattr-button:hover{background:var(--ui-blue)}
+.pause-panel .creator-button{background:var(--ui-deep);color:var(--ui-light);border-color:var(--ui-blue)}
+.pause-panel .creator-button:hover{background:var(--ui-blue)}
 .touch-button{background:#0d1b2ae6;border-color:#778da988;color:var(--ui-light)}
 .touch-button.pressed{background:var(--ui-slate);color:var(--ui-navy)}
 .steering-wheel-core{background:linear-gradient(165deg,#415a77,#1b263b 60%,#0d1b2a);color:var(--ui-light)}

@@ -32,7 +32,7 @@ test('car envelopes, BMTC orientation, plain trucks and pooled resource ownershi
   assert.ok(Math.abs(logo.geometry.parameters.width/logo.geometry.parameters.height-3.8/.8)<1e-9);
   assert.ok(logo.position.y-logo.geometry.parameters.height/2>.725);assert.ok(logo.position.y+logo.geometry.parameters.height/2<1.695);
  }
- assert.equal(truck.getObjectByName('antimattr-rear'),undefined);assert.ok(truck.getObjectByName('brakes'));
+ assert.ok(truck.getObjectByName('brakes'));
  const resources=(g:T.Group)=>{const result=new Set<T.BufferGeometry|T.Material|T.Texture>();g.traverse(o=>{if(o instanceof T.Mesh){result.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material]){result.add(m);Object.values(m).forEach(v=>{if(v instanceof T.Texture)result.add(v);});}}});return result;};
  const coach=vehicle('bus',0,'tourist');assert.equal(coach.getObjectByName('bmtc-left'),undefined);assert.equal(coach.getObjectByName('bmtc-right'),undefined);
  for(const [name,direction] of [['volvo-front',-1],['volvo-rear',1]] as const){const label=coach.getObjectByName(name) as T.Mesh;assert.ok(label);assert.ok(new T.Vector3(0,0,1).applyQuaternion(label.quaternion).z*direction>.99);assert.ok(label.position.y>2.8);}

@@ -216,7 +216,7 @@ When configured, instrumentation covers:
 - Distance, overtakes, collisions, health, moving time, waiting time and active on-road time.
 - Visible page time, pauses, resumes, control methods and settings.
 - Horn usage, route-point reaches, graphics performance and automatic quality changes.
-- Sharing, atlas interactions and the end-screen antimattr link.
+- Sharing, atlas interactions and the end-screen creator-profile link.
 - SDK page events, exceptions and configured logs.
 
 Anonymous browser identity associates runs; clearing storage or changing devices breaks that continuity. It is not a verified count of people. Delivery is best-effort and can be blocked or interrupted. Use incremental `game_run_metrics` deltas for totals rather than summing repeated cumulative snapshots. Development events carry `is_test_event: true`.
@@ -287,6 +287,8 @@ Do not invent business names, silently promote estimates to verified records, bu
 ## License and credits
 
 Original code and documentation are released under the **[MIT License](LICENSE)**. Geographic data, fonts and brand assets retain separate terms described in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+Created by [10xdhruv](https://x.com/10xdhruv).
 
 - Geographic geometry: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), ODbL 1.0.
 - Fonts: DM Sans and Space Grotesk, with included SIL Open Font Licenses.

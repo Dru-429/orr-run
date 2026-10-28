@@ -38,6 +38,7 @@ import {
 import { GameEngine, type CameraView, type Settings } from './game/engine'
 import { loadPosterArtwork, disposePosterArtwork } from './game/poster-artwork'
 import { disposeTemplates } from './game/assets'
+import { CREATOR } from './data/creator'
 import { Simulation, type Snapshot, type Input } from './game/simulation'
 import {
   map,
@@ -433,6 +434,9 @@ export default function App () {
               <span>BANGALORE ORR</span>
             </a>
             <nav aria-label='Launcher navigation'>
+              <a href={CREATOR.url} target='_blank' rel='noopener noreferrer'>
+                {CREATOR.name}
+              </a>
               <button className='rush-nav-play' onClick={start} disabled={!loaded || !!error}>
                 {loaded && !error && <Play size={19} fill='currentColor' />}
                 <span>{loaded ? 'Play' : 'Loading the game'}</span>
@@ -623,23 +627,23 @@ export default function App () {
             </button>
             {ended && (
               <a
-                className='drive-button antimattr-button'
+                className='drive-button creator-button'
                 target='_blank'
                 rel='noopener noreferrer'
-                href='https://www.antimattr.one/project-mnemosyne?utm_source=orr-run&utm_medium=organic&utm_campaign=orr-run-campaign-sep-24'
+                href={CREATOR.url}
                 onClick={() =>
                   engine.current?.track(
-                    'antimattr_clicked',
+                    'creator_profile_clicked',
                     {
                       placement: 'game_over',
-                      destination_url:
-                        'https://www.antimattr.one/project-mnemosyne?utm_source=orr-run&utm_medium=organic&utm_campaign=orr-run-campaign-sep-24'
+                      creator: CREATOR.name,
+                      destination_url: CREATOR.url
                     },
                     true
                   )
                 }
               >
-                <span>Checkout antimattr</span>
+                <span>Follow {CREATOR.name}</span>
                 <ArrowUpRight size={22} />
               </a>
             )}

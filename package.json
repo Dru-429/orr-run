@@ -2,6 +2,7 @@
   "name": "orr-run",
   "private": true,
   "version": "0.1.0",
+  "author": "10xdhruv (https://x.com/10xdhruv)",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
