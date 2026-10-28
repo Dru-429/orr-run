@@ -1,16 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as T from 'three';
-import {readFileSync} from 'node:fs';
 import {vehicle,disposeTemplates} from '../src/game/assets';
 import {loadPosterArtwork,disposePosterArtwork} from '../src/game/poster-artwork';
-
-test('branding assets preserve the supplied SVG path and complete poster dimensions',()=>{
- const original=readFileSync('public/branding/antimattr.svg','utf8');
- assert.equal(readFileSync('public/branding/antimattr-white.svg','utf8'),original.replace('fill="black"','fill="white"'));
- const png=readFileSync('public/branding/antimattr-truck.png');
- assert.equal(png.readUInt32BE(16),1080);assert.equal(png.readUInt32BE(20),1208);
-});
 
 test('poster failure releases partial loads, retries, and shares an in-flight request',async t=>{
  let disposed=0,calls=0,fail=true;

@@ -9,20 +9,20 @@ export type Billboard = {
 // display name and artwork are edited here; placement geometry is derived from
 // distanceFromStart by the existing hoarding placement logic.
 export const billboards: Billboard[] = [
-  {id: 'game-hoarding-01', name: 'Antimatter Truck', distanceFromStart: 400, image: '/brandings/antimattr-truck.png'},
-  {id: 'game-hoarding-02', name: 'Antimatter White', distanceFromStart: 1200, image: '/brandings/antimattr-white.svg'},
-  {id: 'game-hoarding-03', name: 'Antimatter', distanceFromStart: 2000, image: '/brandings/antimattr.svg'},
-  {id: 'game-hoarding-04', name: 'Antimatter Truck', distanceFromStart: 2800, image: '/brandings/antimattr-truck.png'},
-  {id: 'game-hoarding-05', name: 'Antimatter White', distanceFromStart: 3600, image: '/brandings/antimattr-white.svg'},
-  {id: 'game-hoarding-06', name: 'Antimatter', distanceFromStart: 4400, image: '/brandings/antimattr.svg'},
-  {id: 'game-hoarding-07', name: 'Antimatter Truck', distanceFromStart: 5200, image: '/brandings/antimattr-truck.png'},
-  {id: 'game-hoarding-08', name: 'Antimatter White', distanceFromStart: 6000, image: '/brandings/antimattr-white.svg'},
-  {id: 'game-hoarding-09', name: 'Antimatter', distanceFromStart: 6800, image: '/brandings/antimattr.svg'},
-  {id: 'game-hoarding-10', name: 'Antimatter Truck', distanceFromStart: 7600, image: '/brandings/antimattr-truck.png'},
-  {id: 'game-hoarding-11', name: 'Antimatter White', distanceFromStart: 8400, image: '/brandings/antimattr-white.svg'},
-  {id: 'game-hoarding-12', name: 'Antimatter', distanceFromStart: 9200, image: '/brandings/antimattr.svg'},
-  {id: 'game-hoarding-13', name: 'Antimatter Truck', distanceFromStart: 10000, image: '/brandings/antimattr-truck.png'},
-  {id: 'game-hoarding-14', name: 'Antimatter White', distanceFromStart: 10800, image: '/brandings/antimattr-white.svg'},
+  {id: 'game-hoarding-01', name: 'Dhruv Sahoo', distanceFromStart: 400, image: '/branding/dhruv sahoo.png'},
+  {id: 'game-hoarding-02', name: 'GitHub Wrapped', distanceFromStart: 1200, image: '/branding/github wrapped.png'},
+  {id: 'game-hoarding-03', name: 'Dhruv Sahoo', distanceFromStart: 2000, image: '/branding/dhruv sahoo.png'},
+  {id: 'game-hoarding-04', name: 'GitHub Wrapped', distanceFromStart: 2800, image: '/branding/github wrapped.png'},
+  {id: 'game-hoarding-05', name: 'Dhruv Sahoo', distanceFromStart: 3600, image: '/branding/dhruv sahoo.png'},
+  {id: 'game-hoarding-06', name: 'GitHub Wrapped', distanceFromStart: 4400, image: '/branding/github wrapped.png'},
+  {id: 'game-hoarding-07', name: 'Dhruv Sahoo', distanceFromStart: 5200, image: '/branding/dhruv sahoo.png'},
+  {id: 'game-hoarding-08', name: 'GitHub Wrapped', distanceFromStart: 6000, image: '/branding/github wrapped.png'},
+  {id: 'game-hoarding-09', name: 'Dhruv Sahoo', distanceFromStart: 6800, image: '/branding/dhruv sahoo.png'},
+  {id: 'game-hoarding-10', name: 'GitHub Wrapped', distanceFromStart: 7600, image: '/branding/github wrapped.png'},
+  {id: 'game-hoarding-11', name: 'Dhruv Sahoo', distanceFromStart: 8400, image: '/branding/dhruv sahoo.png'},
+  {id: 'game-hoarding-12', name: 'GitHub Wrapped', distanceFromStart: 9200, image: '/branding/github wrapped.png'},
+  {id: 'game-hoarding-13', name: 'Dhruv Sahoo', distanceFromStart: 10000, image: '/branding/dhruv sahoo.png'},
+  {id: 'game-hoarding-14', name: 'GitHub Wrapped', distanceFromStart: 10800, image: '/branding/github wrapped.png'},
 ];
 
 export const billboardById = new Map(billboards.map(billboard => [billboard.id, billboard]));

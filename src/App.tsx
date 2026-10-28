@@ -433,7 +433,6 @@ export default function App () {
               <span>BANGALORE ORR</span>
             </a>
             <nav aria-label='Launcher navigation'>
-              <a href='https://www.antimattr.one/' target='_blank' rel='noreferrer'>Sponsors</a>
               <button className='rush-nav-play' onClick={start} disabled={!loaded || !!error}>
                 {loaded && !error && <Play size={19} fill='currentColor' />}
                 <span>{loaded ? 'Play' : 'Loading the game'}</span>
