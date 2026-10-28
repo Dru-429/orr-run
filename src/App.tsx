@@ -462,16 +462,24 @@ export default function App () {
               <h1>Fly the <em>Tesla Roadster</em></h1>
               <p>Through Bangalore’s Outer Ring Road traffic.</p>
             </div>
-            <div className='rush-launch-control'>
-              <div className='rush-load-track' role='progressbar' aria-label='Loading the game' aria-valuemin={0} aria-valuemax={100} aria-valuenow={loadProgress}>
-                <span style={{width: `${loadProgress}%`}} />
+            {!loaded ? (
+              <div className='rush-launch-control'>
+                <div className='rush-load-track' role='progressbar' aria-label='Loading the game' aria-valuemin={0} aria-valuemax={100} aria-valuenow={loadProgress}>
+                  <span style={{width: `${loadProgress}%`}} />
+                </div>
+                <small>{error ? 'GAME LOAD INTERRUPTED' : 'LOADING GAME WORLD…'}</small>
+                <button disabled>
+                  <span>Loading the game</span>
+                </button>
               </div>
-              <small>{error ? 'GAME LOAD INTERRUPTED' : loaded ? 'GAME WORLD READY' : 'LOADING GAME WORLD…'}</small>
-              <button onClick={start} disabled={!loaded || !!error}>
-                {loaded && !error && <Play size={21} fill='currentColor' />}
-                <span>{loaded ? 'Play' : 'Loading the game'}</span>
-              </button>
-            </div>
+            ) : !error && (
+              <div className='rush-ready-control'>
+                <button onClick={start}>
+                  <Play size={21} fill='currentColor' />
+                  <span>Play</span>
+                </button>
+              </div>
+            )}
           </section>
 
           <section className='rush-route-summary' aria-label='Route summary'>
