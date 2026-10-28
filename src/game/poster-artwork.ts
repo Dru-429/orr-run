@@ -4,10 +4,11 @@ let textures:T.Texture[]|undefined;
 let sources:(CanvasImageSource|undefined)[]=[];
 let pending:Promise<T.Texture[]>|undefined;
 let quality:boolean|undefined;
-export function loadPosterArtwork():Promise<T.Texture[]>{
- if(textures)return Promise.resolve(textures);if(pending)return pending;
+export function loadPosterArtwork(onProgress?:(progress:number)=>void):Promise<T.Texture[]>{
+ if(textures){onProgress?.(1);return Promise.resolve(textures);}if(pending)return pending.then(value=>{onProgress?.(1);return value;});
  const loader=new T.TextureLoader();
- pending=Promise.allSettled(billboards.map(billboard=>loader.loadAsync(billboard.image))).then(results=>{
+ let completed=0;
+ pending=Promise.allSettled(billboards.map(billboard=>loader.loadAsync(billboard.image).finally(()=>{completed++;onProgress?.(completed/billboards.length);}))).then(results=>{
   textures=results.map((result,index)=>{
    if(result.status==='fulfilled')return result.value;
    const billboard=billboards[index];console.warn(`Missing billboard asset: ${billboard.image}`);

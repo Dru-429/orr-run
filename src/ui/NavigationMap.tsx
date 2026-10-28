@@ -1,6 +1,6 @@
 import {useMemo,useRef} from 'react';
 import {map,pose,ROUTE_LENGTH,locationName} from '../game/route';
-import {buildingLandmarks} from '../game/landmarks';
+import {navigationLandmarks} from '../game/landmarks';
 import {junctionRecords} from '../game/junctions';
 import type {TrafficSection} from '../game/trafficMap';
 import {getMapLocation} from '../data/mapLocations';
@@ -13,7 +13,7 @@ export function NavigationMap({s,x=0,traffic=[]}:{s:number;x?:number;traffic?:Tr
  const yaw=heading.current.yaw,tx=-Math.sin(yaw),tz=-Math.cos(yaw),rx=-tz,rz=tx,scale=.5;
  const data=useMemo(()=>{
   const anchor=pose(tile*100+180),near=(px:number,pz:number)=>Math.abs(px-anchor.x)<700&&Math.abs(pz-anchor.z)<700;
-  return {roads:map.infrastructure.filter(r=>r.tags.highway&&r.points.some((p:number[])=>near(p[0],p[1]))),buildings:map.buildings.filter(b=>near(b.center[0],b.center[1])),areas:map.landscape.filter(f=>f.points.some((p:number[])=>near(p[0],p[1]))),names:buildingLandmarks.filter(b=>b.station>tile*100-100&&b.station<tile*100+650)};
+  return {roads:map.infrastructure.filter(r=>r.tags.highway&&r.points.some((p:number[])=>near(p[0],p[1]))),buildings:map.buildings.filter(b=>near(b.center[0],b.center[1])),areas:map.landscape.filter(f=>f.points.some((p:number[])=>near(p[0],p[1]))),names:navigationLandmarks.filter(b=>b.station>tile*100-100&&b.station<tile*100+650)};
  },[tile]);
  const project=(px:number,pz:number)=>{const dx=px-player.x,dz=pz-player.z;return [120+(dx*rx+dz*rz)*scale,255-(dx*tx+dz*tz)*scale];};
  const path=(points:number[][])=>points.map((p,i)=>(i?'L':'M')+project(p[0],p[1]).join(',')).join(' ');

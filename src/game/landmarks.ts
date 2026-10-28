@@ -1,4 +1,4 @@
-import {mapLocations} from '../data/mapLocations';
+import {mapLocations,navigationMapLocations} from '../data/mapLocations';
 import {buildings} from '../survey/records';
 
 const buildingById=new Map(buildings.map(building=>[building.id,building]));
@@ -10,4 +10,10 @@ export const buildingLandmarks=mapLocations.flatMap(location=>{
  const building=buildingById.get(location.id);
  if(!building)return [];
  return [{...location,station:location.distanceFromStart,offset:building.offset,x:building.model.center[0],z:building.model.center[1],height:building.model.height,building,source:building.model.source}];
+});
+
+export const navigationLandmarks=navigationMapLocations.flatMap(location=>{
+ const building=buildingById.get(location.id);
+ if(!building)return [];
+ return [{...location,station:location.distanceFromStart,x:building.model.center[0],z:building.model.center[1]}];
 });

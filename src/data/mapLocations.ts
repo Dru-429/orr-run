@@ -408,6 +408,79 @@ const buildingLocations: MapLocation[] = [
 {"id":"building:352222730","name":"Comet","distanceFromStart":11487.426460112973},
 ];
 
+export const MAP_LOCATION_REPEAT_DISTANCE = 3500;
+export const MAP_LOCATION_NAME_LIMIT = 50;
+
+function nearestUnusedLocation(
+  locations: MapLocation[],
+  target: number,
+  usedIds: Set<string>,
+  usedNames?: Set<string>,
+): MapLocation | undefined {
+  let nearest: MapLocation | undefined;
+  let nearestDistance = Infinity;
+  for (const location of locations) {
+    if (usedIds.has(location.id) || usedNames?.has(location.name)) continue;
+    const distance = Math.abs(location.distanceFromStart - target);
+    if (distance < nearestDistance) {
+      nearest = location;
+      nearestDistance = distance;
+    }
+  }
+  return nearest;
+}
+
+// Keep the navigation map readable by using one evenly distributed set of
+// 50 real place names, then repeat that set on nearby real building footprints
+// every 3.5 km. Route names and special map features remain unchanged.
+const firstCycleLocations = buildingLocations.filter(
+  location => location.distanceFromStart >= 0 &&
+    location.distanceFromStart < MAP_LOCATION_REPEAT_DISTANCE,
+);
+const baseUsedIds = new Set<string>();
+const baseUsedNames = new Set<string>();
+const repeatingLocations = Array.from(
+  {length: MAP_LOCATION_NAME_LIMIT},
+  (_, index) => {
+    const target = (index + 0.5) *
+      (MAP_LOCATION_REPEAT_DISTANCE / MAP_LOCATION_NAME_LIMIT);
+    const location = nearestUnusedLocation(
+      firstCycleLocations,
+      target,
+      baseUsedIds,
+      baseUsedNames,
+    );
+    if (!location) throw new Error('Not enough unique map location names');
+    baseUsedIds.add(location.id);
+    baseUsedNames.add(location.name);
+    return location;
+  },
+);
+const lastBuildingDistance = Math.max(
+  ...buildingLocations.map(location => location.distanceFromStart),
+);
+export const navigationMapLocations: MapLocation[] = Array.from(
+  {length: Math.ceil(lastBuildingDistance / MAP_LOCATION_REPEAT_DISTANCE)},
+  (_, cycle) => {
+    const cycleStart = cycle * MAP_LOCATION_REPEAT_DISTANCE;
+    const candidates = buildingLocations.filter(location =>
+      location.distanceFromStart >= cycleStart &&
+      location.distanceFromStart < cycleStart + MAP_LOCATION_REPEAT_DISTANCE,
+    );
+    const usedIds = new Set<string>();
+    return repeatingLocations.flatMap((base, index) => {
+      const offset = (index + 0.5) *
+        (MAP_LOCATION_REPEAT_DISTANCE / MAP_LOCATION_NAME_LIMIT);
+      const target = cycleStart + offset;
+      if (target > lastBuildingDistance) return [];
+      const location = nearestUnusedLocation(candidates, target, usedIds);
+      if (!location) return [];
+      usedIds.add(location.id);
+      return [{...location, name: base.name, signName: base.signName}];
+    });
+  },
+).flat();
+
 export const routeLocations: MapLocation[] = [
   {id: 'route:silk-board-orr', name: 'Silk Board · ORR', distanceFromStart: 0},
   {id: 'route:hsr-layout-orr', name: 'HSR Layout · ORR', distanceFromStart: 600},

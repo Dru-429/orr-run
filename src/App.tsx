@@ -159,6 +159,7 @@ export default function App () {
     engine = useRef<GameEngine | null>(null)
   const [snapshot, setSnapshot] = useState<Snapshot>(initial),
     [loaded, setLoaded] = useState(false),
+    [loadProgress, setLoadProgress] = useState(4),
     [error, setError] = useState(''),
     [settings, setSettings] = useState<Settings>(loadSettings)
   const [dialog, setDialog] = useState<'settings' | 'notes' | null>(null),
@@ -177,7 +178,10 @@ export default function App () {
     const loadStarted = performance.now()
     const id = requestAnimationFrame(async () => {
       try {
-        await loadPosterArtwork()
+        setLoadProgress(8)
+        await loadPosterArtwork(progress =>
+          setLoadProgress(Math.round(8 + progress * 72))
+        )
       } catch (e) {
         captureException(e, { operation: 'load_poster_artwork' })
         if (!cancelled)
@@ -194,6 +198,7 @@ export default function App () {
         return
       }
       try {
+        setLoadProgress(88)
         const g = new GameEngine(
           canvas.current!,
           settings,
@@ -206,6 +211,7 @@ export default function App () {
           }
         )
         engine.current = g
+        setLoadProgress(100)
         setLoaded(true)
         capture('game_loaded', {
           route_id: ROUTE_ID,
@@ -319,7 +325,10 @@ export default function App () {
       }) /* Some mobile browsers use their own fullscreen chrome. */
     }
   }
-  const start = () => engine.current?.start()
+  const start = () => {
+    if (!loaded || error) return
+    engine.current?.start()
+  }
   const ready = snapshot.phase === 'ready',
     paused = snapshot.phase === 'paused',
     ended = snapshot.phase === 'ended'
@@ -329,16 +338,17 @@ export default function App () {
         ? (snapshot.distance / 1000).toFixed(2) + ' km'
         : Math.floor(snapshot.distance) + ' m'
   return (
-    <main className={'game ' + (ready ? 'is-ready' : 'is-driving')}>
+    <main className={'game ' + (ready ? 'is-ready ' : 'is-driving')}>
+
       <canvas
         ref={canvas}
         className='world'
         aria-label={`${
-          cameraView === 'cockpit' ? 'First-person cockpit' : 'Third-person car'
+          cameraView === 'cockpit' ? 'Third-person car' : 'First-person cockpit'
         } view of Bengaluru’s Outer Ring Road`}
       />
       <div className='vignette' />
-      <header className='topbar'>
+      {!ready && <header className='topbar'>
         <div className='identity'>
           <a
             className='wordmark'
@@ -404,64 +414,58 @@ export default function App () {
             </button>
           )}
         </div>
-      </header>
+      </header>}
       {!ready && !dialog && (
         <Speedometer speed={snapshot.speed} flight={snapshot.flight} />
       )}
 
       {ready && !dialog && (
-        <section className='start-screen' aria-label='Start driving'>
-          <h1>
-            Just another
-            <br />
-            <em>Monday.</em>
-          </h1>
-          <div className='start-route'>
-            <div className='route-line'>
-              <span />
-              <i />
-              <ArrowUp size={15} />
+        <div className='rush-launcher'>
+          <header className='rush-nav'>
+            <a href='#' className='rush-brand' onClick={event => event.preventDefault()} aria-label='Roadster Rush home'>
+              <strong>Roadster <em>Rush</em></strong>
+              <span>BANGALORE ORR</span>
+            </a>
+            <nav aria-label='Launcher navigation'>
+              <a href='https://www.antimattr.one/' target='_blank' rel='noreferrer'>Sponsors</a>
+              <button className='rush-nav-play' onClick={start} disabled={!loaded || !!error}>
+                {loaded && !error && <Play size={19} fill='currentColor' />}
+                <span>{loaded ? 'Play' : 'Loading the game'}</span>
+              </button>
+            </nav>
+          </header>
+
+          <section className='rush-hero' aria-label='Roadster Rush game preview'>
+            <div className='rush-hero-shade' aria-hidden='true' />
+            <div className='rush-copy'>
+              <h1>Fly the <em>Tesla Roadster</em></h1>
+              <p>Through Bangalore’s Outer Ring Road traffic.</p>
             </div>
-            <div>
+            <div className='rush-launch-control'>
+              <div className='rush-load-track' role='progressbar' aria-label='Loading the game' aria-valuemin={0} aria-valuemax={100} aria-valuenow={loadProgress}>
+                <span style={{width: `${loadProgress}%`}} />
+              </div>
+              <small>{error ? 'GAME LOAD INTERRUPTED' : loaded ? 'GAME WORLD READY' : 'LOADING GAME WORLD…'}</small>
+              <button onClick={start} disabled={!loaded || !!error}>
+                {loaded && !error && <Play size={21} fill='currentColor' />}
+                <span>{loaded ? 'Play' : 'Loading the game'}</span>
+              </button>
+            </div>
+          </section>
+
+          <section className='rush-route-summary' aria-label='Route summary'>
+            <div className='rush-route-name'>
               <span>SILK BOARD · OUTER RING ROAD</span>
-              <span>MARATHAHALLI</span>
+              <strong>MARATHAHALLI</strong>
             </div>
-            <span className='route-distance'>
-              {lengthLabel}
-              <span>KM</span>
-            </span>
-          </div>
-          <button
-            className='drive-button'
-            onClick={start}
-            disabled={!loaded || !!error}
-          >
-            <span>{loaded ? 'Take the wheel' : 'Getting the road ready…'}</span>
-            <ArrowUpRight size={25} />
-          </button>
-          <div className='start-meta'>
-            <span>
-              <span className='key'>↵</span> TO DRIVE
-            </span>
-            <span>MANUAL CONTROLS · AUTOMATIC GEARS</span>
-          </div>
-          {best > 0 && (
-            <div className='personal-best'>
-              YOUR BEST <strong>{(best / 1000).toFixed(2)} km</strong>
+            <div className='rush-route-distance'>
+              <strong>{lengthLabel}</strong><span>km</span>
             </div>
-          )}
-        </section>
-      )}
-      {ready && !dialog && (
-        <div className='scene-caption'>
-          <span>12.92° N &nbsp; 77.62° E</span>
-          <strong>
-            Somewhere between
-            <br />a meeting and a metro pillar.
-          </strong>
-          <div>
-            <span className='traffic-dot' /> TRAFFIC: VERY BENGALURU
-          </div>
+            <div className='rush-best'>
+              <span>YOUR BEST</span>
+              <strong>{best > 0 ? `${(best / 1000).toFixed(2)} km` : '—'}</strong>
+            </div>
+          </section>
         </div>
       )}
       {!ready && !dialog && <VehicleStatus snapshot={snapshot} />}
