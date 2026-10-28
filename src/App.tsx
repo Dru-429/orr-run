@@ -159,7 +159,8 @@ export default function App () {
     engine = useRef<GameEngine | null>(null)
   const [snapshot, setSnapshot] = useState<Snapshot>(initial),
     [loaded, setLoaded] = useState(false),
-    [loadProgress, setLoadProgress] = useState(4),
+    [loadProgress, setLoadProgress] = useState(0),
+    [showLoaderImage, setShowLoaderImage] = useState(true),
     [error, setError] = useState(''),
     [settings, setSettings] = useState<Settings>(loadSettings)
   const [dialog, setDialog] = useState<'settings' | 'notes' | null>(null),
@@ -235,6 +236,11 @@ export default function App () {
       engine.current = null
     }
   }, [])
+  useEffect(() => {
+    if (!loaded) return
+    const id = window.setTimeout(() => setShowLoaderImage(false), 400)
+    return () => window.clearTimeout(id)
+  }, [loaded])
   useEffect(() => {
     engine.current?.applySettings(settings)
     save('orr.settings', settings)
@@ -436,6 +442,21 @@ export default function App () {
           </header>
 
           <section className='rush-hero' aria-label='Roadster Rush game preview'>
+            {showLoaderImage && (
+              <img
+                className='rush-loader-bg'
+                src='/loaderBG.png'
+                alt=''
+                aria-hidden='true'
+                style={{
+                  filter: `blur(${Math.max(
+                    0,
+                    90 * (1 - loadProgress / 100)
+                  ).toFixed(1)}px)`,
+                  opacity: loaded ? 0 : 1
+                }}
+              />
+            )}
             <div className='rush-hero-shade' aria-hidden='true' />
             <div className='rush-copy'>
               <h1>Fly the <em>Tesla Roadster</em></h1>
