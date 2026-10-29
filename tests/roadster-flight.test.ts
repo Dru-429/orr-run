@@ -1,11 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {BACKFLIP_CONFIG,FLIGHT_CONFIG,LANDING_ASSIST_CONFIG,RoadsterFlightController,rotate,type Quat} from '../src/game/roadsterFlight';
+import {BACKFLIP_CONFIG,FLIGHT_CONFIG,FLIGHT_ROAD_ASSIST_CONFIG,LANDING_ASSIST_CONFIG,RoadsterFlightController,rotate,type Quat,type V3} from '../src/game/roadsterFlight';
 import {Simulation,emptyInput} from '../src/game/simulation';
 import {trafficBody} from '../src/game/weaving';
+import {nearestStation,pose} from '../src/game/route';
 
 const controls=(overrides:Partial<Parameters<RoadsterFlightController['step']>[1]>={})=>({lift:false,descend:false,forward:false,reverse:false,pitchDown:false,pitchUp:false,rollLeft:false,rollRight:false,yawLeft:false,yawRight:false,...overrides});
 const multiply=(a:Quat,b:Quat):Quat=>[a[3]*b[0]+a[0]*b[3]+a[1]*b[2]-a[2]*b[1],a[3]*b[1]-a[0]*b[2]+a[1]*b[3]+a[2]*b[0],a[3]*b[2]+a[0]*b[1]-a[1]*b[0]+a[2]*b[3],a[3]*b[3]-a[0]*b[0]-a[1]*b[1]-a[2]*b[2]];
+const horizontal=(v:V3):V3=>{const n=Math.hypot(v[0],v[2])||1;return [v[0]/n,0,v[2]/n];};
+const turn=(a:V3,b:V3)=>Math.atan2(a[2]*b[0]-a[0]*b[2],a[0]*b[0]+a[2]*b[2]);
+const routeDirection=(s:number):V3=>{const p=pose(s);return [p.tx,0,p.tz];};
+const bankAngle=(q:Quat)=>Math.atan2(rotate(q,[1,0,0])[1],rotate(q,[0,1,0])[1]);
 
 test('held and repeated lift stop at the altitude ceiling without storing upward momentum',()=>{
  const f=new RoadsterFlightController();f.reset(100,0);f.beginTakeoff(100,0,0);
@@ -36,6 +41,22 @@ test('fuel never drops below zero and only recharges while grounded and stable',
 
 test('auto-level reduces tilt when attitude controls are released',()=>{
  const f=new RoadsterFlightController();f.reset(100,0);f.beginTakeoff(100,0,0);for(let i=0;i<40;i++)f.step(1/60,controls({lift:true,rollRight:true}));const tilted=rotate(f.orientation,[0,1,0])[1];for(let i=0;i<150;i++)f.step(1/60,controls({lift:true}));const levelled=rotate(f.orientation,[0,1,0])[1];assert.ok(levelled>tilted);
+});
+
+test('road-follow assist is neutral on a straight and smoothly yaws and banks through both curve directions',()=>{
+ const run=(s:number,frames:number)=>{const f=new RoadsterFlightController();f.reset(s,0);f.beginTakeoff(s,0,16);f.position[1]+=12;f.state='FLYING';const initial=horizontal(rotate(f.orientation,[0,0,1]));let maxBank=0;for(let i=0;i<frames;i++){assert.equal(f.step(1/60,controls({forward:true})),null);maxBank=Math.max(maxBank,Math.abs(bankAngle(f.orientation)));}const near=nearestStation(f.position[0],f.position[2]),heading=horizontal(rotate(f.orientation,[0,0,1])),velocity=horizontal(f.velocity),desired=routeDirection(near.s+18);return {headingChange:turn(initial,heading),velocityError:Math.abs(turn(velocity,desired)),bank:bankAngle(f.orientation),maxBank,station:near.s};};
+ const straight=run(430,90);assert.ok(Math.abs(straight.headingChange)<.03);assert.ok(straight.maxBank<.04);
+ for(const [station,expectedSign] of [[270,-1],[4970,1]] as const){const curved=run(station,150);assert.equal(Math.sign(curved.headingChange),expectedSign);assert.ok(Math.abs(curved.headingChange)>.035);assert.equal(Math.sign(curved.bank),-expectedSign);assert.ok(Math.abs(curved.bank)>.015&&Math.abs(curved.bank)<=FLIGHT_ROAD_ASSIST_CONFIG.maxBank+.035);assert.ok(curved.velocityError<.22);assert.ok(curved.station>station);}
+});
+
+test('manual yaw overrides road guidance and a backflip receives no road-follow yaw or bank command',()=>{
+ const manual=new RoadsterFlightController();manual.reset(4970,0);manual.beginTakeoff(4970,0,14);manual.position[1]+=12;manual.state='FLYING';const initial=horizontal(rotate(manual.orientation,[0,0,1]));for(let i=0;i<60;i++)manual.step(1/60,controls({forward:true,yawRight:true}));assert.ok(turn(initial,horizontal(rotate(manual.orientation,[0,0,1])))<-.08);
+ const stunt=new RoadsterFlightController();stunt.reset(4970,0);stunt.beginTakeoff(4970,0,12);stunt.position[1]+=15;stunt.state='FLYING';stunt.step(1/60,controls({lift:true}));const yawBefore=Math.abs(stunt.angularVelocity[1]),rollBefore=Math.abs(stunt.angularVelocity[2]);assert.equal(stunt.startBackflip(),true);for(let i=0;i<30;i++)stunt.step(1/60,controls({lift:true}));assert.equal(stunt.stunt,'BACKFLIP');assert.ok(Math.abs(stunt.angularVelocity[1])<yawBefore);assert.ok(Math.abs(stunt.angularVelocity[2])<rollBefore);
+});
+
+test('speed-scaled look-ahead follows a high-speed bend without corridor oscillation and levels on exit',()=>{
+ const f=new RoadsterFlightController();f.reset(240,0);f.beginTakeoff(240,0,40);f.position[1]+=14;f.state='FLYING';let peakBank=0,maxOffset=0;for(let i=0;i<240;i++){assert.equal(f.step(1/60,controls({forward:true})),null);peakBank=Math.max(peakBank,Math.abs(bankAngle(f.orientation)));maxOffset=Math.max(maxOffset,Math.abs(nearestStation(f.position[0],f.position[2]).offset));}
+ const near=nearestStation(f.position[0],f.position[2]),velocityError=Math.abs(turn(horizontal(f.velocity),routeDirection(near.s+20))),finalBank=Math.abs(bankAngle(f.orientation));assert.ok(near.s>340);assert.ok(peakBank>.015);assert.ok(finalBank<peakBank*.65);assert.ok(velocityError<.18);assert.ok(maxOffset<18);
 });
 
 test('forward flight thrust accelerates through the centre of mass without pitching or losing altitude',()=>{

@@ -22,6 +22,14 @@ export const FLIGHT_CONFIG={
  crashDelay:.7,recoveryDelay:.35,minWorldY:-40,maxWorldOffset:180,maxFallingTime:12,
 };
 
+export const FLIGHT_ROAD_ASSIST_CONFIG={
+ lookAhead:16,lookAheadPerSpeed:1.2,maxLookAhead:52,
+ yawStrength:1.45,yawDamping:.22,maxYawRate:.78,
+ bankStrength:.6,maxBank:Math.PI/15,bankDamping:4.2,
+ pathStrength:1.05,maxLateralAcceleration:4.5,minPathSpeed:.75,
+ manualBlend:.18,recoveryBlend:.35,landingYawReduction:.18,landingPathBoost:.2,
+};
+
 export const LANDING_ASSIST_CONFIG={
  height:5.5,fullHeight:1.1,maxDescentSpeed:12,maxAngularSpeed:3.4,minUprightness:.3,
  rotationStrength:4.8,rotationDamping:3.2,yawDamping:1.15,
@@ -81,6 +89,24 @@ function computeLiftAcceleration(c:FlightControls,translating:boolean,fuel:numbe
 }
 
 const pitchAngle=(forward:V3)=>Math.asin(clamp(forward[1],-1,1));
+const horizontalDirection=(v:V3,fallback:V3):V3=>{const n=Math.hypot(v[0],v[2]);return n>.0001?[v[0]/n,0,v[2]/n]:fallback;};
+const signedHorizontalAngle=(from:V3,to:V3)=>Math.atan2(from[2]*to[0]-from[0]*to[2],from[0]*to[0]+from[2]*to[2]);
+
+function computeRoadGuidance(s:number,forward:V3,velocity:V3,angularVelocity:V3){
+ const cfg=FLIGHT_ROAD_ASSIST_CONFIG,horizontalSpeed=Math.hypot(velocity[0],velocity[2]);
+ const lookAhead=Math.min(cfg.maxLookAhead,cfg.lookAhead+horizontalSpeed*cfg.lookAheadPerSpeed);
+ const station=clamp(s,0,ROUTE_LENGTH),current=pose(station),ahead=pose(Math.min(ROUTE_LENGTH,station+lookAhead));
+ const routeDelta:V3=[ahead.x-current.x,0,ahead.z-current.z],routeFallback:V3=[current.tx,0,current.tz];
+ const desiredForward=horizontalDirection(routeDelta,routeFallback),currentForward=horizontalDirection(forward,horizontalDirection(velocity,routeFallback));
+ const velocityForward=horizontalDirection(velocity,currentForward),headingError=signedHorizontalAngle(currentForward,desiredForward);
+ const pathError=signedHorizontalAngle(velocityForward,desiredForward),right:V3=[velocityForward[2],0,-velocityForward[0]];
+ return {
+  headingError,pathError,right,horizontalSpeed,
+  yawRate:clamp(headingError*cfg.yawStrength-angularVelocity[1]*cfg.yawDamping,-cfg.maxYawRate,cfg.maxYawRate),
+  targetBank:clamp(-headingError*cfg.bankStrength,-cfg.maxBank,cfg.maxBank),
+  lateralAcceleration:horizontalSpeed>=cfg.minPathSpeed?clamp(pathError*cfg.pathStrength*horizontalSpeed,-cfg.maxLateralAcceleration,cfg.maxLateralAcceleration):0,
+ };
+}
 
 export class RoadsterFlightController{
  active=true;
@@ -173,7 +199,10 @@ export class RoadsterFlightController{
   const stunting=this.stunt==='BACKFLIP',translationRequested=c.forward||c.reverse;
   const pitch=stunting?0:Number(c.pitchDown)-Number(c.pitchUp),roll=Number(c.rollRight)-Number(c.rollLeft),yaw=Number(c.yawLeft)-Number(c.yawRight);
   const worldUpBody=rotate(conjugate(this.orientation),[0,1,0]);
-  const target:V3=[pitch*cfg.maxRate[0],yaw*cfg.maxRate[1],roll*cfg.maxRate[2]];
+  const guidance=computeRoadGuidance(near.s,forward,this.velocity,this.angularVelocity),manualTurning=roll!==0||yaw!==0;
+  const stuntGuidance=stunting?0:this.stunt==='BACKFLIP_RECOVERY'?FLIGHT_ROAD_ASSIST_CONFIG.recoveryBlend:1;
+  const guidanceWeight=(this.fuel>0?1:0)*stuntGuidance*(manualTurning?FLIGHT_ROAD_ASSIST_CONFIG.manualBlend:1);
+  const target:V3=[pitch*cfg.maxRate[0],clamp(yaw*cfg.maxRate[1]+guidance.yawRate*guidanceWeight,-cfg.maxRate[1],cfg.maxRate[1]),roll*cfg.maxRate[2]];
   if(stunting)this.heldPitch=null;
   else if(pitch===0){
    if(translationRequested&&this.stunt==='NONE'){
@@ -182,7 +211,8 @@ export class RoadsterFlightController{
    }else{this.heldPitch=null;target[0]=clamp(Math.atan2(worldUpBody[2],Math.max(.05,worldUpBody[1]))*cfg.levelGain,-cfg.maxRate[0],cfg.maxRate[0]);}
   }else this.heldPitch=null;
   if(roll===0&&!stunting){
-   target[2]=clamp(-Math.atan2(worldUpBody[0],Math.max(.05,worldUpBody[1]))*cfg.levelGain,-cfg.maxRate[2],cfg.maxRate[2]);
+   const currentRoll=Math.atan2(worldUpBody[0],Math.max(.05,worldUpBody[1])),targetBank=guidance.targetBank*guidanceWeight;
+   target[2]=clamp((targetBank-currentRoll)*FLIGHT_ROAD_ASSIST_CONFIG.bankDamping,-cfg.maxRate[2],cfg.maxRate[2]);
   }
   const landing=LANDING_ASSIST_CONFIG,uprightness=dot(up,normal),angularSpeedBefore=length(this.angularVelocity),validRoad=roadIsValid(near.s,near.offset);
   const emergencyLanding=uprightness<=landing.minUprightness||this.velocity[1]<=-landing.maxDescentSpeed||angularSpeedBefore>=landing.maxAngularSpeed;
@@ -196,7 +226,7 @@ export class RoadsterFlightController{
    const levelZ=clamp(-Math.atan2(roadUpBody[0],Math.max(.05,roadUpBody[1]))*landing.rotationStrength,-cfg.maxRate[2],cfg.maxRate[2]);
    target[0]=target[0]*inputWeight+levelX*this.landingAssist;
    target[2]=target[2]*inputWeight+levelZ*this.landingAssist;
-   target[1]*=1-this.landingAssist*.48;
+   target[1]*=1-this.landingAssist*FLIGHT_ROAD_ASSIST_CONFIG.landingYawReduction;
    this.angularVelocity[0]*=Math.exp(-landing.rotationDamping*this.landingAssist*dt);
    this.angularVelocity[1]*=Math.exp(-landing.yawDamping*this.landingAssist*dt);
    this.angularVelocity[2]*=Math.exp(-landing.rotationDamping*this.landingAssist*dt);
@@ -235,6 +265,11 @@ export class RoadsterFlightController{
   this.velocity[0]+=(liftVector[0]*liftAccel+forward[0]*forwardAccel)*dt;
   this.velocity[1]+=(liftVector[1]*liftAccel-cfg.gravity+forward[1]*forwardAccel)*dt;
   this.velocity[2]+=(liftVector[2]*liftAccel+forward[2]*forwardAccel)*dt;
+  // A bounded force-equivalent acceleration turns horizontal momentum without
+  // pulling the car toward the centreline or changing altitude/pitch.
+  const roadPathAcceleration=guidance.lateralAcceleration*guidanceWeight*(1+this.landingAssist*FLIGHT_ROAD_ASSIST_CONFIG.landingPathBoost);
+  this.velocity[0]+=guidance.right[0]*roadPathAcceleration*dt;
+  this.velocity[2]+=guidance.right[2]*roadPathAcceleration*dt;
   if(emergencyLanding&&this.landingAssist>0){
    const emergencyTarget=-(landing.farDescentSpeed+(landing.touchdownDescentSpeed-landing.farDescentSpeed)*this.landingAssist);
    if(this.velocity[1]<emergencyTarget)this.velocity[1]+=(emergencyTarget-this.velocity[1])*Math.min(1,dt*(5+this.landingAssist*24));
