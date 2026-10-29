@@ -39,6 +39,7 @@ import { GameEngine, type CameraView, type Settings } from './game/engine'
 import { loadPosterArtwork, disposePosterArtwork } from './game/poster-artwork'
 import { disposeTemplates } from './game/assets'
 import { CREATOR } from './data/creator'
+import { loadRoadsterVisual, disposeRoadsterVisual } from './game/roadster'
 import { Simulation, type Snapshot, type Input } from './game/simulation'
 import {
   map,
@@ -182,7 +183,7 @@ export default function App () {
       try {
         setLoadProgress(8)
         await loadPosterArtwork(progress =>
-          setLoadProgress(Math.round(8 + progress * 72))
+          setLoadProgress(Math.round(8 + progress * 47))
         )
       } catch (e) {
         captureException(e, { operation: 'load_poster_artwork' })
@@ -194,9 +195,21 @@ export default function App () {
           )
         return
       }
+      try {
+        await loadRoadsterVisual(progress =>
+          setLoadProgress(Math.round(55 + progress * 33))
+        )
+      } catch (e) {
+        captureException(e, { operation: 'load_player_roadster_model' })
+        console.warn(
+          'The supplied Roadster model could not load; using the procedural fallback.',
+          e
+        )
+      }
       if (cancelled) {
         disposeTemplates()
         disposePosterArtwork()
+        disposeRoadsterVisual()
         return
       }
       try {

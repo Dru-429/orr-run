@@ -7,6 +7,7 @@ export type Billboard = {
 
 const BRANDING = {
   dhruv: {name: 'Dhruv Sahoo', image: '/branding/dhruv_sahoo.png'},
+  dhruv2: {name: 'Dhruv Sahoo', image: '/branding/dhruv_sahoo.png'},
   wrapped: {name: 'GitHub Wrapped', image: '/branding/github_wrapped.png'},
   adSpace: {name: 'Ad Space', image: '/branding/ad_space.png'},
   adSpace2: {name: 'Ad Space 2', image: '/branding/ad_space_2.png'},
@@ -17,14 +18,14 @@ const BRANDING = {
 // by the existing hoarding placement logic. Gaps start at ~250 and grow to ~850,
 // so boards are densest near the start of the route.
 const layout: {distanceFromStart: number; brand: keyof typeof BRANDING}[] = [
-  {distanceFromStart: 400, brand: 'dhruv'},
-  {distanceFromStart: 650, brand: 'wrapped'},
-  {distanceFromStart: 950, brand: 'adSpace'},
-  {distanceFromStart: 1250, brand: 'dhruv'},
-  {distanceFromStart: 1600, brand: 'adSpace2'},
+  {distanceFromStart: 400, brand: 'adSpace'},
+  {distanceFromStart: 650, brand: 'adSpace2'},
+  {distanceFromStart: 950, brand: 'dhruv'},
+  {distanceFromStart: 1250, brand: 'adSpace2'},
+  {distanceFromStart: 1600, brand: 'dhruv'},
   {distanceFromStart: 2000, brand: 'wrapped'},
-  {distanceFromStart: 2400, brand: 'dhruv'},
-  {distanceFromStart: 2850, brand: 'adSpace'},
+  {distanceFromStart: 2400, brand: 'adSpace'},
+  {distanceFromStart: 2850, brand: 'dhruv'},
   {distanceFromStart: 3350, brand: 'wrapped'},
   {distanceFromStart: 3850, brand: 'adSpace2'},
   {distanceFromStart: 4400, brand: 'dhruv'},

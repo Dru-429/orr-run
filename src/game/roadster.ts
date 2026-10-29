@@ -1,8 +1,45 @@
 // Procedural proportions, nozzle layout and cold-gas plume treatment adapted from
 // eduardmur/tesla-roadster-simulator (MIT). This original model has no Tesla logos.
 import * as T from 'three';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export const ROADSTER_LENGTH=4.34,ROADSTER_WIDTH=2,ROADSTER_COM_HEIGHT=.46;
+const ROADSTER_MODEL_URL='/models/tesla-roadster-2026.glb';
+const ROADSTER_MODEL_BYTES=28_642_904;
+let loadedRoadsterVisual:T.Group|undefined;
+let roadsterVisualPending:Promise<void>|undefined;
+
+function disposeTree(root:T.Object3D){
+ const geometries=new Set<T.BufferGeometry>(),materials=new Set<T.Material>(),textures=new Set<T.Texture>();
+ root.traverse(object=>{if(object instanceof T.Mesh){geometries.add(object.geometry);for(const material of Array.isArray(object.material)?object.material:[object.material]){materials.add(material);for(const value of Object.values(material))if(value instanceof T.Texture)textures.add(value);}}});
+ geometries.forEach(geometry=>geometry.dispose());materials.forEach(material=>material.dispose());textures.forEach(texture=>texture.dispose());
+}
+
+function prepareRoadsterVisual(scene:T.Group){
+ scene.name='imported-roadster-visual';scene.updateMatrixWorld(true);
+ const bounds=new T.Box3().setFromObject(scene),size=bounds.getSize(new T.Vector3());
+ if(!Number.isFinite(size.z)||size.z<=0)throw new Error('The Roadster model has invalid dimensions.');
+ scene.scale.setScalar(ROADSTER_LENGTH/size.z);scene.updateMatrixWorld(true);
+ const scaledBounds=new T.Box3().setFromObject(scene),centre=scaledBounds.getCenter(new T.Vector3());
+ scene.position.set(-centre.x,-ROADSTER_COM_HEIGHT-scaledBounds.min.y,-centre.z);scene.updateMatrixWorld(true);
+ scene.traverse(object=>{if(object instanceof T.Mesh){object.castShadow=true;object.receiveShadow=true;object.frustumCulled=true;}});
+ return scene;
+}
+
+export function loadRoadsterVisual(onProgress?:(progress:number)=>void):Promise<void>{
+ if(loadedRoadsterVisual){onProgress?.(1);return Promise.resolve();}
+ if(roadsterVisualPending)return roadsterVisualPending.then(()=>onProgress?.(1));
+ const loader=new GLTFLoader();
+ roadsterVisualPending=new Promise<void>((resolve,reject)=>loader.load(
+  ROADSTER_MODEL_URL,
+  gltf=>{try{loadedRoadsterVisual=prepareRoadsterVisual(gltf.scene);onProgress?.(1);resolve();}catch(error){disposeTree(gltf.scene);reject(error);}},
+  event=>onProgress?.(Math.max(0,Math.min(1,event.loaded/(event.total||ROADSTER_MODEL_BYTES)))),
+  reject,
+ )).finally(()=>{roadsterVisualPending=undefined;});
+ return roadsterVisualPending;
+}
+
+export function disposeRoadsterVisual(){if(loadedRoadsterVisual){disposeTree(loadedRoadsterVisual);loadedRoadsterVisual=undefined;}}
 
 const stations:[number,number,number,number][]=[
  [2.17,.66,.05,.50],[1.9,.86,.21,.68],[1.6,.96,.30,.76],[1.36,.99,.35,.80],
@@ -77,10 +114,12 @@ export interface RoadsterModel {
  wheels:T.Group[];
  plumes:T.Mesh[];
  update(speed:number,steer:number,lift:number,forward:number,dt?:number):void;
+ dispose():void;
 }
 
 export function makeRoadster():RoadsterModel{
  const group=new T.Group();
+ const proceduralVisual=new T.Group();proceduralVisual.name='procedural-roadster-fallback';group.add(proceduralVisual);
  const paint=new T.MeshPhysicalMaterial({color:'#f4f5f2',roughness:.2,metalness:.08,clearcoat:1,clearcoatRoughness:.045});
  const dark=new T.MeshStandardMaterial({color:'#090b0d',roughness:.3,metalness:.4});
  const fasciaMaterial=new T.MeshStandardMaterial({color:'#111214',roughness:.4,metalness:.22});
@@ -88,21 +127,24 @@ export function makeRoadster():RoadsterModel{
  const frontLampMaterial=new T.MeshStandardMaterial({color:'#fff',emissive:'#eaf3ff',emissiveIntensity:2});
  const rearLampMaterial=new T.MeshStandardMaterial({color:'#5c0505',emissive:'#ff201c',emissiveIntensity:3});
 
- const body=new T.Mesh(bodyGeometry(),paint);body.castShadow=true;body.receiveShadow=true;group.add(body);
- const canopy=new T.Mesh(new T.BoxGeometry(1.38,.12,1.7),glass);canopy.position.set(0,.47,-.05);canopy.rotation.x=-.07;group.add(canopy);
- const frontLight=new T.Mesh(new T.BoxGeometry(1.15,.025,.02),frontLampMaterial);frontLight.position.set(0,.02,2.16);group.add(frontLight);
+ const body=new T.Mesh(bodyGeometry(),paint);body.castShadow=true;body.receiveShadow=true;proceduralVisual.add(body);
+ const canopy=new T.Mesh(new T.BoxGeometry(1.38,.12,1.7),glass);canopy.position.set(0,.47,-.05);canopy.rotation.x=-.07;proceduralVisual.add(canopy);
+ const frontLight=new T.Mesh(new T.BoxGeometry(1.15,.025,.02),frontLampMaterial);frontLight.position.set(0,.02,2.16);proceduralVisual.add(frontLight);
 
  // Wide black rear fascia, uninterrupted red light bar and lower diffuser mirror the supplied rear view.
- const fascia=new T.Mesh(new T.BoxGeometry(1.78,.42,.055),fasciaMaterial);fascia.position.set(0,.08,-2.19);group.add(fascia);
- const rearLight=new T.Mesh(new T.BoxGeometry(1.82,.032,.025),rearLampMaterial);rearLight.position.set(0,.32,-2.226);group.add(rearLight);
- const plateSurround=new T.Mesh(new T.BoxGeometry(.54,.16,.022),dark);plateSurround.position.set(0,.05,-2.232);group.add(plateSurround);
- const plateInset=new T.Mesh(new T.BoxGeometry(.46,.1,.012),new T.MeshStandardMaterial({color:'#343638',roughness:.72}));plateInset.position.set(0,.05,-2.248);group.add(plateInset);
- const diffuser=new T.Mesh(new T.BoxGeometry(1.72,.1,.12),dark);diffuser.position.set(0,-.22,-2.17);group.add(diffuser);
+ const fascia=new T.Mesh(new T.BoxGeometry(1.78,.42,.055),fasciaMaterial);fascia.position.set(0,.08,-2.19);proceduralVisual.add(fascia);
+ const rearLight=new T.Mesh(new T.BoxGeometry(1.82,.032,.025),rearLampMaterial);rearLight.position.set(0,.32,-2.226);proceduralVisual.add(rearLight);
+ const plateSurround=new T.Mesh(new T.BoxGeometry(.54,.16,.022),dark);plateSurround.position.set(0,.05,-2.232);proceduralVisual.add(plateSurround);
+ const plateInset=new T.Mesh(new T.BoxGeometry(.46,.1,.012),new T.MeshStandardMaterial({color:'#343638',roughness:.72}));plateInset.position.set(0,.05,-2.248);proceduralVisual.add(plateInset);
+ const diffuser=new T.Mesh(new T.BoxGeometry(1.72,.1,.12),dark);diffuser.position.set(0,-.22,-2.17);proceduralVisual.add(diffuser);
 
  const wheels:T.Group[]=[];
  for(const [x,z,front] of [[.86,1.36,1],[-.86,1.36,1],[.86,-1.4,0],[-.86,-1.4,0]] as const){
-  const item=wheel();item.position.set(x,-.11,z);item.userData.front=front;group.add(item);wheels.push(item);
+  const item=wheel();item.position.set(x,-.11,z);item.userData.front=front;proceduralVisual.add(item);wheels.push(item);
  }
+
+ const importedVisual=loadedRoadsterVisual;
+ if(importedVisual){loadedRoadsterVisual=undefined;proceduralVisual.visible=false;group.add(importedVisual);}
 
  const nozzleMetal=new T.MeshStandardMaterial({color:'#93999e',metalness:1,roughness:.22});
  const nozzleInner=new T.MeshBasicMaterial({color:'#050607'});
@@ -140,5 +182,5 @@ export function makeRoadster():RoadsterModel{
    slot.mesh.material.uniforms.uTime.value=elapsed;
    slot.mesh.material.uniforms.uCells.value=6.5*length;
   });
- }};
+ },dispose(){disposeTree(group);}};
 }
