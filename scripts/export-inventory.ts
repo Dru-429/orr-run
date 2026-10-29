@@ -1,9 +1,10 @@
 import {roadConditionExport} from '../src/game/roadConditions';
 import {hoardings} from '../src/game/hoardings';
 import {supportOffset} from '../src/survey/corridor';
-import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
+import {existsSync,mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {survey,buildings,features,coverage,checkpoints,evidence,transport} from '../src/survey/records';
 mkdirSync('public/data',{recursive:true});
+mkdirSync('docs',{recursive:true});
 writeFileSync('public/data/game-road-conditions.json',JSON.stringify(roadConditionExport,null,2));
 writeFileSync('public/data/game-hoardings.json',JSON.stringify({note:'Game-added advertising; not surveyed roadside features.',placements:hoardings},null,2));
 writeFileSync('public/data/route-survey.json',JSON.stringify({...survey,gameplayLayout:{note:'Widened driving envelope; three lanes, 13.8 m nominal carriageway. Source centreline, footprints and support coordinates are preserved. Props are ambient estimates; added wall nameplates identify supported names; placement is approximate.',metroSupports:transport.filter(f=>['metro-pier','metro-support-estimate'].includes(f.kind)).map(f=>({id:f.id,station:f.station,surveyOffset:f.offset,renderOffset:supportOffset(f.station,f.offset)}))}},null,2));
@@ -16,7 +17,7 @@ writeFileSync('public/data/buildings.csv',[['serial','id','name','side','frontag
 writeFileSync('docs/SURVEY_COVERAGE.md','# Survey coverage\n\nReviewed here means the available records were checked for gaps, not that all Street View directions are complete. No side-section is certified complete until frontages and observations are reconciled.\n\n| Section | Side | Status | Features | Recorded views | Gaps |\n|---|---|---|---:|---:|---|\n'+coverage.map(c=>`| ${c.from.toFixed(2)}–${c.to.toFixed(2)} m | ${c.side} | ${c.status} | ${c.featureIds.length} | ${c.observationIds.length} | ${c.gaps.join('; ')} |`).join('\n')+'\n');
 writeFileSync('public/data/checkpoints.json',JSON.stringify(checkpoints,null,2));
 writeFileSync('public/data/observation-template.json',JSON.stringify({id:'silk-hsr:sv-0025-left',segmentId:'silk-hsr',localCheckpoint:25,checkpoint:25,direction:'left',requested:checkpoints[1].coordinate,actual:null,heading:(checkpoints[1].heading+270)%360,imageryDate:null,inspectedOn:null,url:checkpoints[1].links.left,panoramaId:null,locationStatus:'unresolved',notes:'Replace with what was actually visible. Do not mark observed until inspected.',featureIds:[]},null,2));
-writeFileSync('public/data/survey-method.md',readFileSync('docs/SURVEY_METHOD.md','utf8'));
+if(existsSync('docs/SURVEY_METHOD.md'))writeFileSync('public/data/survey-method.md',readFileSync('docs/SURVEY_METHOD.md','utf8'));
 console.log(`Exported ${buildings.length} buildings, ${features.length} features, ${checkpoints.length} checkpoints and ${coverage.length} explicit side-section reviews.`);
 
 const infrastructure=features.filter(f=>['traffic-signal','flyover-profile','flyover-deck','flyover-ramp','underpass-profile'].includes(f.kind)||f.kind==='water');
