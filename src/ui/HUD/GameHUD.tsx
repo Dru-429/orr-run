@@ -19,9 +19,9 @@ export function VehicleStatus({snapshot,settings}:{snapshot:Snapshot;settings:()
  const health=Math.max(0,Math.min(100,Math.ceil(snapshot.health))),fuel=Math.max(0,Math.min(100,Math.round(snapshot.flight.fuel*100)));
  return <section className="hud-status hud-glass" aria-label="Vehicle health and booster gas">
   <header className="hud-status-head"><span className="hud-status-weather"><b>☀</b><span>27°</span><i/>A LITTLE HAZY</span><button onClick={settings} title="Settings" aria-label="Settings"><Settings2/></button></header>
-  <div className={'hud-status-metric hud-health '+(health<30?'hud-danger':health<60?'hud-warning':'')}><div><small>CAR HEALTH</small><strong>{health}%</strong></div><progress max="100" value={health} aria-label="Car health"/></div>
-  <div className={'hud-status-metric hud-booster '+(fuel<20?'hud-warning':'')}><div><small>BOOSTER GAS</small><strong>{fuel}%</strong></div><progress max="100" value={fuel} aria-label="Booster gas"/></div>
- </section>;
+  <div className={'hud-status-metric hud-health '+(health<30?'hud-danger':health<60?'hud-warning':'')}><div>Car health<strong>{health}%</strong></div><progress max="100" value={health} aria-label="Car health"/></div>
+  <div className={'hud-status-metric hud-booster '+(fuel<20?'hud-warning':'')}><div>Boosters<strong>{fuel}%</strong></div><progress max="100" value={fuel} aria-label="Booster gas"/></div>
+ </section>
 }
 
 export function ControlsBar({flight}:{flight:Snapshot['flight']}){

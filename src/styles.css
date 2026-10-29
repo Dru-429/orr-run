@@ -15,8 +15,7 @@
 
 @media(min-width:901px) and (max-width:1500px){.desktop-controls{gap:10px;font-size:8px}.desktop-controls kbd{font-size:7px;min-width:16px;min-height:17px;padding:1px 3px}.bottom-bar{padding-left:24px;padding-right:24px;gap:10px}.footer-actions{gap:12px}}
 
-.world{touch-action:none;cursor:grab}.world:active{cursor:grabbing}
-
+.world{touch-action:none;cursor:grab}.world:active{cursor:grabbing}F
 .inspect-tools{max-height:32vh;overflow:auto;max-width:260px;opacity:.92}.inspect-tools button{padding:5px 8px;font-size:10px}
 
 /* Local, offline navigation. All geometry comes from the bundled corridor map. */
