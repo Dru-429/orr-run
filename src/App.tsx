@@ -2,7 +2,6 @@ import { impactMotion } from './game/impact'
 import {
   Speedometer,
   VehicleStatus,
-  RouteProgress,
   ControlsBar,
   UtilityControls
 } from './ui/HUD/GameHUD'
@@ -14,28 +13,19 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Volume2,
-  Volume1,
-  VolumeX,
-  Pause,
   Play,
   RotateCcw,
-  Settings2,
   X,
   ArrowUp,
   Link,
   Check,
   Heart,
-  MoveUpRight,
   Keyboard,
   Smartphone,
-  Info,
-  Maximize,
-  Minimize,
-  Github,
-  Camera
+  Github
 } from 'lucide-react'
 import { GameEngine, type CameraView, type Settings } from './game/engine'
+import { nextVolumeLevel, type VolumeLevel } from './game/audio'
 import { loadPosterArtwork, disposePosterArtwork } from './game/poster-artwork'
 import { disposeTemplates } from './game/assets'
 import { CREATOR } from './data/creator'
@@ -70,6 +60,7 @@ const lengthLabel = (ROUTE_LENGTH / 1000).toFixed(2)
 const initial = new Simulation().snapshot()
 const defaults: Settings = {
   trafficHornLevel: 2,
+  volume: 1,
   reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
   quality: 'auto'
 }
@@ -79,44 +70,16 @@ function loadSettings (): Settings {
     {}
   )
   const legacyLevel = saved.muted ? 0 : saved.reducedNoise ? 1 : 2
+  const volume: VolumeLevel =
+    saved.volume === 0 || saved.volume === 0.5 || saved.volume === 1
+      ? saved.volume
+      : defaults.volume
   return {
     ...defaults,
     ...saved,
+    volume,
     trafficHornLevel: saved.trafficHornLevel ?? legacyLevel
   }
-}
-const hornLevelText = ['No traffic horns', 'Low traffic horns', 'All traffic horns'] as const
-function TrafficHornSlider ({
-  value,
-  onChange,
-  settings = false
-}: {
-  value: Settings['trafficHornLevel']
-  onChange: (value: Settings['trafficHornLevel']) => void
-  settings?: boolean
-}) {
-  return (
-    <div
-      className={`traffic-horn-slider${settings ? ' settings-horn-slider' : ''}`}
-      title={`${hornLevelText[value]}. Player horn and vehicle sounds stay on.`}
-    >
-      <div className='traffic-horn-options' aria-hidden='true'>
-        <VolumeX size={settings ? 18 : 16} />
-        <Volume1 size={settings ? 18 : 16} />
-        <Volume2 size={settings ? 18 : 16} />
-      </div>
-      <input
-        type='range'
-        min='0'
-        max='2'
-        step='1'
-        value={value}
-        aria-label='Amount of background traffic horns'
-        aria-valuetext={hornLevelText[value]}
-        onChange={e => onChange(Number(e.target.value) as Settings['trafficHornLevel'])}
-      />
-    </div>
-  )
 }
 function TouchButton ({
   action,
@@ -368,73 +331,6 @@ export default function App () {
         } view of Bengaluru’s Outer Ring Road`}
       />
       <div className='vignette' />
-      {!ready && <header className='topbar'>
-        <div className='identity'>
-          <a
-            className='wordmark'
-            href='#'
-            aria-label='orr.run home'
-            onClick={e => {
-              e.preventDefault()
-              if (!ready) engine.current?.pause()
-            }}
-          >
-            orr<span>.</span>run
-            <MoveUpRight size={22} strokeWidth={2.8} />
-          </a>
-          <span className='edition'>
-            BENGALURU, IN<small>Outer Ring Road</small>
-          </span>
-        </div>
-        <div className='top-actions'>
-          <span className='road-weather'>
-            <span className='sun-icon'>☀</span> 27° <i /> A LITTLE HAZY
-          </span>
-          {!ready && !ended && (
-            <button
-              className='icon-button'
-              title={`Switch to ${
-                cameraView === 'cockpit' ? 'third-person' : 'cockpit'
-              } view (C)`}
-              aria-label={`Switch to ${
-                cameraView === 'cockpit'
-                  ? 'third-person car'
-                  : 'first-person cockpit'
-              } view`}
-              aria-pressed={cameraView === 'chase'}
-              onClick={() => engine.current?.toggleCameraView()}
-            >
-              <Camera size={19} />
-            </button>
-          )}
-          <TrafficHornSlider
-            value={settings.trafficHornLevel}
-            onChange={trafficHornLevel =>
-              setSettings({ ...settings, trafficHornLevel })
-            }
-          />
-          <button
-            className='icon-button'
-            title='Settings'
-            aria-label='Settings'
-            onClick={() => open('settings')}
-          >
-            <Settings2 size={19} />
-          </button>
-          {!ready && !ended && (
-            <button
-              className='icon-button'
-              title={paused ? 'Resume' : 'Pause'}
-              aria-label={paused ? 'Resume' : 'Pause'}
-              onClick={() =>
-                paused ? engine.current?.resume() : engine.current?.pause()
-              }
-            >
-              {paused ? <Play size={18} /> : <Pause size={18} />}
-            </button>
-          )}
-        </div>
-      </header>}
       {!ready && !dialog && (
         <Speedometer speed={snapshot.speed} flight={snapshot.flight} />
       )}
@@ -513,10 +409,9 @@ export default function App () {
           </section>
         </div>
       )}
-      {!ready && !dialog && <VehicleStatus snapshot={snapshot} />}
-      {!ready && !dialog && <RouteProgress s={snapshot.s} />}
+      {!ready && !dialog && <VehicleStatus snapshot={snapshot} settings={() => open('settings')} />}
       {!dialog && (
-        <div className='map-position'>
+        <div className='map-position hud-map-group'>
           <NavigationMap
             s={ready ? 250 : snapshot.s}
             x={snapshot.x}
@@ -532,7 +427,20 @@ export default function App () {
             copied={copied}
             reset={() => engine.current?.resetCar()}
             fullscreen={fullscreen}
-            notes={() => open('notes')}
+            full={full}
+            paused={paused}
+            cameraView={cameraView}
+            volume={settings.volume}
+            togglePause={() =>
+              paused ? engine.current?.resume() : engine.current?.pause()
+            }
+            toggleCamera={() => engine.current?.toggleCameraView()}
+            toggleSound={() =>
+              setSettings(current => ({
+                ...current,
+                volume: nextVolumeLevel(current.volume)
+              }))
+            }
           />
         </>
       )}
@@ -702,19 +610,6 @@ export default function App () {
             </h2>
             {dialog === 'settings' ? (
               <>
-                <div className='setting-row'>
-                  <span>
-                    Background traffic horns
-                    <small>Off, low (25%), or full. Player horn and vehicle sounds stay on.</small>
-                  </span>
-                  <TrafficHornSlider
-                    settings
-                    value={settings.trafficHornLevel}
-                    onChange={trafficHornLevel =>
-                      setSettings({ ...settings, trafficHornLevel })
-                    }
-                  />
-                </div>
                 <label className='setting-row'>
                   <span>
                     Reduce camera motion

@@ -6,7 +6,7 @@ import {billboards,getBillboard} from '../src/data/billboards';
 import {pose} from '../src/game/route';
 import {crossSectionAt} from '../src/survey/corridor';
 import {NPCHornSystem,HORN_PRESETS,hornEnvelope,type HornActor} from '../src/game/npcHorns';
-import {DrivingAudio} from '../src/game/audio';
+import {DrivingAudio,nextVolumeLevel} from '../src/game/audio';
 import {Simulation,emptyInput} from '../src/game/simulation';
 const player={s:4100,lateral:0,x:0,y:0,z:0,speed:0};
 const car=(id:number,s=4092):HornActor=>({id,s,lateral:0,x:0,y:0,z:s-4100,speed:0,length:4.3,width:1.85,opposite:false,kind:'car'});
@@ -37,5 +37,8 @@ test('traffic horn levels use a fixed pool while pause still silences playback',
  const node=()=>{nodes++;return {connect(){},start(){},gain:param(),frequency:param(),pan:param(),threshold:param(),knee:param(),ratio:param(),attack:param(),release:param(),type:''};};
  class FakeContext {currentTime=0;destination={};createGain=node;createOscillator=node;createBiquadFilter=node;createStereoPanner=node;createDynamicsCompressor=node;resume(){return Promise.resolve();}close(){closed++;return Promise.resolve();}}
  Object.defineProperty(globalThis,'AudioContext',{configurable:true,value:FakeContext});
- try{const a=new DrivingAudio();a.start();const count=nodes;const events=Array.from({length:4},(_,i)=>({id:i,vehicleId:i,preset:i,start:0,duration:2,x:i,y:0,z:4,priority:false}));a.trafficHornLevel=1;a.update(0,false,false,true,events,undefined,.5);assert.equal(a.trafficHornLevel,1);assert.equal(a.activeVoices,1);a.trafficHornLevel=2;for(let i=0;i<1000;i++)a.update(0,false,false,true,events,undefined,.5);assert.equal(nodes,count);assert.equal(a.activeVoices,4);assert.equal(a.voiceCount,4);a.trafficHornLevel=0;a.update(0,false,true,true,events,undefined,.5);assert.equal(a.activeVoices,0);a.update(0,false,false,false,events,undefined,.5);assert.equal(a.activeVoices,0);assert.ok(values.every(Number.isFinite));a.dispose();assert.equal(closed,1);}finally{if(prior)Object.defineProperty(globalThis,'AudioContext',prior);else Reflect.deleteProperty(globalThis,'AudioContext');}
+ try{const a=new DrivingAudio();a.volume=.5;a.start();assert.equal(a.volume,.5);a.volume=1;assert.equal(a.volume,1);const count=nodes;const events=Array.from({length:4},(_,i)=>({id:i,vehicleId:i,preset:i,start:0,duration:2,x:i,y:0,z:4,priority:false}));a.trafficHornLevel=1;a.update(0,false,false,true,events,undefined,.5);assert.equal(a.trafficHornLevel,1);assert.equal(a.activeVoices,1);a.trafficHornLevel=2;for(let i=0;i<1000;i++)a.update(0,false,false,true,events,undefined,.5);assert.equal(nodes,count);assert.equal(a.activeVoices,4);assert.equal(a.voiceCount,4);a.trafficHornLevel=0;a.update(0,false,true,true,events,undefined,.5);assert.equal(a.activeVoices,0);a.update(0,false,false,false,events,undefined,.5);assert.equal(a.activeVoices,0);assert.ok(values.every(Number.isFinite));a.dispose();assert.equal(closed,1);}finally{if(prior)Object.defineProperty(globalThis,'AudioContext',prior);else Reflect.deleteProperty(globalThis,'AudioContext');}
+});
+test('master volume cycles mute, medium, full, then mute',()=>{
+ assert.equal(nextVolumeLevel(0),.5);assert.equal(nextVolumeLevel(.5),1);assert.equal(nextVolumeLevel(1),0);
 });

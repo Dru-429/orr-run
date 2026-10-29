@@ -14,14 +14,14 @@ import {pose,ROUTE_LENGTH,ROUTE_ID,manifest} from './route';
 import {crossSectionAt,driveBounds,laneCentresAt} from '../survey/corridor';
 import {makeWorld,makeCockpit} from './world';
 import {vehicle,disposeTemplates} from './assets';
-import {DrivingAudio,type TrafficHornLevel} from './audio';
+import {DrivingAudio,type TrafficHornLevel,type VolumeLevel} from './audio';
 import {capture,captureException,captureLog} from '../posthog';
 import {makeRoadster,type RoadsterModel} from './roadster';
 import {ThrusterGroundEffect} from './thrusterGroundEffect';
 import {daylightEnvironment} from './presentationMaterials';
 export type Quality='auto'|'high'|'low';
 export type CameraView='cockpit'|'chase';
-export interface Settings {trafficHornLevel:TrafficHornLevel;reducedMotion:boolean;quality:Quality}
+export interface Settings {trafficHornLevel:TrafficHornLevel;volume:VolumeLevel;reducedMotion:boolean;quality:Quality}
 export class GameEngine {
  sim=new Simulation();input=emptyInput();settings:Settings;renderer:T.WebGLRenderer;scene=new T.Scene();camera=new T.PerspectiveCamera(64,1,.05,1000);audio=new DrivingAudio();uiBlocked=false;
  cameraView:CameraView='cockpit';
@@ -51,7 +51,7 @@ export class GameEngine {
   this.applySettings(settings);this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(canvas);this.resize();
   window.addEventListener('keydown',this.keydown);window.addEventListener('keyup',this.keyup);window.addEventListener('blur',this.blur);window.addEventListener('pagehide',this.pagehide);document.addEventListener('visibilitychange',this.visibility);canvas.addEventListener('webglcontextlost',this.contextLost);canvas.addEventListener('pointerdown',this.lookDown);canvas.addEventListener('pointermove',this.lookMove);canvas.addEventListener('pointerup',this.lookUp);canvas.addEventListener('pointercancel',this.lookUp);this.raf=requestAnimationFrame(this.frame);captureLog('game engine initialized','info',{graphics_quality:this.activeQuality,reduced_motion:this.settings.reducedMotion,route_length_m:Math.round(ROUTE_LENGTH)});
  }
- applySettings(settings:Settings){this.settings=settings;this.audio.trafficHornLevel=settings.trafficHornLevel;const low=settings.quality==='low'||settings.quality==='auto'&&(matchMedia('(pointer:coarse)').matches||devicePixelRatio>2);this.activeQuality=low?'low':'high';this.analytics.updateContext({graphics_setting:settings.quality,actual_graphics_quality:this.activeQuality,traffic_horn_level:settings.trafficHornLevel,reduced_motion:settings.reducedMotion});setPosterQuality(low);this.renderer.setPixelRatio(Math.min(devicePixelRatio,low?1.25:1.75));this.renderer.shadowMap.enabled=!low;this.resize();}
+ applySettings(settings:Settings){this.settings=settings;this.audio.trafficHornLevel=settings.trafficHornLevel;this.audio.volume=settings.volume;const low=settings.quality==='low'||settings.quality==='auto'&&(matchMedia('(pointer:coarse)').matches||devicePixelRatio>2);this.activeQuality=low?'low':'high';this.analytics.updateContext({graphics_setting:settings.quality,actual_graphics_quality:this.activeQuality,traffic_horn_level:settings.trafficHornLevel,reduced_motion:settings.reducedMotion});setPosterQuality(low);this.renderer.setPixelRatio(Math.min(devicePixelRatio,low?1.25:1.75));this.renderer.shadowMap.enabled=!low;this.resize();}
  resetCar(){
   if(this.uiBlocked||this.sim.phase!=='driving'||this.sim.flight.state==='CRASHED'||this.sim.flight.state==='RECOVERING')return;
   this.clearInput();

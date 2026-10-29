@@ -2,8 +2,10 @@ import {HORN_PRESETS,hornEnvelope,type NPCHornEvent} from './npcHorns';
 import {HORN_SAMPLES,RECORDED_HORNS,loadHornSamples,type HornSampleId} from './hornSamples';
 interface Voice {osc:OscillatorNode[];fallback:GainNode;filter:BiquadFilterNode;gain:GainNode;pan:StereoPannerNode;id:number;active:boolean;source:AudioBufferSourceNode|null;sampled:boolean}
 export type TrafficHornLevel=0|1|2;
+export type VolumeLevel=0|.5|1;
+export const nextVolumeLevel=(value:VolumeLevel):VolumeLevel=>value===0?.5:value===.5?1:0;
 export class DrivingAudio {
- private ctx:AudioContext|null=null;private gain:GainNode|null=null;private engine:OscillatorNode|null=null;private harmonic:OscillatorNode|null=null;private player:Voice|null=null;private voices:Voice[]=[];private hornLevel:TrafficHornLevel=2;
+ private ctx:AudioContext|null=null;private master:GainNode|null=null;private gain:GainNode|null=null;private engine:OscillatorNode|null=null;private harmonic:OscillatorNode|null=null;private player:Voice|null=null;private voices:Voice[]=[];private hornLevel:TrafficHornLevel=2;private volumeLevel:VolumeLevel=1;
  private buffers=new Map<HornSampleId,AudioBuffer>();private loading:Promise<void>|null=null;private abort:AbortController|null=null;
  get activeVoices(){return this.voices.filter(v=>v.active).length;}
  get voiceCount(){return this.voices.length;}
@@ -11,16 +13,18 @@ export class DrivingAudio {
  get sampleStatus(){return this.loading?'loading':this.buffers.size===Object.keys(HORN_SAMPLES).length?'ready':'fallback';}
  get trafficHornLevel(){return this.hornLevel;}
  set trafficHornLevel(value:TrafficHornLevel){this.hornLevel=value;}
+ get volume(){return this.volumeLevel;}
+ set volume(value:VolumeLevel){this.volumeLevel=value;if(this.ctx&&this.master)this.master.gain.setTargetAtTime(value,this.ctx.currentTime,.035);}
  private makeVoice(c:AudioContext,out:AudioNode):Voice {
   const gain=c.createGain(),pan=c.createStereoPanner(),filter=c.createBiquadFilter(),fallback=c.createGain();gain.gain.value=0;fallback.gain.value=0;filter.type='lowpass';fallback.connect(filter);filter.connect(gain);gain.connect(pan);pan.connect(out);
   const osc=[c.createOscillator(),c.createOscillator()];osc.forEach(o=>{o.connect(fallback);o.start();});return {osc,fallback,filter,gain,pan,id:-1,active:false,source:null,sampled:false};
  }
  start(){try{if(!this.ctx){
-  const c=new AudioContext();this.ctx=c;this.gain=c.createGain();this.gain.gain.value=0;this.gain.connect(c.destination);
+  const c=new AudioContext();this.ctx=c;this.master=c.createGain();this.master.gain.value=this.volumeLevel;this.master.connect(c.destination);this.gain=c.createGain();this.gain.gain.value=0;this.gain.connect(this.master);
   const filter=c.createBiquadFilter();filter.type='lowpass';filter.frequency.value=210;filter.connect(this.gain);
   this.engine=c.createOscillator();this.engine.type='sawtooth';this.engine.frequency.value=35;this.engine.connect(filter);this.engine.start();
   this.harmonic=c.createOscillator();this.harmonic.type='triangle';this.harmonic.frequency.value=70;this.harmonic.connect(filter);this.harmonic.start();
-  const limiter=c.createDynamicsCompressor();limiter.threshold.value=-15;limiter.knee.value=12;limiter.ratio.value=5;limiter.attack.value=.005;limiter.release.value=.12;limiter.connect(c.destination);
+  const limiter=c.createDynamicsCompressor();limiter.threshold.value=-15;limiter.knee.value=12;limiter.ratio.value=5;limiter.attack.value=.005;limiter.release.value=.12;limiter.connect(this.master);
   this.voices=Array.from({length:4},()=>this.makeVoice(c,limiter));this.player=this.makeVoice(c,limiter);
  }void this.ctx.resume().catch(()=>{});this.load();}catch{/* Audio remains optional if blocked by the browser. */}}
  private load(){
@@ -57,5 +61,5 @@ export class DrivingAudio {
    v.gain.gain.setTargetAtTime(hornEnvelope(preset,age,e.duration,e.priority)*attenuation*(v.sampled?(e.priority?.22:.16)*record.gain:e.priority?.024:.016),time,.012);
   }
  }
- dispose(){this.abort?.abort();this.abort=null;this.loading=null;if(this.ctx){for(const v of [...this.voices,...(this.player?[this.player]:[])])this.stop(v,this.ctx.currentTime);void this.ctx.close();}this.voices=[];this.player=null;this.buffers.clear();this.gain=null;this.ctx=null;}
+ dispose(){this.abort?.abort();this.abort=null;this.loading=null;if(this.ctx){for(const v of [...this.voices,...(this.player?[this.player]:[])])this.stop(v,this.ctx.currentTime);void this.ctx.close();}this.voices=[];this.player=null;this.buffers.clear();this.master=null;this.gain=null;this.ctx=null;}
 }
