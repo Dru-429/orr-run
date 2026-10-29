@@ -135,7 +135,7 @@ export default function App () {
     [copied, setCopied] = useState(false),
     [full, setFull] = useState(false),
     [copyError, setCopyError] = useState(false),
-    [cameraView, setCameraView] = useState<CameraView>('cockpit')
+    [cameraView, setCameraView] = useState<CameraView>('chase')
   const settingsReady = useRef(false)
   const inspect =
     import.meta.env.DEV && new URLSearchParams(location.search).has('inspect')
@@ -327,7 +327,7 @@ export default function App () {
         ref={canvas}
         className='world'
         aria-label={`${
-          cameraView === 'cockpit' ? 'Third-person car' : 'First-person cockpit'
+          cameraView === 'chase' ? 'Third-person car' : 'First-person cockpit'
         } view of Bengaluru’s Outer Ring Road`}
       />
       <div className='vignette' />
@@ -335,12 +335,19 @@ export default function App () {
         <Speedometer speed={snapshot.speed} flight={snapshot.flight} />
       )}
 
+      {!ready && (
+        <img
+          className='hud-game-logo'
+          src='/logo.png'
+          alt='Roadster Rush'
+        />
+      )}
+
       {ready && !dialog && (
         <div className='rush-launcher'>
           <header className='rush-nav'>
             <a href='#' className='rush-brand' onClick={event => event.preventDefault()} aria-label='Roadster Rush home'>
-              <strong>Roadster <em>Rush</em></strong>
-              <span>BANGALORE ORR</span>
+              <img src='/logo.png' alt='Roadster Rush — Bangalore ORR Edition' />
             </a>
             <nav aria-label='Launcher navigation'>
               <a href={CREATOR.url} target='_blank' rel='noopener noreferrer'>
@@ -410,10 +417,10 @@ export default function App () {
         </div>
       )}
       {!ready && !dialog && <VehicleStatus snapshot={snapshot} settings={() => open('settings')} />}
-      {!dialog && (
+      {!ready && !dialog && (
         <div className='map-position hud-map-group'>
           <NavigationMap
-            s={ready ? 250 : snapshot.s}
+            s={snapshot.s}
             x={snapshot.x}
             traffic={snapshot.trafficSections}
           />
@@ -564,7 +571,7 @@ export default function App () {
                   )
                 }
               >
-                <span>Follow {CREATOR.name}</span>
+                <span>Follow For More</span>
                 <ArrowUpRight size={22} />
               </a>
             )}
@@ -601,7 +608,7 @@ export default function App () {
               <X size={22} />
             </button>
             <span className='eyebrow'>
-              ORR.RUN / {dialog === 'settings' ? 'YOUR DRIVE' : 'THE REAL ROAD'}
+              ROADSTER RUSH / {dialog === 'settings' ? 'YOUR DRIVE' : 'THE REAL ROAD'}
             </span>
             <h2 id='dialog-title'>
               {dialog === 'settings'

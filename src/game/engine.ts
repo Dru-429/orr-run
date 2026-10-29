@@ -24,7 +24,7 @@ export type CameraView='cockpit'|'chase';
 export interface Settings {trafficHornLevel:TrafficHornLevel;volume:VolumeLevel;reducedMotion:boolean;quality:Quality}
 export class GameEngine {
  sim=new Simulation();input=emptyInput();settings:Settings;renderer:T.WebGLRenderer;scene=new T.Scene();camera=new T.PerspectiveCamera(64,1,.05,1000);audio=new DrivingAudio();uiBlocked=false;
- cameraView:CameraView='cockpit';
+ cameraView:CameraView='chase';
  private daylight=daylightEnvironment();
  private analyticsEnabled=!new URLSearchParams(location.search).has('inspect');
  private analytics=new RunAnalytics((event,properties,urgent)=>{if(this.analyticsEnabled)capture(event,properties,urgent);},ROUTE_ID,ROUTE_LENGTH,()=>crypto.randomUUID(),()=>performance.now(),[...manifest.segments.map(s=>({id:s.id,kind:'segment' as const,station:s.offset})),...hoardings.map(h=>({id:h.id,kind:'hoarding' as const,station:h.station,poster:h.poster})),...parkedBusGroups.map(b=>({id:b.id,kind:'parked_coaches' as const,station:b.start}))]);
@@ -133,7 +133,7 @@ export class GameEngine {
   const effect=impactMotion(this.sim.impactEvent,this.sim.time,this.settings.reducedMotion||ready);
   const surface=surfaceMotion(this.sim.roadResponse.state,this.settings.reducedMotion||ready);
   const cap=(v:number,limit:number)=>Math.max(-limit,Math.min(limit,v));
-  const shake=cap(effect.y+surface.y,.045),chase=this.cameraView==='chase'&&!ready;
+  const shake=cap(effect.y+surface.y,.045),chase=this.cameraView==='chase';
   const lateralSpeed=this.sim.steer*Math.min(4.7,this.sim.speed*.38),headingX=carPose.tx*this.sim.speed+carPose.rx*lateralSpeed,headingZ=carPose.tz*this.sim.speed+carPose.rz*lateralSpeed,headingLength=Math.hypot(headingX,headingZ),forwardX=headingLength>.01?headingX/headingLength:carPose.tx,forwardZ=headingLength>.01?headingZ/headingLength:carPose.tz;
   this.cockpit.group.visible=!chase;this.playerVehicle.group.visible=chase;if(airborne){this.playerVehicle.group.position.fromArray(flight.position);this.playerVehicle.group.quaternion.fromArray(flight.orientation);}else{this.playerVehicle.group.position.set(carPose.x,carPose.y+.46,carPose.z);this.playerVehicle.group.rotation.set(0,Math.atan2(-forwardX,-forwardZ)+Math.PI,0);}const landingBoost=Math.max(airborne&&flight.active?flight.thrust:0,flight.touchdownBoost);this.playerVehicle.update(this.sim.speed,this.sim.steer,landingBoost,airborne&&flight.active?Math.max(0,flight.forwardThrust):0,dt);
   const flightRoadBounds=driveBounds(this.sim.s,.05),overRoad=this.sim.x>=flightRoadBounds.left&&this.sim.x<=flightRoadBounds.right;
