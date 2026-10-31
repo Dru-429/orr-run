@@ -61,6 +61,7 @@ const initial = new Simulation().snapshot()
 const defaults: Settings = {
   trafficHornLevel: 2,
   volume: 1,
+  musicEnabled: true,
   reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
   quality: 'auto'
 }
@@ -78,6 +79,10 @@ function loadSettings (): Settings {
     ...defaults,
     ...saved,
     volume,
+    musicEnabled:
+      typeof saved.musicEnabled === 'boolean'
+        ? saved.musicEnabled
+        : defaults.musicEnabled,
     trafficHornLevel: saved.trafficHornLevel ?? legacyLevel
   }
 }
@@ -438,10 +443,17 @@ export default function App () {
             paused={paused}
             cameraView={cameraView}
             volume={settings.volume}
+            musicEnabled={settings.musicEnabled}
             togglePause={() =>
               paused ? engine.current?.resume() : engine.current?.pause()
             }
             toggleCamera={() => engine.current?.toggleCameraView()}
+            toggleMusic={() =>
+              setSettings(current => ({
+                ...current,
+                musicEnabled: !current.musicEnabled
+              }))
+            }
             toggleSound={() =>
               setSettings(current => ({
                 ...current,

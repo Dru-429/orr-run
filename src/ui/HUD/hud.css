@@ -24,3 +24,27 @@
 .hud-status-head button{border-color:var(--hud-border);border-radius:8px;background:transparent;color:var(--hud-text-muted);transition:background .16s ease,color .16s ease}.hud-status-head button:hover{background:rgba(119,141,169,.2);color:var(--hud-text)}.hud-status-head svg{width:21px;height:21px}
 .hud-status .hud-health,.hud-status .hud-booster{--hud-accent:#778da9}.hud-status .hud-health progress,.hud-status .hud-booster progress{background-image:radial-gradient(circle,rgba(119,141,169,.9) 0 4px,transparent 4.5px)}.hud-status .hud-warning{--hud-accent:var(--hud-warning)}.hud-status .hud-danger{--hud-accent:var(--hud-danger)}
 .hud-status .hud-status-metric>div{color:#fff}.hud-status progress::-webkit-progress-value{background:linear-gradient(90deg,var(--hud-accent),#fff)}.hud-status progress::-moz-progress-bar{background:linear-gradient(90deg,var(--hud-accent),#fff)}
+.hud-utilities .hud-music-toggle{transition:background .16s ease,color .16s ease,opacity .16s ease}.hud-utilities .hud-music-toggle[aria-pressed=false]{opacity:.45}
+
+/* Scale the information-dense HUD on desktop without overwhelming touch layouts. */
+@media(min-width:1200px){
+ .game{--hud-map:clamp(230px,18vw,350px)}
+ .game .nav-instruction{min-height:clamp(62px,6.6vh,72px);padding:clamp(11px,1.1vh,14px) clamp(14px,1vw,18px);gap:clamp(11px,.8vw,15px)}
+ .game .nav-turn{font-size:clamp(34px,2.15vw,42px)}
+ .game .nav-instruction strong{font-size:clamp(12px,.78vw,15px)}
+ .game .nav-instruction span:not(.nav-turn){font-size:clamp(9px,.54vw,11px)}
+ .game .navigation-map>svg{height:clamp(260px,34vh,360px)}
+ .game .nav-place{font-size:clamp(10px,.58vw,12px)}
+ .game .nav-water{font-size:clamp(11px,.62vw,13px)}
+ .game .navigation-map footer{min-height:clamp(36px,4.2vh,46px);padding:clamp(8px,.8vh,11px) clamp(11px,.8vw,15px)}
+ .game .navigation-map footer span{font-size:clamp(9px,.52vw,11px)}
+ .game .navigation-map footer strong{font-size:clamp(9px,.55vw,11px)}
+ .game .nav-destination-progress{padding:3px clamp(11px,.8vw,15px) clamp(9px,1vh,12px);gap:10px}
+ .hud-controls{width:min(clamp(780px,48vw,1040px),calc(100vw - var(--hud-map) - var(--hud-map) - 120px));min-height:clamp(58px,6vh,72px);padding:clamp(9px,1vh,13px) clamp(12px,1vw,18px);gap:clamp(7px,.6vw,12px);border-radius:clamp(14px,1vw,18px)}
+ .hud-controls>div{gap:clamp(6px,.5vw,10px)}
+ .hud-keys{gap:clamp(3px,.24vw,5px)}
+ .hud-key-join{font-size:clamp(8px,.48vw,10px)}
+ .hud-keys kbd{min-width:clamp(24px,1.5vw,31px);height:clamp(29px,3.2vh,38px);padding:2px clamp(4px,.35vw,7px);font-size:clamp(9px,.58vw,12px);border-radius:5px}
+ .hud-controls span{font-size:clamp(9px,.58vw,12px)}
+ .hud-controls small{font-size:clamp(8px,.5vw,10px)}
+}

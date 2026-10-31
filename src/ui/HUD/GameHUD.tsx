@@ -1,5 +1,5 @@
 import {Fragment,memo} from 'react';
-import {Rocket,Share2,RotateCcw,Maximize,Minimize,Camera,Pause,Play,VolumeX,Volume1,Volume2,Check,Settings2} from 'lucide-react';
+import {Rocket,Share2,RotateCcw,Maximize,Minimize,Camera,Music2,Pause,Play,VolumeX,Volume1,Volume2,Check,Settings2} from 'lucide-react';
 import type {Snapshot} from '../../game/simulation';
 import type {CameraView} from '../../game/engine';
 import type {VolumeLevel} from '../../game/audio';
@@ -30,12 +30,13 @@ export function ControlsBar({flight}:{flight:Snapshot['flight']}){
  return <aside className="hud-controls hud-glass" aria-label="Keyboard controls">{controls.map(c=><div key={c.keys.join()}><div className="hud-keys">{c.keys.map((k,i)=><Fragment key={k}>{i>0&&c.join?<b className="hud-key-join">{c.join}</b>:null}<kbd>{k}</kbd></Fragment>)}</div><div><span>{c.label}</span><small>{c.detail}</small></div></div>)}</aside>;
 }
 
-export function UtilityControls({copy,reset,fullscreen,toggleCamera,togglePause,toggleSound,copied,paused,full,cameraView,volume}:{copy:()=>void;reset:()=>void;fullscreen:()=>void;toggleCamera:()=>void;togglePause:()=>void;toggleSound:()=>void;copied:boolean;paused:boolean;full:boolean;cameraView:CameraView;volume:VolumeLevel}){
+export function UtilityControls({copy,reset,fullscreen,toggleCamera,toggleMusic,togglePause,toggleSound,copied,paused,full,cameraView,musicEnabled,volume}:{copy:()=>void;reset:()=>void;fullscreen:()=>void;toggleCamera:()=>void;toggleMusic:()=>void;togglePause:()=>void;toggleSound:()=>void;copied:boolean;paused:boolean;full:boolean;cameraView:CameraView;musicEnabled:boolean;volume:VolumeLevel}){
  const SoundIcon=volume===0?VolumeX:volume===.5?Volume1:Volume2,soundPercent=Math.round(volume*100);
  return <nav className="hud-utilities hud-glass" aria-label="Game utilities">
   <button onClick={togglePause} title={paused?'Resume':'Pause'} aria-label={paused?'Resume':'Pause'}>{paused?<Play/>:<Pause/>}<span>{paused?'Resume':'Pause'}</span></button>
   <button onClick={fullscreen} title={full?'Exit fullscreen':'Fullscreen'} aria-label={full?'Exit fullscreen':'Fullscreen'}>{full?<Minimize/>:<Maximize/>}<span>{full?'Exit full':'Full'}</span></button>
   <button onClick={toggleCamera} title="Change camera view" aria-label="Change camera view" aria-pressed={cameraView==='chase'}><Camera/><span>Camera</span></button>
+  <button className="hud-music-toggle" onClick={toggleMusic} title={musicEnabled?'Music On':'Music Off'} aria-label={`${musicEnabled?'Pause':'Resume'} background music`} aria-pressed={musicEnabled}><Music2/><span>Music</span></button>
   <button onClick={toggleSound} title={`Sound ${soundPercent}%`} aria-label={`Sound ${soundPercent}%. Click for next level.`}><SoundIcon/><span>{soundPercent}%</span></button>
   <button onClick={reset} title="Reset car" aria-label="Reset car"><RotateCcw/><span>Reset</span></button>
   <button onClick={copy} title={copied?'Link copied':'Share route'} aria-label={copied?'Link copied':'Share route'}>{copied?<Check/>:<Share2/>}<span>{copied?'Copied':'Share'}</span></button>

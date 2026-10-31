@@ -142,8 +142,9 @@ export function makeWorld(scene:T.Scene){
  const under=manifest.marathahalliUnderpass,cutout:number[][]=[];
  for(let s=under.from;s<under.to;s+=5){const p=pose(s,crossSectionAt(s).left-1);cutout.push([p.x,-p.z]);}for(let s=under.to;s>under.from;s-=5){const p=pose(s,crossSectionAt(s).oppositeRight+1);cutout.push([p.x,-p.z]);}groundShape.holes.push(new T.Path(cutout.map(p=>new T.Vector2(p[0],p[1]))));
  const ground=new T.Mesh(new T.ShapeGeometry(groundShape),sharedMaterial('#a5aa8e'));ground.rotation.x=-Math.PI/2;ground.position.y=-.09;world.add(ground);
- // Soft atmospheric sky instead of an opaque flat background.
- const skyGeo=new T.SphereGeometry(1600,24,16);const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{top:{value:new T.Color('#83afbc')},bottom:{value:new T.Color('#e1dfca')}},vertexShader:'varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:'varying vec3 vP;uniform vec3 top;uniform vec3 bottom;float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+1.),f.x),f.y);}void main(){vec3 d=normalize(vP);float h=clamp(d.y*1.6,0.,1.);vec3 c=mix(bottom,top,pow(h,.7));vec2 p=d.xz/max(.18,d.y)*2.;float n=noise(p)*.55+noise(p*2.2)*.25+noise(p*4.8)*.13+noise(p*9.)*.07;float cloud=smoothstep(.47,.73,n)*smoothstep(.02,.3,d.y);c=mix(c,vec3(.89,.91,.88),cloud*.65);gl_FragColor=vec4(c,1.);}'});const sky=new T.Mesh(skyGeo,skyMat);world.add(sky);
+ // A photographic 2:1 panorama keeps cloud shapes visible at road and flight altitudes.
+ const skyTexture=new T.TextureLoader().load('/sky-clouds.png');skyTexture.colorSpace=T.SRGBColorSpace;skyTexture.wrapS=T.RepeatWrapping;skyTexture.minFilter=T.LinearMipmapLinearFilter;skyTexture.magFilter=T.LinearFilter;
+ const skyGeo=new T.SphereGeometry(1600,48,24);const skyMat=new T.MeshBasicMaterial({map:skyTexture,side:T.BackSide,depthWrite:false,fog:false,toneMapped:false});const sky=new T.Mesh(skyGeo,skyMat);sky.rotation.y=Math.PI*.22;world.add(sky);
  // Large lake footprints are single persistent meshes, never split at chunk seams.
  const lakes=[...landscape,...construction].filter(f=>f.geometry.type==='polygon'&&(f.kind==='water'||f.to-f.from>200)).map(f=>{const geo=new T.ShapeGeometry(polygonShapes(f.geometry));geo.rotateX(-Math.PI/2);const mesh=new T.Mesh(geo,sharedMaterial(f.kind==='water'?'#638c87':f.kind==='construction'?'#b3a082':'#96a477',f.kind==='water'?.3:.9));mesh.position.y=.015;world.add(mesh);return {mesh,from:f.from,to:f.to};});
  const chunks=new Map<number,T.Group>();let current=-1;
@@ -155,7 +156,7 @@ export function makeWorld(scene:T.Scene){
   world.userData.chunks=chunks.size;
  }
  update(0);
- return {group:world,update,surfaceTime(time:number,low:boolean){resources.surfaces.time.value=time;resources.surfaces.detail.value=low?0:1;},dispose(){for(const g of chunks.values())release(g);chunks.clear();for(const m of shared()){Object.values(m).forEach(v=>{if(v instanceof T.Texture&&!isPosterTexture(v))v.dispose();});m.dispose();}disposePosterArtwork();lakes.forEach(l=>l.mesh.geometry.dispose());ground.geometry.dispose();skyGeo.dispose();skyMat.dispose();scene.remove(world);}};
+ return {group:world,update,surfaceTime(time:number,low:boolean){resources.surfaces.time.value=time;resources.surfaces.detail.value=low?0:1;},dispose(){for(const g of chunks.values())release(g);chunks.clear();for(const m of shared()){Object.values(m).forEach(v=>{if(v instanceof T.Texture&&!isPosterTexture(v))v.dispose();});m.dispose();}disposePosterArtwork();lakes.forEach(l=>l.mesh.geometry.dispose());ground.geometry.dispose();skyTexture.dispose();skyGeo.dispose();skyMat.dispose();scene.remove(world);}};
 }
 export function place(mesh:T.Object3D,s:number,offset:number,y:number){const p=pose(s,offset);mesh.position.set(p.x,p.y+y,p.z);mesh.rotation.y=p.yaw;}
 

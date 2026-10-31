@@ -4,8 +4,11 @@ interface Voice {osc:OscillatorNode[];fallback:GainNode;filter:BiquadFilterNode;
 export type TrafficHornLevel=0|1|2;
 export type VolumeLevel=0|.5|1;
 export const nextVolumeLevel=(value:VolumeLevel):VolumeLevel=>value===0?.5:value===.5?1:0;
+export const BACKGROUND_MUSIC_VOLUME=.25;
+const BACKGROUND_MUSIC_URL='/bg-music.m4a';
 export class DrivingAudio {
  private ctx:AudioContext|null=null;private master:GainNode|null=null;private gain:GainNode|null=null;private engine:OscillatorNode|null=null;private harmonic:OscillatorNode|null=null;private player:Voice|null=null;private voices:Voice[]=[];private hornLevel:TrafficHornLevel=2;private volumeLevel:VolumeLevel=1;
+ private musicOn=true;private musicElement:HTMLAudioElement|null=null;private musicSource:MediaElementAudioSourceNode|null=null;private musicGain:GainNode|null=null;
  private buffers=new Map<HornSampleId,AudioBuffer>();private loading:Promise<void>|null=null;private abort:AbortController|null=null;
  get activeVoices(){return this.voices.filter(v=>v.active).length;}
  get voiceCount(){return this.voices.length;}
@@ -15,6 +18,8 @@ export class DrivingAudio {
  set trafficHornLevel(value:TrafficHornLevel){this.hornLevel=value;}
  get volume(){return this.volumeLevel;}
  set volume(value:VolumeLevel){this.volumeLevel=value;if(this.ctx&&this.master)this.master.gain.setTargetAtTime(value,this.ctx.currentTime,.035);}
+ get musicEnabled(){return this.musicOn;}
+ set musicEnabled(value:boolean){this.musicOn=value;if(!value){if(this.ctx&&this.musicGain)this.musicGain.gain.setTargetAtTime(0,this.ctx.currentTime,.035);this.musicElement?.pause();return;}if(this.ctx)void this.ctx.resume().then(()=>this.syncMusic()).catch(()=>{});}
  private makeVoice(c:AudioContext,out:AudioNode):Voice {
   const gain=c.createGain(),pan=c.createStereoPanner(),filter=c.createBiquadFilter(),fallback=c.createGain();gain.gain.value=0;fallback.gain.value=0;filter.type='lowpass';fallback.connect(filter);filter.connect(gain);gain.connect(pan);pan.connect(out);
   const osc=[c.createOscillator(),c.createOscillator()];osc.forEach(o=>{o.connect(fallback);o.start();});return {osc,fallback,filter,gain,pan,id:-1,active:false,source:null,sampled:false};
@@ -26,7 +31,15 @@ export class DrivingAudio {
   this.harmonic=c.createOscillator();this.harmonic.type='triangle';this.harmonic.frequency.value=70;this.harmonic.connect(filter);this.harmonic.start();
   const limiter=c.createDynamicsCompressor();limiter.threshold.value=-15;limiter.knee.value=12;limiter.ratio.value=5;limiter.attack.value=.005;limiter.release.value=.12;limiter.connect(this.master);
   this.voices=Array.from({length:4},()=>this.makeVoice(c,limiter));this.player=this.makeVoice(c,limiter);
- }void this.ctx.resume().catch(()=>{});this.load();}catch{/* Audio remains optional if blocked by the browser. */}}
+  this.setupMusic(c);
+ }void this.ctx.resume().then(()=>this.syncMusic()).catch(()=>{});this.load();}catch{/* Audio remains optional if blocked by the browser. */}}
+ private setupMusic(c:AudioContext){
+  if(this.musicElement||typeof Audio==='undefined'||typeof c.createMediaElementSource!=='function'||!this.master)return;
+  const element=new Audio(BACKGROUND_MUSIC_URL),source=c.createMediaElementSource(element),gain=c.createGain();element.loop=true;element.preload='auto';gain.gain.value=0;source.connect(gain);gain.connect(this.master);this.musicElement=element;this.musicSource=source;this.musicGain=gain;
+ }
+ private syncMusic(){
+  if(!this.ctx||!this.musicElement||!this.musicGain)return;this.musicGain.gain.setTargetAtTime(this.musicOn?BACKGROUND_MUSIC_VOLUME:0,this.ctx.currentTime,.08);if(this.musicOn&&this.musicElement.paused)void this.musicElement.play().catch(()=>{});else if(!this.musicOn)this.musicElement.pause();
+ }
  private load(){
   if(!this.ctx||this.loading||this.sampleCount===Object.keys(HORN_SAMPLES).length)return;
   const context=this.ctx,controller=new AbortController();this.abort=controller;
@@ -61,5 +74,5 @@ export class DrivingAudio {
    v.gain.gain.setTargetAtTime(hornEnvelope(preset,age,e.duration,e.priority)*attenuation*(v.sampled?(e.priority?.22:.16)*record.gain:e.priority?.024:.016),time,.012);
   }
  }
- dispose(){this.abort?.abort();this.abort=null;this.loading=null;if(this.ctx){for(const v of [...this.voices,...(this.player?[this.player]:[])])this.stop(v,this.ctx.currentTime);void this.ctx.close();}this.voices=[];this.player=null;this.buffers.clear();this.master=null;this.gain=null;this.ctx=null;}
+ dispose(){this.abort?.abort();this.abort=null;this.loading=null;this.musicElement?.pause();this.musicSource?.disconnect();this.musicGain?.disconnect();this.musicElement=null;this.musicSource=null;this.musicGain=null;if(this.ctx){for(const v of [...this.voices,...(this.player?[this.player]:[])])this.stop(v,this.ctx.currentTime);void this.ctx.close();}this.voices=[];this.player=null;this.buffers.clear();this.master=null;this.gain=null;this.ctx=null;}
 }
