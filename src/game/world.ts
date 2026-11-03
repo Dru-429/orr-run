@@ -189,7 +189,7 @@ export function makeCockpit(camera:T.Camera){
   const wing=new T.Mesh(new RoundedBoxGeometry(.11,.055,.03,1,.01),dark);wing.position.set(side*.145,-.01,.02);wheel.add(wing);
   const dial=new T.Mesh(new T.CylinderGeometry(.012,.012,.018,10),trim);dial.rotation.x=Math.PI/2;dial.position.set(side*.145,-.01,.04);wheel.add(dial);
  }
- const badge=sign('ORR',.11,.034,'#cdd4c4','transparent');badge.position.z=.04;wheel.add(badge);group.add(wheel);
+ const badge=sign('TESLA',.11,.034,'#cdd4c4','transparent');badge.position.z=.04;wheel.add(badge);group.add(wheel);
  const c=document.createElement('canvas');c.width=512;c.height=180;const texture=new T.CanvasTexture(c);texture.colorSpace=T.SRGBColorSpace;
  const screen=new T.Mesh(new T.PlaneGeometry(.66,.20),new T.MeshBasicMaterial({map:texture}));screen.position.set(.05,-.28,-1.027);group.add(screen);
  const nav=sign('ORR',.36,.20,'#dce39f','#182d2a','MARATHAHALLI  ↑');nav.position.set(-.62,-.90,-.225);group.add(nav);
