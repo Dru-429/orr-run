@@ -356,7 +356,7 @@ export default function App () {
             </a>
             <nav aria-label='Launcher navigation'>
               <a href={CREATOR.url} target='_blank' rel='noopener noreferrer'>
-                {CREATOR.name}
+                Rent a Billboards
               </a>
               <button className='rush-nav-play' onClick={start} disabled={!loaded || !!error}>
                 {loaded && !error && <Play size={19} fill='currentColor' />}
